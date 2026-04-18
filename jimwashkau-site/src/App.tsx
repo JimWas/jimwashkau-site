@@ -20,27 +20,54 @@ function App() {
   useEffect(() => {
     // In a real Vite app, we can use import.meta.glob to load all md files
     const loadMissions = async () => {
-      const modules = import.meta.glob('/src/content/logs/*.md', { query: '?raw', import: 'default' });
-      const missionData: Mission[] = [];
-
-      for (const path in modules) {
-        const content = await modules[path]() as string;
-        const { data, content: body } = matter(content);
-        const id = path.split('/').pop()?.replace('.md', '') || '';
+      try {
+        const modules = import.meta.glob('./content/logs/*.md', { query: '?raw', import: 'default' });
+        console.log('Vite Glob Modules:', modules);
         
-        missionData.push({
-          id,
-          title: data.title,
-          tag: data.tag,
-          status: data.status,
-          year: data.year,
-          summary: data.summary,
-          content: body,
-        });
-      }
+        const paths = Object.keys(modules);
+        if (paths.length === 0) {
+          console.warn('No .md files found in ./content/logs/ via glob');
+        }
 
-      // Sort by year descending
-      setMissions(missionData.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
+        const missionData: Mission[] = [];
+
+        for (const path of paths) {
+          try {
+            console.log('Processing path:', path);
+            const content = await modules[path]() as string;
+            // Simple manual parsing if gray-matter fails in browser
+            const parts = content.split('---');
+            if (parts.length < 3) continue;
+
+            const frontmatterRaw = parts[1];
+            const body = parts.slice(2).join('---');
+
+            const data: any = {};
+            frontmatterRaw.split('\n').forEach(line => {
+              const [key, ...val] = line.split(':');
+              if (key && val) data[key.trim()] = val.join(':').trim().replace(/^"(.*)"$/, '$1');
+            });
+
+            const id = path.split('/').pop()?.replace('.md', '') || '';
+            
+            missionData.push({
+              id,
+              title: data.title || 'Untitled',
+              tag: data.tag || 'OP-UNKNOWN',
+              status: data.status || 'SUCCESS',
+              year: data.year || '2026',
+              summary: data.summary || '',
+              content: body,
+            });
+          } catch (err) {
+            console.error('Error parsing mission at', path, ':', err);
+          }
+        }
+
+        setMissions(missionData.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
+      } catch (err) {
+        console.error('Glob import failed:', err);
+      }
     };
 
     loadMissions();
@@ -92,9 +119,8 @@ function App() {
               MOVING THE <br />
               MISSION FORWARD
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed">
-              A systems-first approach to complex technical challenges. 
-              Creating solutions that scale from concept to operations.
+            <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed italic font-mono">
+              /// One day at a time.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 

@@ -1,0 +1,7 @@
+openai-whisper
+pydub
+GitPython
+sounddevice
+numpy
+scipy
+setuptools
