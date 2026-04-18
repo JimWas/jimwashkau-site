@@ -1,5 +1,4 @@
 openai-whisper
-pydub
 GitPython
 sounddevice
 numpy

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import matter from 'gray-matter';
-import { X, ExternalLink, Calendar, ChevronRight } from 'lucide-react';
+import { X, Calendar, ChevronRight } from 'lucide-react';
 
 interface Mission {
   id: string;
@@ -10,6 +10,7 @@ interface Mission {
   status: string;
   year: string;
   summary: string;
+  audio?: string;
   content: string;
 }
 
@@ -18,35 +19,18 @@ function App() {
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
 
   useEffect(() => {
-    // In a real Vite app, we can use import.meta.glob to load all md files
     const loadMissions = async () => {
       try {
         const modules = import.meta.glob('./content/logs/*.md', { query: '?raw', import: 'default' });
-        console.log('Vite Glob Modules:', modules);
         
         const paths = Object.keys(modules);
-        if (paths.length === 0) {
-          console.warn('No .md files found in ./content/logs/ via glob');
-        }
-
         const missionData: Mission[] = [];
 
         for (const path of paths) {
           try {
-            console.log('Processing path:', path);
             const content = await modules[path]() as string;
-            // Simple manual parsing if gray-matter fails in browser
-            const parts = content.split('---');
-            if (parts.length < 3) continue;
-
-            const frontmatterRaw = parts[1];
-            const body = parts.slice(2).join('---');
-
-            const data: any = {};
-            frontmatterRaw.split('\n').forEach(line => {
-              const [key, ...val] = line.split(':');
-              if (key && val) data[key.trim()] = val.join(':').trim().replace(/^"(.*)"$/, '$1');
-            });
+            // Use matter here to keep the import 'read'
+            const { data, content: body } = matter(content);
 
             const id = path.split('/').pop()?.replace('.md', '') || '';
             
@@ -57,6 +41,7 @@ function App() {
               status: data.status || 'SUCCESS',
               year: data.year || '2026',
               summary: data.summary || '',
+              audio: data.audio || undefined,
               content: body,
             });
           } catch (err) {
@@ -247,6 +232,21 @@ function App() {
                   </div>
                 </div>
                 <div className="space-y-6">
+                  {selectedMission.audio && (
+                    <div className="p-4 border border-brand/20 bg-brand/5">
+                      <p className="text-[10px] font-bold text-brand uppercase tracking-widest mb-3 flex items-center">
+                        <span className="w-2 h-2 bg-brand rounded-full mr-2 animate-pulse"></span>
+                        Voice Recording
+                      </p>
+                      <audio 
+                        controls 
+                        src={selectedMission.audio} 
+                        className="w-full h-8 accent-brand"
+                      >
+                        Your browser does not support the audio element.
+                      </audio>
+                    </div>
+                  )}
                   <div className="p-4 border border-white/5 bg-black/30">
                     <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">Operation Status</p>
                     <div className={`text-xs font-bold inline-block px-2 py-1 border ${selectedMission.status === 'SUCCESS' ? 'border-green-500/50 text-green-500' : 'border-yellow-500/50 text-yellow-500'}`}>
