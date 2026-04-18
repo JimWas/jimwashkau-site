@@ -3,6 +3,17 @@ import ReactMarkdown from 'react-markdown';
 import matter from 'gray-matter';
 import { X, Calendar, ChevronRight } from 'lucide-react';
 
+// Force import the markdown files so they are bundled
+import opOrion from './content/logs/op-orion.md?raw';
+import opViper from './content/logs/op-viper.md?raw';
+import opWailingWalrus from './content/logs/op-wailingwalrus.md?raw';
+
+const MOCK_MODULES: Record<string, string> = {
+  './content/logs/op-orion.md': opOrion,
+  './content/logs/op-viper.md': opViper,
+  './content/logs/op-wailingwalrus.md': opWailingWalrus
+};
+
 interface Mission {
   id: string;
   title: string;
@@ -21,23 +32,12 @@ function App() {
   useEffect(() => {
     const loadMissions = async () => {
       try {
-        // Look for logs in the src/content/logs directory
-        const modules = import.meta.glob('./content/logs/*.md', { query: '?raw', import: 'default' });
-        console.log('Vite Glob Modules:', modules);
-        
-        const paths = Object.keys(modules);
-        if (paths.length === 0) {
-          console.warn('No .md files found in /content/logs/ via glob');
-        }
-
+        console.log('Using static modules:', MOCK_MODULES);
         const missionData: Mission[] = [];
 
-        for (const path of paths) {
+        for (const [path, content] of Object.entries(MOCK_MODULES)) {
           try {
-            const content = await modules[path]() as string;
-            // Use matter here to keep the import 'read'
             const { data, content: body } = matter(content);
-
             const id = path.split('/').pop()?.replace('.md', '') || '';
             
             missionData.push({
@@ -57,7 +57,7 @@ function App() {
 
         setMissions(missionData.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
       } catch (err) {
-        console.error('Glob import failed:', err);
+        console.error('Failed to load missions:', err);
       }
     };
 
