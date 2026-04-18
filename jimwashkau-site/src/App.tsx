@@ -32,12 +32,15 @@ function App() {
   useEffect(() => {
     const loadMissions = async () => {
       try {
-        console.log('Using static modules:', MOCK_MODULES);
+        // Use eager: true and query: '?raw' to guarantee bundling
+        const modules = import.meta.glob('./content/logs/*.md', { eager: true, query: '?raw', import: 'default' });
+        console.log('Detected modules:', modules);
+        
         const missionData: Mission[] = [];
 
-        for (const [path, content] of Object.entries(MOCK_MODULES)) {
+        for (const [path, content] of Object.entries(modules)) {
           try {
-            const { data, content: body } = matter(content);
+            const { data, content: body } = matter(content as string);
             const id = path.split('/').pop()?.replace('.md', '') || '';
             
             missionData.push({
@@ -57,7 +60,7 @@ function App() {
 
         setMissions(missionData.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
       } catch (err) {
-        console.error('Failed to load missions:', err);
+        console.error('Glob import failed:', err);
       }
     };
 
