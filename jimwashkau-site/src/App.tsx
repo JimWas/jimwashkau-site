@@ -34,8 +34,14 @@ function parseMarkdown(content: string) {
   const data: Record<string, string> = {};
   
   frontmatter.split('\n').forEach(line => {
-    const [key, ...val] = line.split(':');
-    if (key && val) data[key.trim()] = val.join(':').trim().replace(/^"(.*)"$/, '$1');
+    const idx = line.indexOf(':');
+    if (idx !== -1) {
+      const key = line.substring(0, idx).trim();
+      let val = line.substring(idx + 1).trim();
+      // Remove surrounding quotes if present
+      val = val.replace(/^["'](.*)["']$/, '$1');
+      data[key] = val;
+    }
   });
   
   return { data, body };
