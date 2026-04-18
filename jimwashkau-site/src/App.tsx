@@ -23,9 +23,13 @@ function App() {
       try {
         // Look for logs in the root 'content/logs' directory
         const modules = import.meta.glob('/content/logs/*.md', { query: '?raw', import: 'default' });
+        console.log('Vite Glob Modules:', modules);
         
         const paths = Object.keys(modules);
-        console.log('Detected logs at paths:', paths);
+        if (paths.length === 0) {
+          console.warn('No .md files found in /content/logs/ via glob');
+        }
+
         const missionData: Mission[] = [];
 
         for (const path of paths) {
