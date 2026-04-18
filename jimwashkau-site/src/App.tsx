@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import matter from 'gray-matter';
 import { X, Calendar, ChevronRight } from 'lucide-react';
 
 // Force import the markdown files so they are bundled
@@ -25,6 +24,23 @@ interface Mission {
   content: string;
 }
 
+// Simple browser-safe frontmatter parser
+function parseMarkdown(content: string) {
+  const parts = content.split('---');
+  if (parts.length < 3) return { data: {} as Record<string, string>, body: content };
+  
+  const frontmatter = parts[1];
+  const body = parts.slice(2).join('---');
+  const data: Record<string, string> = {};
+  
+  frontmatter.split('\n').forEach(line => {
+    const [key, ...val] = line.split(':');
+    if (key && val) data[key.trim()] = val.join(':').trim().replace(/^"(.*)"$/, '$1');
+  });
+  
+  return { data, body };
+}
+
 function App() {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
@@ -32,15 +48,11 @@ function App() {
   useEffect(() => {
     const loadMissions = async () => {
       try {
-        // Use eager: true and query: '?raw' to guarantee bundling
-        const modules = import.meta.glob('./content/logs/*.md', { eager: true, query: '?raw', import: 'default' });
-        console.log('Detected modules:', modules);
-        
         const missionData: Mission[] = [];
 
-        for (const [path, content] of Object.entries(modules)) {
+        for (const [path, content] of Object.entries(MOCK_MODULES)) {
           try {
-            const { data, content: body } = matter(content as string);
+            const { data, body } = parseMarkdown(content);
             const id = path.split('/').pop()?.replace('.md', '') || '';
             
             missionData.push({
@@ -60,7 +72,7 @@ function App() {
 
         setMissions(missionData.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
       } catch (err) {
-        console.error('Glob import failed:', err);
+        console.error('Failed to load missions:', err);
       }
     };
 
@@ -364,4 +376,3 @@ function MissionEntry({ tag, title, status, year, onClick }: MissionEntryProps) 
 }
 
 export default App;
-
