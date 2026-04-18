@@ -21,9 +21,11 @@ function App() {
   useEffect(() => {
     const loadMissions = async () => {
       try {
-        const modules = import.meta.glob('./content/logs/*.md', { query: '?raw', import: 'default' });
+        // Look for logs in the root 'content/logs' directory
+        const modules = import.meta.glob('/content/logs/*.md', { query: '?raw', import: 'default' });
         
         const paths = Object.keys(modules);
+        console.log('Detected logs at paths:', paths);
         const missionData: Mission[] = [];
 
         for (const path of paths) {
