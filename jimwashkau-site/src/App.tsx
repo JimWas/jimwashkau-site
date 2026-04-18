@@ -22,7 +22,7 @@ function App() {
     const loadMissions = async () => {
       try {
         // Look for logs in the src/content/logs directory
-        const modules = import.meta.glob('/src/content/logs/*.md', { query: '?raw', import: 'default' });
+        const modules = import.meta.glob('./content/logs/*.md', { query: '?raw', import: 'default' });
         console.log('Vite Glob Modules:', modules);
         
         const paths = Object.keys(modules);
