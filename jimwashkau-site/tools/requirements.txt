@@ -1,6 +1,0 @@
-openai-whisper
-GitPython
-sounddevice
-numpy
-scipy
-setuptools
