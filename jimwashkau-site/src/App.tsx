@@ -306,7 +306,7 @@ function App() {
           </div>
           <div className="flex space-x-6 text-sm font-bold tracking-widest">
             <a href="https://www.linkedin.com/in/jimwashkau/" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">LINKEDIN</a>
-            <a href="#" className="hover:text-brand transition-colors">GITHUB</a>
+            <a href="https://github.com/JimWas" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">GITHUB</a>
             <a href="#" className="hover:text-brand transition-colors">X.COM</a>
           </div>
         </div>
