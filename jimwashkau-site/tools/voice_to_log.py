@@ -100,7 +100,7 @@ def transcribe_local():
     result = model.transcribe(AUDIO_TMP_WAV)
     return result["text"]
 
-def save_and_push(title, tag, status, year, content, audio_url):
+def save_and_push(title, tag, status, year, date_str, content, audio_url):
     filename = f"{tag.lower()}.md"
     filepath = os.path.join(LOG_DIR, filename)
 
@@ -112,6 +112,7 @@ title: "{title}"
 tag: "{tag}"
 status: "{status}"
 year: "{year}"
+date: "{date_str}"
 {audio_frontmatter}
 summary: "Mission Log transcribed via local secure voice-to-text."
 ---
@@ -185,13 +186,15 @@ def main():
     status = input("Enter Status (SUCCESS/ONGOING) [default SUCCESS]: ")
     status = status.upper() if status else "SUCCESS"
     
-    year = str(datetime.datetime.now().year)
+    now = datetime.datetime.now()
+    year = str(now.year)
+    date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     
     record_audio_manual()
     
     mp3_url = save_as_mp3_direct(tag)
     transcript = transcribe_local()
-    save_and_push(title, tag, status, year, transcript, mp3_url)
+    save_and_push(title, tag, status, year, date_str, transcript, mp3_url)
     
     # Cleanup
     if os.path.exists(AUDIO_TMP_WAV):

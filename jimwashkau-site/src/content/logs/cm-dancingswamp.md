@@ -3,6 +3,7 @@ title: "SUN. APRIL 19 2026"
 tag: "CM-DANCINGSWAMP"
 status: "SUCCESS"
 year: "2026"
+date: "2026-04-19 21:42:00"
 audio: "/audio/cm-dancingswamp.mp3"
 summary: "Mission Log transcribed via local secure voice-to-text."
 ---

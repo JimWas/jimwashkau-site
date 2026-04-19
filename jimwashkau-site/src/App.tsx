@@ -25,6 +25,7 @@ interface Mission {
   tag: string;
   status: string;
   year: string;
+  date?: string;
   summary: string;
   audio?: string;
   content: string;
@@ -73,6 +74,7 @@ function App() {
               tag: data.tag || 'OP-UNKNOWN',
               status: data.status || 'SUCCESS',
               year: data.year || '2026',
+              date: data.date || undefined,
               summary: data.summary || '',
               audio: data.audio || undefined,
               content: body,
@@ -82,7 +84,14 @@ function App() {
           }
         }
 
-        setMissions(missionData.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
+        setMissions(missionData.sort((a, b) => {
+          // Sort by date if available
+          if (a.date && b.date) {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          }
+          // Fallback to year
+          return parseInt(b.year) - parseInt(a.year);
+        }));
       } catch (err) {
         console.error('Failed to load missions:', err);
       }

@@ -3,6 +3,7 @@ title: "Cambodia New Year"
 tag: "OP-DANCINGTHUNDER"
 status: "ONGOING"
 year: "2026"
+date: "2026-04-18 19:39:00"
 audio: "/audio/op-dancingthunder.mp3"
 summary: "Mission Log transcribed via local secure voice-to-text."
 ---
