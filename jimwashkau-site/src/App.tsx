@@ -6,11 +6,17 @@ import { X, Calendar, ChevronRight } from 'lucide-react';
 import opOrion from './content/logs/op-orion.md?raw';
 import opViper from './content/logs/op-viper.md?raw';
 import opWailingWalrus from './content/logs/op-wailingwalrus.md?raw';
+import opDancingThunder from './content/logs/op-dancingthunder.md?raw';
+import cmDancingSwamp from './content/logs/cm-dancingswamp.md?raw';
+import cambodia17 from './content/logs/cambodia-17.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
   './content/logs/op-orion.md': opOrion,
   './content/logs/op-viper.md': opViper,
-  './content/logs/op-wailingwalrus.md': opWailingWalrus
+  './content/logs/op-wailingwalrus.md': opWailingWalrus,
+  './content/logs/op-dancingthunder.md': opDancingThunder,
+  './content/logs/cm-dancingswamp.md': cmDancingSwamp,
+  './content/logs/cambodia-17.md': cambodia17
 };
 
 interface Mission {
