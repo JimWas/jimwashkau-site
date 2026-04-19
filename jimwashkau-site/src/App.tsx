@@ -381,8 +381,8 @@ function MissionEntry({ tag, title, status, year, onClick }: MissionEntryProps) 
       onClick={onClick}
       className="w-full text-left group border-b border-white/10 py-6 flex flex-col md:flex-row md:items-center justify-between hover:bg-white/5 px-4 transition-all duration-300"
     >
-      <div className="flex items-center space-x-6 mb-4 md:mb-0">
-        <span className="text-brand font-mono font-bold text-sm tracking-widest">{tag}</span>
+      <div className="flex items-center mb-4 md:mb-0">
+        <span className="text-brand font-mono font-bold text-sm tracking-widest w-48 shrink-0">{tag}</span>
         <h4 className="text-lg md:text-xl font-bold uppercase group-hover:translate-x-2 transition-transform duration-300">{title}</h4>
       </div>
       <div className="flex items-center space-x-8">
