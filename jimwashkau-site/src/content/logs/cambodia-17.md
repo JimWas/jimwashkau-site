@@ -1,7 +1,7 @@
 ---
 title: "August 17 2026"
 tag: "CAMBODIA-17"
-status: "ONGOING"
+status: "SUCCESS"
 year: "2026"
 date: "2026-04-17 12:00:00"
 audio: "/audio/cambodia-17.mp3"
