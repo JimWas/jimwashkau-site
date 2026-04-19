@@ -140,7 +140,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 relative z-20">
           <div className="max-w-4xl">
             <div className="inline-block px-3 py-1 border border-brand text-brand text-xs font-bold tracking-[0.2em] mb-6 uppercase">
-              Current Status: Active
+              CURRENT STATUS: ALIVE
             </div>
             <h1 className="text-6xl md:text-8xl font-black leading-[0.9] mb-8 animate-fade-in uppercase">
               MOVING THE <br />
