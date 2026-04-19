@@ -86,6 +86,7 @@ def save_as_mp3_direct(tag):
     try:
         subprocess.run([
             'ffmpeg', '-y', '-i', AUDIO_TMP_WAV, 
+            '-filter:a', 'volume=2.0', 
             '-codec:a', 'libmp3lame', '-qscale:a', '2', 
             mp3_path
         ], check=True, capture_output=True)
