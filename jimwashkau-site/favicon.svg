@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <!-- NASA-inspired Worm Style "J" -->
-  <!-- Using NASA Red (#FC3D21) -->
+  <!-- Using NASA Blue (#0B3D91) -->
   <path 
     d="M 65 20 
        L 65 65 
        C 65 85, 35 85, 35 65" 
     fill="none" 
-    stroke="#FC3D21" 
+    stroke="#0B3D91" 
     stroke-width="16" 
     stroke-linecap="round" 
     stroke-linejoin="round"
