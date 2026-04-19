@@ -182,8 +182,8 @@ function App() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
             <CapabilityCard 
-              title="SYSTEMS ARCHITECTURE" 
-              desc="Designing robust, resilient infrastructures for high-stakes environments." 
+              title="RAPID DEVELOPER" 
+              desc="Develops complex solution to real-world problems." 
               number="01"
             />
             <CapabilityCard 
