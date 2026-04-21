@@ -11,8 +11,10 @@ import cmDancingSwamp from './content/logs/cm-dancingswamp.md?raw';
 import cambodia17 from './content/logs/cambodia-17.md?raw';
 import opSailingfrogs from './content/logs/op-sailingfrogs.md?raw';
 import opKewltram from './content/logs/op-kewltram.md?raw';
+import opBargingspider from './content/logs/op-bargingspider.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/op-bargingspider.md': opBargingspider,
   './content/logs/op-kewltram.md': opKewltram,
   './content/logs/op-sailingfrogs.md': opSailingfrogs,
   './content/logs/op-orion.md': opOrion,
