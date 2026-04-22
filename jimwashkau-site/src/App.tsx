@@ -14,8 +14,10 @@ import opKewltram from './content/logs/op-kewltram.md?raw';
 import opBargingspider from './content/logs/op-bargingspider.md?raw';
 import opHumidrollers from './content/logs/op-humidrollers.md?raw';
 import opWanderingelephant from './content/logs/op-wanderingelephant.md?raw';
+import opCroakingmoon from './content/logs/op-croakingmoon.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/op-croakingmoon.md': opCroakingmoon,
   './content/logs/op-wanderingelephant.md': opWanderingelephant,
   './content/logs/op-humidrollers.md': opHumidrollers,
   './content/logs/op-bargingspider.md': opBargingspider,
