@@ -183,7 +183,7 @@ function App() {
               MISSION FORWARD
             </h1>
             <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed italic font-mono">
-              Greatness in every moment.
+              Greatness <span className="text-brand">in every</span> moment.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
