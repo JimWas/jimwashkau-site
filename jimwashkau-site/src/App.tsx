@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { X, Calendar, ChevronRight } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
 
@@ -135,7 +136,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-brand selection:text-white">
+      <Analytics />
       {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
       <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-bold tracking-tighter uppercase">
