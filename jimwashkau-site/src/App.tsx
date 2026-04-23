@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { X, Calendar, ChevronRight } from 'lucide-react';
+import Support from './Support';
+import Privacy from './Privacy';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -73,6 +75,13 @@ function parseMarkdown(content: string) {
 function App() {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   useEffect(() => {
     const loadMissions = async () => {
@@ -115,6 +124,14 @@ function App() {
 
     loadMissions();
   }, []);
+
+  if (currentPath === '/support') {
+    return <Support />;
+  }
+
+  if (currentPath === '/privacy') {
+    return <Privacy />;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-brand selection:text-white">
@@ -363,6 +380,8 @@ function App() {
             © 2026 JIM WASHKAU. ALL RIGHTS RESERVED. // DATA SECURE
           </div>
           <div className="flex space-x-6 text-sm font-bold tracking-widest">
+            <a href="/support" className="hover:text-brand transition-colors">SUPPORT</a>
+            <a href="/privacy" className="hover:text-brand transition-colors">PRIVACY</a>
             <a href="https://www.linkedin.com/in/jimwashkau/" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">LINKEDIN</a>
             <a href="https://github.com/JimWas" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">GITHUB</a>
             <a href="https://x.com/JimWashkau" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">X.COM</a>
