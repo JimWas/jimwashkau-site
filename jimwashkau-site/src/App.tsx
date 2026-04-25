@@ -21,8 +21,10 @@ import opCroakingmoon from './content/logs/op-croakingmoon.md?raw';
 import opJustjesus from './content/logs/op-justjesus.md?raw';
 import opCensoredprice from './content/logs/op-censoredprice.md?raw';
 import cmPizzacake from './content/logs/cm-pizzacake.md?raw';
+import cmTypingpanther from './content/logs/cm-typingpanther.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/cm-typingpanther.md': cmTypingpanther,
   './content/logs/cm-pizzacake.md': cmPizzacake,
   './content/logs/op-censoredprice.md': opCensoredprice,
   './content/logs/op-justjesus.md': opJustjesus,
