@@ -138,19 +138,14 @@ summary: "Mission Log transcribed via local secure voice-to-text."
         rel_log_path = os.path.relpath(filepath, REPO_PATH)
         rel_audio_path = os.path.relpath(os.path.join(AUDIO_DIR, f"{tag.lower()}.mp3"), REPO_PATH)
         
-        repo.git.add(rel_log_path)
+        repo.git.add(rel_log_path, force=True)
         if audio_url:
-            repo.git.add(rel_audio_path)
+            repo.git.add(rel_audio_path, force=True)
         
         if app_updated:
-            rel_app_path = os.path.relpath(os.path.join(LOG_DIR, APP_TSX_PATH), REPO_PATH)
-            # Actually use the correct path to App.tsx relative to repo root
-            # Since APP_TSX_PATH is relative to tools/
-            # and tools/ is jimwashkau-site/tools/
-            # repo root is JimWas-dotComSite/
-            # App.tsx is JimWas-dotComSite/jimwashkau-site/src/App.tsx
+            # Path to App.tsx relative to repo root
             rel_app_path = "jimwashkau-site/src/App.tsx"
-            repo.git.add(rel_app_path)
+            repo.git.add(rel_app_path, force=True)
             
         repo.index.commit(f"Auto-mission log: {tag} (with audio)")
         origin = repo.remote(name='origin')

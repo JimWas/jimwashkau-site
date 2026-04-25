@@ -20,8 +20,10 @@ import opWanderingelephant from './content/logs/op-wanderingelephant.md?raw';
 import opCroakingmoon from './content/logs/op-croakingmoon.md?raw';
 import opJustjesus from './content/logs/op-justjesus.md?raw';
 import opCensoredprice from './content/logs/op-censoredprice.md?raw';
+import cmPizzacake from './content/logs/cm-pizzacake.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/cm-pizzacake.md': cmPizzacake,
   './content/logs/op-censoredprice.md': opCensoredprice,
   './content/logs/op-justjesus.md': opJustjesus,
   './content/logs/op-croakingmoon.md': opCroakingmoon,
@@ -48,6 +50,17 @@ interface Mission {
   summary: string;
   audio?: string;
   content: string;
+}
+
+interface LiveLocation {
+  latitude: number;
+  longitude: number;
+  accuracy: number;
+  speed: number;
+  timestamp: string;
+  device_id: string;
+  device_name: string;
+  received_at: string;
 }
 
 // Simple browser-safe frontmatter parser
@@ -77,6 +90,8 @@ function App() {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [liveLocation, setLiveLocation] = useState<LiveLocation | null>(null);
+  const [liveLocationError, setLiveLocationError] = useState<string | null>(null);
 
   useEffect(() => {
     const handlePopState = () => setCurrentPath(window.location.pathname);
@@ -126,6 +141,47 @@ function App() {
     loadMissions();
   }, []);
 
+  useEffect(() => {
+    let active = true;
+
+    const loadLatestLocation = async () => {
+      try {
+        const response = await fetch('/api/location/latest', {
+          headers: {
+            Accept: 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json() as { status: string; location: LiveLocation | null };
+
+        if (!active) {
+          return;
+        }
+
+        setLiveLocation(data.location);
+        setLiveLocationError(data.location ? null : 'No live fix received yet.');
+      } catch {
+        if (!active) {
+          return;
+        }
+
+        setLiveLocationError('Live telemetry is temporarily offline.');
+      }
+    };
+
+    loadLatestLocation();
+    const intervalId = window.setInterval(loadLatestLocation, 30000);
+
+    return () => {
+      active = false;
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
   if (currentPath === '/support') {
     return <Support />;
   }
@@ -134,11 +190,31 @@ function App() {
     return <Privacy />;
   }
 
+  const mapBounds = liveLocation
+    ? [
+        liveLocation.longitude - 0.03,
+        liveLocation.latitude - 0.02,
+        liveLocation.longitude + 0.03,
+        liveLocation.latitude + 0.02,
+      ].join(',')
+    : '-74.03,40.69,-73.90,40.83';
+
+  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${mapBounds}&layer=mapnik${
+    liveLocation ? `&marker=${liveLocation.latitude}%2C${liveLocation.longitude}` : ''
+  }`;
+  const openStreetMapHref = liveLocation
+    ? `https://www.openstreetmap.org/?mlat=${liveLocation.latitude}&mlon=${liveLocation.longitude}#map=13/${liveLocation.latitude}/${liveLocation.longitude}`
+    : 'https://www.openstreetmap.org/';
+  const lastSeenLabel = liveLocation
+    ? new Date(liveLocation.timestamp).toLocaleString()
+    : 'Awaiting first uplink';
+  const speedMph = liveLocation ? (liveLocation.speed * 2.23694).toFixed(1) : null;
+  const accuracyFeet = liveLocation ? Math.round(liveLocation.accuracy * 3.28084) : null;
+
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-brand selection:text-white">
       <Analytics />
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
       <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="text-xl font-bold tracking-tighter uppercase">
@@ -205,6 +281,74 @@ function App() {
         {/* Decorative Grid */}
         <div className="absolute bottom-0 right-0 w-1/3 h-1/3 border-t border-l border-white/5 pointer-events-none">
           <div className="w-full h-full opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        </div>
+      </section>
+
+      <section className="py-24 border-y border-white/5 bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
+            <div>
+              <div className="inline-flex items-center gap-3 px-3 py-1 border border-brand/50 text-brand text-xs font-bold tracking-[0.3em] uppercase mb-6">
+                <span className="h-2 w-2 rounded-full bg-brand shadow-[0_0_14px_var(--color-brand)]"></span>
+                Live Position Feed
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black uppercase mb-5">Telemetry Map</h2>
+              <p className="text-zinc-400 max-w-2xl leading-relaxed mb-8">
+                A live field position feed, styled to match the mission-control feel of the site.
+                The endpoint archives each uplink and also exposes a public XML telemetry log.
+              </p>
+
+              <div className="grid sm:grid-cols-3 gap-px bg-white/10 mb-8">
+                <TelemetryStat label="Last uplink" value={lastSeenLabel} />
+                <TelemetryStat label="Speed" value={speedMph ? `${speedMph} mph` : 'No speed'} />
+                <TelemetryStat label="Accuracy" value={accuracyFeet ? `${accuracyFeet} ft` : 'Unknown'} />
+              </div>
+
+              <div className="flex flex-wrap gap-4 text-xs font-bold uppercase tracking-[0.24em]">
+                <a
+                  href="/api/location/log"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-6 py-3 bg-brand text-white hover:bg-white hover:text-black transition-colors"
+                >
+                  XML Telemetry Log
+                </a>
+                <a
+                  href={openStreetMapHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-6 py-3 border border-white/20 hover:border-brand hover:text-brand transition-colors"
+                >
+                  Open Full Map
+                </a>
+              </div>
+
+              {liveLocation && (
+                <p className="mt-6 text-sm text-zinc-500 font-mono">
+                  {liveLocation.device_name} / {liveLocation.device_id} / {liveLocation.latitude.toFixed(5)},{' '}
+                  {liveLocation.longitude.toFixed(5)}
+                </p>
+              )}
+              {liveLocationError && (
+                <p className="mt-6 text-sm text-accent font-mono">{liveLocationError}</p>
+              )}
+            </div>
+
+            <div className="relative border border-brand/25 bg-black/60 p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_24px_60px_rgba(0,0,0,0.45)]">
+              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(0,102,204,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,102,204,0.15)_1px,transparent_1px)] bg-[size:28px_28px] opacity-30"></div>
+              <div className="absolute top-5 left-5 z-10 bg-black/85 border border-brand/30 px-4 py-3 backdrop-blur-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand mb-1">Location feed</p>
+                <p className="text-sm font-mono text-zinc-300">{liveLocation?.device_name ?? 'Awaiting device'}</p>
+              </div>
+              <iframe
+                title="Live location map"
+                src={mapSrc}
+                className="relative h-[420px] w-full border border-white/10 grayscale contrast-125 brightness-75"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -391,6 +535,15 @@ function App() {
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function TelemetryStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="bg-black/60 p-6 border border-transparent">
+      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-500 mb-3">{label}</p>
+      <p className="text-sm md:text-base font-mono text-zinc-100">{value}</p>
     </div>
   );
 }
