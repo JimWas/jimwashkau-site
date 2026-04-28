@@ -24,8 +24,10 @@ import cmPizzacake from './content/logs/cm-pizzacake.md?raw';
 import cmTypingpanther from './content/logs/cm-typingpanther.md?raw';
 import cmFallingfruit from './content/logs/cm-fallingfruit.md?raw';
 import cmSlickedchiken from './content/logs/cm-slickedchiken.md?raw';
+import cmFlashingskies from './content/logs/cm-flashingskies.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/cm-flashingskies.md': cmFlashingskies,
   './content/logs/cm-slickedchiken.md': cmSlickedchiken,
   './content/logs/cm-fallingfruit.md': cmFallingfruit,
   './content/logs/cm-typingpanther.md': cmTypingpanther,
