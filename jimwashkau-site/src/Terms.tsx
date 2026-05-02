@@ -1,7 +1,7 @@
 import React from 'react';
-import { Shield, Lock, EyeOff, Server, Home } from 'lucide-react';
+import { FileText, Scale, ShieldAlert, Globe, Home } from 'lucide-react';
 
-const Privacy: React.FC = () => {
+const Terms: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-brand selection:text-white">
       {/* Navigation */}
@@ -12,7 +12,7 @@ const Privacy: React.FC = () => {
             JimWashkau<span className="text-brand">.com</span>
           </a>
           <div className="text-sm font-bold tracking-[0.2em] text-brand uppercase">
-            Privacy Protocol
+            Legal Protocol
           </div>
         </div>
       </nav>
@@ -22,16 +22,16 @@ const Privacy: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,102,204,0.1)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <div className="inline-block px-3 py-1 border border-brand text-brand text-[10px] font-bold tracking-[0.3em] mb-6 uppercase">
-            Data Integrity & User Privacy
+            Usage Agreement & Legal Terms
           </div>
           <h1 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] uppercase">
-            Privacy <span className="text-brand">Policy</span>
+            Terms of <span className="text-brand">Use</span>
           </h1>
           <p className="text-xl text-zinc-400 font-mono italic max-w-2xl mx-auto">
-            /// Standard privacy protocols for VNDUSD and all iOS applications published by Jim Washkau.
+            /// Standard usage protocols for all iOS applications published by Jim Washkau.
           </p>
           <p className="mt-8 text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            Last Updated: April 23, 2026
+            Last Updated: May 2, 2026
           </p>
         </div>
       </section>
@@ -40,82 +40,68 @@ const Privacy: React.FC = () => {
       <section className="pb-32">
         <div className="max-w-4xl mx-auto px-6 space-y-16">
           
-          {/* Core Philosophy */}
+          {/* Acceptance of Terms */}
           <div className="grid md:grid-cols-3 gap-8 items-start border-t border-white/10 pt-16">
             <div className="flex items-center space-x-3 md:col-span-1">
-              <Shield className="text-brand" size={24} />
-              <h2 className="text-xl font-black uppercase">Core Philosophy</h2>
+              <FileText className="text-brand" size={24} />
+              <h2 className="text-xl font-black uppercase">Acceptance</h2>
             </div>
             <div className="md:col-span-2 text-zinc-400 font-mono text-sm leading-relaxed space-y-4">
               <p>
-                My applications are built on the principle of <span className="text-white font-bold">Privacy by Design</span>. I believe that your data belongs to you, and my software should function as a local tool rather than a data collection gateway.
+                By downloading, installing, or using any application published by <span className="text-white font-bold">Jim Washkau</span>, you agree to be bound by these Terms of Use. If you do not agree to these terms, do not use the applications.
               </p>
             </div>
           </div>
 
-          {/* Data Collection */}
+          {/* License & Restrictions */}
           <div className="grid md:grid-cols-3 gap-8 items-start border-t border-white/10 pt-16">
             <div className="flex items-center space-x-3 md:col-span-1">
-              <EyeOff className="text-brand" size={24} />
-              <h2 className="text-xl font-black uppercase">Data Collection</h2>
+              <Globe className="text-brand" size={24} />
+              <h2 className="text-xl font-black uppercase">License</h2>
             </div>
             <div className="md:col-span-2 text-zinc-400 font-mono text-sm leading-relaxed space-y-6">
               <div>
-                <h3 className="text-white font-bold uppercase mb-2">No Personal Information</h3>
-                <p>I do not collect, store, or transmit any personal identifiable information (PII). My apps do not require account creation on my servers, nor do they track your location or usage habits for advertising purposes.</p>
+                <h3 className="text-white font-bold uppercase mb-2">Usage Rights</h3>
+                <p>I grant you a personal, non-exclusive, non-transferable, limited license to use the applications for personal, non-commercial purposes on devices you own or control.</p>
               </div>
               <div>
-                <h3 className="text-white font-bold uppercase mb-2">On-Device Processing</h3>
-                <p>All complex operations—including speech recognition, financial calculations, and data formatting—occur locally on your iOS device using Apple's native frameworks. Your raw data never leaves your device unless you explicitly authorize a transmission.</p>
+                <h3 className="text-white font-bold uppercase mb-2">Prohibited Actions</h3>
+                <p>You may not: reverse engineer, decompile, or attempt to extract the source code of the applications; modify or create derivative works; or use the applications for any unlawful purpose.</p>
               </div>
             </div>
           </div>
 
-          {/* Third-Party Services */}
+          {/* Disclaimer of Warranty */}
           <div className="grid md:grid-cols-3 gap-8 items-start border-t border-white/10 pt-16">
             <div className="flex items-center space-x-3 md:col-span-1">
-              <Server className="text-brand" size={24} />
-              <h2 className="text-xl font-black uppercase">Third-Parties</h2>
+              <ShieldAlert className="text-brand" size={24} />
+              <h2 className="text-xl font-black uppercase">Warranty</h2>
             </div>
             <div className="md:col-span-2 text-zinc-400 font-mono text-sm leading-relaxed space-y-4">
               <p>
-                Certain applications may allow you to connect to third-party services (e.g., GitHub). In these cases:
+                THE APPLICATIONS ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, JIM WASHKAU DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
               </p>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-brand mr-2">›</span>
-                  <span>Connections are direct between your device and the service provider.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-brand mr-2">›</span>
-                  <span>I do not act as an intermediary for your data or credentials.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-brand mr-2">›</span>
-                  <span>Your interactions are governed by the third-party's own privacy policy.</span>
-                </li>
-              </ul>
             </div>
           </div>
 
-          {/* Security */}
+          {/* Limitation of Liability */}
           <div className="grid md:grid-cols-3 gap-8 items-start border-t border-white/10 pt-16">
             <div className="flex items-center space-x-3 md:col-span-1">
-              <Lock className="text-brand" size={24} />
-              <h2 className="text-xl font-black uppercase">Data Security</h2>
+              <Scale className="text-brand" size={24} />
+              <h2 className="text-xl font-black uppercase">Liability</h2>
             </div>
             <div className="md:col-span-2 text-zinc-400 font-mono text-sm leading-relaxed space-y-4">
               <p>
-                Sensitive information, such as API tokens or integration keys, is stored exclusively in the <span className="text-white font-bold">iOS Keychain</span>. This ensures that your credentials remain encrypted and protected by the system's hardware-level security.
+                IN NO EVENT SHALL JIM WASHKAU BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER ARISING OUT OF THE USE OF OR INABILITY TO USE THE APPLICATIONS.
               </p>
             </div>
           </div>
 
           {/* Contact */}
           <div className="mt-20 p-12 bg-zinc-950 border border-white/10 text-center">
-            <h2 className="text-2xl font-black mb-4 uppercase">Questions?</h2>
+            <h2 className="text-2xl font-black mb-4 uppercase">Legal Inquiries</h2>
             <p className="text-zinc-500 font-mono text-sm mb-8">
-              If you have any questions regarding these privacy protocols, please contact me directly.
+              If you have any questions regarding these Terms of Use, please contact me directly.
             </p>
             <a 
               href="mailto:contact@jimwashkau.com" 
@@ -131,12 +117,12 @@ const Privacy: React.FC = () => {
       <footer className="py-12 border-t border-white/10 bg-black">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-sm text-zinc-500 font-mono tracking-wider">
-            © 2026 JIM WASHKAU. ALL RIGHTS RESERVED. // PRIVACY SECURE
+            © 2026 JIM WASHKAU. ALL RIGHTS RESERVED. // TERMS SECURE
           </div>
           <div className="flex space-x-6 text-sm font-bold tracking-widest">
             <a href="/" className="hover:text-brand transition-colors">HOME</a>
             <a href="/support" className="hover:text-brand transition-colors">SUPPORT</a>
-            <a href="/terms" className="hover:text-brand transition-colors">TERMS</a>
+            <a href="/privacy" className="hover:text-brand transition-colors">PRIVACY</a>
           </div>
         </div>
       </footer>
@@ -144,4 +130,4 @@ const Privacy: React.FC = () => {
   );
 };
 
-export default Privacy;
+export default Terms;

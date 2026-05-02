@@ -4,6 +4,7 @@ import { X, Calendar, ChevronRight } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
+import Terms from './Terms';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -196,6 +197,10 @@ function App() {
 
   if (currentPath === '/privacy') {
     return <Privacy />;
+  }
+
+  if (currentPath === '/terms') {
+    return <Terms />;
   }
 
   const mapBounds = liveLocation
