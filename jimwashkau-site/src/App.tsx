@@ -27,6 +27,7 @@ import cmTypingpanther from './content/logs/cm-typingpanther.md?raw';
 import cmFallingfruit from './content/logs/cm-fallingfruit.md?raw';
 import cmSlickedchiken from './content/logs/cm-slickedchiken.md?raw';
 import cmFlashingskies from './content/logs/cm-flashingskies.md?raw';
+import marsSpirit from './assets/Mars_Spirit.png';
 
 const MOCK_MODULES: Record<string, string> = {
   './content/logs/cm-flashingskies.md': cmFlashingskies,
@@ -268,9 +269,9 @@ function App() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
+            src={marsSpirit} 
             alt="Mission Background" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-[0.76]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
