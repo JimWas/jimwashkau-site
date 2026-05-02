@@ -17,7 +17,7 @@ SAMPLE_RATE = 44100
 REPO_PATH = "../.."
 
 def update_app_tsx(tag, filename):
-    print(f"[SYSTEM] UPDATING FRONT-END REGISTRY (App.tsx)...")
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] UPDATING FRONT-END REGISTRY (App.tsx)...")
     try:
         with open(APP_TSX_PATH, "r") as f:
             content = f.read()
@@ -32,6 +32,7 @@ def update_app_tsx(tag, filename):
         # 1. Add import
         import_line = f"import {var_name} from './content/logs/{filename}?raw';"
         if import_line not in content:
+            print(f"[DEBUG] Adding import for {var_name}...")
             # Find the last import and insert after it
             last_import_idx = content.rfind("import ")
             end_of_last_import = content.find(";", last_import_idx) + 1
@@ -40,6 +41,7 @@ def update_app_tsx(tag, filename):
         # 2. Add to MOCK_MODULES
         mock_entry = f"  './content/logs/{filename}': {var_name},"
         if mock_entry not in content:
+            print(f"[DEBUG] Adding {filename} to MOCK_MODULES...")
             # Find MOCK_MODULES opening and insert
             mock_start = content.find("const MOCK_MODULES: Record<string, string> = {")
             mock_insert_pos = content.find("{", mock_start) + 1
@@ -47,18 +49,19 @@ def update_app_tsx(tag, filename):
             
         with open(APP_TSX_PATH, "w") as f:
             f.write(content)
-        print(f"[SYSTEM] FRONT-END REGISTRY UPDATED: {tag}")
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] FRONT-END REGISTRY UPDATED: {tag}")
         return True
     except Exception as e:
         print(f"[ERROR] FAILED TO UPDATE App.tsx: {e}")
         return False
 
 # Load the local model (first time will download ~75MB)
-print("[SYSTEM] INITIALIZING LOCAL AI (WHISPER TINY - HIGH SPEED)...")
+print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] INITIALIZING LOCAL AI (WHISPER TINY - HIGH SPEED)...")
 model = whisper.load_model("tiny")
+print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Whisper model loaded successfully.")
 
 def record_audio_manual():
-    print(f"\n[SYSTEM] INITIATING RECORDING...")
+    print(f"\n[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] INITIATING RECORDING...")
     print("[SYSTEM] SPEAK MISSION BRIEFING NOW...")
     print("[SYSTEM] PRESS ENTER TO STOP RECORDING...")
     
@@ -66,43 +69,61 @@ def record_audio_manual():
     
     def callback(indata, frames, time, status):
         if status:
-            print(status)
+            print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [AUDIO STATUS] {status}")
         recording.append(indata.copy())
 
-    with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, callback=callback):
-        input()  # Wait for Enter to stop
+    try:
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Opening audio input stream (Sample Rate: {SAMPLE_RATE})...")
+        with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, callback=callback):
+            print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Stream active. Capturing audio...")
+            input()  # Wait for Enter to stop
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Stream closed by user.")
 
-    audio_data = np.concatenate(recording, axis=0)
-    write(AUDIO_TMP_WAV, SAMPLE_RATE, audio_data)
-    print("[SYSTEM] RECORDING COMPLETE.\n")
+        if not recording:
+            print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [ERROR] NO AUDIO DATA CAPTURED. Check microphone permissions.")
+            return False
+
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Concatenating {len(recording)} audio chunks...")
+        audio_data = np.concatenate(recording, axis=0)
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Writing temporary WAV file: {AUDIO_TMP_WAV}")
+        write(AUDIO_TMP_WAV, SAMPLE_RATE, audio_data)
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] RECORDING COMPLETE.\n")
+        return True
+    except Exception as e:
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [ERROR] RECORDING FAILED: {e}")
+        return False
 
 def save_as_mp3_direct(tag):
     mp3_filename = f"{tag.lower()}.mp3"
     mp3_path = os.path.join(AUDIO_DIR, mp3_filename)
     
-    print(f"[SYSTEM] CONVERTING TO MP3 (via ffmpeg): {mp3_path}")
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] CONVERTING TO MP3 (via ffmpeg): {mp3_path}")
     
-    # Direct ffmpeg call to avoid pydub/audioop dependencies in Python 3.13/3.14
     try:
-        subprocess.run([
+        print(f"[DEBUG] Executing ffmpeg command...")
+        result = subprocess.run([
             'ffmpeg', '-y', '-i', AUDIO_TMP_WAV, 
-            '-filter:a', 'volume=1.5', 
+            '-filter:a', 'volume=3.0', 
             '-codec:a', 'libmp3lame', '-qscale:a', '2', 
             mp3_path
         ], check=True, capture_output=True)
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] ffmpeg conversion successful.")
         return f"/audio/{mp3_filename}"
     except subprocess.CalledProcessError as e:
-        print(f"[ERROR] FFMPEG CONVERSION FAILED: {e.stderr.decode()}")
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [ERROR] FFMPEG CONVERSION FAILED: {e.stderr.decode()}")
         return None
 
 def transcribe_local():
-    print("[SYSTEM] ANALYZING MISSION DATA (LOCAL AI)...")
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] ANALYZING MISSION DATA (LOCAL AI)...")
+    print(f"[DEBUG] Handing off {AUDIO_TMP_WAV} to Whisper...")
     result = model.transcribe(AUDIO_TMP_WAV)
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Transcription complete. Length: {len(result['text'])} chars.")
     return result["text"]
 
 def save_and_push(title, tag, status, year, date_str, content, audio_url):
     filename = f"{tag.lower()}.md"
     filepath = os.path.join(LOG_DIR, filename)
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Preparing Markdown file: {filepath}")
 
     audio_frontmatter = f'audio: "{audio_url}"' if audio_url else ''
 
@@ -124,35 +145,40 @@ summary: "Mission Log transcribed via local secure voice-to-text."
     # Save locally
     with open(filepath, "w") as f:
         f.write(markdown)
-    print(f"[SYSTEM] MISSION LOG GENERATED: {filepath}")
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] MISSION LOG GENERATED: {filepath}")
 
     # Update Front-end registry
     app_updated = update_app_tsx(tag, filename)
 
     # Git Operations
     try:
-        # Use the actual repository root (the folder containing the .git directory)
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Initializing Git Repo at {REPO_PATH}...")
         repo = Repo(os.path.join(REPO_PATH))
         
         # Paths relative to the repository root
         rel_log_path = os.path.relpath(filepath, REPO_PATH)
         rel_audio_path = os.path.relpath(os.path.join(AUDIO_DIR, f"{tag.lower()}.mp3"), REPO_PATH)
         
+        print(f"[DEBUG] Staging files: {rel_log_path}")
         repo.git.add(rel_log_path, force=True)
         if audio_url:
+            print(f"[DEBUG] Staging audio: {rel_audio_path}")
             repo.git.add(rel_audio_path, force=True)
         
         if app_updated:
-            # Path to App.tsx relative to repo root
             rel_app_path = "jimwashkau-site/src/App.tsx"
+            print(f"[DEBUG] Staging App.tsx: {rel_app_path}")
             repo.git.add(rel_app_path, force=True)
             
+        print(f"[DEBUG] Committing changes...")
         repo.index.commit(f"Auto-mission log: {tag} (with audio)")
+        
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] PUSHING TO GITHUB (MAY HANG IF AUTH REQUIRED)...")
         origin = repo.remote(name='origin')
         origin.push()
-        print(f"[SYSTEM] MISSION LOG & AUDIO DEPLOYED TO SECTOR: GitHub")
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] MISSION LOG & AUDIO DEPLOYED TO SECTOR: GitHub")
     except Exception as e:
-        print(f"[ERROR] DEPLOYMENT FAILED: {e} (Is your GitHub SSH/token setup?)")
+        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [ERROR] DEPLOYMENT FAILED: {e}")
 
 def main():
     print("\n--- JIMWASHKAU.COM MISSION RECORDER v2.1 (FIXED FOR PYTHON 3.14) ---")
@@ -185,7 +211,9 @@ def main():
     year = str(now.year)
     date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     
-    record_audio_manual()
+    if not record_audio_manual():
+        print("[SYSTEM] MISSION ABORTED DUE TO RECORDING ERROR.")
+        return
     
     mp3_url = save_as_mp3_direct(tag)
     transcript = transcribe_local()

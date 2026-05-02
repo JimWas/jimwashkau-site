@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
 import Terms from './Terms';
+import MarsRelay from './MarsRelay';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -203,6 +204,10 @@ function App() {
     return <Terms />;
   }
 
+  if (currentPath === '/mars-relay') {
+    return <MarsRelay />;
+  }
+
   const mapBounds = liveLocation
     ? [
         liveLocation.longitude - 0.03,
@@ -236,6 +241,17 @@ function App() {
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium tracking-widest">
             <a href="#mission" className="hover:text-brand transition-colors">THE MISSION</a>
             <a href="#capabilities" className="hover:text-brand transition-colors">CAPABILITIES</a>
+            <a 
+              href="/mars-relay" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/mars-relay');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              MARSRELAY
+            </a>
             <a href="#log" className="hover:text-brand transition-colors">MISSION LOG</a>
             <a 
               href="#contact" 
@@ -373,7 +389,7 @@ function App() {
             <div className="h-1 w-24 bg-brand"></div>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-white/10">
             <CapabilityCard 
               title="RAPID DEVELOPER" 
               desc="Develops complex solution to real-world problems." 
@@ -394,6 +410,21 @@ function App() {
               desc="Leading cross-functional teams to deliver critical results under pressure." 
               number="04"
             />
+            <button 
+              onClick={() => {
+                window.history.pushState({}, '', '/mars-relay');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="text-left bg-zinc-950 p-10 hover:bg-brand/10 transition-all duration-500 group border-none cursor-pointer"
+            >
+              <div className="text-brand font-mono mb-8 text-sm tracking-[0.3em] font-bold">05</div>
+              <h3 className="text-xl font-black mb-6 group-hover:text-brand transition-colors leading-tight flex items-center">
+                MARSRELAY AI <ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
+              </h3>
+              <p className="text-zinc-500 group-hover:text-zinc-300 transition-colors leading-relaxed">
+                Deep space communication simulator with 19-minute latency modeling.
+              </p>
+            </button>
           </div>
         </div>
       </section>
