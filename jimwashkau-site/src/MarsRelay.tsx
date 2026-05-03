@@ -13,7 +13,9 @@ import {
   Globe,
   Compass,
   Mic,
-  Square
+  Square,
+  Radio,
+  Clock
 } from 'lucide-react';
 
 interface Message {
@@ -47,6 +49,104 @@ const DISTANCES = {
   MARS: { label: 'Mars', delay: 1140, rate: 1900 },
   DEEP_SPACE: { label: 'Deep Space (Jupiter)', delay: 1980, rate: 800 }
 };
+
+const formatTime = (seconds: number) => {
+  if (seconds < 60) return `${Math.floor(seconds)}s`;
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}m ${s.toString().padStart(2, '0')}s`;
+};
+
+function SignalPath({ queue, distance, currentTime }: { queue: QueuedMessage[], distance: keyof typeof DISTANCES, currentTime: number }) {
+  const config = DISTANCES[distance];
+  
+  return (
+    <div className="border-b border-white/10 bg-zinc-950/50 p-6 relative overflow-hidden h-32 flex items-center shrink-0">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,102,204,0.1),transparent_70%)]"></div>
+      </div>
+      
+      {/* Earth Side */}
+      <div className="flex flex-col items-center justify-center z-10 w-24">
+        <div className="relative">
+          <Globe size={28} className="text-blue-500 mb-2 relative z-10" />
+          <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full"></div>
+        </div>
+        <span className="text-[10px] font-black tracking-[0.2em] text-zinc-400 uppercase">Earth</span>
+      </div>
+      
+      {/* Space Path */}
+      <div className="flex-1 px-8 relative h-full flex items-center">
+        {/* The path line */}
+        <div className="w-full h-[1px] bg-gradient-to-r from-blue-500/40 via-zinc-800 to-accent/40"></div>
+        
+        {/* Grid lines for distance feel */}
+        <div className="absolute inset-0 flex justify-between px-8 pointer-events-none">
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="h-full w-[1px] bg-white/5"></div>
+          ))}
+        </div>
+
+        {/* Active Transmissions */}
+        {queue.map(msg => {
+          const totalTime = msg.transmissionDuration + msg.totalDeliveryTime;
+          const elapsed = (currentTime - msg.transmissionStart) / 1000;
+          
+          if (elapsed < 0) {
+            // Scheduled but not yet sent (e.g. response waiting at Earth)
+            const isAtEarth = msg.sender === 'Earth';
+            return (
+              <div 
+                key={msg.id}
+                className={`absolute top-1/2 -translate-y-1/2 ${isAtEarth ? 'left-0' : 'right-0'}`}
+              >
+                <div className={`w-2 h-2 rounded-full bg-zinc-700 animate-pulse`} />
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] font-bold text-zinc-600 uppercase">
+                  Pending
+                </div>
+              </div>
+            );
+          }
+          
+          if (elapsed > totalTime) return null;
+          
+          const progress = (elapsed / totalTime) * 100;
+          const position = msg.sender === 'Earth' 
+            ? progress // Earth -> Mars (Left to Right)
+            : (100 - progress); // Mars -> Earth (Right to Left)
+          
+          return (
+            <div 
+              key={msg.id}
+              className="absolute top-1/2 -translate-y-1/2 flex flex-col items-center group z-20"
+              style={{ left: `${position}%`, transition: 'left 1s linear' }}
+            >
+              <div className={`w-3 h-3 rounded-full ${msg.sender === 'Mars' ? 'bg-brand shadow-[0_0_15px_#0066cc]' : 'bg-accent shadow-[0_0_15px_#ff5c00]'} animate-pulse`} />
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 px-2 py-0.5 border border-white/10 text-[9px] font-bold text-white backdrop-blur-sm">
+                ETA {formatTime(Math.max(0, totalTime - elapsed))}
+              </div>
+              <div className={`absolute top-4 ${msg.sender === 'Mars' ? 'text-brand' : 'text-accent'} text-[10px] font-black`}>
+                {msg.sender === 'Mars' ? '◀' : '▶'}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      
+      {/* Target Side */}
+      <div className="flex flex-col items-center justify-center z-10 w-24">
+        <div className="relative mb-2">
+          <div className={`w-7 h-7 rounded-full border-2 ${distance === 'MARS' ? 'border-accent bg-accent/20' : 'border-zinc-500 bg-zinc-500/20'} relative z-10`}></div>
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+             <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+          </div>
+          <div className={`absolute inset-0 ${distance === 'MARS' ? 'bg-accent/10' : 'bg-zinc-500/10'} blur-xl rounded-full`}></div>
+        </div>
+        <span className="text-[10px] font-black tracking-[0.2em] text-zinc-400 uppercase">{config.label}</span>
+      </div>
+    </div>
+  );
+}
 
 export default function MarsRelay() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -239,13 +339,6 @@ export default function MarsRelay() {
     return Math.max(0, Math.round(total - elapsed));
   };
 
-  const formatTime = (seconds: number) => {
-    if (seconds < 60) return `${Math.floor(seconds)}s`;
-    const m = Math.floor(seconds / 60);
-    const s = Math.floor(seconds % 60);
-    return `${m}m ${s.toString().padStart(2, '0')}s`;
-  };
-
   return (
     <div className="flex flex-col h-screen bg-black text-white font-mono selection:bg-brand selection:text-white">
       {/* HUD Header */}
@@ -310,30 +403,56 @@ export default function MarsRelay() {
 
           <section className="flex-1 overflow-y-auto">
             <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4 flex items-center">
-              <Activity size={12} className="mr-2" /> Transmission Queue
+              <Activity size={12} className="mr-2" /> Signal Log
             </h2>
-            <div className="space-y-3">
-              {queue.map(msg => (
-                <div key={msg.id} className="p-3 border border-white/5 bg-black/40 text-[10px]">
-                  <div className="flex justify-between mb-2">
-                    <span className={msg.sender === 'Mars' ? 'text-brand' : 'text-accent'}>{msg.sender} ➔ {msg.sender === 'Mars' ? 'Earth' : 'Mars'}</span>
-                    <span className="text-zinc-500">{msg.size}B</span>
+            <div className="space-y-4">
+              {queue.map(msg => {
+                const isPending = (currentTime - msg.transmissionStart) < 0;
+                return (
+                  <div key={msg.id} className="group">
+                    <div className="flex justify-between items-end mb-1 px-1">
+                      <span className={`text-[9px] font-black tracking-widest uppercase ${msg.sender === 'Mars' ? 'text-brand' : 'text-accent'}`}>
+                        {msg.sender === 'Mars' ? 'Outgoing' : 'Incoming'}
+                      </span>
+                      <span className="text-[8px] text-zinc-600 font-mono">{msg.size}B</span>
+                    </div>
+                    <div className={`p-3 border ${isPending ? 'border-dashed border-white/5 bg-transparent' : 'border-white/10 bg-black/60'} relative transition-all`}>
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="space-y-1">
+                          <p className="text-[10px] font-bold text-zinc-300 truncate w-40 leading-none">
+                            {isPending ? 'PENDING RELAY...' : msg.text}
+                          </p>
+                          <div className="flex items-center space-x-2">
+                             <div className={`w-1 h-1 rounded-full ${getStatus(msg) === 'transmitting' ? 'bg-brand animate-pulse' : 'bg-green-500'}`} />
+                             <span className="text-[8px] uppercase text-zinc-500 tracking-tighter">
+                               {isPending ? 'Queued at remote' : getStatus(msg)}
+                             </span>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="flex items-center justify-end text-brand text-[10px] font-black">
+                            <Clock size={10} className="mr-1" />
+                            <span>{formatTime(getRemainingTime(msg))}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="h-1 bg-white/5 w-full overflow-hidden relative">
+                        <div 
+                          className={`h-full ${msg.sender === 'Mars' ? 'bg-brand shadow-[0_0_8px_#0066cc]' : 'bg-accent shadow-[0_0_8px_#ff5c00]'} transition-all duration-1000`} 
+                          style={{ 
+                            width: `${isPending ? 0 : Math.min(100, ((currentTime - msg.transmissionStart) / 1000) / (msg.transmissionDuration + msg.totalDeliveryTime) * 100)}%` 
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="h-1 bg-white/5 w-full mb-2">
-                    <div 
-                      className={`h-full ${getStatus(msg) === 'transmitting' ? 'bg-brand shadow-[0_0_8px_var(--color-brand)]' : 'bg-accent shadow-[0_0_8px_var(--color-accent)]'} transition-all duration-1000`} 
-                      style={{ width: `${Math.min(100, ((currentTime - msg.transmissionStart) / 1000) / (msg.transmissionDuration + msg.totalDeliveryTime) * 100)}%` }}
-                    />
-                  </div>
-                  <div className="flex justify-between text-zinc-400">
-                    <span className="uppercase">{getStatus(msg)}</span>
-                    <span>T-{formatTime(getRemainingTime(msg))}</span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
               {queue.length === 0 && (
-                <div className="text-center py-8 border border-dashed border-white/5 rounded">
-                  <p className="text-zinc-600 text-[10px] uppercase tracking-widest">No active relays</p>
+                <div className="text-center py-12 border border-dashed border-white/5 rounded-lg">
+                  <Signal size={24} className="mx-auto text-zinc-800 mb-3" />
+                  <p className="text-zinc-600 text-[9px] uppercase tracking-[0.2em]">No active transmissions</p>
                 </div>
               )}
             </div>
@@ -355,6 +474,8 @@ export default function MarsRelay() {
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[linear-gradient(rgba(0,102,204,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,102,204,0.1)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
           </div>
+
+          <SignalPath queue={queue} distance={distance} currentTime={currentTime} />
 
           {/* Messages */}
           <div 
