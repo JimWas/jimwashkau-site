@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Nasalization";
+  src: url("/asmr/Nasalization.otf") format("opentype");
+  font-display: swap;
+}
+
 @theme {
   --color-brand: #0066cc; /* NASA-ish blue */
   --color-accent: #ff5c00; /* Safety Orange */

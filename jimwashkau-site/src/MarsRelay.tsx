@@ -14,7 +14,6 @@ import {
   Compass,
   Mic,
   Square,
-  Radio,
   Clock
 } from 'lucide-react';
 
