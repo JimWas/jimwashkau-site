@@ -1,7 +1,11 @@
 import os
 import uuid
 import datetime
+import select
 import sounddevice as sd
+import sys
+import termios
+import tty
 import numpy as np
 from scipy.io.wavfile import write
 import whisper
@@ -15,6 +19,31 @@ APP_TSX_PATH = "../src/App.tsx"
 AUDIO_TMP_WAV = "temp_mission.wav"
 SAMPLE_RATE = 44100
 REPO_PATH = "../.."
+
+def wait_for_enter_to_stop():
+    """Read a single Return keypress while audio capture is active."""
+    if not sys.stdin.isatty():
+        input()
+        return
+
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+
+    try:
+        tty.setcbreak(fd)
+        while True:
+            readable, _, _ = select.select([sys.stdin], [], [], 0.2)
+            if not readable:
+                continue
+
+            key = sys.stdin.read(1)
+            if key in ("\n", "\r"):
+                print()
+                return
+            if key == "\x03":
+                raise KeyboardInterrupt
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
 def update_app_tsx(tag, filename):
     print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] UPDATING FRONT-END REGISTRY (App.tsx)...")
@@ -76,7 +105,7 @@ def record_audio_manual():
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Opening audio input stream (Sample Rate: {SAMPLE_RATE})...")
         with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, callback=callback):
             print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Stream active. Capturing audio...")
-            input()  # Wait for Enter to stop
+            wait_for_enter_to_stop()
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Stream closed by user.")
 
         if not recording:
