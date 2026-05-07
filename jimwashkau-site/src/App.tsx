@@ -6,7 +6,7 @@ import Support from './Support';
 import Privacy from './Privacy';
 import Terms from './Terms';
 import MarsRelay from './MarsRelay';
-import AsmrMatrixWidget from './AsmrMatrixWidget';
+import LoveSignal from './LoveSignal';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -210,6 +210,10 @@ function App() {
     return <MarsRelay />;
   }
 
+  if (currentPath === '/love-signal') {
+    return <LoveSignal />;
+  }
+
   const mapBounds = liveLocation
     ? [
         liveLocation.longitude - 0.03,
@@ -253,6 +257,17 @@ function App() {
               className="hover:text-brand transition-colors"
             >
               MARSRELAY
+            </a>
+            <a
+              href="/love-signal"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/love-signal');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              LOVE SIGNAL
             </a>
             <a href="#log" className="hover:text-brand transition-colors">MISSION LOG</a>
             <a 
@@ -314,8 +329,6 @@ function App() {
           <div className="w-full h-full opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         </div>
       </section>
-
-      <AsmrMatrixWidget />
 
       <section className="py-24 border-y border-white/5 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">

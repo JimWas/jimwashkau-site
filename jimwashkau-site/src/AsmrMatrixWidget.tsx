@@ -110,7 +110,7 @@ function imageVisibility(frame: number) {
   return 1;
 }
 
-export default function AsmrMatrixWidget() {
+export default function AsmrMatrixWidget({ transmitHref = '#contact' }: { transmitHref?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -272,7 +272,7 @@ export default function AsmrMatrixWidget() {
             </p>
           </div>
           <a
-            href="#contact"
+            href={transmitHref}
             className="inline-flex items-center justify-center px-6 py-3 border border-white/20 text-xs font-bold uppercase tracking-[0.24em] hover:border-brand hover:text-brand transition-colors"
           >
             Transmit
