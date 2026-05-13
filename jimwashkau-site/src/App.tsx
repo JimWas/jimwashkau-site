@@ -7,6 +7,7 @@ import Privacy from './Privacy';
 import Terms from './Terms';
 import MarsRelay from './MarsRelay';
 import LoveSignal from './LoveSignal';
+import SpaceDrinks from './SpaceDrinks';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -29,8 +30,10 @@ import cmFallingfruit from './content/logs/cm-fallingfruit.md?raw';
 import cmSlickedchiken from './content/logs/cm-slickedchiken.md?raw';
 import cmFlashingskies from './content/logs/cm-flashingskies.md?raw';
 import marsSpirit from './assets/Mars_Spirit.png';
+import cmNightstream from './content/logs/cm-nightstream.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/cm-nightstream.md': cmNightstream,
   './content/logs/cm-flashingskies.md': cmFlashingskies,
   './content/logs/cm-slickedchiken.md': cmSlickedchiken,
   './content/logs/cm-fallingfruit.md': cmFallingfruit,
@@ -214,6 +217,10 @@ function App() {
     return <LoveSignal />;
   }
 
+  if (currentPath === '/space-drinks') {
+    return <SpaceDrinks />;
+  }
+
   const mapBounds = liveLocation
     ? [
         liveLocation.longitude - 0.03,
@@ -244,7 +251,7 @@ function App() {
           <div className="text-xl font-bold tracking-tighter uppercase">
             JimWashkau<span className="text-brand">.com</span>
           </div>
-          <div className="hidden md:flex items-center space-x-8 text-sm font-medium tracking-widest">
+          <div className="hidden md:flex items-center space-x-6 text-sm font-medium tracking-widest">
             <a href="#mission" className="hover:text-brand transition-colors">THE MISSION</a>
             <a href="#capabilities" className="hover:text-brand transition-colors">CAPABILITIES</a>
             <a 
@@ -268,6 +275,17 @@ function App() {
               className="hover:text-brand transition-colors"
             >
               LOVE SIGNAL
+            </a>
+            <a
+              href="/space-drinks"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/space-drinks');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              DRINKS
             </a>
             <a href="#log" className="hover:text-brand transition-colors">MISSION LOG</a>
             <a 
