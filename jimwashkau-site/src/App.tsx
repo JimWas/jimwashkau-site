@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
