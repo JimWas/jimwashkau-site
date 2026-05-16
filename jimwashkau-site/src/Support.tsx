@@ -131,9 +131,50 @@ const Support: React.FC = () => {
             © 2026 JIM WASHKAU. ALL RIGHTS RESERVED. // DATA SECURE
           </div>
           <div className="flex space-x-6 text-sm font-bold tracking-widest">
-            <a href="/" className="hover:text-brand transition-colors">HOME</a>
-            <a href="/privacy" className="hover:text-brand transition-colors">PRIVACY</a>
-            <a href="/terms" className="hover:text-brand transition-colors">TERMS</a>
+            <a 
+              href="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              HOME
+            </a>
+            <a 
+              href="/apps" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/apps');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              IOS APPS
+            </a>
+            <a 
+              href="/privacy" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/privacy');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              PRIVACY
+            </a>
+            <a 
+              href="/terms" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/terms');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              TERMS
+            </a>
             <a href="https://github.com/JimWas" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">GITHUB</a>
           </div>
         </div>

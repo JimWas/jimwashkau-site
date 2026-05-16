@@ -8,6 +8,7 @@ import Terms from './Terms';
 import MarsRelay from './MarsRelay';
 import LoveSignal from './LoveSignal';
 import SpaceDrinks from './SpaceDrinks';
+import Apps from './Apps';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -221,6 +222,10 @@ function App() {
     return <SpaceDrinks />;
   }
 
+  if (currentPath === '/apps') {
+    return <Apps />;
+  }
+
   const mapBounds = liveLocation
     ? [
         liveLocation.longitude - 0.03,
@@ -254,6 +259,17 @@ function App() {
           <div className="hidden md:flex items-center space-x-6 text-sm font-medium tracking-widest">
             <a href="#mission" className="hover:text-brand transition-colors">THE MISSION</a>
             <a href="#capabilities" className="hover:text-brand transition-colors">CAPABILITIES</a>
+            <a
+              href="/apps"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/apps');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              IOS APPS
+            </a>
             <a 
               href="/mars-relay" 
               onClick={(e) => {
@@ -606,6 +622,17 @@ function App() {
             © 2026 JIM WASHKAU. ALL RIGHTS RESERVED. // DATA SECURE
           </div>
           <div className="flex space-x-6 text-sm font-bold tracking-widest">
+            <a
+              href="/apps"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/apps');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              IOS APPS
+            </a>
             <a href="/support" className="hover:text-brand transition-colors">SUPPORT</a>
             <a href="/privacy" className="hover:text-brand transition-colors">PRIVACY</a>
             <a href="https://www.linkedin.com/in/jimwashkau/" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">LINKEDIN</a>
