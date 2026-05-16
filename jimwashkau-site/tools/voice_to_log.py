@@ -1,11 +1,8 @@
 import os
 import uuid
 import datetime
-import select
 import sounddevice as sd
 import sys
-import termios
-import tty
 import numpy as np
 from scipy.io.wavfile import write
 import whisper
@@ -22,28 +19,13 @@ REPO_PATH = "../.."
 
 def wait_for_enter_to_stop():
     """Read a single Return keypress while audio capture is active."""
-    if not sys.stdin.isatty():
-        input()
-        return
-
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-
     try:
-        tty.setcbreak(fd)
-        while True:
-            readable, _, _ = select.select([sys.stdin], [], [], 0.2)
-            if not readable:
-                continue
-
-            key = sys.stdin.read(1)
-            if key in ("\n", "\r"):
-                print()
-                return
-            if key == "\x03":
-                raise KeyboardInterrupt
-    finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        # Use a simple input() which is more robust across Python versions
+        # and terminal environments.
+        input()
+    except (EOFError, KeyboardInterrupt):
+        # Handle cases where the user might press Ctrl+D or Ctrl+C
+        pass
 
 def update_app_tsx(tag, filename):
     print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] UPDATING FRONT-END REGISTRY (App.tsx)...")
@@ -210,7 +192,7 @@ summary: "Mission Log transcribed via local secure voice-to-text."
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [ERROR] DEPLOYMENT FAILED: {e}")
 
 def main():
-    print("\n--- JIMWASHKAU.COM MISSION RECORDER v2.1 (FIXED FOR PYTHON 3.14) ---")
+    print("\n--- JIMWASHKAU.COM MISSION RECORDER v2.2 (IMPROVED STABILITY) ---")
     
     # Ensure ffmpeg is installed
     try:

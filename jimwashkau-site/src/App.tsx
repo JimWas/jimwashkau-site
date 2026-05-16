@@ -1,6 +1,6 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone } from 'lucide-react';
+import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
@@ -409,6 +409,32 @@ function App() {
               tag="AI / PRODUCTIVITY"
             />
           </div>
+        </div>
+      </section>
+
+      {/* GoFundMe Section */}
+      <section className="py-24 bg-brand/5 border-y border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,102,204,0.1),transparent_70%)]"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+          <div className="inline-flex items-center gap-3 px-3 py-1 border border-brand/50 text-brand text-xs font-bold tracking-[0.3em] uppercase mb-8">
+            <Heart size={14} fill="currentColor" className="animate-pulse" />
+            Active Support Mission
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black uppercase mb-6 tracking-tight">
+            Support My <span className="text-brand">Next Chapter</span>
+          </h2>
+          <p className="text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-10 text-lg md:text-xl">
+            I'm currently seeking my next professional opportunity in software engineering. 
+            If you've enjoyed my work or want to support my journey, consider contributing to my GoFundMe as I look for what's next.
+          </p>
+          <a 
+            href="https://www.gofundme.com/f/support-jim-while-he-searches-for-his-next-opportunity?attribution_id=sl:8ae82e2e-ae5a-4343-a4ad-1e83e9800c9e"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-4 px-10 py-5 bg-brand text-white font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,102,204,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] group"
+          >
+            CONTRIBUTE TO MISSION <ExternalLink size={20} className="group-hover:rotate-12 transition-transform" />
+          </a>
         </div>
       </section>
 
