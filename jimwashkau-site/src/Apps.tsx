@@ -156,8 +156,12 @@ const Apps: React.FC = () => {
               </a>
             </div>
             <div className="relative flex justify-center lg:justify-end">
-              <div className="w-64 h-64 border-2 border-brand/30 rounded-3xl flex items-center justify-center bg-zinc-900 shadow-[0_0_40px_rgba(0,102,204,0.1)]">
-                <Camera className="text-brand" size={120} strokeWidth={1} />
+              <div className="relative w-64 h-[500px] border-2 border-brand/30 rounded-3xl overflow-hidden bg-zinc-900 shadow-[0_0_40px_rgba(0,102,204,0.1)] group-hover:border-brand transition-colors duration-500">
+                <img 
+                  src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7b/57/e0/7b57e09b-ffc9-c7fc-795f-7b42c57855a8/Gemini_Generated_Image_hjq8tvhjq8tvhjq8.png/460x996bb.webp" 
+                  alt="TravelVid Recorder Screenshot" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-brand"></div>
