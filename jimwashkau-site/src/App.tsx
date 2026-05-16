@@ -375,7 +375,7 @@ function App() {
                 Mobile Deployments
               </div>
               <h2 className="text-4xl md:text-6xl font-black uppercase leading-tight">
-                NATIVE <span className="text-brand">SOLUTIONS</span>
+                iOS <span className="text-brand">APPLICATIONS</span>
               </h2>
             </div>
             <button 
