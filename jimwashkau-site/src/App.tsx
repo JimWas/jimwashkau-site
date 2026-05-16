@@ -424,7 +424,7 @@ function App() {
             Support My <span className="text-brand">Next Chapter</span>
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-10 text-lg md:text-xl">
-            I'm currently seeking my next professional opportunity in software engineering. 
+            I'm currently seeking my next professional opportunity. 
             If you've enjoyed my work or want to support my journey, consider contributing to my GoFundMe as I look for what's next.
           </p>
           <a 
