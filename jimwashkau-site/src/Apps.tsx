@@ -86,6 +86,13 @@ const apps: AppInfo[] = [
     link: "https://apps.apple.com/us/app/vndusd/id1441541341",
     icon: <DollarSign className="text-brand" size={32} />,
     tags: ["FINANCE", "UTILITY"]
+  },
+  {
+    name: "Cambodia KHR to USA USD",
+    description: "High-performance utility designed for the dual-currency economy of Cambodia. Features live conversion, street rate toggles, and mixed-currency change calculation.",
+    link: "https://apps.apple.com/us/app/cambodia-khr-to-usa-usd/id6762251675",
+    icon: <DollarSign className="text-brand" size={32} />,
+    tags: ["FINANCE", "TRAVEL", "KHMER"]
   }
 ];
 
