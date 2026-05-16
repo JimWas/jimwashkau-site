@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { X, Calendar, ChevronRight } from 'lucide-react';
+import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
@@ -364,6 +364,54 @@ function App() {
         </div>
       </section>
 
+      {/* iOS Apps Featured Section */}
+      <section className="py-24 bg-black border-b border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,102,204,0.1),transparent_50%)]"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div>
+              <div className="inline-flex items-center gap-3 px-3 py-1 border border-brand/50 text-brand text-xs font-bold tracking-[0.3em] uppercase mb-6">
+                <Smartphone size={14} />
+                Mobile Deployments
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black uppercase leading-tight">
+                NATIVE <span className="text-brand">SOLUTIONS</span>
+              </h2>
+            </div>
+            <button 
+              onClick={() => {
+                window.history.pushState({}, '', '/apps');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="group flex items-center text-sm font-bold tracking-widest uppercase hover:text-brand transition-colors border-b border-brand/20 pb-2"
+            >
+              View All iOS Apps <ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <AppHeroCard 
+              name="TravelVid Recorder"
+              desc="Professional-grade video recording tool designed for uninterrupted media capture."
+              icon={<Camera className="text-brand" size={32} />}
+              tag="VIDEO / TRAVEL"
+            />
+            <AppHeroCard 
+              name="Bodycam Pro"
+              desc="Turn your iPhone into a personal body camera for high-reliability documentation."
+              icon={<Shield className="text-brand" size={32} />}
+              tag="SECURITY / UTILITY"
+            />
+            <AppHeroCard 
+              name="Digital Oracle"
+              desc="Matrix AI Productivity Oracle for futuristic decision making and workflows."
+              icon={<Cpu className="text-brand" size={32} />}
+              tag="AI / PRODUCTIVITY"
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 border-y border-white/5 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
@@ -690,6 +738,24 @@ function MissionEntry({ tag, title, status, year, onClick }: MissionEntryProps) 
         <ChevronRight size={16} className="text-zinc-700 group-hover:text-brand group-hover:translate-x-1 transition-all" />
       </div>
     </button>
+  );
+}
+
+function AppHeroCard({ name, desc, icon, tag }: { name: string, desc: string, icon: ReactNode, tag: string }) {
+  return (
+    <div className="bg-zinc-950 p-8 border border-white/10 hover:border-brand/50 transition-all duration-500 group relative">
+      <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+        <Smartphone size={80} />
+      </div>
+      <div className="flex justify-between items-start mb-8 relative z-10">
+        <div className="p-4 bg-black border border-white/5 group-hover:border-brand/30 transition-colors">
+          {icon}
+        </div>
+        <span className="text-[10px] font-bold text-zinc-500 tracking-[0.2em] uppercase">{tag}</span>
+      </div>
+      <h3 className="text-xl font-black mb-4 uppercase group-hover:text-brand transition-colors relative z-10">{name}</h3>
+      <p className="text-zinc-500 font-mono text-sm leading-relaxed italic relative z-10">"{desc}"</p>
+    </div>
   );
 }
 
