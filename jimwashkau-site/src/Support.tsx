@@ -30,7 +30,7 @@ const Support: React.FC = () => {
               <span className="text-brand">Assistance</span>
             </h1>
             <p className="text-xl text-zinc-400 font-mono italic">
-              /// Support and documentation for VNDUSD and other iOS deployments.
+              /// Support and documentation for Bodycam Pro, VNDUSD, and other iOS deployments.
             </p>
           </div>
         </div>
@@ -50,7 +50,7 @@ const Support: React.FC = () => {
                 </h2>
                 <div className="space-y-4">
                   <FAQItem 
-                    question="How do I get help with a specific app like VNDUSD?" 
+                    question="How do I get help with a specific app like Bodycam Pro or VNDUSD?" 
                     answer="For application-specific support, please ensure you have the latest version installed from the App Store. If issues persist, use the 'EMAIL SUPPORT' link to contact me directly with your app version and iOS device details." 
                   />
                   <FAQItem 
@@ -94,7 +94,7 @@ const Support: React.FC = () => {
                 <MessageCircle className="mb-6" size={40} />
                 <h3 className="text-2xl font-black mb-4 uppercase">Direct Support</h3>
                 <p className="mb-8 font-medium opacity-90">
-                  Can't find what you're looking for? Contact me directly for assistance with VNDUSD or any of my other applications.
+                  Can't find what you're looking for? Contact me directly for assistance with Bodycam Pro, VNDUSD, or any of my other applications.
                 </p>
                 <a 
                   href="mailto:contact@jimwashkau.com" 

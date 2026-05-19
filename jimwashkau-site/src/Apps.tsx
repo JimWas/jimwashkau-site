@@ -48,7 +48,7 @@ const apps: AppInfo[] = [
   {
     name: "Bodycam Pro",
     description: "Designed to turn an iPhone into a personal body camera for security and documentation.",
-    link: "https://apps.apple.com/us/app/bodycam-pro/id1441541341",
+    link: "https://apps.apple.com/us/app/bodycam-pro/id6758121913",
     icon: <Shield className="text-brand" size={32} />,
     tags: ["SECURITY", "VIDEO"]
   },

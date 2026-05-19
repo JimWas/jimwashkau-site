@@ -28,7 +28,7 @@ const Privacy: React.FC = () => {
             Privacy <span className="text-brand">Policy</span>
           </h1>
           <p className="text-xl text-zinc-400 font-mono italic max-w-2xl mx-auto">
-            /// Standard privacy protocols for VNDUSD and all iOS applications published by Jim Washkau.
+            /// Standard privacy protocols for Bodycam Pro, VNDUSD, and all iOS applications published by Jim Washkau.
           </p>
           <p className="mt-8 text-xs font-mono text-zinc-500 uppercase tracking-widest">
             Last Updated: April 23, 2026
