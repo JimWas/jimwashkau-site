@@ -32,8 +32,10 @@ import cmSlickedchiken from './content/logs/cm-slickedchiken.md?raw';
 import cmFlashingskies from './content/logs/cm-flashingskies.md?raw';
 import marsSpirit from './assets/Mars_Spirit.png';
 import cmNightstream from './content/logs/cm-nightstream.md?raw';
+import cmCraftrain from './content/logs/cm-craftrain.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/cm-craftrain.md': cmCraftrain,
   './content/logs/cm-nightstream.md': cmNightstream,
   './content/logs/cm-flashingskies.md': cmFlashingskies,
   './content/logs/cm-slickedchiken.md': cmSlickedchiken,
