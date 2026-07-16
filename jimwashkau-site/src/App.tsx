@@ -9,6 +9,7 @@ import MarsRelay from './MarsRelay';
 import LoveSignal from './LoveSignal';
 import SpaceDrinks from './SpaceDrinks';
 import Apps from './Apps';
+import TravelVid from './TravelVid';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -228,6 +229,10 @@ function App() {
     return <Apps />;
   }
 
+  if (currentPath === '/travelvid') {
+    return <TravelVid />;
+  }
+
   const mapBounds = liveLocation
     ? [
         liveLocation.longitude - 0.03,
@@ -397,6 +402,7 @@ function App() {
               desc="Professional-grade video recording tool designed for uninterrupted media capture."
               icon={<Camera className="text-brand" size={32} />}
               tag="VIDEO / TRAVEL"
+              href="/travelvid"
             />
             <AppHeroCard 
               name="Bodycam Pro"
@@ -769,9 +775,9 @@ function MissionEntry({ tag, title, status, year, onClick }: MissionEntryProps) 
   );
 }
 
-function AppHeroCard({ name, desc, icon, tag }: { name: string, desc: string, icon: ReactNode, tag: string }) {
-  return (
-    <div className="bg-zinc-950 p-8 border border-white/10 hover:border-brand/50 transition-all duration-500 group relative">
+function AppHeroCard({ name, desc, icon, tag, href }: { name: string, desc: string, icon: ReactNode, tag: string, href?: string }) {
+  const content = (
+    <>
       <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
         <Smartphone size={80} />
       </div>
@@ -782,7 +788,21 @@ function AppHeroCard({ name, desc, icon, tag }: { name: string, desc: string, ic
         <span className="text-[10px] font-bold text-zinc-500 tracking-[0.2em] uppercase">{tag}</span>
       </div>
       <h3 className="text-xl font-black mb-4 uppercase group-hover:text-brand transition-colors relative z-10">{name}</h3>
-      <p className="text-zinc-500 font-mono text-sm leading-relaxed italic relative z-10">"{desc}"</p>
+      <p className="text-zinc-500 font-mono text-sm leading-relaxed italic relative z-10">&quot;{desc}&quot;</p>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a href={href} className="block bg-zinc-950 p-8 border border-white/10 hover:border-brand/50 transition-all duration-500 group relative">
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className="bg-zinc-950 p-8 border border-white/10 hover:border-brand/50 transition-all duration-500 group relative">
+      {content}
     </div>
   );
 }

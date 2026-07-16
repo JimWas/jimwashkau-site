@@ -152,15 +152,24 @@ const Apps: React.FC = () => {
               <p className="text-xl text-zinc-400 font-mono mb-10 leading-relaxed italic">
                 "{apps[0].description}"
               </p>
-              <a 
-                href={apps[0].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-10 py-5 bg-brand text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,102,204,0.3)]"
-              >
-                VIEW ON APP STORE
-                <ExternalLink className="ml-3" size={20} />
-              </a>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="/travelvid"
+                  className="inline-flex items-center px-10 py-5 bg-brand text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,102,204,0.3)]"
+                >
+                  EXPLORE TRAVELVID
+                  <Camera className="ml-3" size={20} />
+                </a>
+                <a
+                  href={apps[0].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-8 py-5 border border-white/20 font-bold uppercase tracking-widest hover:border-white transition-all duration-300"
+                >
+                  APP STORE
+                  <ExternalLink className="ml-3" size={18} />
+                </a>
+              </div>
             </div>
             <div className="relative flex justify-center lg:justify-end">
               <div className="relative w-64 h-[500px] border-2 border-brand/30 rounded-3xl overflow-hidden bg-zinc-900 shadow-[0_0_40px_rgba(0,102,204,0.1)] group-hover:border-brand transition-colors duration-500">
