@@ -1,6 +1,6 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink } from 'lucide-react';
+import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink, ArrowRight, Check, HeartPulse, Vibrate, Video } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
@@ -378,6 +378,89 @@ function App() {
         {/* Decorative Grid */}
         <div className="absolute bottom-0 right-0 w-1/3 h-1/3 border-t border-l border-white/5 pointer-events-none">
           <div className="w-full h-full opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        </div>
+      </section>
+
+      {/* JimWas Recorder Product Hero */}
+      <section className="relative isolate overflow-hidden border-y border-cyan-300/15 bg-[#05090c] py-24 md:py-32">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_82%_48%,rgba(34,211,238,0.17),transparent_34%),radial-gradient(circle_at_10%_100%,rgba(0,102,204,0.13),transparent_32%)]"></div>
+        <div className="absolute inset-0 -z-10 opacity-[0.04] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:56px_56px]"></div>
+
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[0.88fr_1.12fr]">
+          <div className="relative z-10">
+            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-cyan-300/25 bg-cyan-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-cyan-300">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-red-400 shadow-[0_0_14px_rgba(248,113,113,.9)]"></span>
+              Featured jailbreak deployment
+            </div>
+            <h2 className="text-5xl font-black leading-[0.86] tracking-[-0.065em] md:text-7xl xl:text-[5.5rem]">
+              NEVER LOSE
+              <span className="block text-cyan-300">THE MOMENT.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
+              JimWas Recorder turns an iOS 16 Dopamine device into a high-reliability background recorder. Start video, audio, or photos from physical buttons or Control Center—even with the screen locked.
+            </p>
+
+            <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Check className="shrink-0 text-cyan-300" size={15} /> 480p through 4K
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <HeartPulse className="shrink-0 text-cyan-300" size={15} /> Five-second watchdog
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Vibrate className="shrink-0 text-cyan-300" size={15} /> Strong state haptics
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Video className="shrink-0 text-cyan-300" size={15} /> Crash-safe segments
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="/jimwas-recorder"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState({}, '', '/jimwas-recorder');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                }}
+                className="group inline-flex items-center justify-center gap-4 rounded-full bg-cyan-300 px-8 py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
+              >
+                Explore JimWas Recorder
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={18} />
+              </a>
+              <a
+                href="mailto:contact@jimwashkau.com?subject=JimWas%20Recorder%20for%20iOS%2016"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-5 text-sm font-bold uppercase tracking-[0.15em] transition-colors hover:border-cyan-300/60 hover:text-cyan-300"
+              >
+                Request installation
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="/jimwas-recorder"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.pushState({}, '', '/jimwas-recorder');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo(0, 0);
+            }}
+            className="group relative block"
+            aria-label="Open the JimWas Recorder product page"
+          >
+            <div className="absolute -inset-4 rounded-[2rem] bg-cyan-300/10 blur-3xl transition-opacity group-hover:opacity-100"></div>
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/15 bg-black p-2 shadow-[0_45px_120px_rgba(0,0,0,.72),0_0_80px_rgba(34,211,238,.08)] transition-transform duration-500 group-hover:-translate-y-2">
+              <img
+                src="/recorder/og.png"
+                alt="JimWas Recorder background capture product showcase"
+                className="aspect-[1200/630] w-full rounded-[1.15rem] object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-cyan-300 shadow-2xl backdrop-blur-xl">
+              iOS 16 · Dopamine rootless <ArrowRight size={14} />
+            </div>
+          </a>
         </div>
       </section>
 
