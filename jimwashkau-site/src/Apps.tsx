@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ExternalLink, Smartphone, Shield, Zap, Globe, Cpu, Camera, Edit3, Type, DollarSign } from 'lucide-react';
+import { Home, ExternalLink, Smartphone, Shield, Zap, Globe, Cpu, Camera, Edit3, Type, DollarSign, Video } from 'lucide-react';
 
 interface AppInfo {
   name: string;
@@ -10,6 +10,13 @@ interface AppInfo {
 }
 
 const apps: AppInfo[] = [
+  {
+    name: "JimWas Recorder",
+    description: "A high-reliability background video, audio, and photo capture tweak for iOS 16 devices running the Dopamine rootless jailbreak.",
+    link: "/jimwas-recorder",
+    icon: <Video className="text-brand" size={32} />,
+    tags: ["JAILBREAK", "VIDEO", "UTILITY"]
+  },
   {
     name: "TravelVid Recorder",
     description: "Capture your journey without the distraction. A high-reliability video recording tool designed for travelers & creators who need uninterrupted media recording.",
@@ -154,19 +161,17 @@ const Apps: React.FC = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="/travelvid"
+                  href="/jimwas-recorder"
                   className="inline-flex items-center px-10 py-5 bg-brand text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,102,204,0.3)]"
                 >
-                  EXPLORE TRAVELVID
-                  <Camera className="ml-3" size={20} />
+                  EXPLORE JIMWAS RECORDER
+                  <Video className="ml-3" size={20} />
                 </a>
                 <a
-                  href={apps[0].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:contact@jimwashkau.com?subject=JimWas%20Recorder%20for%20iOS%2016"
                   className="inline-flex items-center px-8 py-5 border border-white/20 font-bold uppercase tracking-widest hover:border-white transition-all duration-300"
                 >
-                  APP STORE
+                  REQUEST ACCESS
                   <ExternalLink className="ml-3" size={18} />
                 </a>
               </div>
@@ -174,8 +179,8 @@ const Apps: React.FC = () => {
             <div className="relative flex justify-center lg:justify-end">
               <div className="relative w-64 h-[500px] border-2 border-brand/30 rounded-3xl overflow-hidden bg-zinc-900 shadow-[0_0_40px_rgba(0,102,204,0.1)] group-hover:border-brand transition-colors duration-500">
                 <img 
-                  src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7b/57/e0/7b57e09b-ffc9-c7fc-795f-7b42c57855a8/Gemini_Generated_Image_hjq8tvhjq8tvhjq8.png/460x996bb.webp" 
-                  alt="TravelVid Recorder Screenshot" 
+                  src="/recorder/package.png" 
+                  alt="JimWas Recorder installed package in Sileo" 
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -285,11 +290,11 @@ const AppCard: React.FC<{ app: AppInfo }> = ({ app }) => {
       </p>
       <a 
         href={app.link}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={app.link.startsWith('/') ? undefined : '_blank'}
+        rel={app.link.startsWith('/') ? undefined : 'noopener noreferrer'}
         className="text-xs font-bold uppercase tracking-[0.2em] flex items-center text-brand group-hover:translate-x-2 transition-transform duration-300"
       >
-        APP STORE <ExternalLink className="ml-2" size={14} />
+        {app.link.startsWith('/') ? 'EXPLORE' : 'APP STORE'} <ExternalLink className="ml-2" size={14} />
       </a>
     </div>
   );
