@@ -10,6 +10,7 @@ import LoveSignal from './LoveSignal';
 import SpaceDrinks from './SpaceDrinks';
 import Apps from './Apps';
 import TravelVid from './TravelVid';
+import IPhoneJailbreakWizard from './IPhoneJailbreakWizard';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -231,6 +232,10 @@ function App() {
 
   if (currentPath === '/travelvid') {
     return <TravelVid />;
+  }
+
+  if (currentPath === '/iphone-jailbreak-wizard') {
+    return <IPhoneJailbreakWizard />;
   }
 
   const mapBounds = liveLocation

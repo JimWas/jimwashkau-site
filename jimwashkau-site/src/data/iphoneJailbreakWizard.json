@@ -1,0 +1,3049 @@
+{
+  "source": {
+    "name": "iOS Guide",
+    "url": "https://ios.cfw.guide/get-started/",
+    "repository": "https://github.com/cfw-guide/ios.cfw.guide",
+    "license": "MIT License Copyright (c) 2021 Emma",
+    "appleDbCommit": "516572b5621aa43c689655e9f83a9803a54602cc",
+    "extractedAt": "2026-07-29T15:57:58.446Z"
+  },
+  "summary": {
+    "deviceType": "iPhone",
+    "modelCount": 28,
+    "methodCount": 24
+  },
+  "models": [
+    {
+      "name": "iPhone 15",
+      "slug": "iPhone-15",
+      "devices": [
+        "iPhone15,4",
+        "iPhone15,5"
+      ],
+      "soc": [
+        "A16"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 21, 2023",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-15.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-15.html",
+      "rows": [
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 15 Pro",
+      "slug": "iPhone-15-Pro",
+      "devices": [
+        "iPhone16,1",
+        "iPhone16,2"
+      ],
+      "soc": [
+        "A17 Pro"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 21, 2023",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-15-Pro.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-15-Pro.html",
+      "rows": [
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 14",
+      "slug": "iPhone-14",
+      "devices": [
+        "iPhone14,7",
+        "iPhone14,8"
+      ],
+      "soc": [
+        "A15"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 15, 2022",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-14.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-14.html",
+      "rows": [
+        {
+          "from": "16.5",
+          "to": "16.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.5.1 (a)",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 14 Pro",
+      "slug": "iPhone-14-Pro",
+      "devices": [
+        "iPhone15,2",
+        "iPhone15,3"
+      ],
+      "soc": [
+        "A16"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 15, 2022",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-14-Pro.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-14-Pro.html",
+      "rows": [
+        {
+          "from": "16.5",
+          "to": "16.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.5.1 (a)",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone SE (3rd generation)",
+      "slug": "iPhone-SE-(3rd-generation)",
+      "devices": [
+        "iPhone14,6"
+      ],
+      "soc": [
+        "A15"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Mar 17, 2022",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-SE-(3rd-generation).html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-SE-(3rd-generation).html",
+      "rows": [
+        {
+          "from": "16.5",
+          "to": "15.4",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.5.1 (a)",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 13",
+      "slug": "iPhone-13",
+      "devices": [
+        "iPhone14,4",
+        "iPhone14,5"
+      ],
+      "soc": [
+        "A15"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 23, 2021",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-13.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-13.html",
+      "rows": [
+        {
+          "from": "16.5",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.5.1 (a)",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 13 Pro",
+      "slug": "iPhone-13-Pro",
+      "devices": [
+        "iPhone14,2",
+        "iPhone14,3"
+      ],
+      "soc": [
+        "A15"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 23, 2021",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-13-Pro.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-13-Pro.html",
+      "rows": [
+        {
+          "from": "16.5",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.5.1 (a)",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 12",
+      "slug": "iPhone-12",
+      "devices": [
+        "iPhone13,1",
+        "iPhone13,2"
+      ],
+      "soc": [
+        "A14"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Oct 22, 2020",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-12.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-12.html",
+      "rows": [
+        {
+          "from": "14.8.1",
+          "to": "14.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.5.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 12 Pro",
+      "slug": "iPhone-12-Pro",
+      "devices": [
+        "iPhone13,3",
+        "iPhone13,4"
+      ],
+      "soc": [
+        "A14"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Oct 22, 2020",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-12-Pro.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-12-Pro.html",
+      "rows": [
+        {
+          "from": "14.8.1",
+          "to": "14.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.5.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone SE (2nd generation)",
+      "slug": "iPhone-SE-(2nd-generation)",
+      "devices": [
+        "iPhone12,8"
+      ],
+      "soc": [
+        "A13"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Apr 23, 2020",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-SE-(2nd-generation).html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-SE-(2nd-generation).html",
+      "rows": [
+        {
+          "from": "13.7",
+          "to": "13.4",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.5.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 11",
+      "slug": "iPhone-11",
+      "devices": [
+        "iPhone12,1"
+      ],
+      "soc": [
+        "A13"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 19, 2019",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-11.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-11.html",
+      "rows": [
+        {
+          "from": "13.7",
+          "to": "13.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.5.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone 11 Pro",
+      "slug": "iPhone-11-Pro",
+      "devices": [
+        "iPhone12,3",
+        "iPhone12,5"
+      ],
+      "soc": [
+        "A13"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 19, 2019",
+      "latestFirmware": "iOS 26.6",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-11-Pro.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-11-Pro.html",
+      "rows": [
+        {
+          "from": "13.7",
+          "to": "13.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.5.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "26.6",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone XR",
+      "slug": "iPhone-XR",
+      "devices": [
+        "iPhone11,8"
+      ],
+      "soc": [
+        "A12"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Oct 25, 2018",
+      "latestFirmware": "iOS 18.7.9",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-XR.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-XR.html",
+      "rows": [
+        {
+          "from": "13.7",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.5.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "18.7.9",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone XS",
+      "slug": "iPhone-XS",
+      "devices": [
+        "iPhone11,2",
+        "iPhone11,4",
+        "iPhone11,6"
+      ],
+      "soc": [
+        "A12"
+      ],
+      "architecture": [
+        "arm64e"
+      ],
+      "released": "Sep 20, 2018",
+      "latestFirmware": "iOS 18.7.9",
+      "latestJailbreakableFirmware": "iOS 17.0",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-XS.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-XS.html",
+      "rows": [
+        {
+          "from": "13.7",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.5.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "16.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.2",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "17.0",
+          "to": "17.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing nathanlr",
+            "method": "nathanlr",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/nathanlr",
+            "guideUrl": "https://ios.cfw.guide/installing-nathanlr/",
+            "guideText": "Installing nathanlr",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.0",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "18.7.9",
+          "to": "17.0.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing nathanlr"
+      ]
+    },
+    {
+      "name": "iPhone X",
+      "slug": "iPhone-X",
+      "devices": [
+        "iPhone10,3",
+        "iPhone10,6"
+      ],
+      "soc": [
+        "A11"
+      ],
+      "architecture": [
+        "arm64"
+      ],
+      "released": "Nov 2, 2017",
+      "latestFirmware": "iOS 16.7.16",
+      "latestJailbreakableFirmware": "iOS 16.7.16",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-X.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-X.html",
+      "rows": [
+        {
+          "from": "11.4.1",
+          "to": "11.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing unc0ver",
+            "method": "unc0ver",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/unc0ver",
+            "guideUrl": "https://ios.cfw.guide/installing-unc0ver/",
+            "guideText": "Guide (11.0 to 14.3/14.6 to 14.8)",
+            "type": "Semi-untethered",
+            "latestVersion": "8.0.2",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "13.7",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.16",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine/",
+            "guideText": "Guide (16.7-16.7.16, 17.0.1-18.7.1)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        }
+      ],
+      "methods": [
+        "Installing unc0ver",
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing Dopamine"
+      ]
+    },
+    {
+      "name": "iPhone 8",
+      "slug": "iPhone-8",
+      "devices": [
+        "iPhone10,1",
+        "iPhone10,2",
+        "iPhone10,4",
+        "iPhone10,5"
+      ],
+      "soc": [
+        "A11"
+      ],
+      "architecture": [
+        "arm64"
+      ],
+      "released": "Sep 21, 2017",
+      "latestFirmware": "iOS 16.7.16",
+      "latestJailbreakableFirmware": "iOS 16.7.16",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-8.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-8.html",
+      "rows": [
+        {
+          "from": "11.4.1",
+          "to": "11.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing unc0ver",
+            "method": "unc0ver",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/unc0ver",
+            "guideUrl": "https://ios.cfw.guide/installing-unc0ver/",
+            "guideText": "Guide (11.0 to 14.3/14.6 to 14.8)",
+            "type": "Semi-untethered",
+            "latestVersion": "8.0.2",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "13.7",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.6.1",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "16.7.16",
+          "to": "16.7",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine/",
+            "guideText": "Guide (16.7-16.7.16, 17.0.1-18.7.1)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        }
+      ],
+      "methods": [
+        "Installing unc0ver",
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)",
+        "Installing Dopamine"
+      ]
+    },
+    {
+      "name": "iPhone 7",
+      "slug": "iPhone-7",
+      "devices": [
+        "iPhone9,1",
+        "iPhone9,2",
+        "iPhone9,3",
+        "iPhone9,4"
+      ],
+      "soc": [
+        "A10"
+      ],
+      "architecture": [
+        "arm64"
+      ],
+      "released": "Sep 15, 2016",
+      "latestFirmware": "iOS 15.8.8",
+      "latestJailbreakableFirmware": "iOS 15.8.8",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-7.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-7.html",
+      "rows": [
+        {
+          "from": "10.3.3",
+          "to": "10.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using TotallyNotSpyware",
+            "method": "TotallyNotSpyware",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/TotallyNotSpyware",
+            "guideUrl": "https://ios.cfw.guide/using-tns/",
+            "guideText": "Using TotallyNotSpyware",
+            "type": "(Safari) Semi-untethered",
+            "latestVersion": "",
+            "packageManager": "zebra"
+          }
+        },
+        {
+          "from": "11.4.1",
+          "to": "11.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing unc0ver",
+            "method": "unc0ver",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/unc0ver",
+            "guideUrl": "https://ios.cfw.guide/installing-unc0ver/",
+            "guideText": "Guide (11.0 to 14.3/14.6 to 14.8)",
+            "type": "Semi-untethered",
+            "latestVersion": "8.0.2",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "13.7",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "15.8.8",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        }
+      ],
+      "methods": [
+        "Using TotallyNotSpyware",
+        "Installing unc0ver",
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)"
+      ]
+    },
+    {
+      "name": "iPhone SE (1st generation)",
+      "slug": "iPhone-SE-(1st-generation)",
+      "devices": [
+        "iPhone8,4"
+      ],
+      "soc": [
+        "A9"
+      ],
+      "architecture": [
+        "arm64"
+      ],
+      "released": "Mar 30, 2016",
+      "latestFirmware": "iOS 15.8.8",
+      "latestJailbreakableFirmware": "iOS 15.8.8",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-SE-(1st-generation).html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-SE-(1st-generation).html",
+      "rows": [
+        {
+          "from": "9.3.5",
+          "to": "9.3",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing kok3shi9",
+            "method": "kok3shi9",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/kok3shi9",
+            "guideUrl": "https://ios.cfw.guide/installing-kok3shi9/",
+            "guideText": "Installing kok3shi9",
+            "type": "Semi-untethered",
+            "latestVersion": "5.0.3",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "10.3.3",
+          "to": "10.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using TotallyNotSpyware",
+            "method": "TotallyNotSpyware",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/TotallyNotSpyware",
+            "guideUrl": "https://ios.cfw.guide/using-tns/",
+            "guideText": "Using TotallyNotSpyware",
+            "type": "(Safari) Semi-untethered",
+            "latestVersion": "",
+            "packageManager": "zebra"
+          }
+        },
+        {
+          "from": "11.4.1",
+          "to": "11.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing unc0ver",
+            "method": "unc0ver",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/unc0ver",
+            "guideUrl": "https://ios.cfw.guide/installing-unc0ver/",
+            "guideText": "Guide (11.0 to 14.3/14.6 to 14.8)",
+            "type": "Semi-untethered",
+            "latestVersion": "8.0.2",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "13.7",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "15.8.8",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        }
+      ],
+      "methods": [
+        "Installing kok3shi9",
+        "Using TotallyNotSpyware",
+        "Installing unc0ver",
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)"
+      ]
+    },
+    {
+      "name": "iPhone 6s",
+      "slug": "iPhone-6s",
+      "devices": [
+        "iPhone8,1",
+        "iPhone8,2"
+      ],
+      "soc": [
+        "A9"
+      ],
+      "architecture": [
+        "arm64"
+      ],
+      "released": "Sep 24, 2015",
+      "latestFirmware": "iOS 15.8.8",
+      "latestJailbreakableFirmware": "iOS 15.8.8",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-6s.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-6s.html",
+      "rows": [
+        {
+          "from": "9.1",
+          "to": "9.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Pangu9",
+            "method": "Pangu9",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Pangu9",
+            "guideUrl": "https://ios.cfw.guide/installing-pangu9/",
+            "guideText": "Installing Pangu9",
+            "type": "Untethered",
+            "latestVersion": "1.3.2 (Windows)\n1.1.1 (macOS)\n1.0.0 (Apple TV 4)",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.3.5",
+          "to": "9.2",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing kok3shi9",
+            "method": "kok3shi9",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/kok3shi9",
+            "guideUrl": "https://ios.cfw.guide/installing-kok3shi9/",
+            "guideText": "Installing kok3shi9",
+            "type": "Semi-untethered",
+            "latestVersion": "5.0.3",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "10.3.3",
+          "to": "10.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using TotallyNotSpyware",
+            "method": "TotallyNotSpyware",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/TotallyNotSpyware",
+            "guideUrl": "https://ios.cfw.guide/using-tns/",
+            "guideText": "Using TotallyNotSpyware",
+            "type": "(Safari) Semi-untethered",
+            "latestVersion": "",
+            "packageManager": "zebra"
+          }
+        },
+        {
+          "from": "11.4.1",
+          "to": "11.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing unc0ver",
+            "method": "unc0ver",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/unc0ver",
+            "guideUrl": "https://ios.cfw.guide/installing-unc0ver/",
+            "guideText": "Guide (11.0 to 14.3/14.6 to 14.8)",
+            "type": "Semi-untethered",
+            "latestVersion": "8.0.2",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "13.7",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "14.8.1",
+          "to": "14.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Taurine",
+            "method": "Taurine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Taurine",
+            "guideUrl": "https://ios.cfw.guide/installing-taurine/",
+            "guideText": "Installing Taurine",
+            "type": "Semi-untethered",
+            "latestVersion": "1.1.7-3",
+            "packageManager": "sileo"
+          }
+        },
+        {
+          "from": "15.8.8",
+          "to": "15.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Dopamine (TrollStore)",
+            "method": "Dopamine",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Dopamine",
+            "guideUrl": "https://ios.cfw.guide/installing-dopamine-trollstore/",
+            "guideText": "Guide (TrollStore)",
+            "type": "Semi-Untethered",
+            "latestVersion": "2.5b3",
+            "packageManager": "sileo"
+          }
+        }
+      ],
+      "methods": [
+        "Installing Pangu9",
+        "Installing kok3shi9",
+        "Using TotallyNotSpyware",
+        "Installing unc0ver",
+        "Installing Amethyst",
+        "Installing Taurine",
+        "Installing Dopamine (TrollStore)"
+      ]
+    },
+    {
+      "name": "iPhone 6",
+      "slug": "iPhone-6",
+      "devices": [
+        "iPhone7,1",
+        "iPhone7,2"
+      ],
+      "soc": [
+        "A8"
+      ],
+      "architecture": [
+        "arm64"
+      ],
+      "released": "Sep 18, 2014",
+      "latestFirmware": "iOS 12.5.8",
+      "latestJailbreakableFirmware": "iOS 12.5.8",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-6.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-6.html",
+      "rows": [
+        {
+          "from": "8.4.1",
+          "to": "8.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing wtfis",
+            "method": "wtfis",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/wtfis",
+            "guideUrl": "https://ios.cfw.guide/installing-wtfis/",
+            "guideText": "Installing wtfis",
+            "type": "Untethered",
+            "latestVersion": "1.0b1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.1",
+          "to": "9.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Pangu9",
+            "method": "Pangu9",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Pangu9",
+            "guideUrl": "https://ios.cfw.guide/installing-pangu9/",
+            "guideText": "Installing Pangu9",
+            "type": "Untethered",
+            "latestVersion": "1.3.2 (Windows)\n1.1.1 (macOS)\n1.0.0 (Apple TV 4)",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.3.5",
+          "to": "9.2",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing kok3shi9",
+            "method": "kok3shi9",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/kok3shi9",
+            "guideUrl": "https://ios.cfw.guide/installing-kok3shi9/",
+            "guideText": "Installing kok3shi9",
+            "type": "Semi-untethered",
+            "latestVersion": "5.0.3",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "10.3.3",
+          "to": "10.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using TotallyNotSpyware",
+            "method": "TotallyNotSpyware",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/TotallyNotSpyware",
+            "guideUrl": "https://ios.cfw.guide/using-tns/",
+            "guideText": "Using TotallyNotSpyware",
+            "type": "(Safari) Semi-untethered",
+            "latestVersion": "",
+            "packageManager": "zebra"
+          }
+        },
+        {
+          "from": "11.4.1",
+          "to": "11.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing unc0ver",
+            "method": "unc0ver",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/unc0ver",
+            "guideUrl": "https://ios.cfw.guide/installing-unc0ver/",
+            "guideText": "Guide (11.0 to 14.3/14.6 to 14.8)",
+            "type": "Semi-untethered",
+            "latestVersion": "8.0.2",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "12.5.8",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        }
+      ],
+      "methods": [
+        "Installing wtfis",
+        "Installing Pangu9",
+        "Installing kok3shi9",
+        "Using TotallyNotSpyware",
+        "Installing unc0ver",
+        "Installing Amethyst"
+      ]
+    },
+    {
+      "name": "iPhone 5c",
+      "slug": "iPhone-5c",
+      "devices": [
+        "iPhone5,3",
+        "iPhone5,4"
+      ],
+      "soc": [
+        "A6"
+      ],
+      "architecture": [
+        "armv7s"
+      ],
+      "released": "Sep 19, 2013",
+      "latestFirmware": "iOS 10.3.4",
+      "latestJailbreakableFirmware": "iOS 10.3.4",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-5c.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-5c.html",
+      "rows": [
+        {
+          "from": "7.0.6",
+          "to": "7.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Aquila",
+            "method": "Aquila",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Aquila",
+            "guideUrl": "https://ios.cfw.guide/installing-aquila/",
+            "guideText": "Installing Aquila",
+            "type": "Untethered",
+            "latestVersion": "2.1.1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "7.1.2",
+          "to": "7.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using Lyncis",
+            "method": "Lyncis",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Lyncis",
+            "guideUrl": "https://ios.cfw.guide/using-lyncis/",
+            "guideText": "Using Lyncis",
+            "type": "Untethered",
+            "latestVersion": "1.0",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.3.5",
+          "to": "8.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using Carbon",
+            "method": "Carbon",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Carbon",
+            "guideUrl": "https://ios.cfw.guide/using-carbon/",
+            "guideText": "Using Carbon",
+            "type": "Untethered",
+            "latestVersion": "23431d8",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "10.3.4",
+          "to": "10.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Socket",
+            "method": "Socket",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Socket",
+            "guideUrl": "https://ios.cfw.guide/installing-socket/",
+            "guideText": "Installing Socket",
+            "type": "Semi-untethered",
+            "latestVersion": "1.2.2",
+            "packageManager": "zebra"
+          }
+        }
+      ],
+      "methods": [
+        "Installing Aquila",
+        "Using Lyncis",
+        "Using Carbon",
+        "Installing Socket"
+      ]
+    },
+    {
+      "name": "iPhone 5s",
+      "slug": "iPhone-5s",
+      "devices": [
+        "iPhone6,1",
+        "iPhone6,2"
+      ],
+      "soc": [
+        "A7"
+      ],
+      "architecture": [
+        "arm64"
+      ],
+      "released": "Sep 19, 2013",
+      "latestFirmware": "iOS 12.5.8",
+      "latestJailbreakableFirmware": "iOS 12.5.8",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-5s.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-5s.html",
+      "rows": [
+        {
+          "from": "7.0.6",
+          "to": "7.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Evasi0n7",
+            "method": "evasi0n7",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/evasi0n7",
+            "guideUrl": "https://ios.cfw.guide/installing-evasi0n7/",
+            "guideText": "Installing Evasi0n7",
+            "type": "Untethered",
+            "latestVersion": "1.0.8",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "7.1.2",
+          "to": "7.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Pangu7",
+            "method": "Pangu",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Pangu",
+            "guideUrl": "https://ios.cfw.guide/installing-pangu7/",
+            "guideText": "Installing Pangu7",
+            "type": "Untethered",
+            "latestVersion": "1.2.1 (Windows)\n1.2.0 (macOS)",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "8.4.1",
+          "to": "8.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing wtfis",
+            "method": "wtfis",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/wtfis",
+            "guideUrl": "https://ios.cfw.guide/installing-wtfis/",
+            "guideText": "Installing wtfis",
+            "type": "Untethered",
+            "latestVersion": "1.0b1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.1",
+          "to": "9.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Pangu9",
+            "method": "Pangu9",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Pangu9",
+            "guideUrl": "https://ios.cfw.guide/installing-pangu9/",
+            "guideText": "Installing Pangu9",
+            "type": "Untethered",
+            "latestVersion": "1.3.2 (Windows)\n1.1.1 (macOS)\n1.0.0 (Apple TV 4)",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.3.5",
+          "to": "9.2",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing kok3shi9",
+            "method": "kok3shi9",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/kok3shi9",
+            "guideUrl": "https://ios.cfw.guide/installing-kok3shi9/",
+            "guideText": "Installing kok3shi9",
+            "type": "Semi-untethered",
+            "latestVersion": "5.0.3",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "10.3.3",
+          "to": "10.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using TotallyNotSpyware",
+            "method": "TotallyNotSpyware",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/TotallyNotSpyware",
+            "guideUrl": "https://ios.cfw.guide/using-tns/",
+            "guideText": "Using TotallyNotSpyware",
+            "type": "(Safari) Semi-untethered",
+            "latestVersion": "",
+            "packageManager": "zebra"
+          }
+        },
+        {
+          "from": "11.4.1",
+          "to": "11.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing unc0ver",
+            "method": "unc0ver",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/unc0ver",
+            "guideUrl": "https://ios.cfw.guide/installing-unc0ver/",
+            "guideText": "Guide (11.0 to 14.3/14.6 to 14.8)",
+            "type": "Semi-untethered",
+            "latestVersion": "8.0.2",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "12.5.8",
+          "to": "12.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Amethyst",
+            "method": "Amethyst",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Amethyst",
+            "guideUrl": "https://ios.cfw.guide/installing-amethyst/",
+            "guideText": "Installing Amethyst",
+            "type": "Semi-untethered",
+            "latestVersion": "1.0.3",
+            "packageManager": "sileo"
+          }
+        }
+      ],
+      "methods": [
+        "Installing Evasi0n7",
+        "Installing Pangu7",
+        "Installing wtfis",
+        "Installing Pangu9",
+        "Installing kok3shi9",
+        "Using TotallyNotSpyware",
+        "Installing unc0ver",
+        "Installing Amethyst"
+      ]
+    },
+    {
+      "name": "iPhone 5",
+      "slug": "iPhone-5",
+      "devices": [
+        "iPhone5,1",
+        "iPhone5,2"
+      ],
+      "soc": [
+        "A6"
+      ],
+      "architecture": [
+        "armv7s"
+      ],
+      "released": "Sep 20, 2012",
+      "latestFirmware": "iOS 10.3.4",
+      "latestJailbreakableFirmware": "iOS 10.3.4",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-5.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-5.html",
+      "rows": [
+        {
+          "from": "7.0.6",
+          "to": "6.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Aquila",
+            "method": "Aquila",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Aquila",
+            "guideUrl": "https://ios.cfw.guide/installing-aquila/",
+            "guideText": "Installing Aquila",
+            "type": "Untethered",
+            "latestVersion": "2.1.1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "7.1.2",
+          "to": "7.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using Lyncis",
+            "method": "Lyncis",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Lyncis",
+            "guideUrl": "https://ios.cfw.guide/using-lyncis/",
+            "guideText": "Using Lyncis",
+            "type": "Untethered",
+            "latestVersion": "1.0",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.3.5",
+          "to": "8.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using Carbon",
+            "method": "Carbon",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Carbon",
+            "guideUrl": "https://ios.cfw.guide/using-carbon/",
+            "guideText": "Using Carbon",
+            "type": "Untethered",
+            "latestVersion": "23431d8",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "10.3.4",
+          "to": "10.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Socket",
+            "method": "Socket",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Socket",
+            "guideUrl": "https://ios.cfw.guide/installing-socket/",
+            "guideText": "Installing Socket",
+            "type": "Semi-untethered",
+            "latestVersion": "1.2.2",
+            "packageManager": "zebra"
+          }
+        }
+      ],
+      "methods": [
+        "Installing Aquila",
+        "Using Lyncis",
+        "Using Carbon",
+        "Installing Socket"
+      ]
+    },
+    {
+      "name": "iPhone 4S",
+      "slug": "iPhone-4S",
+      "devices": [
+        "iPhone4,1"
+      ],
+      "soc": [
+        "A5"
+      ],
+      "architecture": [
+        "armv7"
+      ],
+      "released": "Oct 13, 2011",
+      "latestFirmware": "iOS 9.3.6",
+      "latestJailbreakableFirmware": "iOS 9.3.6",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-4S.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-4S.html",
+      "rows": [
+        {
+          "from": "7.0.6",
+          "to": "5.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Aquila",
+            "method": "Aquila",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Aquila",
+            "guideUrl": "https://ios.cfw.guide/installing-aquila/",
+            "guideText": "Installing Aquila",
+            "type": "Untethered",
+            "latestVersion": "2.1.1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "7.1.2",
+          "to": "7.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using Lyncis",
+            "method": "Lyncis",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Lyncis",
+            "guideUrl": "https://ios.cfw.guide/using-lyncis/",
+            "guideText": "Using Lyncis",
+            "type": "Untethered",
+            "latestVersion": "1.0",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "9.3.6",
+          "to": "8.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using Carbon",
+            "method": "Carbon",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Carbon",
+            "guideUrl": "https://ios.cfw.guide/using-carbon/",
+            "guideText": "Using Carbon",
+            "type": "Untethered",
+            "latestVersion": "23431d8",
+            "packageManager": "cydia"
+          }
+        }
+      ],
+      "methods": [
+        "Installing Aquila",
+        "Using Lyncis",
+        "Using Carbon"
+      ]
+    },
+    {
+      "name": "iPhone 4",
+      "slug": "iPhone-4",
+      "devices": [
+        "iPhone3,1",
+        "iPhone3,2",
+        "iPhone3,3"
+      ],
+      "soc": [
+        "A4"
+      ],
+      "architecture": [
+        "armv7"
+      ],
+      "released": "Jun 23, 2010",
+      "latestFirmware": "iOS 7.1.2",
+      "latestJailbreakableFirmware": "iOS 7.1.2",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-4.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-4.html",
+      "rows": [
+        {
+          "from": "4.0.2",
+          "to": "4.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing limera1n",
+            "method": "limera1n",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/limera1n",
+            "guideUrl": "https://ios.cfw.guide/installing-limera1n/",
+            "guideText": "Installing limera1n",
+            "type": "Untethered",
+            "latestVersion": "RC1b",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "4.2.1",
+          "to": "4.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing greenpois0n",
+            "method": "greenpois0n",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/greenpois0n",
+            "guideUrl": "https://ios.cfw.guide/installing-greenpois0n/",
+            "guideText": "Installing greenpois0n",
+            "type": "Untethered",
+            "latestVersion": "RC6",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "4.2.5",
+          "to": "4.2.5",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Legacy iOS Kit",
+            "method": "Legacy iOS Kit",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Legacy-iOS-Kit",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "Untethered",
+            "latestVersion": "25.08.07",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "4.2.8",
+          "to": "4.2.6",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using JailbreakMe Saffron",
+            "method": "JailbreakMe 3.0",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/JailbreakMe-3.0",
+            "guideUrl": "https://ios.cfw.guide/using-jailbreakme-saffron/",
+            "guideText": "Using JailbreakMe Saffron",
+            "type": "(Safari) Untethered",
+            "latestVersion": "",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "4.2.10",
+          "to": "4.2.9",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "redsn0w",
+            "method": "redsn0w",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/redsn0w",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "Untethered",
+            "latestVersion": "0.9.15b3",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "4.3.3",
+          "to": "4.3",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using JailbreakMe Saffron",
+            "method": "JailbreakMe 3.0",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/JailbreakMe-3.0",
+            "guideUrl": "https://ios.cfw.guide/using-jailbreakme-saffron/",
+            "guideText": "Using JailbreakMe Saffron",
+            "type": "(Safari) Untethered",
+            "latestVersion": "",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "7.0.6",
+          "to": "4.3.4",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Aquila",
+            "method": "Aquila",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Aquila",
+            "guideUrl": "https://ios.cfw.guide/installing-aquila/",
+            "guideText": "Installing Aquila",
+            "type": "Untethered",
+            "latestVersion": "2.1.1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "7.1.2",
+          "to": "7.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using Lyncis",
+            "method": "Lyncis",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Lyncis",
+            "guideUrl": "https://ios.cfw.guide/using-lyncis/",
+            "guideText": "Using Lyncis",
+            "type": "Untethered",
+            "latestVersion": "1.0",
+            "packageManager": "cydia"
+          }
+        }
+      ],
+      "methods": [
+        "Installing limera1n",
+        "Installing greenpois0n",
+        "Legacy iOS Kit",
+        "Using JailbreakMe Saffron",
+        "redsn0w",
+        "Installing Aquila",
+        "Using Lyncis"
+      ]
+    },
+    {
+      "name": "iPhone 3GS",
+      "slug": "iPhone-3GS",
+      "devices": [
+        "iPhone2,1"
+      ],
+      "soc": [
+        "APL0298"
+      ],
+      "architecture": [
+        "armv7"
+      ],
+      "released": "Jun 18, 2009",
+      "latestFirmware": "iOS 6.1.6",
+      "latestJailbreakableFirmware": "iOS 6.1.6",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-3GS.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-3GS.html",
+      "rows": [
+        {
+          "from": "3.1",
+          "to": "3.0",
+          "osStr": "iPhone OS",
+          "recommendation": {
+            "name": "redsn0w",
+            "method": "redsn0w",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/redsn0w",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "Untethered",
+            "latestVersion": "0.9.15b3",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "3.1.3",
+          "to": "3.1.2",
+          "osStr": "iPhone OS",
+          "recommendation": {
+            "name": "Using JailbreakMe Star",
+            "method": "JailbreakMe 2.0",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/JailbreakMe-2.0",
+            "guideUrl": "https://ios.cfw.guide/using-jailbreakme-star/",
+            "guideText": "Using JailbreakMe Star",
+            "type": "(Safari) Untethered",
+            "latestVersion": "",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "4.0.2",
+          "to": "4.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing limera1n",
+            "method": "limera1n",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/limera1n",
+            "guideUrl": "https://ios.cfw.guide/installing-limera1n/",
+            "guideText": "Installing limera1n",
+            "type": "Untethered",
+            "latestVersion": "RC1b",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "4.2.1",
+          "to": "4.1",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing greenpois0n",
+            "method": "greenpois0n",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/greenpois0n",
+            "guideUrl": "https://ios.cfw.guide/installing-greenpois0n/",
+            "guideText": "Installing greenpois0n",
+            "type": "Untethered",
+            "latestVersion": "RC6",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "4.3.3",
+          "to": "4.3",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Using JailbreakMe Saffron",
+            "method": "JailbreakMe 3.0",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/JailbreakMe-3.0",
+            "guideUrl": "https://ios.cfw.guide/using-jailbreakme-saffron/",
+            "guideText": "Using JailbreakMe Saffron",
+            "type": "(Safari) Untethered",
+            "latestVersion": "",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "6.1.6",
+          "to": "4.3.4",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "Installing Aquila",
+            "method": "Aquila",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/Aquila",
+            "guideUrl": "https://ios.cfw.guide/installing-aquila/",
+            "guideText": "Installing Aquila",
+            "type": "Untethered",
+            "latestVersion": "2.1.1",
+            "packageManager": "cydia"
+          }
+        }
+      ],
+      "methods": [
+        "redsn0w",
+        "Using JailbreakMe Star",
+        "Installing limera1n",
+        "Installing greenpois0n",
+        "Using JailbreakMe Saffron",
+        "Installing Aquila"
+      ]
+    },
+    {
+      "name": "iPhone 3G",
+      "slug": "iPhone-3G",
+      "devices": [
+        "iPhone1,2"
+      ],
+      "soc": [
+        "APL0098"
+      ],
+      "architecture": [
+        "armv6"
+      ],
+      "released": "Jul 10, 2008",
+      "latestFirmware": "iOS 4.2.1",
+      "latestJailbreakableFirmware": "iOS 4.2.1",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-3G.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-3G.html",
+      "rows": [
+        {
+          "from": "2.0",
+          "to": "2.0",
+          "osStr": "iPhone Software",
+          "recommendation": {
+            "name": "N/A",
+            "method": "N/A",
+            "jailbreakUrl": "",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "",
+            "latestVersion": "",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "2.2.1",
+          "to": "2.0",
+          "osStr": "iPhone Software",
+          "recommendation": {
+            "name": "Installing PwnageTool",
+            "method": "PwnageTool",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/PwnageTool",
+            "guideUrl": "https://ios.cfw.guide/installing-pwnagetool/",
+            "guideText": "Installing PwnageTool",
+            "type": "Untethered",
+            "latestVersion": "5.1.1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "3.1",
+          "to": "3.0",
+          "osStr": "iPhone OS",
+          "recommendation": {
+            "name": "redsn0w",
+            "method": "redsn0w",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/redsn0w",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "Untethered",
+            "latestVersion": "0.9.15b3",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "3.1.3",
+          "to": "3.1.2",
+          "osStr": "iPhone OS",
+          "recommendation": {
+            "name": "Using JailbreakMe Star",
+            "method": "JailbreakMe 2.0",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/JailbreakMe-2.0",
+            "guideUrl": "https://ios.cfw.guide/using-jailbreakme-star/",
+            "guideText": "Using JailbreakMe Star",
+            "type": "(Safari) Untethered",
+            "latestVersion": "",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "4.2.1",
+          "to": "4.0",
+          "osStr": "iOS",
+          "recommendation": {
+            "name": "redsn0w",
+            "method": "redsn0w",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/redsn0w",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "Untethered",
+            "latestVersion": "0.9.15b3",
+            "packageManager": ""
+          }
+        }
+      ],
+      "methods": [
+        "Installing PwnageTool",
+        "redsn0w",
+        "Using JailbreakMe Star"
+      ]
+    },
+    {
+      "name": "iPhone 2G",
+      "slug": "iPhone-2G",
+      "devices": [
+        "iPhone1,1"
+      ],
+      "soc": [
+        "APL0098"
+      ],
+      "architecture": [
+        "armv6"
+      ],
+      "released": "Jun 28, 2007",
+      "latestFirmware": "iPhone OS 3.1.3",
+      "latestJailbreakableFirmware": "iPhone OS 3.1.3",
+      "originalUrl": "https://ios.cfw.guide/get-started/iPhone-2G.html",
+      "appleDbUrl": "https://appledb.dev/device/iPhone-2G.html",
+      "rows": [
+        {
+          "from": "1.1.4",
+          "to": "1.0",
+          "osStr": "iPhone Software",
+          "recommendation": {
+            "name": "iLiberty+",
+            "method": "iLiberty+",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/iLiberty+",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "Untethered",
+            "latestVersion": "1.3.0.113 (Windows)\n1.6_RC3 (OS X)",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "2.2.1",
+          "to": "2.0",
+          "osStr": "iPhone Software",
+          "recommendation": {
+            "name": "Installing PwnageTool",
+            "method": "PwnageTool",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/PwnageTool",
+            "guideUrl": "https://ios.cfw.guide/installing-pwnagetool/",
+            "guideText": "Installing PwnageTool",
+            "type": "Untethered",
+            "latestVersion": "5.1.1",
+            "packageManager": "cydia"
+          }
+        },
+        {
+          "from": "3.1",
+          "to": "3.0",
+          "osStr": "iPhone OS",
+          "recommendation": {
+            "name": "redsn0w",
+            "method": "redsn0w",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/redsn0w",
+            "guideUrl": "",
+            "guideText": "",
+            "type": "Untethered",
+            "latestVersion": "0.9.15b3",
+            "packageManager": ""
+          }
+        },
+        {
+          "from": "3.1.3",
+          "to": "3.1.2",
+          "osStr": "iPhone OS",
+          "recommendation": {
+            "name": "Using JailbreakMe Star",
+            "method": "JailbreakMe 2.0",
+            "jailbreakUrl": "https://appledb.dev/jailbreak/JailbreakMe-2.0",
+            "guideUrl": "https://ios.cfw.guide/using-jailbreakme-star/",
+            "guideText": "Using JailbreakMe Star",
+            "type": "(Safari) Untethered",
+            "latestVersion": "",
+            "packageManager": "cydia"
+          }
+        }
+      ],
+      "methods": [
+        "iLiberty+",
+        "Installing PwnageTool",
+        "redsn0w",
+        "Using JailbreakMe Star"
+      ]
+    }
+  ]
+}
