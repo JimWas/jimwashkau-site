@@ -1,0 +1,106 @@
+export type SiteUpdate = {
+  date: string;
+  title: string;
+  category: string;
+  summary: string;
+  href?: string;
+  items: string[];
+};
+
+export const siteUpdates: SiteUpdate[] = [
+  {
+    date: '2026-07-30',
+    title: 'JW-iOS-MCP research page',
+    category: 'Research',
+    summary: 'Added a technical research page for an autonomous iOS MCP AI Agent server architecture.',
+    href: '/jw-ios-mcp',
+    items: [
+      'Mapped the daemon, SpringBoard bridge, and Unix socket responsibilities.',
+      'Documented the Streamable HTTP, JSON-RPC, and tool catalog design.',
+      'Captured perception, gesture, filesystem, lifecycle, and hardening notes.',
+    ],
+  },
+  {
+    date: '2026-07-30',
+    title: "What's New tracker",
+    category: 'Site System',
+    summary: 'Added a dedicated changelog page plus a homepage highlight section for new pages, features, and deployments.',
+    href: '/whats-new',
+    items: [
+      'Created a central update feed for site changes.',
+      'Added a homepage preview above Mission Logs.',
+      'Made recent feature launches easier to discover.',
+    ],
+  },
+  {
+    date: '2026-07-29',
+    title: 'iPhone jailbreak get-started map',
+    category: 'Guide',
+    summary: 'Added an iPhone model selector based on the MIT-licensed iOS Guide and AppleDB compatibility data.',
+    href: '/iphone-jailbreak-wizard',
+    items: [
+      'Extracted iPhone model groups, iOS version ranges, and recommendation links.',
+      'Added model search and source attribution.',
+      'Linked users back to the upstream guide for current instructions.',
+    ],
+  },
+  {
+    date: '2026-07-29',
+    title: 'JimWas Recorder feature page',
+    category: 'Product',
+    summary: 'Added a product page and homepage hero for the iOS 16 Dopamine background recorder project.',
+    href: '/jimwas-recorder',
+    items: [
+      'Featured video, audio, and photo capture modes.',
+      'Highlighted watchdog recovery, haptics, and crash-safe segments.',
+      'Added a direct install/contact path.',
+    ],
+  },
+  {
+    date: '2026-05-13',
+    title: 'Space drinks explainer',
+    category: 'Article',
+    summary: 'Added a standalone page explaining what astronauts drink in space and how microgravity changes the rules.',
+    href: '/space-drinks',
+    items: [
+      'Covered recycled water, drink pouches, coffee, tea, juice, and carbonation limits.',
+      'Matched the site mission-control visual language.',
+      'Added a direct route from the homepage navigation.',
+    ],
+  },
+  {
+    date: '2026-05-07',
+    title: 'Love Signal moved to its own page',
+    category: 'Interactive',
+    summary: 'Moved the Mars Matrix ASMR widget off the homepage and onto a dedicated Love Signal route.',
+    href: '/love-signal',
+    items: [
+      'Preserved the matrix rain canvas experience.',
+      'Kept the homepage lighter and easier to scan.',
+      'Updated the Transmit link to route back to contact.',
+    ],
+  },
+  {
+    date: '2026-05-07',
+    title: 'Mission recorder stop fix',
+    category: 'Tooling',
+    summary: 'Updated the local voice-to-log recorder so pressing Return stops recording reliably.',
+    items: [
+      'Replaced blocking input with direct terminal key handling.',
+      'Restored terminal settings after recording.',
+      'Kept Ctrl+C interruption behavior intact.',
+    ],
+  },
+  {
+    date: '2026-05-07',
+    title: 'Live app-ads.txt verified',
+    category: 'Monetization',
+    summary: 'Confirmed the AdMob app-ads.txt file is present locally and served from the live root website.',
+    href: '/app-ads.txt',
+    items: [
+      'Verified the Google publisher line.',
+      'Confirmed the live www route returns 200 OK.',
+      'Checked the non-www redirect path.',
+    ],
+  },
+];

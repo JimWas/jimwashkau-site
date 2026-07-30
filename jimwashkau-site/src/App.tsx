@@ -1,6 +1,6 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink, ArrowRight, Check, HeartPulse, Vibrate, Video } from 'lucide-react';
+import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink, ArrowRight, Check, HeartPulse, Vibrate, Video, Rocket } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
@@ -12,6 +12,9 @@ import Apps from './Apps';
 import TravelVid from './TravelVid';
 import IPhoneJailbreakWizard from './IPhoneJailbreakWizard';
 import JimWasRecorder from './JimWasRecorder';
+import WhatsNew from './WhatsNew';
+import JWIosMcp from './JWIosMcp';
+import { siteUpdates } from './data/siteUpdates';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -241,6 +244,14 @@ function App() {
 
   if (currentPath === '/jimwas-recorder') {
     return <JimWasRecorder />;
+  }
+
+  if (currentPath === '/whats-new') {
+    return <WhatsNew />;
+  }
+
+  if (currentPath === '/jw-ios-mcp') {
+    return <JWIosMcp />;
   }
 
   const mapBounds = liveLocation
@@ -655,6 +666,69 @@ function App() {
         </div>
       </section>
 
+      {/* What's New Section */}
+      <section className="relative overflow-hidden border-y border-brand/20 bg-black py-24 md:py-32">
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_15%_20%,rgba(0,102,204,0.18),transparent_34%),radial-gradient(circle_at_82%_54%,rgba(255,92,0,0.10),transparent_30%)]"></div>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:48px_48px]"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+            <div>
+              <div className="inline-flex items-center gap-3 px-3 py-1 border border-brand/50 text-brand text-xs font-bold tracking-[0.3em] uppercase mb-6">
+                <Rocket size={14} />
+                Site Updates
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black uppercase leading-tight mb-6">
+                What&apos;s <span className="text-brand">New</span>
+              </h2>
+              <p className="text-zinc-400 max-w-xl leading-relaxed mb-9 text-lg">
+                Track the newest pages, tools, interactive experiments, and behind-the-scenes fixes shipping across JimWashkau.com.
+              </p>
+              <a
+                href="/whats-new"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState({}, '', '/whats-new');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                }}
+                className="group inline-flex items-center gap-3 bg-brand px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-white hover:bg-white hover:text-black transition-colors"
+              >
+                View Full Changelog
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={18} />
+              </a>
+            </div>
+
+            <div className="grid gap-px bg-white/10">
+              {siteUpdates.slice(0, 3).map((update) => (
+                <a
+                  key={`${update.date}-${update.title}`}
+                  href={update.href ?? '/whats-new'}
+                  onClick={(event) => {
+                    if (!update.href || update.href.startsWith('http')) {
+                      return;
+                    }
+                    event.preventDefault();
+                    window.history.pushState({}, '', update.href);
+                    window.dispatchEvent(new PopStateEvent('popstate'));
+                    window.scrollTo(0, 0);
+                  }}
+                  className="group bg-zinc-950/90 p-6 hover:bg-brand/10 transition-colors"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-brand">{update.date}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-zinc-600">{update.category}</div>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-black uppercase mb-3 group-hover:text-brand transition-colors">
+                    {update.title}
+                  </h3>
+                  <p className="text-sm text-zinc-500 leading-relaxed">{update.summary}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission Log (Portfolio) */}
       <section id="log" className="py-32">
         <div className="max-w-7xl mx-auto px-6">
@@ -797,6 +871,17 @@ function App() {
             © 2026 JIM WASHKAU. ALL RIGHTS RESERVED. // DATA SECURE
           </div>
           <div className="flex space-x-6 text-sm font-bold tracking-widest">
+            <a
+              href="/whats-new"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/whats-new');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              WHAT'S NEW
+            </a>
             <a
               href="/apps"
               onClick={(e) => {
