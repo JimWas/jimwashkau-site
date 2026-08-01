@@ -1,6 +1,6 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink, ArrowRight, Check, HeartPulse, Vibrate, Video, Rocket } from 'lucide-react';
+import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink, ArrowRight, Check, HeartPulse, Vibrate, Video, Rocket, Languages, Mic2, Volume2, WifiOff } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
@@ -10,6 +10,7 @@ import LoveSignal from './LoveSignal';
 import SpaceDrinks from './SpaceDrinks';
 import Apps from './Apps';
 import TravelVid from './TravelVid';
+import LingoEcho from './LingoEcho';
 import IPhoneJailbreakWizard from './IPhoneJailbreakWizard';
 import JimWasRecorder from './JimWasRecorder';
 import WhatsNew from './WhatsNew';
@@ -236,6 +237,10 @@ function App() {
 
   if (currentPath === '/travelvid') {
     return <TravelVid />;
+  }
+
+  if (currentPath === '/LingoEcho' || currentPath === '/lingo-echo') {
+    return <LingoEcho />;
   }
 
   if (currentPath === '/iphone-jailbreak-wizard') {
@@ -470,6 +475,117 @@ function App() {
             </div>
             <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-cyan-300 shadow-2xl backdrop-blur-xl">
               iOS 16 · Dopamine rootless <ArrowRight size={14} />
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* Lingo Echo Product Hero */}
+      <section className="relative isolate overflow-hidden border-b border-fuchsia-300/15 bg-[#07050c] py-24 md:py-32">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(217,70,239,0.16),transparent_32%),radial-gradient(circle_at_86%_78%,rgba(45,212,191,0.11),transparent_30%)]"></div>
+        <div className="absolute inset-0 -z-10 opacity-[0.04] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:56px_56px]"></div>
+
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[1.04fr_0.96fr]">
+          <div className="relative z-10">
+            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-fuchsia-300/25 bg-fuchsia-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-fuchsia-300">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-teal-300 shadow-[0_0_14px_rgba(94,234,212,.9)]"></span>
+              App Store travel tool
+            </div>
+            <h2 className="text-5xl font-black leading-[0.86] tracking-[-0.065em] md:text-7xl xl:text-[5.35rem]">
+              SPEAK WITH
+              <span className="block text-fuchsia-300">YOUR OWN ECHO.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
+              Lingo Echo turns your iPhone into a travel phrase soundboard. Record useful lines in your own voice, save favorites, and replay them when the conversation needs to move.
+            </p>
+
+            <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Mic2 className="shrink-0 text-fuchsia-300" size={15} /> Record & replay
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Volume2 className="shrink-0 text-fuchsia-300" size={15} /> Pronunciation help
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <WifiOff className="shrink-0 text-fuchsia-300" size={15} /> Offline-friendly
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Languages className="shrink-0 text-fuchsia-300" size={15} /> 13+ language packs
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="/LingoEcho"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState({}, '', '/LingoEcho');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                }}
+                className="group inline-flex items-center justify-center gap-4 rounded-full bg-fuchsia-300 px-8 py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
+              >
+                Explore Lingo Echo
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={18} />
+              </a>
+              <a
+                href="https://apps.apple.com/us/app/lingo-echo/id6759366510"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 px-8 py-5 text-sm font-bold uppercase tracking-[0.15em] transition-colors hover:border-fuchsia-300/60 hover:text-fuchsia-300"
+              >
+                App Store <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="/LingoEcho"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.pushState({}, '', '/LingoEcho');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo(0, 0);
+            }}
+            className="group relative block"
+            aria-label="Open the Lingo Echo product page"
+          >
+            <div className="absolute -inset-4 rounded-[2rem] bg-fuchsia-300/10 blur-3xl transition-opacity group-hover:opacity-100"></div>
+            <div className="relative mx-auto max-w-[520px] overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#110c18] p-7 shadow-[0_45px_120px_rgba(0,0,0,.72),0_0_80px_rgba(217,70,239,.08)] transition-transform duration-500 group-hover:-translate-y-2">
+              <div className="mb-8 flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.28em] text-fuchsia-300">Quick Phrase Deck</p>
+                  <h3 className="mt-3 text-3xl font-black uppercase tracking-[-0.04em]">Travel mode</h3>
+                </div>
+                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-fuchsia-300 text-black">
+                  <Languages size={26} />
+                </span>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  ['Taxi', 'Take me here', 'PLAY'],
+                  ['Food', 'No spicy', 'SAVE'],
+                  ['Hotel', 'I have a reservation', 'PLAY'],
+                  ['Market', 'How much?', 'ECHO'],
+                ].map(([label, phrase, action]) => (
+                  <div key={label} className="rounded-2xl border border-white/10 bg-black/35 p-5">
+                    <div className="mb-7 flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">
+                      <span>{label}</span>
+                      <span>{action}</span>
+                    </div>
+                    <p className="text-lg font-black">{phrase}</p>
+                    <div className="mt-4 flex h-8 items-end gap-1">
+                      {[34, 55, 28, 62, 40, 70, 36, 50].map((height, index) => (
+                        <span key={index} className="w-full rounded-full bg-fuchsia-300" style={{ height: `${height}%` }}></span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-fuchsia-300 shadow-2xl backdrop-blur-xl">
+              iPhone · Free with premium unlock <ArrowRight size={14} />
             </div>
           </a>
         </div>

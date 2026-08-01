@@ -9,6 +9,19 @@ export type SiteUpdate = {
 
 export const siteUpdates: SiteUpdate[] = [
   {
+    date: '2026-08-01',
+    title: 'Lingo Echo landing page',
+    category: 'Product',
+    summary: 'Added a dedicated App Store landing page for the Lingo Echo iOS travel phrase soundboard.',
+    href: '/LingoEcho',
+    items: [
+      'Built a custom product page with an interactive-style iPhone phrasebook mockup.',
+      'Added a homepage promo hero beneath the JimWas Recorder jailbreak tweak feature.',
+      'Highlighted voice recording, quick phrases, pronunciation help, offline-friendly phrase data, and language packs.',
+      'Updated the iOS Apps portfolio card to route to the new Lingo Echo page.',
+    ],
+  },
+  {
     date: '2026-07-30',
     title: 'JW-iOS-MCP research page',
     category: 'Research',

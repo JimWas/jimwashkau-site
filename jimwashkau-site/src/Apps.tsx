@@ -26,10 +26,10 @@ const apps: AppInfo[] = [
   },
   {
     name: "Lingo Echo",
-    description: "An app for recording and playing back phrases in your own voice, often used for language learning or practice.",
-    link: "https://apps.apple.com/us/app/lingo-echo/id1441541341", // Using developer link as fallback for others if specific not found, but I'll use the developer link for all for now or try to be specific if I can.
+    description: "A travel phrase soundboard for recording, saving, and replaying useful phrases in your own voice.",
+    link: "/LingoEcho",
     icon: <Cpu className="text-brand" size={32} />,
-    tags: ["EDUCATION", "VOICE"]
+    tags: ["TRAVEL", "VOICE", "LANGUAGE"]
   },
   {
     name: "Plowd - NYC Snow Plow Map",
