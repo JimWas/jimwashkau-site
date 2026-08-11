@@ -15,6 +15,7 @@ import IPhoneJailbreakWizard from './IPhoneJailbreakWizard';
 import JimWasRecorder from './JimWasRecorder';
 import WhatsNew from './WhatsNew';
 import JWIosMcp from './JWIosMcp';
+import GPhotos2Shorts from './GPhotos2Shorts';
 import { siteUpdates } from './data/siteUpdates';
 
 // Force import the markdown files so they are bundled
@@ -259,6 +260,10 @@ function App() {
     return <JWIosMcp />;
   }
 
+  if (currentPath === '/gphotos2shorts') {
+    return <GPhotos2Shorts />;
+  }
+
   const mapBounds = liveLocation
     ? [
         liveLocation.longitude - 0.03,
@@ -394,6 +399,74 @@ function App() {
         {/* Decorative Grid */}
         <div className="absolute bottom-0 right-0 w-1/3 h-1/3 border-t border-l border-white/5 pointer-events-none">
           <div className="w-full h-full opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        </div>
+      </section>
+
+      {/* GPhotos2Shorts Product Hero */}
+      <section className="relative isolate overflow-hidden border-y border-cyan-300/15 bg-[#02070c] py-24 md:py-32">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_14%_12%,rgba(0,145,255,0.16),transparent_34%),radial-gradient(circle_at_88%_88%,rgba(249,115,22,0.08),transparent_30%)]"></div>
+        <div className="absolute inset-0 -z-10 opacity-[0.04] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:56px_56px]"></div>
+
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[0.84fr_1.16fr]">
+          <div className="relative z-10">
+            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-cyan-300/25 bg-cyan-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-cyan-300">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-orange-400 shadow-[0_0_14px_rgba(251,146,60,.9)]"></span>
+              Open-source archive tool
+            </div>
+            <h2 className="font-['Nasalization'] text-5xl leading-[0.88] tracking-[-0.06em] md:text-7xl xl:text-[5.25rem]">
+              MEMORIES IN.
+              <span className="block text-cyan-300">SHORTS OUT.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
+              GPhotos2Shorts turns complete Google Photos and Apple Photos exports into polished vertical videos—without cropping photos, losing Live Photo motion, or repeating archived files.
+            </p>
+
+            <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> Photos + Live Photos</div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> Full-length videos</div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> Original video audio</div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> JSON clip manifest</div>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="/gphotos2shorts"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState({}, '', '/gphotos2shorts');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                }}
+                className="group inline-flex items-center justify-center gap-4 rounded-full bg-cyan-300 px-8 py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
+              >
+                Explore GPhotos2Shorts
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={18} />
+              </a>
+              <a href="https://github.com/JimWas/GPhotos2Shorts" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 px-8 py-5 text-sm font-bold uppercase tracking-[0.15em] transition-colors hover:border-cyan-300/60 hover:text-cyan-300">
+                GitHub <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="/gphotos2shorts"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.pushState({}, '', '/gphotos2shorts');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo(0, 0);
+            }}
+            className="group relative block"
+            aria-label="Open the GPhotos2Shorts product page"
+          >
+            <div className="absolute -inset-4 rounded-[2rem] bg-cyan-300/10 blur-3xl transition-opacity group-hover:opacity-100"></div>
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/15 bg-black p-2 shadow-[0_45px_120px_rgba(0,0,0,.72),0_0_80px_rgba(34,211,238,.08)] transition-transform duration-500 group-hover:-translate-y-2">
+              <img src="/gphotos2shorts/hero.webp" alt="GPhotos2Shorts archive-to-video product showcase" className="aspect-[3/2] w-full rounded-[1.15rem] object-cover" loading="lazy" />
+            </div>
+            <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-cyan-300 shadow-2xl backdrop-blur-xl">
+              No crop · Fast · Resumable <ArrowRight size={14} />
+            </div>
+          </a>
         </div>
       </section>
 
