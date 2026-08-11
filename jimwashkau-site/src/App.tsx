@@ -377,7 +377,7 @@ function App() {
               MISSION FORWARD
             </h1>
             <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed italic font-mono">
-              Built for today. <span className="text-brand">Ready for</span> tomorrow.
+              <span className="text-brand">Built</span> for today. <span className="text-brand">Ready</span> for tomorrow.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
