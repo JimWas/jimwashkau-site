@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/IPVanish",
+      "destination": "https://affiliate.ipvanish.com/SHBp",
+      "permanent": false
+    },
+    {
+      "source": "/ipvanish",
+      "destination": "https://affiliate.ipvanish.com/SHBp",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }

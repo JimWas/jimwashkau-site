@@ -213,6 +213,11 @@ function App() {
     };
   }, []);
 
+  if (currentPath === '/IPVanish' || currentPath === '/ipvanish') {
+    window.location.replace('https://affiliate.ipvanish.com/SHBp');
+    return null;
+  }
+
   if (currentPath === '/support') {
     return <Support />;
   }
