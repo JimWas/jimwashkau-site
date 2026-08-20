@@ -1,6 +1,6 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink, ArrowRight, Check, HeartPulse, Vibrate, Video, Rocket, Languages, Mic2, Volume2, WifiOff } from 'lucide-react';
+import { X, Calendar, ChevronRight, Camera, Shield, Cpu, Smartphone, Heart, ExternalLink, ArrowRight, Check, HeartPulse, Vibrate, Video, Rocket, Languages, Mic2, Volume2, WifiOff, FileText, PenLine, ScanLine, LockKeyhole, Compass, Gauge, MapPin } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import Support from './Support';
 import Privacy from './Privacy';
@@ -11,12 +11,17 @@ import SpaceDrinks from './SpaceDrinks';
 import Apps from './Apps';
 import TravelVid from './TravelVid';
 import LingoEcho from './LingoEcho';
+import SwiftPdfEditor from './SwiftPdfEditor';
 import IPhoneJailbreakWizard from './IPhoneJailbreakWizard';
 import JimWasRecorder from './JimWasRecorder';
 import WhatsNew from './WhatsNew';
 import JWIosMcp from './JWIosMcp';
 import GPhotos2Shorts from './GPhotos2Shorts';
 import { siteUpdates } from './data/siteUpdates';
+
+const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
+const TRAVELVID_SCREENSHOT_URL =
+  'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7b/57/e0/7b57e09b-ffc9-c7fc-795f-7b42c57855a8/Gemini_Generated_Image_hjq8tvhjq8tvhjq8.png/460x996bb.webp';
 
 // Force import the markdown files so they are bundled
 import opOrion from './content/logs/op-orion.md?raw';
@@ -236,12 +241,16 @@ function App() {
     return <Apps />;
   }
 
-  if (currentPath === '/travelvid') {
+  if (currentPath === '/travelvid' || currentPath === '/TravelVidRecorder' || currentPath === '/travelvid-recorder') {
     return <TravelVid />;
   }
 
   if (currentPath === '/LingoEcho' || currentPath === '/lingo-echo') {
     return <LingoEcho />;
+  }
+
+  if (currentPath === '/SwiftPDFEditor' || currentPath === '/swift-pdf-editor') {
+    return <SwiftPdfEditor />;
   }
 
   if (currentPath === '/iphone-jailbreak-wizard') {
@@ -402,6 +411,100 @@ function App() {
         </div>
       </section>
 
+      {/* TravelVid Recorder Product Hero */}
+      <section className="relative isolate overflow-hidden border-y border-emerald-300/15 bg-[#040806] py-24 md:py-32">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_78%_18%,rgba(52,211,153,0.18),transparent_32%),radial-gradient(circle_at_16%_88%,rgba(251,146,60,0.12),transparent_30%)]"></div>
+        <div className="absolute inset-0 -z-10 opacity-[0.04] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:56px_56px]"></div>
+
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="relative z-10">
+            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-emerald-300/25 bg-emerald-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-emerald-300">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-orange-300 shadow-[0_0_14px_rgba(253,186,116,.9)]"></span>
+              Best app so far · Travel video
+            </div>
+            <h2 className="text-5xl font-black leading-[0.86] tracking-[-0.065em] md:text-7xl xl:text-[5.55rem]">
+              RECORD THE
+              <span className="block text-emerald-300">WHOLE JOURNEY.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
+              TravelVid Recorder is a focused iPhone camera for long travel moments. Cover Mode keeps the screen useful while segmented recording, GPS context, readiness checks, and recovery tools protect the footage.
+            </p>
+
+            <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Video className="shrink-0 text-emerald-300" size={15} /> Segmented capture
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <MapPin className="shrink-0 text-emerald-300" size={15} /> Route context
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Gauge className="shrink-0 text-emerald-300" size={15} /> Travel dashboard
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <Shield className="shrink-0 text-emerald-300" size={15} /> Recovery tools
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="/travelvid"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState({}, '', '/travelvid');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                }}
+                className="group inline-flex items-center justify-center gap-4 rounded-full bg-emerald-300 px-8 py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
+              >
+                Explore TravelVid
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={18} />
+              </a>
+              <a
+                href={TRAVELVID_APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 px-8 py-5 text-sm font-bold uppercase tracking-[0.15em] transition-colors hover:border-emerald-300/60 hover:text-emerald-300"
+              >
+                App Store <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="/travelvid"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.pushState({}, '', '/travelvid');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo(0, 0);
+            }}
+            className="group relative mx-auto block w-full max-w-[560px]"
+            aria-label="Open the TravelVid Recorder product page"
+          >
+            <div className="absolute -inset-4 rounded-[2rem] bg-emerald-300/10 blur-3xl transition-opacity group-hover:opacity-100"></div>
+            <div className="relative mx-auto flex justify-center">
+              <div className="relative rotate-[2deg] rounded-[3.2rem] border border-white/20 bg-[#131714] p-2.5 shadow-[0_45px_120px_rgba(0,0,0,.72),0_0_80px_rgba(52,211,153,.08)] transition-transform duration-500 group-hover:-translate-y-2">
+                <div className="pointer-events-none absolute left-1/2 top-5 z-20 h-7 w-28 -translate-x-1/2 rounded-full bg-black"></div>
+                <img
+                  src={TRAVELVID_SCREENSHOT_URL}
+                  alt="TravelVid Recorder running on an iPhone"
+                  className="h-[560px] w-[259px] rounded-[2.7rem] object-cover sm:h-[650px] sm:w-[300px]"
+                />
+              </div>
+            </div>
+            <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-300 shadow-2xl backdrop-blur-xl">
+              Version 3.4 · 5.0 rating <ArrowRight size={14} />
+            </div>
+            <div className="absolute left-0 top-10 hidden w-48 rounded-2xl border border-white/10 bg-black/75 p-5 shadow-2xl backdrop-blur-xl sm:block">
+              <div className="mb-4 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-zinc-500">
+                Readiness <Compass className="text-emerald-300" size={15} />
+              </div>
+              <p className="text-xs font-bold text-zinc-200">Camera, mic, storage, and segment checks before capture.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* GPhotos2Shorts Product Hero */}
       <section className="relative isolate overflow-hidden border-y border-cyan-300/15 bg-[#02070c] py-24 md:py-32">
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_14%_12%,rgba(0,145,255,0.16),transparent_34%),radial-gradient(circle_at_88%_88%,rgba(249,115,22,0.08),transparent_30%)]"></div>
@@ -411,19 +514,19 @@ function App() {
           <div className="relative z-10">
             <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-cyan-300/25 bg-cyan-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-cyan-300">
               <span className="h-2 w-2 animate-pulse rounded-full bg-orange-400 shadow-[0_0_14px_rgba(251,146,60,.9)]"></span>
-              Open-source archive tool
+              Open source archive tool
             </div>
             <h2 className="font-['Nasalization'] text-5xl leading-[0.88] tracking-[-0.06em] md:text-7xl xl:text-[5.25rem]">
               MEMORIES IN.
               <span className="block text-cyan-300">SHORTS OUT.</span>
             </h2>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
-              GPhotos2Shorts turns complete Google Photos and Apple Photos exports into polished vertical videos—without cropping photos, losing Live Photo motion, or repeating archived files.
+              GPhotos2Shorts turns complete Google Photos and Apple Photos exports into polished vertical videos without cropping photos, losing Live Photo motion, or repeating archived files.
             </p>
 
             <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> Photos + Live Photos</div>
-              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> Full-length videos</div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> Full length videos</div>
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> Original video audio</div>
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-cyan-300" size={15} /> JSON clip manifest</div>
             </div>
@@ -461,7 +564,7 @@ function App() {
           >
             <div className="absolute -inset-4 rounded-[2rem] bg-cyan-300/10 blur-3xl transition-opacity group-hover:opacity-100"></div>
             <div className="relative overflow-hidden rounded-[1.5rem] border border-white/15 bg-black p-2 shadow-[0_45px_120px_rgba(0,0,0,.72),0_0_80px_rgba(34,211,238,.08)] transition-transform duration-500 group-hover:-translate-y-2">
-              <img src="/gphotos2shorts/hero.webp" alt="GPhotos2Shorts archive-to-video product showcase" className="aspect-[3/2] w-full rounded-[1.15rem] object-cover" loading="lazy" />
+              <img src="/gphotos2shorts/hero.webp" alt="GPhotos2Shorts archive to video product showcase" className="aspect-[3/2] w-full rounded-[1.15rem] object-cover" loading="lazy" />
             </div>
             <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-cyan-300 shadow-2xl backdrop-blur-xl">
               No crop · Fast · Resumable <ArrowRight size={14} />
@@ -486,7 +589,7 @@ function App() {
               <span className="block text-cyan-300">THE MOMENT.</span>
             </h2>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
-              JimWas Recorder turns an iOS 16 Dopamine device into a high-reliability background recorder. Start video, audio, or photos from physical buttons or Control Center—even with the screen locked.
+              JimWas Recorder turns an iOS 16 Dopamine device into a high reliability background recorder. Start video, audio, or photos from physical buttons or Control Center, even with the screen locked.
             </p>
 
             <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
@@ -494,13 +597,13 @@ function App() {
                 <Check className="shrink-0 text-cyan-300" size={15} /> 480p through 4K
               </div>
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
-                <HeartPulse className="shrink-0 text-cyan-300" size={15} /> Five-second watchdog
+                <HeartPulse className="shrink-0 text-cyan-300" size={15} /> Five second watchdog
               </div>
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
                 <Vibrate className="shrink-0 text-cyan-300" size={15} /> Strong state haptics
               </div>
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
-                <Video className="shrink-0 text-cyan-300" size={15} /> Crash-safe segments
+                <Video className="shrink-0 text-cyan-300" size={15} /> Crash safe segments
               </div>
             </div>
 
@@ -580,7 +683,7 @@ function App() {
                 <Volume2 className="shrink-0 text-fuchsia-300" size={15} /> Pronunciation help
               </div>
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
-                <WifiOff className="shrink-0 text-fuchsia-300" size={15} /> Offline-friendly
+                <WifiOff className="shrink-0 text-fuchsia-300" size={15} /> Offline friendly
               </div>
               <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
                 <Languages className="shrink-0 text-fuchsia-300" size={15} /> 13+ language packs
@@ -664,6 +767,124 @@ function App() {
         </div>
       </section>
 
+      {/* Swift PDF Editor Product Hero */}
+      <section className="relative isolate overflow-hidden border-b border-sky-300/15 bg-[#05080c] py-24 md:py-32">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_82%_24%,rgba(56,189,248,0.16),transparent_32%),radial-gradient(circle_at_10%_88%,rgba(16,185,129,0.11),transparent_30%)]"></div>
+        <div className="absolute inset-0 -z-10 opacity-[0.04] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:56px_56px]"></div>
+
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[0.96fr_1.04fr]">
+          <div className="relative z-10">
+            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-sky-300/25 bg-sky-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-sky-300">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,.9)]"></span>
+              Productivity app · PDF toolkit
+            </div>
+            <h2 className="text-5xl font-black leading-[0.86] tracking-[-0.065em] md:text-7xl xl:text-[5.35rem]">
+              PAPERWORK
+              <span className="block text-sky-300">WITHOUT THE DESK.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
+              Swift PDF Editor helps you sign, edit, scan, compress, convert, protect, and share documents right from your iPhone, with local processing and no account required.
+            </p>
+
+            <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <PenLine className="shrink-0 text-sky-300" size={15} /> Sign & annotate
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <ScanLine className="shrink-0 text-sky-300" size={15} /> Scan paper
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <FileText className="shrink-0 text-sky-300" size={15} /> Convert files
+              </div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                <LockKeyhole className="shrink-0 text-sky-300" size={15} /> Protect PDFs
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="/SwiftPDFEditor"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState({}, '', '/SwiftPDFEditor');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                }}
+                className="group inline-flex items-center justify-center gap-4 rounded-full bg-sky-300 px-8 py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
+              >
+                Explore Swift PDF Editor
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={18} />
+              </a>
+              <a
+                href="https://apps.apple.com/us/app/swift-pdf-editor/id6759518269"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 px-8 py-5 text-sm font-bold uppercase tracking-[0.15em] transition-colors hover:border-sky-300/60 hover:text-sky-300"
+              >
+                App Store <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="/SwiftPDFEditor"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.pushState({}, '', '/SwiftPDFEditor');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo(0, 0);
+            }}
+            className="group relative block"
+            aria-label="Open the Swift PDF Editor product page"
+          >
+            <div className="absolute -inset-4 rounded-[2rem] bg-sky-300/10 blur-3xl transition-opacity group-hover:opacity-100"></div>
+            <div className="relative mx-auto max-w-[520px] overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#0c141d] p-7 shadow-[0_45px_120px_rgba(0,0,0,.72),0_0_80px_rgba(56,189,248,.08)] transition-transform duration-500 group-hover:-translate-y-2">
+              <div className="mb-8 flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.28em] text-sky-300">Document Command Center</p>
+                  <h3 className="mt-3 text-3xl font-black uppercase tracking-[-0.04em]">Contract.pdf</h3>
+                </div>
+                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-300 text-black">
+                  <FileText size={26} />
+                </span>
+              </div>
+
+              <div className="rounded-2xl bg-white p-5 text-black">
+                <div className="mb-5 flex items-center justify-between">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Page 1 of 4</span>
+                  <span className="rounded-full bg-emerald-100 px-3 py-1 text-[10px] font-black uppercase text-emerald-700">Signed</span>
+                </div>
+                <div className="space-y-2">
+                  <span className="block h-2 rounded-full bg-sky-100"></span>
+                  <span className="block h-2 w-10/12 rounded-full bg-sky-100"></span>
+                  <span className="block h-2 w-8/12 rounded-full bg-sky-100"></span>
+                </div>
+                <div className="mt-6 rounded-2xl border-2 border-dashed border-sky-300 bg-sky-50 p-4">
+                  <p className="font-serif text-2xl italic text-sky-800">James W.</p>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {[
+                  ['Edit', 'Text + markup'],
+                  ['Scan', 'Paper to PDF'],
+                  ['Compress', 'Email ready'],
+                  ['Protect', 'Password tools'],
+                ].map(([label, detail]) => (
+                  <div key={label} className="rounded-2xl border border-white/10 bg-black/35 p-5">
+                    <p className="text-sm font-black uppercase">{label}</p>
+                    <p className="mt-1 text-xs text-zinc-500">{detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-sky-300 shadow-2xl backdrop-blur-xl">
+              iPhone · Local document work <ArrowRight size={14} />
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* iOS Apps Featured Section */}
       <section className="py-24 bg-black border-b border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,102,204,0.1),transparent_50%)]"></div>
@@ -692,14 +913,14 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8">
             <AppHeroCard 
               name="TravelVid Recorder"
-              desc="Professional-grade video recording tool designed for uninterrupted media capture."
+              desc="Professional grade video recording tool designed for uninterrupted media capture."
               icon={<Camera className="text-brand" size={32} />}
               tag="VIDEO / TRAVEL"
               href="/travelvid"
             />
             <AppHeroCard 
               name="Bodycam Pro"
-              desc="Turn your iPhone into a personal body camera for high-reliability documentation."
+              desc="Turn your iPhone into a personal body camera for high reliability documentation."
               icon={<Shield className="text-brand" size={32} />}
               tag="SECURITY / UTILITY"
             />
@@ -749,7 +970,7 @@ function App() {
               </div>
               <h2 className="text-4xl md:text-5xl font-black uppercase mb-5">Telemetry Map</h2>
               <p className="text-zinc-400 max-w-2xl leading-relaxed mb-8">
-                A live field position feed, styled to match the mission-control feel of the site.
+                A live field position feed, styled to match the mission control feel of the site.
                 The endpoint archives each uplink and also exposes a public XML telemetry log.
               </p>
 
@@ -818,7 +1039,7 @@ function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-white/10">
             <CapabilityCard 
               title="RAPID DEVELOPER" 
-              desc="Develops complex solution to real-world problems." 
+              desc="Develops complex solutions to real world problems." 
               number="01"
             />
             <CapabilityCard 
@@ -828,12 +1049,12 @@ function App() {
             />
             <CapabilityCard 
               title="TECHNICAL DEPTH" 
-              desc="Full-stack expertise across modern distributed systems and cloud scale." 
+              desc="Full stack expertise across modern distributed systems and cloud scale." 
               number="03"
             />
             <CapabilityCard 
               title="MISSION COMMAND" 
-              desc="Leading cross-functional teams to deliver critical results under pressure." 
+              desc="Leading cross functional teams to deliver critical results under pressure." 
               number="04"
             />
             <button 
@@ -848,7 +1069,7 @@ function App() {
                 MARSRELAY AI <ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
               </h3>
               <p className="text-zinc-500 group-hover:text-zinc-300 transition-colors leading-relaxed">
-                Deep space communication simulator with 19-minute latency modeling.
+                Deep space communication simulator with 19 minute latency modeling.
               </p>
             </button>
           </div>
@@ -870,7 +1091,7 @@ function App() {
                 What&apos;s <span className="text-brand">New</span>
               </h2>
               <p className="text-zinc-400 max-w-xl leading-relaxed mb-9 text-lg">
-                Track the newest pages, tools, interactive experiments, and behind-the-scenes fixes shipping across JimWashkau.com.
+                Track the newest pages, tools, interactive experiments, and behind the scenes fixes shipping across JimWashkau.com.
               </p>
               <a
                 href="/whats-new"
@@ -904,7 +1125,7 @@ function App() {
                   className="group bg-zinc-950/90 p-6 hover:bg-brand/10 transition-colors"
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-                    <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-brand">{update.date}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-brand">{update.date.replaceAll('-', '.')}</div>
                     <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-zinc-600">{update.category}</div>
                   </div>
                   <h3 className="text-xl md:text-2xl font-black uppercase mb-3 group-hover:text-brand transition-colors">

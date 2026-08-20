@@ -37,9 +37,42 @@ const coverModes = [
 function TravelVid() {
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = 'TravelVid Recorder — JimWashkau.com';
+    const description = 'TravelVid Recorder is a focused iPhone travel video recorder with Cover Mode, segmented capture, GPS routes, readiness checks, and recovery tools.';
+    const existingDescription = document.querySelector('meta[name="description"]');
+    const previousDescription = existingDescription?.getAttribute('content');
+    document.title = 'TravelVid Recorder - Minimal Travel Video Recorder for iPhone';
+
+    let descriptionElement = existingDescription;
+    if (!descriptionElement) {
+      descriptionElement = document.createElement('meta');
+      descriptionElement.setAttribute('name', 'description');
+      document.head.appendChild(descriptionElement);
+    }
+    descriptionElement.setAttribute('content', description);
+
+    const socialMeta = [
+      ['property', 'og:title', 'TravelVid Recorder - Minimal Travel Video Recorder for iPhone'],
+      ['property', 'og:description', description],
+      ['property', 'og:url', 'https://jimwashkau.com/travelvid'],
+      ['property', 'og:type', 'website'],
+      ['name', 'twitter:card', 'summary_large_image'],
+      ['name', 'twitter:title', 'TravelVid Recorder - Minimal Travel Video Recorder for iPhone'],
+      ['name', 'twitter:description', description],
+    ];
+    const addedMeta: HTMLMetaElement[] = [];
+    socialMeta.forEach(([attribute, key, content]) => {
+      const element = document.createElement('meta');
+      element.setAttribute(attribute, key);
+      element.setAttribute('content', content);
+      element.dataset.travelVid = 'true';
+      document.head.appendChild(element);
+      addedMeta.push(element);
+    });
+
     return () => {
       document.title = previousTitle;
+      if (previousDescription) descriptionElement?.setAttribute('content', previousDescription);
+      addedMeta.forEach((element) => element.remove());
     };
   }, []);
 
@@ -76,7 +109,7 @@ function TravelVid() {
             <div className="relative z-10">
               <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-emerald-300/25 bg-emerald-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-emerald-300">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,.9)]" />
-                Travel ready · iOS 15+
+                Travel ready · iOS 17.6+
               </div>
               <h1 className="max-w-4xl text-6xl font-black leading-[0.84] tracking-[-0.07em] sm:text-7xl md:text-8xl xl:text-[7.4rem]">
                 KEEP THE
@@ -84,7 +117,7 @@ function TravelVid() {
                 MOVING.
               </h1>
               <p className="mt-9 max-w-xl text-lg leading-relaxed text-zinc-400 md:text-xl">
-                A reliable travel video recorder built for the moments that do not wait. Start in one tap, keep a clear recording indicator in view, and let TravelVid handle the details.
+                TravelVid Recorder is a minimal, reliable iPhone camera built for long trips, scenic drives, walking tours, flights, and any moment where the viewfinder should get out of the way.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a
@@ -104,9 +137,9 @@ function TravelVid() {
                 </a>
               </div>
               <div className="mt-12 flex flex-wrap gap-x-8 gap-y-4 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                <span className="flex items-center gap-2"><Check className="text-emerald-300" size={14} /> 720p to 4K</span>
-                <span className="flex items-center gap-2"><Check className="text-emerald-300" size={14} /> Front & back cameras</span>
-                <span className="flex items-center gap-2"><Check className="text-emerald-300" size={14} /> Optional GPS</span>
+                <span className="flex items-center gap-2"><Check className="text-emerald-300" size={14} /> Cover Mode</span>
+                <span className="flex items-center gap-2"><Check className="text-emerald-300" size={14} /> GPS route tools</span>
+                <span className="flex items-center gap-2"><Check className="text-emerald-300" size={14} /> Version 3.4</span>
               </div>
             </div>
 
@@ -141,10 +174,10 @@ function TravelVid() {
 
         <section className="border-y border-white/10 bg-white/[0.025]">
           <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 px-6 md:grid-cols-4">
-            <Stat value="4K" label="Maximum resolution" />
-            <Stat value="11" label="Cover modes" />
-            <Stat value="1–10" label="Minute segments" />
-            <Stat value="1 tap" label="To start recording" />
+            <Stat value="5.0" label="App Store rating" />
+            <Stat value="9.3 MB" label="App size" />
+            <Stat value="4+" label="Age rating" />
+            <Stat value="Free" label="With premium tools" />
           </div>
         </section>
 
@@ -153,15 +186,15 @@ function TravelVid() {
             <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="mb-5 text-xs font-black uppercase tracking-[0.3em] text-emerald-300">Built for the road</p>
               <h2 className="text-5xl font-black leading-[0.92] tracking-[-0.045em] md:text-6xl">THE CAMERA APP THAT PLANS AHEAD.</h2>
-              <p className="mt-7 max-w-md text-lg leading-relaxed text-zinc-400">TravelVid quietly handles the checks, file management, and location context around your recording—so you can stay present.</p>
+              <p className="mt-7 max-w-md text-lg leading-relaxed text-zinc-400">TravelVid quietly handles checks, file management, recovery, and location context around your recording so you can stay present.</p>
             </div>
             <div className="grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 sm:grid-cols-2">
-              <Feature icon={<Film />} number="01" title="Resilient capture" body="Record in configurable 1–10 minute segments, with automatic recovery for interruptions and recording stalls." />
+              <Feature icon={<Film />} number="01" title="Resilient capture" body="Segmented recording helps protect long files, with automatic recovery for camera, audio, phone call, and system interruptions." />
               <Feature icon={<ShieldCheck />} number="02" title="Ready before you roll" body="Camera, microphone, free storage, and the latest saved segment are checked before every recording." />
               <Feature icon={<MapPin />} number="03" title="Your route, remembered" body="Optionally save your location, address, and GPS path alongside each video for richer travel context." />
               <Feature icon={<HardDrive />} number="04" title="Storage with guardrails" body="See available space at a glance, get warned before it runs low, and quickly clean up after export." />
               <Feature icon={<Images />} number="05" title="A useful library" body="Preview clips, inspect recorded routes, select in batches, and follow export progress from one place." />
-              <Feature icon={<Gauge />} number="06" title="A live travel dashboard" body="See speed, heading, microphone level, time, and a following map while the recording continues." />
+              <Feature icon={<Gauge />} number="06" title="A live travel dashboard" body="See speed, heading, microphone level, current time, coordinates, and a location map while recording continues." />
             </div>
           </div>
         </section>
@@ -191,9 +224,9 @@ function TravelVid() {
             <h2 className="text-5xl font-black leading-[0.92] tracking-[-0.045em] md:text-6xl">A CLEAR PATH FROM CAPTURE TO KEEP.</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            <Step icon={<Camera />} number="01" title="Choose & record" body="Set your camera, quality, audio, stabilization, and cover mode—then start with one tap." />
-            <Step icon={<Clock3 />} number="02" title="Let TravelVid manage" body="Segmented recording, optional GPS, readiness checks, and recovery work while you keep moving." />
-            <Step icon={<Smartphone />} number="03" title="Review & export" body="Preview your clips and routes, then export one or many videos to Photos with honest results." />
+            <Step icon={<Camera />} number="01" title="Choose and record" body="Set your camera, quality, audio, stabilization, and cover mode, then start with one tap." />
+            <Step icon={<Clock3 />} number="02" title="Let TravelVid manage" body="Segmented recording, optional GPS, readiness checks, and recovery tools work while you keep moving." />
+            <Step icon={<Smartphone />} number="03" title="Review and export" body="Preview clips and routes, then export one or many videos to Photos with clear results." />
           </div>
         </section>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ExternalLink, Smartphone, Shield, Zap, Globe, Cpu, Camera, Edit3, Type, DollarSign, Video } from 'lucide-react';
+import { Home, ExternalLink, Smartphone, Shield, Zap, Globe, Cpu, Camera, Edit3, Type, DollarSign, Video, FileText } from 'lucide-react';
 
 interface AppInfo {
   name: string;
@@ -19,8 +19,8 @@ const apps: AppInfo[] = [
   },
   {
     name: "TravelVid Recorder",
-    description: "Capture your journey without the distraction. A high-reliability video recording tool designed for travelers & creators who need uninterrupted media recording.",
-    link: "https://apps.apple.com/us/app/travelvid-recorder/id6754813702",
+    description: "A focused iPhone travel recorder with Cover Mode, segmented capture, GPS routes, readiness checks, and recovery tools.",
+    link: "/travelvid",
     icon: <Camera className="text-brand" size={32} />,
     tags: ["UTILITY", "VIDEO", "TRAVEL"]
   },
@@ -30,6 +30,13 @@ const apps: AppInfo[] = [
     link: "/LingoEcho",
     icon: <Cpu className="text-brand" size={32} />,
     tags: ["TRAVEL", "VOICE", "LANGUAGE"]
+  },
+  {
+    name: "Swift PDF Editor",
+    description: "Sign, edit, scan, convert, compress, protect, and share PDFs from your iPhone with local document processing.",
+    link: "/SwiftPDFEditor",
+    icon: <FileText className="text-brand" size={32} />,
+    tags: ["PRODUCTIVITY", "PDF", "DOCUMENTS"]
   },
   {
     name: "Plowd - NYC Snow Plow Map",
