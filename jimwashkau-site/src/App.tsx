@@ -17,6 +17,8 @@ import JimWasRecorder from './JimWasRecorder';
 import WhatsNew from './WhatsNew';
 import JWIosMcp from './JWIosMcp';
 import GPhotos2Shorts from './GPhotos2Shorts';
+import SoundsOfEarthPrivacy from './SoundsOfEarthPrivacy';
+import SoundsOfEarthSupport from './SoundsOfEarthSupport';
 import { siteUpdates } from './data/siteUpdates';
 
 const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
@@ -224,6 +226,14 @@ function App() {
 
   if (currentPath === '/privacy') {
     return <Privacy />;
+  }
+
+  if (currentPath === '/sounds-of-earth/privacy') {
+    return <SoundsOfEarthPrivacy />;
+  }
+
+  if (currentPath === '/sounds-of-earth/support') {
+    return <SoundsOfEarthSupport />;
   }
 
   if (currentPath === '/terms') {
