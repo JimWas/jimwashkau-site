@@ -91,6 +91,7 @@ The app uses a lightweight client side route switch in `src/App.tsx`.
 - `/whats-new`: What's New
 - `/support`: Support
 - `/privacy`: Privacy
+- `/sounds-of-earth`, `/sounds-of-earth/`: Sounds of Earth landing page
 - `/sounds-of-earth/privacy`: Sounds of Earth privacy policy
 - `/sounds-of-earth/support`: Sounds of Earth support center
 - `/terms`: Terms
