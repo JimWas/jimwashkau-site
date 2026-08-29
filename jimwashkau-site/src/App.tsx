@@ -375,6 +375,17 @@ function App() {
             >
               DRINKS
             </a>
+            <a
+              href="/wow-politics"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/wow-politics');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              WOW POLITICS
+            </a>
             <a href="#log" className="hover:text-brand transition-colors">MISSION LOG</a>
             <a 
               href="#contact" 
