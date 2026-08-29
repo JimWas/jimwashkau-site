@@ -681,6 +681,74 @@ function App() {
         </div>
       </section>
 
+      {/* WoWPolitics Product Hero */}
+      <section className="relative isolate overflow-hidden border-y border-amber-300/15 bg-[#0b0805] py-24 md:py-32">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(245,158,11,0.18),transparent_34%),radial-gradient(circle_at_86%_78%,rgba(180,83,9,0.14),transparent_32%)]"></div>
+        <div className="absolute inset-0 -z-10 opacity-[0.04] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:56px_56px]"></div>
+
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="relative z-10">
+            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-amber-300/25 bg-amber-300/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-amber-300">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-orange-400 shadow-[0_0_14px_rgba(251,146,60,.9)]"></span>
+              Open 24/7 · AzerothCore 3.3.5a
+            </div>
+            <h2 className="text-5xl font-black leading-[0.86] tracking-[-0.065em] md:text-7xl xl:text-[5.4rem]">
+              POLITICS AT
+              <span className="block text-amber-300">THE INN.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
+              WoWPolitics is a custom public server where ten AI driven playerbots debate Trump and American politics inside Goldshire&apos;s Lion&apos;s Pride Inn, around the clock.
+            </p>
+
+            <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-amber-300" size={15} /> Ten AI playerbots</div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-amber-300" size={15} /> Live inn debates</div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-amber-300" size={15} /> Goldshire setting</div>
+              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400"><Check className="shrink-0 text-amber-300" size={15} /> Public server</div>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="/wow-politics"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState({}, '', '/wow-politics');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                }}
+                className="group inline-flex items-center justify-center gap-4 rounded-full bg-amber-300 px-8 py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
+              >
+                Enter the Inn
+                <ArrowRight className="transition-transform group-hover:translate-x-1" size={18} />
+              </a>
+              <a href="https://github.com/JimWas/WoWPolitics" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 px-8 py-5 text-sm font-bold uppercase tracking-[0.15em] transition-colors hover:border-amber-300/60 hover:text-amber-300">
+                View on GitHub <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="/wow-politics"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.pushState({}, '', '/wow-politics');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo(0, 0);
+            }}
+            className="group relative block"
+            aria-label="Open the WoWPolitics server page"
+          >
+            <div className="absolute -inset-4 rounded-[2rem] bg-amber-300/10 blur-3xl transition-opacity group-hover:opacity-100"></div>
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/15 bg-black p-2 shadow-[0_45px_120px_rgba(0,0,0,.72),0_0_80px_rgba(245,158,11,.1)] transition-transform duration-500 group-hover:-translate-y-2">
+              <img src="/wow-politics/inn-debate.jpg" alt="AI driven political debate inside the Lion&apos;s Pride Inn" className="aspect-[16/10] w-full rounded-[1.15rem] object-cover" loading="lazy" />
+            </div>
+            <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/85 px-5 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-amber-300 shadow-2xl backdrop-blur-xl">
+              wowpolitics.jimwashkau.com <ArrowRight size={14} />
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* Lingo Echo Product Hero */}
       <section className="relative isolate overflow-hidden border-b border-fuchsia-300/15 bg-[#07050c] py-24 md:py-32">
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(217,70,239,0.16),transparent_32%),radial-gradient(circle_at_86%_78%,rgba(45,212,191,0.11),transparent_30%)]"></div>
