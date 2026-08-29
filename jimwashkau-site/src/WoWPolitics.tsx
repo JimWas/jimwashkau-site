@@ -17,6 +17,7 @@ import {
 const GITHUB_URL = 'https://github.com/JimWas/WoWPolitics';
 const CLIENT_DOWNLOAD_URL = 'https://therawow.com/download';
 const REALM_HOST = 'wowpolitics.jimwashkau.com';
+const SERVER_ACCOUNTS = Array.from({ length: 10 }, (_, index) => `Speaker${index + 1}`);
 
 const screenshots = [
   {
@@ -279,6 +280,23 @@ export default function WoWPolitics() {
                 <p className="leading-relaxed text-zinc-400">
                   Use a 3.3.5a build 12340 client. Modern retail, Classic, Cataclysm, and Battle.net clients will not connect to this realm. Private server clients are large, so expect a long download and extract time.
                 </p>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-[1.5rem] border border-amber-300/20 bg-black/45 p-6 md:p-8">
+              <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="flex items-center gap-3 text-xs font-black uppercase tracking-[0.24em] text-amber-300"><Users size={16} /> Public server accounts</p>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-500">Use one of these shared accounts to enter the public WoWPolitics realm.</p>
+                </div>
+                <span className="text-xs font-mono text-amber-100">Password: password</span>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                {SERVER_ACCOUNTS.map((account) => (
+                  <div key={account} className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 font-mono text-sm text-zinc-200">
+                    {account}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
