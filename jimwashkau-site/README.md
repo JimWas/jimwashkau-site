@@ -6,7 +6,7 @@ Personal website and product hub for Jim Washkau. The site is a React, TypeScrip
 
 - Homepage with product spotlights, iOS app promos, live telemetry, capabilities, mission logs, and contact sections.
 - Product pages for TravelVid Recorder, JimWas Recorder, Lingo Echo, Swift PDF Editor, GPhotos2Shorts, and other tools.
-- Interactive pages including Love Signal, MarsRelay AI, Space Drinks, iPhone Jailbreak Wizard, and JW iOS MCP research.
+- Interactive pages including Love Signal, MarsRelay AI, Space Drinks, iPhone Jailbreak Wizard, WoWPolitics, and JW iOS MCP research.
 - Markdown driven mission logs loaded from `src/content/logs`.
 - A What's New page powered by `src/data/siteUpdates.ts`.
 - Vercel API endpoints for live location intake, latest location JSON, and XML telemetry logs.
@@ -61,6 +61,7 @@ npm run preview
 - `src/JimWasRecorder.tsx`: JimWas Recorder landing page.
 - `src/LingoEcho.tsx`: Lingo Echo landing page.
 - `src/SwiftPdfEditor.tsx`: Swift PDF Editor landing page.
+- `src/WoWPolitics.tsx`: WoWPolitics private server landing page.
 - `src/Apps.tsx`: iOS app portfolio page.
 - `src/WhatsNew.tsx`: Changelog style public page.
 - `src/data/siteUpdates.ts`: Source data for What's New and homepage update cards.
@@ -83,6 +84,7 @@ The app uses a lightweight client side route switch in `src/App.tsx`.
 - `/LingoEcho`, `/lingo-echo`: Lingo Echo
 - `/SwiftPDFEditor`, `/swift-pdf-editor`: Swift PDF Editor
 - `/gphotos2shorts`: GPhotos2Shorts
+- `/wow-politics`, `/WoWPolitics`: WoWPolitics
 - `/mars-relay`: MarsRelay AI
 - `/love-signal`: Love Signal
 - `/space-drinks`: Space Drinks

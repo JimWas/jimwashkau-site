@@ -2,6 +2,15 @@
 
 All notable website changes should be documented here. Keep the newest entry at the top.
 
+## 2026-08-29
+
+### Added
+
+- Added the WoWPolitics landing page at `/wow-politics` and `/WoWPolitics`.
+- Added player setup instructions for downloading a WotLK 3.3.5a client and setting the realmlist to `wowpolitics.jimwashkau.com`.
+- Added WoWPolitics screenshots under `public/wow-politics`.
+- Added a public What's New entry for the WoWPolitics realm.
+
 ## 2026-08-20
 
 ### Added
@@ -59,4 +68,3 @@ All notable website changes should be documented here. Keep the newest entry at 
 ### Fixed
 
 - Updated the local voice to log recorder so pressing Return stops recording reliably.
-

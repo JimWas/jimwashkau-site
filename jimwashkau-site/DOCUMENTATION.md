@@ -54,6 +54,8 @@ When adding metadata:
 
 Homepage promo sections live in `src/App.tsx`. Current promo order starts with TravelVid Recorder near the top, followed by GPhotos2Shorts, JimWas Recorder, Lingo Echo, and Swift PDF Editor.
 
+Standalone interactive pages such as WoWPolitics should use route stable assets in `public`, set page metadata in `useEffect`, and add an entry to `src/data/siteUpdates.ts`.
+
 Design conventions:
 
 - Use full width sections, not nested cards.
@@ -139,6 +141,8 @@ Imported assets in `src/assets` are bundled by Vite and referenced through impor
 
 Use `public` for route stable assets and app screenshots. Use `src/assets` when the asset is part of a component bundle.
 
+WoWPolitics screenshots live in `public/wow-politics` and are referenced by root relative paths such as `/wow-politics/inn-debate.jpg`.
+
 ## Styling
 
 Tailwind CSS 4 is loaded through the Vite plugin. Most styling is inline class based.
@@ -209,4 +213,3 @@ When adding a new mission log:
 - Add the import in `src/App.tsx`.
 - Add it to `MOCK_MODULES`.
 - Confirm it appears in the Mission Log section.
-

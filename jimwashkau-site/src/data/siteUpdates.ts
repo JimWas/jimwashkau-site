@@ -9,6 +9,18 @@ export type SiteUpdate = {
 
 export const siteUpdates: SiteUpdate[] = [
   {
+    date: '2026-08-29',
+    title: 'WoWPolitics landing page',
+    category: 'Game Server',
+    summary: "Added a public landing page for the AzerothCore 3.3.5a WoWPolitics realm inside Goldshire's Lion's Pride Inn.",
+    href: '/wow-politics',
+    items: [
+      'Built a screenshot driven page for the AI playerbot political debate server.',
+      'Added WotLK 3.3.5a client setup instructions with the WoWPolitics realmlist.',
+      'Linked the GitHub source and TheraWoW client download page for players.',
+    ],
+  },
+  {
     date: '2026-08-20',
     title: 'TravelVid Recorder spotlight',
     category: 'Product',

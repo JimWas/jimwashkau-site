@@ -20,6 +20,7 @@ import GPhotos2Shorts from './GPhotos2Shorts';
 import SoundsOfEarthPrivacy from './SoundsOfEarthPrivacy';
 import SoundsOfEarthSupport from './SoundsOfEarthSupport';
 import SoundsOfEarth from './SoundsOfEarth';
+import WoWPolitics from './WoWPolitics';
 import { siteUpdates } from './data/siteUpdates';
 
 const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
@@ -291,6 +292,10 @@ function App() {
 
   if (currentPath === '/gphotos2shorts') {
     return <GPhotos2Shorts />;
+  }
+
+  if (currentPath === '/wow-politics' || currentPath === '/WoWPolitics') {
+    return <WoWPolitics />;
   }
 
   const mapBounds = liveLocation
