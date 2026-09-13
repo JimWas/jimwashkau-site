@@ -57,6 +57,7 @@ function Article() {
   return (
     <article className="max-w-3xl">
       <a href="/blog" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-zinc-500 transition-colors hover:text-brand"><ArrowLeft size={15} /> All posts</a>
+      <img src="/blog/cambodia-free-beer/beer-promo-2.jpg" alt="Hanuman Lite beer can photographed in Cambodia" className="mt-12 aspect-[4/3] w-full rounded-[1.5rem] border border-white/10 object-cover" />
       <div className="mt-12 flex flex-wrap items-center gap-4 text-xs font-bold uppercase tracking-[0.18em] text-zinc-500">
         <span className="inline-flex items-center gap-2 text-brand"><MapPin size={14} /> Cambodia</span>
         <span className="inline-flex items-center gap-2"><CalendarDays size={14} /> September 13, 2026</span>
@@ -79,10 +80,10 @@ function Article() {
           <MediaImage src="/blog/cambodia-free-beer/hanuman-lite.jpg" alt="Hanuman Lite can held outside at night" caption="Hanuman Lite" />
           <MediaVideo src="/blog/cambodia-free-beer/beer-promo-1.mp4" caption="Beer promotion clip" />
           <MediaVideo src="/blog/cambodia-free-beer/beer-promo-2.mov" caption="Second promotion clip" />
-          <a href="/blog/cambodia-free-beer/beer-promo-2.heic" className="flex min-h-56 flex-col justify-end rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-colors hover:border-brand/60" download>
+          <a href="/blog/cambodia-free-beer/beer-promo-2.jpg" className="flex min-h-56 flex-col justify-end rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-colors hover:border-brand/60" download>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-brand">Original photo</p>
-            <p className="mt-3 text-lg font-bold">Open the HEIC image</p>
-            <p className="mt-2 text-sm text-zinc-500">Download the original iPhone photo for compatible devices.</p>
+            <p className="mt-3 text-lg font-bold">Download the JPG photo</p>
+            <p className="mt-2 text-sm text-zinc-500">A browser-friendly version of the original iPhone photo.</p>
           </a>
         </div>
       </section>
