@@ -21,6 +21,7 @@ import SoundsOfEarthPrivacy from './SoundsOfEarthPrivacy';
 import SoundsOfEarthSupport from './SoundsOfEarthSupport';
 import SoundsOfEarth from './SoundsOfEarth';
 import WoWPolitics from './WoWPolitics';
+import Blog from './Blog';
 import { siteUpdates } from './data/siteUpdates';
 
 const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
@@ -298,6 +299,10 @@ function App() {
     return <WoWPolitics />;
   }
 
+  if (currentPath === '/blog' || currentPath === '/blog/' || currentPath === '/blog/cambodia-free-beer') {
+    return <Blog />;
+  }
+
   const mapBounds = liveLocation
     ? [
         liveLocation.longitude - 0.03,
@@ -385,6 +390,17 @@ function App() {
               className="hover:text-brand transition-colors"
             >
               WOW POLITICS
+            </a>
+            <a
+              href="/blog"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/blog');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className="hover:text-brand transition-colors"
+            >
+              BLOG
             </a>
             <a href="#log" className="hover:text-brand transition-colors">MISSION LOG</a>
             <a 
