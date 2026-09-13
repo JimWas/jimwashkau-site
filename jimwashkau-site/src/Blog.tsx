@@ -77,7 +77,7 @@ function Article() {
           <MediaImage src="/blog/cambodia-free-beer/hanuman-premium.jpg" alt="Hanuman Premium Lager can held outdoors in Cambodia" caption="Hanuman Premium Lager" />
           <MediaImage src="/blog/cambodia-free-beer/angkor-bottle.jpg" alt="Angkor beer bottle held indoors" caption="Angkor beer" />
           <MediaImage src="/blog/cambodia-free-beer/hanuman-lite.jpg" alt="Hanuman Lite can held outside at night" caption="Hanuman Lite" />
-          <MediaVideo src="/blog/cambodia-free-beer/beer-promo-1.mov" caption="Beer promotion clip" />
+          <MediaVideo src="/blog/cambodia-free-beer/beer-promo-1.mp4" caption="Beer promotion clip" />
           <MediaVideo src="/blog/cambodia-free-beer/beer-promo-2.mov" caption="Second promotion clip" />
           <a href="/blog/cambodia-free-beer/beer-promo-2.heic" className="flex min-h-56 flex-col justify-end rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-colors hover:border-brand/60" download>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-brand">Original photo</p>
@@ -105,7 +105,7 @@ function MediaVideo({ src, caption }: { src: string; caption: string }) {
   return (
     <figure className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
       <video className="aspect-[4/5] w-full object-cover" controls preload="metadata" playsInline>
-        <source src={src} type="video/quicktime" />
+        <source src={src} type="video/mp4" />
         Your browser does not support this video format.
       </video>
       <figcaption className="px-4 py-3 text-sm text-zinc-400">{caption}</figcaption>
