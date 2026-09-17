@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Home, ExternalLink, Smartphone, Shield, Zap, Globe, Cpu, Camera, Edit3, Type, DollarSign, Video, FileText } from 'lucide-react';
 
 interface AppInfo {
@@ -111,6 +112,23 @@ const apps: AppInfo[] = [
 ];
 
 const Apps: React.FC = () => {
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  const startDiskSpaceMatrixCheckout = async () => {
+    setCheckoutLoading(true);
+    setCheckoutError(null);
+    try {
+      const response = await fetch('/api/create-diskspacematrix-checkout', { method: 'POST' });
+      const data = await response.json() as { url?: string; error?: string };
+      if (!response.ok || !data.url) throw new Error(data.error || 'Unable to start checkout.');
+      window.location.assign(data.url);
+    } catch (error) {
+      setCheckoutError(error instanceof Error ? error.message : 'Unable to start checkout.');
+      setCheckoutLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-brand selection:text-white">
       {/* Navigation */}
@@ -195,6 +213,24 @@ const Apps: React.FC = () => {
               <div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-brand"></div>
               <div className="absolute -bottom-4 -left-4 w-12 h-12 border-b-2 border-l-2 border-brand"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-brand/20 bg-[#05080d] py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-3xl border border-brand/25 bg-black/60 p-8 md:p-12">
+            <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-brand">Available directly</div>
+            <h2 className="text-4xl font-black uppercase leading-tight md:text-6xl">DiskSpaceMatrix</h2>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">A focused disk-space analysis tool delivered through private GitHub repository access. One purchase gives you access to the complete repository.</p>
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <button onClick={startDiskSpaceMatrixCheckout} disabled={checkoutLoading} className="inline-flex items-center gap-3 bg-brand px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-black disabled:cursor-wait disabled:opacity-60">
+                {checkoutLoading ? 'Opening checkout...' : 'Buy for $19.99'}
+                <ExternalLink size={17} />
+              </button>
+              <span className="text-xs font-mono uppercase tracking-[0.16em] text-zinc-500">GitHub username collected at checkout</span>
+            </div>
+            {checkoutError && <p className="mt-5 text-sm text-red-300">{checkoutError}</p>}
           </div>
         </div>
       </section>
