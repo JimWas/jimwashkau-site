@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Home, ExternalLink, Smartphone, Shield, Zap, Globe, Cpu, Camera, Edit3, Type, DollarSign, Video, FileText } from 'lucide-react';
+import { Home, ExternalLink, Smartphone, Shield, Zap, Globe, Cpu, Camera, Edit3, Type, DollarSign, Video, FileText, CheckCircle2, Clock3 } from 'lucide-react';
 
 interface AppInfo {
   name: string;
@@ -114,6 +114,7 @@ const apps: AppInfo[] = [
 const Apps: React.FC = () => {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const purchaseStatus = new URLSearchParams(window.location.search).get('purchase');
 
   const startDiskSpaceMatrixCheckout = async () => {
     setCheckoutLoading(true);
@@ -162,6 +163,30 @@ const Apps: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {purchaseStatus === 'success' && (
+        <section className="border-y border-emerald-300/20 bg-emerald-300/[0.05] py-16">
+          <div className="mx-auto max-w-4xl px-6">
+            <div className="border border-emerald-300/25 bg-black/60 p-8 md:p-12">
+              <CheckCircle2 className="text-emerald-300" size={42} />
+              <p className="mt-7 text-xs font-black uppercase tracking-[0.28em] text-emerald-300">Payment received</p>
+              <h2 className="mt-4 text-4xl font-black uppercase leading-tight md:text-6xl">DiskSpaceMatrix is ready.</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-300">Your payment was completed in Stripe test mode. We are processing the GitHub invitation for the username you entered during checkout.</p>
+              <div className="mt-8 grid gap-4 text-sm text-zinc-400 sm:grid-cols-2">
+                <div className="flex gap-3 border border-white/10 bg-white/[0.03] p-4"><Clock3 className="shrink-0 text-emerald-300" size={18} /><span>Watch your GitHub notifications and email for the repository invitation.</span></div>
+                <div className="flex gap-3 border border-white/10 bg-white/[0.03] p-4"><CheckCircle2 className="shrink-0 text-emerald-300" size={18} /><span>Accept the invitation to access the private DiskSpaceMatrix repository.</span></div>
+              </div>
+              <p className="mt-8 text-sm leading-relaxed text-zinc-500">This was a test-mode purchase, so no real charge was made. In live mode, the same flow will process the real payment and invitation.</p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {purchaseStatus === 'cancelled' && (
+        <section className="border-y border-amber-300/20 bg-amber-300/[0.04] py-12">
+          <div className="mx-auto max-w-7xl px-6 text-sm text-amber-100">Checkout was cancelled. No payment was made. DiskSpaceMatrix is still available below whenever you are ready.</div>
+        </section>
+      )}
 
       {/* Featured App */}
       <section className="py-20 bg-zinc-950/50">
@@ -219,18 +244,29 @@ const Apps: React.FC = () => {
 
       <section className="border-y border-brand/20 bg-[#05080d] py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl border border-brand/25 bg-black/60 p-8 md:p-12">
-            <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-brand">Available directly</div>
-            <h2 className="text-4xl font-black uppercase leading-tight md:text-6xl">DiskSpaceMatrix</h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">A focused disk-space analysis tool delivered through private GitHub repository access. One purchase gives you access to the complete repository.</p>
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <button onClick={startDiskSpaceMatrixCheckout} disabled={checkoutLoading} className="inline-flex items-center gap-3 bg-brand px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-black disabled:cursor-wait disabled:opacity-60">
-                {checkoutLoading ? 'Opening checkout...' : 'Buy for $19.99'}
-                <ExternalLink size={17} />
-              </button>
-              <span className="text-xs font-mono uppercase tracking-[0.16em] text-zinc-500">GitHub username collected at checkout</span>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="order-2 lg:order-1">
+              <div className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-brand">Available directly</div>
+              <h2 className="text-4xl font-black uppercase leading-tight md:text-6xl">DiskSpaceMatrix</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">See exactly where your Mac&apos;s storage is going. DiskSpaceMatrix turns a full disk scan into an interactive visual map, clear category totals, and an actionable view of the folders taking up space.</p>
+              <div className="mt-8 grid gap-3 text-sm text-zinc-300 sm:grid-cols-2">
+                <span className="border border-white/10 bg-white/[0.03] px-4 py-3">Interactive disk map</span>
+                <span className="border border-white/10 bg-white/[0.03] px-4 py-3">Folder-level breakdowns</span>
+                <span className="border border-white/10 bg-white/[0.03] px-4 py-3">Free-space visibility</span>
+                <span className="border border-white/10 bg-white/[0.03] px-4 py-3">Private repo delivery</span>
+              </div>
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <button onClick={startDiskSpaceMatrixCheckout} disabled={checkoutLoading} className="inline-flex items-center gap-3 bg-brand px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-black disabled:cursor-wait disabled:opacity-60">
+                  {checkoutLoading ? 'Opening checkout...' : 'Buy for $19.99'}
+                  <ExternalLink size={17} />
+                </button>
+                <span className="text-xs font-mono uppercase tracking-[0.16em] text-zinc-500">GitHub username collected at checkout</span>
+              </div>
+              {checkoutError && <p className="mt-5 text-sm text-red-300">{checkoutError}</p>}
             </div>
-            {checkoutError && <p className="mt-5 text-sm text-red-300">{checkoutError}</p>}
+            <div className="order-1 overflow-hidden rounded-2xl border border-brand/25 bg-black p-2 shadow-[0_30px_90px_rgba(0,0,0,.55)] lg:order-2">
+              <img src="/apps/diskspacematrix.png" alt="DiskSpaceMatrix showing a colorful interactive Mac disk space map" className="w-full rounded-xl object-cover" loading="lazy" />
+            </div>
           </div>
         </div>
       </section>
