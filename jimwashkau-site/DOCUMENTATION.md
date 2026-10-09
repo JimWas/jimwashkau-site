@@ -8,6 +8,16 @@ JimWashkau.com is a single page React application with a manual route switch in 
 
 The homepage is also in `src/App.tsx`. It contains the top mission hero, product promo sections, iOS apps preview, support section, live telemetry map, capabilities, What's New preview, mission log list, modal log reader, and contact section.
 
+## Radio
+
+`/radio` uses `src/data/radioPlaylist.json` and `radioSchedule.ts` to calculate the current track and offset from a fixed UTC epoch. It loops the full playlist continuously. The browser synchronizes to `/api/radio-time` on Vercel; Vite previews fall back to the device clock. Expect approximate synchronization, not sample accurate playback, because buffering and background browser restrictions vary.
+
+Audio is hosted at `https://github.com/JimWas/JimWashkauRadio` and pinned to a commit in `radioAudioBase`. To add recordings, upload them to that repository, measure each duration with ffprobe, update both playlist catalogs and the pinned commit together, then rebuild the site. Do not put the MP3 library in the website repository. GitHub audio hosting is a prototype with no streaming availability guarantee.
+
+No credentials are needed for public playback. Browsers require a user gesture to start audio. Pause stops local playback; Play rejoins the current station time, rather than resuming the paused position.
+
+Run `npm run test:radio` to verify playlist durations, transitions, and loop timing.
+
 ## Development Workflow
 
 1. Install dependencies with `npm install`.

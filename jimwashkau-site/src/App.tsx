@@ -22,6 +22,7 @@ import SoundsOfEarthSupport from './SoundsOfEarthSupport';
 import SoundsOfEarth from './SoundsOfEarth';
 import WoWPolitics from './WoWPolitics';
 import Blog from './Blog';
+import Radio from './Radio';
 import { siteUpdates } from './data/siteUpdates';
 
 const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
@@ -259,6 +260,10 @@ function App() {
     return <SpaceDrinks />;
   }
 
+  if (currentPath === '/radio' || currentPath === '/radio/') {
+    return <Radio />;
+  }
+
   if (currentPath === '/apps') {
     return <Apps />;
   }
@@ -333,7 +338,8 @@ function App() {
           <div className="text-xl font-bold tracking-tighter uppercase">
             JimWashkau<span className="text-brand">.com</span>
           </div>
-          <div className="hidden md:flex items-center space-x-6 text-sm font-medium tracking-widest">
+          <div className="hidden xl:flex items-center space-x-4 text-xs font-medium tracking-widest">
+            <a href="/radio" className="hover:text-brand transition-colors">RADIO</a>
             <a href="#mission" className="hover:text-brand transition-colors">THE MISSION</a>
             <a href="#capabilities" className="hover:text-brand transition-colors">CAPABILITIES</a>
             <a
@@ -345,7 +351,7 @@ function App() {
               }}
               className="hover:text-brand transition-colors"
             >
-              IOS APPS
+              SOFTWARE
             </a>
             <a 
               href="/mars-relay" 
@@ -554,6 +560,23 @@ function App() {
               <p className="text-xs font-bold text-zinc-200">Camera, mic, storage, and segment checks before capture.</p>
             </div>
           </a>
+        </div>
+      </section>
+
+      {/* JimWashkau Radio Spotlight */}
+      <section aria-labelledby="radio-spotlight-title" className="relative isolate overflow-hidden border-y border-white/15 bg-black">
+        <img src="/radio-cover.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 -z-10 bg-black/65" />
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+          <p className="mb-6 flex items-center gap-3 text-sm font-bold uppercase text-emerald-300"><Volume2 size={18} /> Original music, around the clock</p>
+          <h2 id="radio-spotlight-title" className="max-w-3xl text-4xl font-bold leading-tight md:text-6xl">JimWashkau Radio</h2>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">My music, playing all day and all night. Tune in and hear the same song as everyone else, wherever you are.</p>
+          <a href="/radio" onClick={(event) => {
+            event.preventDefault();
+            window.history.pushState({}, '', '/radio');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+            window.scrollTo(0, 0);
+          }} className="mt-8 inline-flex items-center gap-3 bg-brand px-7 py-4 text-sm font-bold uppercase hover:brightness-110">Listen to the radio <ArrowRight size={18} /></a>
         </div>
       </section>
 
@@ -1400,7 +1423,8 @@ function App() {
           <div className="text-sm text-zinc-500 font-mono tracking-wider">
             © 2026 JIM WASHKAU. ALL RIGHTS RESERVED. // DATA SECURE
           </div>
-          <div className="flex space-x-6 text-sm font-bold tracking-widest">
+          <div className="flex flex-wrap justify-center gap-6 text-sm font-bold tracking-widest">
+            <a href="/radio" className="hover:text-brand transition-colors">RADIO</a>
             <a
               href="/whats-new"
               onClick={(e) => {
@@ -1421,7 +1445,7 @@ function App() {
               }}
               className="hover:text-brand transition-colors"
             >
-              IOS APPS
+              SOFTWARE
             </a>
             <a href="/support" className="hover:text-brand transition-colors">SUPPORT</a>
             <a href="/privacy" className="hover:text-brand transition-colors">PRIVACY</a>

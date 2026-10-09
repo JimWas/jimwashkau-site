@@ -140,7 +140,7 @@ const Apps: React.FC = () => {
             JimWashkau<span className="text-brand">.com</span>
           </a>
           <div className="text-sm font-bold tracking-[0.2em] text-brand uppercase">
-            iOS Deployments
+            Software Catalog
           </div>
         </div>
       </nav>
@@ -151,15 +151,18 @@ const Apps: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-block px-3 py-1 border border-brand text-brand text-[10px] font-bold tracking-[0.3em] mb-6 uppercase">
-              App Store Portfolio
+              Software Portfolio
             </div>
             <h1 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] uppercase">
-              iOS <br />
-              <span className="text-brand">Applications</span>
+              SOFTWARE <br />
+              <span className="text-brand">FOR EVERY DESKTOP.</span>
             </h1>
             <p className="text-xl text-zinc-400 font-mono italic">
-              /// A collection of native mobile solutions developed for iOS.
+              /// Apps and tools for iOS, macOS, Windows, and Linux.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3 text-xs font-black uppercase tracking-[0.18em] text-zinc-400">
+              {['iOS', 'macOS', 'Windows', 'Linux'].map((platform) => <span key={platform} className="border border-brand/25 bg-brand/5 px-4 py-2 text-brand">{platform}</span>)}
+            </div>
           </div>
         </div>
       </section>
@@ -275,7 +278,7 @@ const Apps: React.FC = () => {
       <section className="py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <h2 className="text-3xl font-black uppercase mb-4">The Collection</h2>
+            <h2 className="text-3xl font-black uppercase mb-4">The Software Collection</h2>
             <div className="h-1 w-20 bg-brand"></div>
           </div>
           
@@ -296,7 +299,7 @@ const Apps: React.FC = () => {
               rel="noopener noreferrer"
               className="px-8 py-4 border border-white hover:bg-white hover:text-black transition-all duration-300 font-bold uppercase tracking-widest text-sm"
             >
-              VIEW FULL APP STORE PROFILE
+              VIEW IOS APP STORE PROFILE
             </a>
           </div>
         </div>

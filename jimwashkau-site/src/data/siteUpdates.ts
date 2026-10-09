@@ -9,6 +9,19 @@ export type SiteUpdate = {
 
 export const siteUpdates: SiteUpdate[] = [
   {
+    date: '2026-10-09',
+    title: 'JimWashkau Radio',
+    category: 'Music',
+    summary: 'A station playing original Jim Washkau music around the clock.',
+    href: '/radio',
+    items: [
+      'Tune into the same scheduled track as other listeners.',
+      'Forty original recordings with upcoming songs and volume controls.',
+      'Audio hosted in a separate public GitHub repository.',
+      'Featured on the homepage with a direct link to tune in.',
+    ],
+  },
+  {
     date: '2026-08-29',
     title: 'WoWPolitics landing page',
     category: 'Game Server',

@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test:radio": "node --test scripts/test-radio.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
