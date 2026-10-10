@@ -23,6 +23,7 @@ import SoundsOfEarth from './SoundsOfEarth';
 import WoWPolitics from './WoWPolitics';
 import Blog from './Blog';
 import Radio from './Radio';
+import BB8Monitor from './BB8Monitor';
 import { siteUpdates } from './data/siteUpdates';
 
 const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
@@ -260,6 +261,10 @@ function App() {
     return <SpaceDrinks />;
   }
 
+  if (currentPath === '/bb8' || currentPath === '/bb8/' || currentPath === '/bb-8') {
+    return <BB8Monitor />;
+  }
+
   if (currentPath === '/radio' || currentPath === '/radio/') {
     return <Radio />;
   }
@@ -340,6 +345,7 @@ function App() {
           </div>
           <div className="hidden xl:flex items-center space-x-4 text-xs font-medium tracking-widest">
             <a href="/radio" className="hover:text-brand transition-colors">RADIO</a>
+            <a href="/bb8" className="hover:text-brand transition-colors">BB-8</a>
             <a href="#mission" className="hover:text-brand transition-colors">THE MISSION</a>
             <a href="#capabilities" className="hover:text-brand transition-colors">CAPABILITIES</a>
             <a
@@ -1425,6 +1431,7 @@ function App() {
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm font-bold tracking-widest">
             <a href="/radio" className="hover:text-brand transition-colors">RADIO</a>
+            <a href="/bb8" className="hover:text-brand transition-colors">BB-8</a>
             <a
               href="/whats-new"
               onClick={(e) => {

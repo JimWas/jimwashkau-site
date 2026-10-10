@@ -9,6 +9,19 @@ export type SiteUpdate = {
 
 export const siteUpdates: SiteUpdate[] = [
   {
+    date: '2026-10-10',
+    title: 'Little Droid: BB-8 Nursery',
+    category: 'Interactive',
+    summary: 'A cozy corner of the galaxy with a little orange droid to keep you company.',
+    href: '/bb8',
+    items: [
+      'An animated nursery with naps, playtime, and realistic simulated recharging.',
+      'An evolving lullaby, spontaneous droid sounds, and random greetings.',
+      'Choose cuddly friends, enjoy family photos, and chat in the dream terminal.',
+      'Theatre mode, night vision, fullscreen, and downloadable nursery snapshots.',
+    ],
+  },
+  {
     date: '2026-10-09',
     title: 'JimWashkau Radio',
     category: 'Music',

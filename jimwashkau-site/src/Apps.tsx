@@ -12,6 +12,13 @@ interface AppInfo {
 
 const apps: AppInfo[] = [
   {
+    name: "BB-8 Nursery",
+    description: "A cozy, animated baby monitor for a little orange droid. Visit any time, say hello, play a lullaby, and save a nursery snapshot.",
+    link: "/bb8",
+    icon: <Camera className="text-brand" size={32} />,
+    tags: ["STAR WARS", "INTERACTIVE", "FAN EXPERIENCE"]
+  },
+  {
     name: "JimWas Recorder",
     description: "A high-reliability background video, audio, and photo capture tweak for iOS 16 devices running the Dopamine rootless jailbreak.",
     link: "/jimwas-recorder",
