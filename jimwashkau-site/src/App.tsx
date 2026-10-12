@@ -339,11 +339,11 @@ function App() {
       <Analytics />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="text-xl font-bold tracking-tighter uppercase">
+        <div className="max-w-[1600px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
+          <div className="shrink-0 whitespace-nowrap text-xl font-bold uppercase">
             JimWashkau<span className="text-brand">.com</span>
           </div>
-          <div className="hidden xl:flex items-center space-x-4 text-xs font-medium tracking-widest">
+          <div className="hidden xl:flex shrink-0 items-center gap-4 whitespace-nowrap text-xs font-medium tracking-normal">
             <a href="/radio" className="hover:text-brand transition-colors">RADIO</a>
             <a href="/bb8" className="hover:text-brand transition-colors">BB-8</a>
             <a href="#mission" className="hover:text-brand transition-colors">THE MISSION</a>
@@ -382,17 +382,6 @@ function App() {
               LOVE SIGNAL
             </a>
             <a
-              href="/space-drinks"
-              onClick={(e) => {
-                e.preventDefault();
-                window.history.pushState({}, '', '/space-drinks');
-                window.dispatchEvent(new PopStateEvent('popstate'));
-              }}
-              className="hover:text-brand transition-colors"
-            >
-              DRINKS
-            </a>
-            <a
               href="/wow-politics"
               onClick={(e) => {
                 e.preventDefault();
@@ -417,7 +406,7 @@ function App() {
             <a href="#log" className="hover:text-brand transition-colors">MISSION LOG</a>
             <a 
               href="#contact" 
-              className="px-6 py-2 border border-white hover:bg-white hover:text-black transition-all duration-300"
+              className="px-4 py-2 border border-white hover:bg-white hover:text-black transition-all duration-300"
             >
               CONTACT
             </a>
@@ -452,7 +441,7 @@ function App() {
             <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed italic font-mono">
               <span className="text-brand">Built</span> for today. <span className="text-brand">Ready</span> for tomorrow.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="grid w-full sm:w-fit grid-cols-1 sm:grid-cols-[auto_auto] gap-4">
               <button 
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="px-10 py-5 bg-white text-black font-bold uppercase tracking-widest hover:bg-brand hover:text-white transition-all duration-300"
@@ -465,6 +454,14 @@ function App() {
               >
                 VIEW ACTIVE LOGS
               </button>
+              <a
+                href="https://nasaemployees.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sm:col-span-2 flex items-center justify-center gap-3 px-6 py-5 bg-brand text-white font-bold uppercase tracking-normal hover:brightness-110 transition-all duration-300"
+              >
+                NASAEMPLOYEES.COM <ExternalLink size={18} className="shrink-0" />
+              </a>
             </div>
           </div>
         </div>
