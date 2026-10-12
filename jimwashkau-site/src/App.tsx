@@ -54,8 +54,10 @@ import marsSpirit from './assets/Mars_Spirit.png';
 import cmNightstream from './content/logs/cm-nightstream.md?raw';
 import cmCraftrain from './content/logs/cm-craftrain.md?raw';
 import cmByteskipper from './content/logs/cm-byteskipper.md?raw';
+import cmRedvector from './content/logs/cm-redvector.md?raw';
 
 const MOCK_MODULES: Record<string, string> = {
+  './content/logs/cm-redvector.md': cmRedvector,
   './content/logs/cm-byteskipper.md': cmByteskipper,
   './content/logs/cm-craftrain.md': cmCraftrain,
   './content/logs/cm-nightstream.md': cmNightstream,
