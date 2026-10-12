@@ -13,6 +13,8 @@
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/radio", "destination": "/radio/index.html" },
+    { "source": "/radio/", "destination": "/radio/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

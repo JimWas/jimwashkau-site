@@ -16,7 +16,7 @@ export const siteUpdates: SiteUpdate[] = [
     href: '/radio',
     items: [
       'Tune into the same scheduled track as other listeners.',
-      'Forty original recordings with upcoming songs and volume controls.',
+      '88 original recordings with upcoming songs and volume controls.',
       'Audio hosted in a separate public GitHub repository.',
       'Featured on the homepage with a direct link to tune in.',
     ],

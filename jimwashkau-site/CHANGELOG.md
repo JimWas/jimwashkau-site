@@ -6,10 +6,11 @@ All notable website changes should be documented here. Keep the newest entry at 
 
 ### Added
 
-- Added `/radio` with a synchronized looping station, expanded to 40 original recordings.
+- Added `/radio` with a synchronized looping station, expanded to 88 original recordings.
 - Added radio links, upcoming tracks, playback recovery, and volume controls.
 - Added a homepage radio spotlight below TravelVid Recorder.
 - Added a server clock endpoint and separate public GitHub audio repository.
+- Added a dedicated radio sharing graphic and static Twitter/Open Graph metadata for `/radio`.
 
 ## 2026-08-29
 

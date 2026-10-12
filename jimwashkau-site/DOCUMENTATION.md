@@ -18,6 +18,8 @@ No credentials are needed for public playback. Browsers require a user gesture t
 
 Run `npm run test:radio` to verify playlist durations, transitions, and loop timing.
 
+The build runs `scripts/build-radio-preview.mjs` after Vite to create `dist/radio/index.html` with radio specific social tags. Vercel routes `/radio` and `/radio/` to this HTML before the SPA fallback. It uses the same compiled app assets but exposes metadata without JavaScript. The social image is `public/radio-social.png`. When changing global metadata in `index.html`, update the preview script as well; it fails the build if expected tags are missing.
+
 ## Development Workflow
 
 1. Install dependencies with `npm install`.

@@ -4,18 +4,20 @@ import datetime
 import sounddevice as sd
 import sys
 import numpy as np
-from scipy.io.wavfile import write
 import whisper
 from git import Repo
 import subprocess
+import wave
+from pathlib import Path
 
 # Configuration
-LOG_DIR = "../src/content/logs"
-AUDIO_DIR = "../public/audio"
-APP_TSX_PATH = "../src/App.tsx"
-AUDIO_TMP_WAV = "temp_mission.wav"
+TOOLS_DIR = Path(__file__).resolve().parent
+LOG_DIR = str(TOOLS_DIR.parent / "src/content/logs")
+AUDIO_DIR = str(TOOLS_DIR.parent / "public/audio")
+APP_TSX_PATH = str(TOOLS_DIR.parent / "src/App.tsx")
+AUDIO_TMP_WAV = str(TOOLS_DIR / "temp_mission.wav")
 SAMPLE_RATE = 44100
-REPO_PATH = "../.."
+REPO_PATH = str(TOOLS_DIR.parent.parent)
 
 def wait_for_enter_to_stop():
     """Read a single Return keypress while audio capture is active."""
@@ -76,28 +78,36 @@ def record_audio_manual():
     print("[SYSTEM] SPEAK MISSION BRIEFING NOW...")
     print("[SYSTEM] PRESS ENTER TO STOP RECORDING...")
     
-    recording = []
+    captured_frames = 0
     
     def callback(indata, frames, time, status):
+        nonlocal captured_frames
         if status:
             print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [AUDIO STATUS] {status}")
-        recording.append(indata.copy())
+        # Persist each chunk so an interrupted session can be recovered.
+        pcm = (np.clip(indata, -1, 1) * 32767).astype(np.int16)
+        wav.writeframes(pcm.tobytes())
+        captured_frames += frames
 
     try:
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Opening audio input stream (Sample Rate: {SAMPLE_RATE})...")
-        with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, callback=callback):
-            print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Stream active. Capturing audio...")
-            wait_for_enter_to_stop()
+        with wave.open(AUDIO_TMP_WAV, 'wb') as wav:
+            wav.setnchannels(1)
+            wav.setsampwidth(2)
+            wav.setframerate(SAMPLE_RATE)
+            try:
+                with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, callback=callback):
+                    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Stream active. Capturing audio...")
+                    wait_for_enter_to_stop()
+            except KeyboardInterrupt:
+                print("[SYSTEM] STOPPING RECORDING AND SAVING CAPTURED AUDIO...")
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Stream closed by user.")
 
-        if not recording:
+        if not captured_frames:
             print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [ERROR] NO AUDIO DATA CAPTURED. Check microphone permissions.")
             return False
 
-        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Concatenating {len(recording)} audio chunks...")
-        audio_data = np.concatenate(recording, axis=0)
-        print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [DEBUG] Writing temporary WAV file: {AUDIO_TMP_WAV}")
-        write(AUDIO_TMP_WAV, SAMPLE_RATE, audio_data)
+        print(f"[DEBUG] Saved {captured_frames / SAMPLE_RATE:.1f} seconds to {AUDIO_TMP_WAV}")
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] RECORDING COMPLETE.\n")
         return True
     except Exception as e:
@@ -158,8 +168,17 @@ summary: "Mission Log transcribed via local secure voice-to-text."
         f.write(markdown)
     print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] MISSION LOG GENERATED: {filepath}")
 
+    repo = Repo(REPO_PATH)
+    rel_app_path = os.path.relpath(APP_TSX_PATH, REPO_PATH)
+    if repo.is_dirty(path=rel_app_path) or repo.index.diff('HEAD'):
+        print("[ERROR] UPLOAD PAUSED: App.tsx has pending edits or other files are staged.")
+        print("[SYSTEM] Your log and audio are saved locally. Commit the website changes before uploading this log.")
+        return False
+
     # Update Front-end registry
     app_updated = update_app_tsx(tag, filename)
+    if not app_updated:
+        return False
 
     # Git Operations
     try:
@@ -186,13 +205,26 @@ summary: "Mission Log transcribed via local secure voice-to-text."
         
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] PUSHING TO GITHUB (MAY HANG IF AUTH REQUIRED)...")
         origin = repo.remote(name='origin')
-        origin.push()
+        results = origin.push()
+        failed = [result for result in results if result.flags & (result.ERROR | result.REJECTED | result.REMOTE_REJECTED | result.REMOTE_FAILURE)]
+        if failed:
+            raise RuntimeError('; '.join(result.summary.strip() for result in failed))
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [SYSTEM] MISSION LOG & AUDIO DEPLOYED TO SECTOR: GitHub")
+        return True
     except Exception as e:
         print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] [ERROR] DEPLOYMENT FAILED: {e}")
+        return False
 
 def main():
-    print("\n--- JIMWASHKAU.COM MISSION RECORDER v2.2 (IMPROVED STABILITY) ---")
+    print("\n--- JIMWASHKAU.COM MISSION RECORDER v2.3 (RECOVERABLE RECORDINGS) ---")
+    os.makedirs(LOG_DIR, exist_ok=True)
+    os.makedirs(AUDIO_DIR, exist_ok=True)
+    if os.path.exists(AUDIO_TMP_WAV):
+        print(f"[SYSTEM] A previous recording exists: {AUDIO_TMP_WAV}")
+        if input("Recover this recording instead of recording again? [Y/n]: ").strip().lower() == 'n':
+            backup = AUDIO_TMP_WAV + '.' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S') + '.bak'
+            os.replace(AUDIO_TMP_WAV, backup)
+            print(f"[SYSTEM] Previous recording preserved at {backup}")
     
     # Ensure ffmpeg is installed
     try:
@@ -222,19 +254,25 @@ def main():
     year = str(now.year)
     date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     
-    if not record_audio_manual():
+    if not os.path.exists(AUDIO_TMP_WAV) and not record_audio_manual():
         print("[SYSTEM] MISSION ABORTED DUE TO RECORDING ERROR.")
         return
     
     mp3_url = save_as_mp3_direct(tag)
+    if not mp3_url:
+        print(f"[SYSTEM] Recording preserved at {AUDIO_TMP_WAV}. Upload not attempted.")
+        return
     transcript = transcribe_local()
-    save_and_push(title, tag, status, year, date_str, transcript, mp3_url)
+    uploaded = save_and_push(title, tag, status, year, date_str, transcript, mp3_url)
     
     # Cleanup
-    if os.path.exists(AUDIO_TMP_WAV):
+    if uploaded and os.path.exists(AUDIO_TMP_WAV):
         os.remove(AUDIO_TMP_WAV)
     
-    print("\n[SYSTEM] MISSION COMPLETE. TERMINATING SESSION.")
+    if uploaded:
+        print("\n[SYSTEM] MISSION COMPLETE. TERMINATING SESSION.")
+    else:
+        print(f"[SYSTEM] Upload did not complete. Recording preserved at {AUDIO_TMP_WAV}.")
 
 if __name__ == "__main__":
     main()

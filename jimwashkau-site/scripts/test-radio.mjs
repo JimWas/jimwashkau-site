@@ -14,7 +14,7 @@ vm.runInNewContext(source, { exports, require: createRequire(filename) });
 const { getRadioPosition, radioTracks, radioEpoch, radioLoopDuration } = exports;
 
 test('playlist has valid durations and unique audio files', () => {
-  assert.equal(radioTracks.length, 40);
+  assert.equal(radioTracks.length, 88);
   assert.equal(new Set(radioTracks.map(track => track.file)).size, radioTracks.length);
   for (const track of radioTracks) assert.ok(track.duration > 0 && Number.isFinite(track.duration));
 });

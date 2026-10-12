@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/build-radio-preview.mjs",
     "lint": "eslint .",
     "test:radio": "node --test scripts/test-radio.mjs",
     "preview": "vite preview"
