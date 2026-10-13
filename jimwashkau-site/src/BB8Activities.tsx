@@ -54,5 +54,76 @@ export function ActivityProps({ activity }: { activity: LittleActivity }) {
       <g className="bb8-stir"><path d="M524 333h30v30h-30z" fill="#8baeb2"/><path d="m551 341 20-13 5 6-22 21m-30-17q-21-8-16 13h16" fill="none" stroke="#8baeb2" strokeWidth="6"/></g>
       <path className="bb8-play-float" d="m576 343-2 5m7-2-2 5" stroke="#c6dedb" strokeWidth="3"/>
     </>}
+    {activity.id === 'hide' && <g className="bb8-hide-blanket">
+      <path d="M382 310q45-20 95 0t99 0v136H382z" fill="#7c9891" stroke="#b0c5b6" strokeWidth="4"/>
+      <path d="M399 333q35-12 74 0t85 0m-135 27h10m-5-5v10m65 26h10m-5-5v10" fill="none" stroke="#c0d1c1" strokeWidth="3"/>
+    </g>}
+    {activity.id === 'tea' && <>
+      <ellipse cx="588" cy="371" rx="63" ry="15" fill="#ceb592" stroke="#aa8b64" strokeWidth="3"/>
+      <path d="M550 382v35m76-35v35" stroke="#aa8b64" strokeWidth="6"/>
+      {[553,617].map(x => <g key={x}><ellipse cx={x} cy="369" rx="16" ry="4" fill="#eee0c2"/><path d={`M${x-9} 351h18v12q-9 10-18 0z`} fill="#acc6b5"/><path d={`M${x+9} 353q14-3 9 8h-9`} fill="none" stroke="#acc6b5" strokeWidth="3"/></g>)}
+      <g className="bb8-teapot"><ellipse cx="587" cy="333" rx="19" ry="16" fill="#dda378"/><path d="m572 330-17-7 10 19m37-17q21-10 14 11h-12" fill="none" stroke="#dda378" strokeWidth="5"/><path d="M572 321h29m-15-1v-6" stroke="#efc69d" strokeWidth="5"/></g>
+    </>}
+    {activity.id === 'rolling' && <>
+      {[363,598].map(x => <g key={x}><path d={`M${x} 418l15-35 15 35z`} fill="#d99f74" stroke="#f0d6ad" strokeWidth="3"/><path d={`M${x+7} 404h16`} stroke="#f4ead3" strokeWidth="5"/></g>)}
+      <path className="bb8-play-float" d="m572 277 4-10 4 10 11 4-11 4-4 10-4-10-11-4z" fill="#f0d192"/>
+      <path d="M408 432q71 12 142 0" fill="none" stroke="#eee1bd" strokeDasharray="4 10" strokeWidth="3"/>
+    </>}
+    {activity.id === 'paper' && <>
+      <path d="M559 394h49l-7 15h-49z" fill="#d0c5a7"/>
+      <g className="bb8-paper-flight"><path d="m537 333 62-26-19 50-12-19-31-5z" fill="#f3ead1" stroke="#b7b59e" strokeWidth="2"/><path d="m568 338 31-31-19 50" fill="#cbd5c2" stroke="#a1b39f" strokeWidth="2"/></g>
+    </>}
+    {activity.id === 'conducting' && <>
+      <g className="bb8-conductor-baton"><path d="m520 299 33-83" stroke="#efe3c3" strokeWidth="5"/><path d="m520 299-5 12" stroke="#b48c66" strokeWidth="9"/></g>
+      <g className="bb8-play-float" fill="#e7cf94" fontFamily="serif" fontSize="27"><text x="388" y="197">♪</text><text x="539" y="184">♫</text></g>
+    </>}
+    {activity.id === 'repairs' && <>
+      <path d="m548 389 28-42 28 42-28-9z" fill="#a6bfba" stroke="#688e89" strokeWidth="3"/><ellipse cx="576" cy="370" rx="9" ry="13" fill="#d8e1cf"/><path d="m548 390-7 10m62-10 7 10" stroke="#d7ac77" strokeWidth="5"/>
+      <g className="bb8-wrench"><path d="m532 353 26-35q-8-14 5-23l1 12 9 5 12-5q-1 17-18 17l-26 36z" fill="#a9b2a7" stroke="#6f8278" strokeWidth="3"/><circle cx="538" cy="353" r="3" fill="#eef0da"/></g>
+      <circle cx="606" cy="409" r="4" fill="#b6aa8a"/><circle cx="550" cy="410" r="4" fill="#b6aa8a"/>
+    </>}
+    {activity.id === 'dancing' && <>
+      <g className="bb8-play-float" fill="#e9c98e" fontFamily="serif" fontSize="35"><text x="360" y="310">♪</text><text x="566" y="260">♫</text><text x="600" y="340">♪</text></g>
+      <path d="m392 395-13 9m184-9 13 9" stroke="#d8b786" strokeWidth="4"/>
+    </>}
+    {activity.id === 'peekaboo' && <g className="bb8-peek-cloth">
+      <path d="M412 209q66-13 132 0l-6 80q-60 15-120 0z" fill="#d6bea2" stroke="#f0dec2" strokeWidth="3"/>
+      <path d="m438 241 4-8 4 8 9 2-7 7 2 9-8-4-8 4 2-9-7-7z" fill="#a7bfa9"/><path d="M489 236q14-12 22 1" fill="none" stroke="#b09272" strokeWidth="3"/>
+    </g>}
+    {activity.id === 'crayons' && <>
+      <path d="m527 358 81-9 8 59-81 9z" fill="#f3e7c9" stroke="#c6b999" strokeWidth="2"/>
+      <g stroke="#a78361" strokeWidth="3" fill="none"><circle cx="568" cy="379" r="14"/><circle cx="557" cy="367" r="6"/><circle cx="579" cy="365" r="6"/><path d="m563 380 1 0m10-1 1 0m-10 6q4 4 8-1"/></g>
+      <g className="bb8-crayon"><path d="m524 343 25 34" stroke="#c98c78" strokeWidth="7"/><path d="m549 377 4 6" stroke="#9b665c" strokeWidth="3"/></g>
+      <path d="m596 415 14 0m-10 8h17" stroke="#94b3a5" strokeWidth="6"/>
+    </>}
+    {activity.id === 'fireflies' && <>
+      {[[358,249],[408,180],[551,213],[590,290],[342,358],[601,358]].map(([x,y],i) => <g className="bb8-firefly" key={i} style={{animationDelay:`-${i * 1.3}s`}}><circle cx={x} cy={y} r="10" fill="#e7d998" opacity=".1"/><circle cx={x} cy={y} r="4" fill="#f0dea0"/><path d={`m${x-5} ${y-4}-4-3m14 3 4-3`} stroke="#d4dbc0" strokeWidth="2"/></g>)}
+    </>}
+    {activity.id === 'hiccups' && <>
+      <text className="bb8-hic-bubble" x="550" y="243" fill="#ecd6a8" fontFamily="system-ui" fontSize="21">hic!</text><path className="bb8-hic-bubble" d="m401 307-12-5m167 10 12-5" stroke="#ebce99" strokeWidth="3"/>
+    </>}
+    {activity.id === 'tucking' && <>
+      <path className="bb8-tuck-fold" d="M528 339q35-13 69 0v53q-35-9-69 0z" fill="#91b0a1" stroke="#cfddc8" strokeWidth="3"/><path className="bb8-play-float" d="M565 316q-24-17-14-24q8-5 14 5q6-10 14-5q10 7-14 24" fill="#dfb38e"/>
+    </>}
+    {activity.id === 'lightsaber' && <>
+      <path className="bb8-saber-trail" d="M547 224q65 15 77 78" fill="none" stroke="#b9e5d5" strokeWidth="4" strokeDasharray="4 10" opacity=".4"/>
+      <g className="bb8-training-saber">
+        <path d="m525 329 38-98" stroke="#8bd7bc" strokeOpacity=".2" strokeWidth="22"/>
+        <path d="m525 329 38-98" stroke="#97e3c5" strokeWidth="9"/><path d="m525 329 38-98" stroke="#ecfff0" strokeWidth="3"/>
+        <path d="m519 344 9-23" stroke="#7c8c87" strokeWidth="12"/><path d="m520 337 7 3m-5-10 7 3" stroke="#d9ddca" strokeWidth="3"/>
+      </g>
+      <g className="bb8-training-orb"><circle cx="621" cy="280" r="15" fill="#c8cbbb" stroke="#8e9e94" strokeWidth="3"/><path d="M608 280h26m-13-13v26" stroke="#a2b3a5" strokeWidth="2"/><circle cx="615" cy="275" r="3" fill="#dfb484"/></g>
+    </>}
+    {activity.id === 'soldiering' && <>
+      <path d="M431 208q5-45 47-45t47 45z" fill="#9dab8f" stroke="#6e826e" strokeWidth="3"/><path d="M426 208h104" stroke="#c2ccb1" strokeWidth="6"/>
+      <path d="m477 177 3 6 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" fill="#e4cf93"/>
+      <g className="bb8-salute"><path d="m536 299 21-33-29-32" fill="none" stroke="#929f92" strokeWidth="9"/><rect x="516" y="226" width="23" height="10" rx="4" fill="#bfcbbb"/></g>
+      <path d="M594 417v-91m0 0h42l-8 14 8 14h-42" fill="#bdcea9" stroke="#819875" strokeWidth="3"/><path d="M606 340q-10-8-5-12q4-3 5 2q3-5 6-2q6 4-6 12" fill="#f4e7c8"/>
+    </>}
+    {activity.id === 'lego' && <>
+      <ellipse cx="585" cy="416" rx="62" ry="7" fill="#718c7e" opacity=".3"/>
+      {[[546,396,72,17,'#a0b6ca'],[562,375,40,21,'#d19a77'],[575,354,26,21,'#b2c59e'],[534,402,15,14,'#d8c38a'],[615,402,15,14,'#d8c38a']].map(([x,y,width,height,color],i) => <g key={i}><rect x={x} y={y} width={width} height={height} rx="3" fill={color as string} stroke="#ede4ca" strokeWidth="2"/>{[0,1].map(stud => <rect key={stud} x={Number(x)+4+stud*(Number(width)-12)} y={Number(y)-4} width="7" height="5" rx="2" fill={color as string} stroke="#ede4ca" strokeWidth="1"/>)}</g>)}
+      <g className="bb8-lego-brick"><rect x="527" y="330" width="31" height="18" rx="3" fill="#c193ac" stroke="#efdfd3" strokeWidth="2"/><path d="M533 330v-4h6v4m8 0v-4h6v4" fill="#c193ac" stroke="#efdfd3" strokeWidth="2"/></g>
+    </>}
   </g>;
 }

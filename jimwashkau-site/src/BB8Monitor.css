@@ -88,3 +88,70 @@
 @keyframes bb8-bubble-rise{0%{transform:translateY(22px);opacity:0}25%,70%{opacity:.8}100%{transform:translateY(-30px);opacity:0}}
 @media(max-width:460px){.bb8-play-controls small{width:100%}}
 @media(prefers-reduced-motion:reduce){.bb8-scene *, .bb8-music-bars i{animation:none!important}}
+
+.bb8-droid.bb8-doing-hide .bb8-head{animation:bb8-hide-head 8s ease-in-out infinite}
+.bb8-hide-blanket{animation:bb8-blanket-peek 8s ease-in-out infinite}
+.bb8-teapot{transform-origin:580px 338px;animation:bb8-tea-pour 7s ease-in-out infinite}
+.bb8-droid.bb8-doing-rolling .bb8-body{animation:bb8-roll-body 4s ease-in-out infinite}
+.bb8-droid.bb8-doing-rolling .bb8-head{animation:bb8-curious-head 4s ease-in-out infinite}
+.bb8-paper-flight{animation:bb8-paper-flight 9s ease-in-out infinite}
+.bb8-conductor-baton{transform-origin:520px 300px;animation:bb8-conduct 2s ease-in-out infinite}
+.bb8-wrench{transform-origin:534px 354px;animation:bb8-conduct 3s ease-in-out infinite}
+.bb8-droid.bb8-doing-dancing{transform-origin:478px 420px;animation:bb8-dance 2s ease-in-out infinite}
+.bb8-droid.bb8-doing-dancing .bb8-head{animation:bb8-hello 1s ease-in-out infinite}
+.bb8-peek-cloth{animation:bb8-peekaboo 7s ease-in-out infinite}
+.bb8-crayon{transform-origin:543px 371px;animation:bb8-conduct 2.5s ease-in-out infinite}
+.bb8-firefly{animation:bb8-firefly 8s ease-in-out infinite}
+.bb8-droid.bb8-doing-fireflies .bb8-head{animation:bb8-curious-head 8s ease-in-out infinite}
+.bb8-droid.bb8-doing-hiccups{animation:bb8-hic-hop 6s ease-in-out infinite}
+.bb8-hic-bubble{animation:bb8-hic-bubble 6s ease-in-out infinite}
+.bb8-tuck-fold{transform-origin:557px 372px;animation:bb8-tuck 7s ease-in-out infinite}
+.bb8-toy-quilt{animation:bb8-tuck 7s ease-in-out infinite}
+@keyframes bb8-hide-head{0%,20%,65%,100%{transform:translateY(59px)}35%,50%{transform:translateY(0)}}
+@keyframes bb8-blanket-peek{0%,20%,65%,100%{transform:translateY(-17px)}35%,50%{transform:translateY(5px)}}
+@keyframes bb8-tea-pour{0%,20%,80%,100%{transform:rotate(0)}40%,60%{transform:rotate(-25deg)}}
+@keyframes bb8-paper-flight{0%,12%,100%{transform:translate(0,0);opacity:0}18%{opacity:1}40%{transform:translate(65px,-145px) rotate(-25deg)}65%,88%{transform:translate(-89px,-115px) rotate(-12deg);opacity:1}95%{opacity:0}}
+@keyframes bb8-conduct{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(16deg)}}
+@keyframes bb8-dance{0%,100%{transform:translateX(-8px) rotate(-5deg)}50%{transform:translateX(8px) rotate(5deg)}}
+@keyframes bb8-peekaboo{0%,25%,85%,100%{transform:translateY(0)}40%,70%{transform:translate(12px,90px) rotate(-9deg)}}
+@keyframes bb8-firefly{0%,100%{transform:translate(-8px,6px);opacity:.3}35%{transform:translate(10px,-13px);opacity:1}70%{transform:translate(-12px,-6px);opacity:.6}}
+@keyframes bb8-hic-hop{0%,27%,34%,65%,72%,100%{transform:translateY(0)}30%,68%{transform:translateY(-9px)}}
+@keyframes bb8-hic-bubble{0%,26%,40%,64%,80%,100%{opacity:0}30%,68%{opacity:1}}
+@keyframes bb8-tuck{0%,100%{transform:translateY(2px)}50%{transform:translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){.bb8-scene *{animation:none!important}.bb8-doing-hide .bb8-head{transform:none}.bb8-hic-bubble{opacity:1}}
+
+.bb8-training-saber{transform-origin:521px 337px;animation:bb8-saber-practice 5s ease-in-out infinite}
+.bb8-training-orb{animation:bb8-play-float 5s ease-in-out infinite}
+.bb8-saber-trail{animation:bb8-play-float 5s ease-in-out infinite}
+.bb8-droid.bb8-doing-lightsaber .bb8-head{animation:bb8-curious-head 5s ease-in-out infinite}
+.bb8-salute{transform-origin:536px 299px;animation:bb8-salute 6s ease-in-out infinite}
+.bb8-droid.bb8-doing-soldiering .bb8-body{animation:bb8-little-march 3s ease-in-out infinite}
+.bb8-lego-brick{animation:bb8-place-brick 7s ease-in-out infinite}
+.bb8-droid.bb8-doing-lego .bb8-head{animation:bb8-read-nod 7s ease-in-out infinite}
+@keyframes bb8-saber-practice{0%,100%{transform:rotate(-12deg)}30%{transform:rotate(30deg)}60%{transform:rotate(-20deg)}80%{transform:rotate(8deg)}}
+@keyframes bb8-salute{0%,20%,90%,100%{transform:rotate(15deg)}40%,70%{transform:rotate(-12deg)}}
+@keyframes bb8-little-march{0%,50%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-3px) rotate(-4deg)}75%{transform:translateY(-3px) rotate(4deg)}}
+@keyframes bb8-place-brick{0%,15%,100%{transform:translate(0,0)}55%,80%{transform:translate(48px,13px)}}
+@media(prefers-reduced-motion:reduce){.bb8-scene *{animation:none!important}}
+
+.bb8-buddy-section{margin-top:28px;padding:24px;border:1px solid #dce3d3;background:#eef2e8;border-radius:16px}
+.bb8-buddy-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}
+.bb8-buddy-heading h2{font-size:23px;font-weight:500;margin:0 0 7px}.bb8-buddy-heading p:last-child{font-size:11px;color:#7d8973;margin:0}.bb8-buddy-heading .bb8-eyebrow{margin-bottom:8px}
+.bb8-buddy-heading>button{border:1px solid #b6c6a7;border-radius:8px;background:#fafbf4;color:#557047;padding:11px 14px;font-size:10px;flex-shrink:0}
+.bb8-buddy-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.bb8-buddy-cards>button{display:flex;align-items:center;text-align:left;gap:12px;border:1px solid #d7dfcd;background:#fffefa;border-radius:12px;padding:12px;color:#455a41;min-width:0;transition:background .2s,border-color .2s}
+.bb8-buddy-cards>button:hover{background:#f7f7ec}.bb8-buddy-cards>button.is-visiting{border-color:#86a17c;background:#e1ebd9}
+.bb8-buddy-cards img{width:100px;height:120px;object-fit:contain;flex-shrink:0}.bb8-buddy-cards strong{font-size:19px;font-weight:550;display:block}.bb8-buddy-cards small{font-size:9px;display:block;margin:4px 0 8px;color:#7d8873}
+.bb8-buddy-cards button>span>span{font-size:10px;line-height:1.6;display:block;color:#7a8970}.bb8-buddy-cards em{font-size:9px;display:block;margin-top:12px;font-style:normal;color:#708b63}.bb8-buddy-note{font-size:10px;color:#78866b;margin:16px 0 0;line-height:1.6}
+.bb8-visitor-percy{animation:bb8-percy-roll 13s ease-in-out infinite}.bb8-visitor-oppy{animation:bb8-oppy-roll 16s ease-in-out infinite}.bb8-visitor-ginny{animation:bb8-ginny-hover 6s ease-in-out infinite}
+.bb8-visitors.is-quiet .bb8-visitor{animation:none}.bb8-visitors.is-quiet .bb8-visitor-ginny{transform:translateY(110px)}
+@keyframes bb8-percy-roll{0%,100%{transform:translateX(0)}50%{transform:translate(16px,-2px)}}
+@keyframes bb8-oppy-roll{0%,100%{transform:translateX(0)}50%{transform:translate(-14px,-2px)}}
+@keyframes bb8-ginny-hover{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,-12px)}}
+@media(max-width:1150px){.bb8-buddy-cards{grid-template-columns:1fr}.bb8-buddy-cards img{width:94px;height:96px}.bb8-buddy-cards em{margin-top:7px}}
+@media(max-width:600px){.bb8-buddy-section{padding:18px}.bb8-buddy-heading{align-items:flex-start;flex-direction:column}.bb8-buddy-heading h2{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.bb8-visitor{animation:none!important}}
+
+.bb8-buddy-actions{display:flex;flex-wrap:wrap;gap:8px}.bb8-buddy-actions button,.bb8-surprise-controls button{border:1px solid #b6c6a7;border-radius:8px;background:#fafbf4;color:#557047;padding:10px 13px;font-size:10px}
+.bb8-surprise-controls{display:flex;align-items:center;gap:12px;margin:0 0 17px}.bb8-surprise-controls button{white-space:nowrap}.bb8-surprise-controls button[aria-pressed=true]{background:#dce8d3;border-color:#8ca77c}.bb8-surprise-controls strong{margin-left:5px}.bb8-surprise-controls>span{font-size:10px;color:#7d8973;line-height:1.6}
+@media(max-width:600px){.bb8-surprise-controls{align-items:flex-start;flex-direction:column}}

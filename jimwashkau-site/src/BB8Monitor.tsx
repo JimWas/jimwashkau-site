@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowUpRight, BatteryCharging, BatteryFull, Camera, Check, Heart, Maximize2, Minimize2, Moon, Music2, Radio, Sparkles, Sun, Volume2, VolumeX } from 'lucide-react';
 import './BB8Monitor.css';
 import BB8Terminal from './BB8Terminal';
+import BuddyVisits, { NurseryBuddies } from './BB8Buddies';
+import { useBuddyVisits } from './BB8BuddyVisits';
 import { statusMoments } from './BB8StatusMoments';
 import { ActivityProps } from './BB8Activities';
 import { littleActivities, pickLittleActivity, type LittleActivity } from './BB8LittleActivities';
@@ -57,8 +59,8 @@ function readLog(): CareEvent[] {
   } catch { return []; }
 }
 
-function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime }: { pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
-  return <svg ref={sceneRef} className={`bb8-scene ${night ? 'is-night' : ''}`} viewBox="0 0 960 650" role="img" aria-label={`BB-8 ${mood === 'hello' ? 'waving hello' : pastime ? pastime.label.toLowerCase() : mood} in a softly lit spaceship nursery with ${friends.map(friend => `a stuffed ${friend.species}`).join(', ') || 'his cozy blanket'}`} xmlns="http://www.w3.org/2000/svg">
+function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime, visiting }: { visiting: string[]; pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
+  return <svg ref={sceneRef} className={`bb8-scene ${night ? 'is-night' : ''}`} viewBox="0 0 960 650" role="img" aria-label={`BB-8 ${mood === 'hello' ? 'waving hello' : pastime ? pastime.label.toLowerCase() : mood} in a softly lit spaceship nursery with ${friends.map(friend => `a stuffed ${friend.species}`).join(', ') || 'his cozy blanket'}${visiting.length ? `, visited by ${visiting.join(', ')}` : ''}`} xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="bb8-wall" x2="0" y2="1"><stop stopColor="#363f43"/><stop offset="1" stopColor="#72706a"/></linearGradient>
       <linearGradient id="bb8-bed" x2="0" y2="1"><stop stopColor="#ebe5d5"/><stop offset="1" stopColor="#b8b5a9"/></linearGradient>
@@ -114,7 +116,7 @@ function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhot
         {pastime && <ActivityProps activity={pastime}/>}
       </g>
       </g>
-      {friends.map((friend, index) => <g key={friend.id} transform={`translate(${[765, 245, 670][index]} ${[414, 414, 430][index]}) rotate(${[8, -8, 5][index]})`}><PlushAnimal friend={friend}/></g>)}
+      {friends.map((friend, index) => <g key={friend.id} transform={`translate(${[765, 245, 670][index]} ${[414, 414, 430][index]}) rotate(${[8, -8, 5][index]})`}><PlushAnimal friend={friend}/>{pastime?.id === 'tucking' && <g className="bb8-toy-quilt"><path d="M-33-14q33-12 66 0v35q-33 7-66 0z" fill="#a0bca9" stroke="#d5dfc7" strokeWidth="2"/><path d="M-24 0h48m-36-5v10m24-10v10" stroke="#dce6d0" strokeWidth="2"/></g>}</g>)}
       <path d="M177 448q120-44 216-3t236 0q89-36 152 3l-15 70q-297 35-573 0z" fill="#7c9891"/>
       <path d="M195 467q109-30 214 1t207-1q92-29 150-4" stroke="#a7bbb0" strokeWidth="3" fill="none"/>
       <path d="M152 455q321 106 656 0l-7 29q-320 107-642 0z" fill="#c2b59a"/>
@@ -129,6 +131,7 @@ function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhot
     <path d="M80 295v80m-28 0h56M52 295q28-58 56 0z" fill="#e4c391" stroke="#c6ad83" strokeWidth="3"/>
     <circle cx="80" cy="298" r="65" fill="url(#bb8-glow)"/>
     <g className={`bb8-zzz ${activity !== 'sleeping' ? 'is-awake' : ''}`} fill="#ece5ce" fontFamily="system-ui" fontWeight="600"><text x="567" y="228" fontSize="18">z</text><text x="588" y="199" fontSize="25">z</text><text x="615" y="163" fontSize="33">z</text></g>
+    <NurseryBuddies visiting={visiting} sleeping={activity === 'sleeping'}/>
     <rect width="960" height="650" fill="#162e29" opacity={night ? '.28' : '0'} pointerEvents="none"/>
   </svg>;
 }
@@ -270,6 +273,8 @@ export default function BB8Monitor() {
   }
 
   const addLog = (text: string) => setLog(entries => [{ time: Date.now(), text }, ...entries].slice(0, 12));
+  const buddyVisits = useBuddyVisits(activity === 'sleeping', addLog);
+  const { visiting } = buddyVisits;
   useEffect(() => {
     const title = document.title;
     document.title = 'BB-8 Nursery · Little Droid Monitor';
@@ -410,7 +415,7 @@ export default function BB8Monitor() {
   }, [sound, audioStarted]);
 
   useEffect(() => {
-    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin')) return;
+    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin' && pastime?.id !== 'dancing' && pastime?.id !== 'conducting')) return;
     const melody = [261.63, 329.63, 392, 329.63, 293.66, 261.63];
     const play = () => {
       melody.forEach((note, index) => tone(note, index * .42, .35, true, 1, pastime.id === 'violin' ? 'triangle' : 'sine', .025, 'baby'));
@@ -512,8 +517,8 @@ export default function BB8Monitor() {
         <section className="bb8-monitor" aria-label="BB-8 nursery monitor">
           <div className="bb8-monitor-heading"><div><span className="bb8-status-dot"/><h2>BB-8’s nursery</h2></div><span>CAM 01 <span className="bb8-heading-divider">/</span> SIMULATED FEED</span></div>
           <div ref={feedRef} className={`bb8-feed ${fullscreen ? 'is-fullscreen' : ''}`}>
-            <Nursery pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={nurseryPortraits[portraitIndex]} cribPhoto={nurseryPortraits[(portraitIndex + 4) % nurseryPortraits.length]}/>
-            <div className="bb8-feed-top"><span className="bb8-feed-badge"><span className="bb8-status-dot"/> {night ? 'NIGHT VISION' : 'NURSERY VIEW'}</span><time dateTime={new Date(now).toISOString()}>{new Date(now).toLocaleTimeString([], { hour12: false })} <small>LOCAL</small></time></div>
+            <Nursery visiting={visiting} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={nurseryPortraits[portraitIndex]} cribPhoto={nurseryPortraits[(portraitIndex + 4) % nurseryPortraits.length]}/>
+            <div className="bb8-feed-top"><span className="bb8-feed-badge"><span className="bb8-status-dot"/> {night ? 'NIGHT VISION' : visiting.length ? 'BUDDY VISIT' : 'NURSERY VIEW'}</span><time dateTime={new Date(now).toISOString()}>{new Date(now).toLocaleTimeString([], { hour12: false })} <small>LOCAL</small></time></div>
             <div className="bb8-feed-bottom"><span><Moon size={15}/> {status.title}</span><div className="bb8-view-buttons">{theatre && !fullscreen && <button onClick={() => setTheatre(false)} aria-label="Exit theatre mode" title="Exit theatre mode"><Minimize2 size={18}/></button>}<button onClick={toggleFullscreen} aria-label={fullscreen ? 'Exit fullscreen' : theatre ? 'Open fullscreen' : 'Open theatre mode'} title={fullscreen ? 'Exit fullscreen' : theatre ? 'Fullscreen' : 'Theatre mode'}>{fullscreen ? <Minimize2 size={18}/> : <Maximize2 size={18}/>}</button></div></div>
             <span className="bb8-camera-corner bb8-corner-left"/><span className="bb8-camera-corner bb8-corner-right"/>
           </div>
@@ -529,6 +534,7 @@ export default function BB8Monitor() {
         </aside>
       </div>
       {/* Google Photos integration is retained in BB8WallPhotos.tsx, but hidden for now. */}
+      <BuddyVisits visiting={visiting} sleeping={activity === 'sleeping'} automatic={buddyVisits.automatic} surprise={!!buddyVisits.automaticVisitor} onAutomatic={buddyVisits.toggleAutomatic} onChange={buddyVisits.changeVisitors}/>
       <StuffedAnimals shelf={plushShelf} now={now} onToggle={toggleFriend} onRefresh={refreshFriends}/>
       <section className="bb8-journal"><div className="bb8-journal-heading"><div><p className="bb8-eyebrow">THE LITTLE MOMENTS</p><h2>Nursery notes</h2></div><span>Saved on this device</span></div><div className="bb8-log" aria-label="Recent nursery activity">{log.slice(0, 4).map((entry, i) => <article key={`${entry.time}-${i}`}><span className="bb8-log-icon">{entry.text.includes('lullaby') ? <Music2 size={16}/> : entry.text.includes('snapshot') ? <Camera size={16}/> : <Moon size={16}/>}</span><div><p>{entry.text}</p><time dateTime={new Date(entry.time).toISOString()}>{new Date(entry.time).toLocaleDateString([], { month: 'short', day: 'numeric' })} · {clock(entry.time)}</time></div></article>)}</div></section>
       <BB8Terminal event={log[0]} status={status.title} lullaby={lullaby} night={night} onHello={sayHello} onLullaby={toggleLullaby} onNight={() => setNight(!night)}/>
