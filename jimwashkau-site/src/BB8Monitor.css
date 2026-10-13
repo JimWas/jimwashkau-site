@@ -57,3 +57,34 @@
 .bb8-layout.is-theatre .bb8-feed:not(:fullscreen){height:min(75vh,850px);aspect-ratio:auto;scroll-margin-top:16px;background:#162422}
 .bb8-layout.is-theatre .bb8-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:26px}
 @media(max-width:460px){.bb8-layout.is-theatre .bb8-sidebar{grid-template-columns:1fr}.bb8-layout.is-theatre .bb8-feed:not(:fullscreen){height:65vh}}
+
+/* Little adventures: gentle movement around the existing nursery illustration. */
+.bb8-play-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:17px 3px 6px;font-size:10px;color:#65765c}
+.bb8-play-controls select{font:inherit;color:#49623e;background:#fffefa;border:1px solid #cbd9bf;border-radius:8px;padding:9px 30px 9px 10px;max-width:100%}
+.bb8-play-controls select:focus-visible{outline:3px solid #b65b32;outline-offset:3px}
+.bb8-play-controls small{font-size:9px;color:#89917e}
+.bb8-droid[class*="bb8-doing-"]{animation:none}
+.bb8-droid[class*="bb8-doing-"] .bb8-body{animation:bb8-breathe 5s ease-in-out infinite}
+.bb8-droid[class*="bb8-doing-"] .bb8-head{animation:bb8-idle-head 9s ease-in-out infinite}
+.bb8-droid.bb8-doing-stars .bb8-head{transform:rotate(15deg);animation:bb8-star-look 8s ease-in-out infinite}
+.bb8-droid.bb8-doing-reading .bb8-head{animation:bb8-read-nod 7s ease-in-out infinite}
+.bb8-droid.bb8-doing-singing .bb8-head{animation:bb8-hello 1.8s ease-in-out infinite}
+.bb8-violin-bow{transform-origin:510px 325px;animation:bb8-bow 1.9s ease-in-out infinite}
+.bb8-stir{transform-origin:551px 357px;animation:bb8-stir 3s ease-in-out infinite}
+.bb8-sippy-cup{transform-origin:520px 290px;animation:bb8-sip 8s ease-in-out infinite}
+.bb8-play-float{animation:bb8-play-float 4s ease-in-out infinite}
+.bb8-storybook{transform-origin:478px 370px;animation:bb8-read-nod 8s ease-in-out infinite}
+.bb8-book-page{transform-origin:478px 355px;animation:bb8-page-turn 9s ease-in-out infinite}
+.bb8-block{animation:bb8-stack 5s ease-in-out infinite}
+.bb8-bubble{animation:bb8-bubble-rise 7s ease-in-out infinite}
+@keyframes bb8-bow{0%,100%{transform:translate(-8px,-6px)}50%{transform:translate(8px,6px)}}
+@keyframes bb8-stir{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(10deg)}}
+@keyframes bb8-sip{0%,25%,80%,100%{transform:translate(0,0)}40%,65%{transform:translate(-17px,-32px) rotate(-13deg)}}
+@keyframes bb8-play-float{0%,100%{opacity:.35;transform:translateY(3px)}50%{opacity:.9;transform:translateY(-8px)}}
+@keyframes bb8-read-nod{50%{transform:rotate(3deg) translateY(3px)}}
+@keyframes bb8-star-look{50%{transform:rotate(19deg)}}
+@keyframes bb8-page-turn{0%,65%,100%{transform:scaleX(1)}80%{transform:scaleX(.08)}}
+@keyframes bb8-stack{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translate(17px,-18px) rotate(6deg)}}
+@keyframes bb8-bubble-rise{0%{transform:translateY(22px);opacity:0}25%,70%{opacity:.8}100%{transform:translateY(-30px);opacity:0}}
+@media(max-width:460px){.bb8-play-controls small{width:100%}}
+@media(prefers-reduced-motion:reduce){.bb8-scene *, .bb8-music-bars i{animation:none!important}}
