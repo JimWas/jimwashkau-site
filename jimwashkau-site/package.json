@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/build-radio-preview.mjs",
+    "build": "node scripts/prepare-social-cards.mjs && tsc -b && vite build && node scripts/build-page-previews.mjs",
     "lint": "eslint .",
     "test:radio": "node --test scripts/test-radio.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:previews": "node --test scripts/test-page-previews.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
@@ -33,6 +34,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "postcss": "^8.5.10",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.2.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.0",

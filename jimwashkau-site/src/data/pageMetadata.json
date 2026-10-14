@@ -1,0 +1,243 @@
+[
+  {
+    "path": "/",
+    "title": "JimWashkau.com | Systems-First Engineering",
+    "description": "Focused iOS apps, tools, experiments, and systems by Jim Washkau.",
+    "headline": "MOVING THE MISSION FORWARD",
+    "label": "Systems & software",
+    "mark": "JW",
+    "art": "src/assets/Mars_Spirit.png",
+    "image": "/social/home-68059eb6ac61.png"
+  },
+  {
+    "path": "/bb8",
+    "title": "Little Droid | BB-8 Nursery",
+    "description": "Visit BB-8’s cozy animated nursery: 25 little adventures, gentle lullabies, recharge naps, and surprise visits from his Mars buddies.",
+    "headline": "LITTLE DROID. BIG DREAMS.",
+    "label": "The galaxy’s coziest corner",
+    "mark": "BB-8",
+    "art": "src/assets/bb8-portraits/bb8-cozy-portrait.svg",
+    "aliases": [
+      "/bb-8"
+    ],
+    "image": "/social/bb8-b46a8798c35f.png"
+  },
+  {
+    "path": "/radio",
+    "title": "JimWashkau Radio | Original Music",
+    "description": "Tune into original music by Jim Washkau, playing around the clock. Everyone hears the same song.",
+    "headline": "ORIGINAL MUSIC. AROUND THE CLOCK.",
+    "label": "JimWashkau Radio",
+    "mark": "RADIO",
+    "art": "public/radio-social.png",
+    "image": "/social/radio-5a00427999fd.png"
+  },
+  {
+    "path": "/apps",
+    "title": "Software & iOS Apps | JimWashkau.com",
+    "description": "Explore Jim Washkau’s iPhone apps, productivity tools, and interactive web experiments.",
+    "headline": "SOFTWARE WITH A MISSION.",
+    "label": "Apps & tools",
+    "mark": "APPS",
+    "image": "/social/apps-c34aec709f24.png"
+  },
+  {
+    "path": "/travelvid",
+    "title": "TravelVid Recorder | iPhone Travel Video",
+    "description": "Record long travel moments with Cover Mode, segmented capture, GPS routes, and recovery tools.",
+    "headline": "RECORD THE WHOLE JOURNEY.",
+    "label": "TravelVid Recorder",
+    "mark": "TV",
+    "aliases": [
+      "/TravelVidRecorder",
+      "/travelvid-recorder"
+    ],
+    "image": "/social/travelvid-2ef8e4a32c8f.png"
+  },
+  {
+    "path": "/LingoEcho",
+    "title": "Lingo Echo | Travel Phrases in Your Voice",
+    "description": "Record travel phrases in your own voice, save favorites, and replay them wherever the conversation takes you.",
+    "headline": "SPEAK WITH YOUR OWN ECHO.",
+    "label": "Lingo Echo",
+    "mark": "LE",
+    "aliases": [
+      "/lingo-echo"
+    ],
+    "image": "/social/LingoEcho-a89ac7aa7600.png"
+  },
+  {
+    "path": "/SwiftPDFEditor",
+    "title": "Swift PDF Editor | PDF Tools for iPhone",
+    "description": "Edit, sign, scan, compress, convert, and protect PDFs on your iPhone with local processing.",
+    "headline": "PAPERWORK WITHOUT THE DESK.",
+    "label": "Swift PDF Editor",
+    "mark": "PDF",
+    "aliases": [
+      "/swift-pdf-editor"
+    ],
+    "image": "/social/SwiftPDFEditor-e7b2032ed95d.png"
+  },
+  {
+    "path": "/jimwas-recorder",
+    "title": "JimWas Recorder | iOS Background Capture",
+    "description": "Capture video, audio, and photos from physical buttons or Control Center on supported iOS 16 jailbreak devices.",
+    "headline": "NEVER LOSE THE MOMENT.",
+    "label": "JimWas Recorder",
+    "mark": "REC",
+    "art": "public/recorder/og.png",
+    "image": "/social/jimwas-recorder-629a230ec512.png"
+  },
+  {
+    "path": "/gphotos2shorts",
+    "title": "GPhotos2Shorts | Photo Archives to YouTube Shorts",
+    "description": "Turn Google Photos and Apple Photos exports into vertical videos with full photos, Live Photo motion, original audio, and JSON tracking.",
+    "headline": "MEMORIES IN. SHORTS OUT.",
+    "label": "GPhotos2Shorts",
+    "mark": "GS",
+    "art": "public/gphotos2shorts/og.png",
+    "image": "/social/gphotos2shorts-77c5603dd248.png"
+  },
+  {
+    "path": "/sounds-of-earth",
+    "title": "Sounds of Earth | Listen to the World",
+    "description": "Record the sounds around you, place them on a global map, and listen to public signals shared from across Earth.",
+    "headline": "THE WORLD HAS A SOUND.",
+    "label": "Sounds of Earth",
+    "mark": "EARTH",
+    "art": "public/sounds-of-earth/app-icon.png",
+    "image": "/social/sounds-of-earth-a1cb9d175f14.png"
+  },
+  {
+    "path": "/sounds-of-earth/privacy",
+    "title": "Sounds of Earth | Privacy Policy",
+    "description": "Read how Sounds of Earth handles recordings, location information, public signals, and your privacy.",
+    "headline": "YOUR SOUNDS. YOUR PRIVACY.",
+    "label": "Sounds of Earth privacy",
+    "mark": "EARTH",
+    "image": "/social/sounds-of-earth-privacy-b768b6d49505.png"
+  },
+  {
+    "path": "/sounds-of-earth/support",
+    "title": "Sounds of Earth | Support",
+    "description": "Get help recording, sharing, and exploring audio signals in Sounds of Earth.",
+    "headline": "HELP FOR YOUR NEXT SIGNAL.",
+    "label": "Sounds of Earth support",
+    "mark": "EARTH",
+    "image": "/social/sounds-of-earth-support-9dc0364e6ceb.png"
+  },
+  {
+    "path": "/wow-politics",
+    "title": "WoWPolitics | AI Political Debate Server",
+    "description": "Visit a custom AzerothCore 3.3.5a server where AI playerbots debate American politics in Goldshire’s Lion’s Pride Inn.",
+    "headline": "POLITICS AT THE INN.",
+    "label": "WoWPolitics",
+    "mark": "WOW",
+    "art": "public/wow-politics/inn-debate.jpg",
+    "aliases": [
+      "/WoWPolitics"
+    ],
+    "image": "/social/wow-politics-93a3433a261b.png"
+  },
+  {
+    "path": "/mars-relay",
+    "title": "MarsRelay | Deep-Space Communication Simulator",
+    "description": "Explore an interactive deep-space communications simulator with Earth-to-Mars latency and mission control tools.",
+    "headline": "A SIGNAL ACROSS THE VOID.",
+    "label": "MarsRelay",
+    "mark": "MARS",
+    "image": "/social/mars-relay-1e1e640b4486.png"
+  },
+  {
+    "path": "/love-signal",
+    "title": "Love Signal | A Message Across the Galaxy",
+    "description": "Send a little love across the galaxy with Jim Washkau’s interactive Love Signal experience.",
+    "headline": "LOVE TRAVELS FAR.",
+    "label": "Love Signal",
+    "mark": "LOVE",
+    "image": "/social/love-signal-4a6dfcba9eca.png"
+  },
+  {
+    "path": "/space-drinks",
+    "title": "What Astronauts Drink in Space | JimWashkau.com",
+    "description": "Learn how astronauts drink water, coffee, tea, and other beverages using sealed pouches and dispensers in microgravity.",
+    "headline": "WHAT ASTRONAUTS DRINK IN SPACE",
+    "label": "Crew life systems",
+    "mark": "SD",
+    "image": "/social/space-drinks-34eb59ae4c65.png"
+  },
+  {
+    "path": "/iphone-jailbreak-wizard",
+    "title": "iPhone Jailbreak Wizard | Device Guidance",
+    "description": "Find device-specific jailbreak guidance through an interactive iPhone compatibility wizard.",
+    "headline": "FIND YOUR DEVICE’S PATH.",
+    "label": "iPhone Jailbreak Wizard",
+    "mark": "iOS",
+    "image": "/social/iphone-jailbreak-wizard-21749d881682.png"
+  },
+  {
+    "path": "/jw-ios-mcp",
+    "title": "JW iOS MCP | iPhone Integration Tools",
+    "description": "A research blueprint for an autonomous iOS MCP AI agent server with a rootless daemon, SpringBoard bridge, and visual touch control.",
+    "headline": "CONNECT YOUR IPHONE WORKFLOW.",
+    "label": "JW iOS MCP",
+    "mark": "MCP",
+    "image": "/social/jw-ios-mcp-2d669537db86.png"
+  },
+  {
+    "path": "/whats-new",
+    "title": "What’s New | JimWashkau.com",
+    "description": "Discover the latest pages, tools, experiments, and updates shipping across JimWashkau.com.",
+    "headline": "NEW IDEAS. FRESH DEPLOYMENTS.",
+    "label": "Site updates",
+    "mark": "NEW",
+    "image": "/social/whats-new-53bcc19256fd.png"
+  },
+  {
+    "path": "/blog",
+    "title": "Jim Washkau Blog | Travel Notes",
+    "description": "Travel tips, small discoveries, and practical notes from the road.",
+    "headline": "TRAVEL NOTES. USEFUL DETOURS.",
+    "label": "Jim Washkau Blog",
+    "mark": "BLOG",
+    "image": "/social/blog-91d4729e9d74.png"
+  },
+  {
+    "path": "/blog/cambodia-free-beer",
+    "title": "Cambodia’s Free Beer Ring-Pull Promotions | Jim Washkau",
+    "description": "A travel note on Cambodia’s beer-can contests, neighborhood-shop prizes, and what visitors should know before chasing a winning tab.",
+    "headline": "CAMBODIA’S FREE BEER PROMOTIONS.",
+    "label": "Travel notes · Cambodia",
+    "mark": "BLOG",
+    "art": "public/blog/cambodia-free-beer/beer-promo-2.jpg",
+    "type": "article",
+    "image": "/social/blog-cambodia-free-beer-5268f2a066ec.png"
+  },
+  {
+    "path": "/support",
+    "title": "Support | JimWashkau.com",
+    "description": "Find help, FAQs, and contact information for Jim Washkau’s apps and software.",
+    "headline": "HELP FOR YOUR NEXT MISSION.",
+    "label": "Product support",
+    "mark": "HELP",
+    "image": "/social/support-d6ce5f6fb709.png"
+  },
+  {
+    "path": "/privacy",
+    "title": "Privacy Policy | JimWashkau.com",
+    "description": "Read the privacy policy for JimWashkau.com and Jim Washkau’s software.",
+    "headline": "PRIVACY BY DESIGN.",
+    "label": "Privacy policy",
+    "mark": "JW",
+    "image": "/social/privacy-33a1f0098150.png"
+  },
+  {
+    "path": "/terms",
+    "title": "Terms of Service | JimWashkau.com",
+    "description": "Review the terms of service for JimWashkau.com and Jim Washkau’s software.",
+    "headline": "CLEAR TERMS. BETTER TOOLS.",
+    "label": "Terms of service",
+    "mark": "JW",
+    "image": "/social/terms-e2cdaa89c4d8.png"
+  }
+]

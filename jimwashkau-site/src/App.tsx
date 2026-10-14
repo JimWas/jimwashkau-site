@@ -25,6 +25,7 @@ import Blog from './Blog';
 import Radio from './Radio';
 import BB8Monitor from './BB8Monitor';
 import LittleDroidFeature from './LittleDroidFeature';
+import { applyPageMetadata, normalizePagePath } from './PageMetadata';
 import { siteUpdates } from './data/siteUpdates';
 
 const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
@@ -132,12 +133,13 @@ function parseMarkdown(content: string) {
 function App() {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [currentPath, setCurrentPath] = useState(normalizePagePath(window.location.pathname));
+  useEffect(() => { applyPageMetadata(currentPath); }, [currentPath]);
   const [liveLocation, setLiveLocation] = useState<LiveLocation | null>(null);
   const [liveLocationError, setLiveLocationError] = useState<string | null>(null);
 
   useEffect(() => {
-    const handlePopState = () => setCurrentPath(window.location.pathname);
+    const handlePopState = () => setCurrentPath(normalizePagePath(window.location.pathname));
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);

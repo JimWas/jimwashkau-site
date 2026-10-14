@@ -9,7 +9,7 @@ const article = {
 };
 
 export default function Blog() {
-  const isArticle = window.location.pathname === `/blog/${article.slug}`;
+  const isArticle = window.location.pathname.replace(/\/+$/, '') === `/blog/${article.slug}`;
 
   return (
     <div className="min-h-screen bg-[#080808] text-white selection:bg-brand selection:text-white">

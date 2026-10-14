@@ -12,9 +12,245 @@
     }
   ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/radio", "destination": "/radio/index.html" },
-    { "source": "/radio/", "destination": "/radio/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/bb8",
+      "destination": "/bb8/index.html"
+    },
+    {
+      "source": "/bb8/",
+      "destination": "/bb8/index.html"
+    },
+    {
+      "source": "/bb-8",
+      "destination": "/bb8/index.html"
+    },
+    {
+      "source": "/bb-8/",
+      "destination": "/bb8/index.html"
+    },
+    {
+      "source": "/radio",
+      "destination": "/radio/index.html"
+    },
+    {
+      "source": "/radio/",
+      "destination": "/radio/index.html"
+    },
+    {
+      "source": "/apps",
+      "destination": "/apps/index.html"
+    },
+    {
+      "source": "/apps/",
+      "destination": "/apps/index.html"
+    },
+    {
+      "source": "/travelvid",
+      "destination": "/travelvid/index.html"
+    },
+    {
+      "source": "/travelvid/",
+      "destination": "/travelvid/index.html"
+    },
+    {
+      "source": "/TravelVidRecorder",
+      "destination": "/travelvid/index.html"
+    },
+    {
+      "source": "/TravelVidRecorder/",
+      "destination": "/travelvid/index.html"
+    },
+    {
+      "source": "/travelvid-recorder",
+      "destination": "/travelvid/index.html"
+    },
+    {
+      "source": "/travelvid-recorder/",
+      "destination": "/travelvid/index.html"
+    },
+    {
+      "source": "/LingoEcho",
+      "destination": "/LingoEcho/index.html"
+    },
+    {
+      "source": "/LingoEcho/",
+      "destination": "/LingoEcho/index.html"
+    },
+    {
+      "source": "/lingo-echo",
+      "destination": "/LingoEcho/index.html"
+    },
+    {
+      "source": "/lingo-echo/",
+      "destination": "/LingoEcho/index.html"
+    },
+    {
+      "source": "/SwiftPDFEditor",
+      "destination": "/SwiftPDFEditor/index.html"
+    },
+    {
+      "source": "/SwiftPDFEditor/",
+      "destination": "/SwiftPDFEditor/index.html"
+    },
+    {
+      "source": "/swift-pdf-editor",
+      "destination": "/SwiftPDFEditor/index.html"
+    },
+    {
+      "source": "/swift-pdf-editor/",
+      "destination": "/SwiftPDFEditor/index.html"
+    },
+    {
+      "source": "/jimwas-recorder",
+      "destination": "/jimwas-recorder/index.html"
+    },
+    {
+      "source": "/jimwas-recorder/",
+      "destination": "/jimwas-recorder/index.html"
+    },
+    {
+      "source": "/gphotos2shorts",
+      "destination": "/gphotos2shorts/index.html"
+    },
+    {
+      "source": "/gphotos2shorts/",
+      "destination": "/gphotos2shorts/index.html"
+    },
+    {
+      "source": "/sounds-of-earth",
+      "destination": "/sounds-of-earth/index.html"
+    },
+    {
+      "source": "/sounds-of-earth/",
+      "destination": "/sounds-of-earth/index.html"
+    },
+    {
+      "source": "/sounds-of-earth/privacy",
+      "destination": "/sounds-of-earth/privacy/index.html"
+    },
+    {
+      "source": "/sounds-of-earth/privacy/",
+      "destination": "/sounds-of-earth/privacy/index.html"
+    },
+    {
+      "source": "/sounds-of-earth/support",
+      "destination": "/sounds-of-earth/support/index.html"
+    },
+    {
+      "source": "/sounds-of-earth/support/",
+      "destination": "/sounds-of-earth/support/index.html"
+    },
+    {
+      "source": "/wow-politics",
+      "destination": "/wow-politics/index.html"
+    },
+    {
+      "source": "/wow-politics/",
+      "destination": "/wow-politics/index.html"
+    },
+    {
+      "source": "/WoWPolitics",
+      "destination": "/wow-politics/index.html"
+    },
+    {
+      "source": "/WoWPolitics/",
+      "destination": "/wow-politics/index.html"
+    },
+    {
+      "source": "/mars-relay",
+      "destination": "/mars-relay/index.html"
+    },
+    {
+      "source": "/mars-relay/",
+      "destination": "/mars-relay/index.html"
+    },
+    {
+      "source": "/love-signal",
+      "destination": "/love-signal/index.html"
+    },
+    {
+      "source": "/love-signal/",
+      "destination": "/love-signal/index.html"
+    },
+    {
+      "source": "/space-drinks",
+      "destination": "/space-drinks/index.html"
+    },
+    {
+      "source": "/space-drinks/",
+      "destination": "/space-drinks/index.html"
+    },
+    {
+      "source": "/iphone-jailbreak-wizard",
+      "destination": "/iphone-jailbreak-wizard/index.html"
+    },
+    {
+      "source": "/iphone-jailbreak-wizard/",
+      "destination": "/iphone-jailbreak-wizard/index.html"
+    },
+    {
+      "source": "/jw-ios-mcp",
+      "destination": "/jw-ios-mcp/index.html"
+    },
+    {
+      "source": "/jw-ios-mcp/",
+      "destination": "/jw-ios-mcp/index.html"
+    },
+    {
+      "source": "/whats-new",
+      "destination": "/whats-new/index.html"
+    },
+    {
+      "source": "/whats-new/",
+      "destination": "/whats-new/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/cambodia-free-beer",
+      "destination": "/blog/cambodia-free-beer/index.html"
+    },
+    {
+      "source": "/blog/cambodia-free-beer/",
+      "destination": "/blog/cambodia-free-beer/index.html"
+    },
+    {
+      "source": "/support",
+      "destination": "/support/index.html"
+    },
+    {
+      "source": "/support/",
+      "destination": "/support/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
+      "source": "/privacy/",
+      "destination": "/privacy/index.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms/index.html"
+    },
+    {
+      "source": "/terms/",
+      "destination": "/terms/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
