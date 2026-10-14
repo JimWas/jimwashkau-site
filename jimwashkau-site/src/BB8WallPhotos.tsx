@@ -68,7 +68,7 @@ function savedClientId() {
   try { return configured || localStorage.getItem('bb8-google-photos-client-id') || ''; } catch { return configured || ''; }
 }
 
-export function useWallPhotos() {
+export function useWallPhotos({ enableGoogle = false } = {}) {
   const [photos, setPhotos] = useState<WallPhoto[]>([]);
   const [current, setCurrent] = useState(0);
   const [clientId, setClientId] = useState(savedClientId);
@@ -82,16 +82,16 @@ export function useWallPhotos() {
     void photoStore().then(saved => { if (active) { setPhotos(saved.slice(0, PHOTO_LIMIT)); setCurrent(Math.floor(Math.random() * Math.max(saved.length, 1))); } }).catch(() => {});
     return () => { active = false; controllerRef.current?.abort(); };
   }, []);
-  useEffect(() => { if (clientId) void identity().catch(() => {}); }, [clientId]);
+  useEffect(() => { if (enableGoogle && clientId) void identity().catch(() => {}); }, [clientId, enableGoogle]);
   const shuffle = useCallback(() => {
     setCurrent(previous => { if (photos.length < 2) return 0; const next = Math.floor(Math.random() * (photos.length - 1)); return next >= previous ? next + 1 : next; });
   }, [photos.length]);
   useEffect(() => { if (photos.length < 2) return; const timer = window.setInterval(shuffle, 60000); return () => clearInterval(timer); }, [photos.length, shuffle]);
-  async function save(added: WallPhoto[]) {
-    const combined = [...photos, ...added].slice(-PHOTO_LIMIT);
+  async function save(added: WallPhoto[], replace = false) {
+    const combined = (replace ? added : [...photos, ...added]).slice(-PHOTO_LIMIT);
     await photoStore(combined); setPhotos(combined); setCurrent(combined.length - 1);
   }
-  async function upload(event: ChangeEvent<HTMLInputElement>) {
+  async function upload(event: ChangeEvent<HTMLInputElement>, replace = false) {
     const files = Array.from(event.target.files || []); event.target.value = '';
     if (!files.length) return;
     setBusy(true); setMessage('Preparing your little wall memories…');
@@ -101,8 +101,8 @@ export function useWallPhotos() {
         if (!file.type.startsWith('image/')) { skipped++; continue; }
         try { added.push(await stillImage(file)); } catch { skipped++; }
       }
-      if (added.length) await save(added);
-      setMessage(added.length ? `${added.length} still photo${added.length === 1 ? '' : 's'} added.${skipped ? ` ${skipped} video or unsupported file${skipped === 1 ? '' : 's'} skipped.` : ''}` : 'No supported still photos found. Try JPEG or PNG.');
+      if (added.length) await save(added, replace);
+      setMessage(added.length ? `${added.length} still photo${added.length === 1 ? '' : 's'} ${replace ? 'saved in your new album' : 'added'}.${skipped ? ` ${skipped} video or unsupported file${skipped === 1 ? '' : 's'} skipped.` : ''}` : 'No supported still photos found. Try JPEG or PNG. Your current album is unchanged.');
     } catch (error) { setMessage(error instanceof Error ? error.message : 'The photos could not be saved.'); }
     finally { setBusy(false); }
   }
@@ -171,10 +171,10 @@ export function useWallPhotos() {
     }
   }
   async function clear() {
-    try { await photoStore([]); setPhotos([]); setCurrent(0); setMessage('Wall photos removed from this browser. Your Google Photos originals are unchanged.'); }
+    try { await photoStore([]); setPhotos([]); setCurrent(0); setMessage('Custom photos removed from this browser. The BB-8 portraits are back. Your original files are unchanged.'); }
     catch (error) { setMessage(error instanceof Error ? error.message : 'Could not clear photos.'); }
   }
-  return { photo: photos[current]?.data, count: photos.length, shuffle, upload, connect, clear, busy, canCancel: busy && controllerRef.current !== null, message, pickerUri, cancel: () => controllerRef.current?.abort(), setup, setSetup, clientId, configure };
+  return { photo: photos[current]?.data, cribPhoto: photos[(current + 1) % photos.length]?.data, count: photos.length, shuffle, upload, connect, clear, busy, canCancel: busy && controllerRef.current !== null, message, pickerUri, cancel: () => controllerRef.current?.abort(), setup, setSetup, clientId, configure };
 }
 
 export default function WallPhotoControls({ wall }: { wall: ReturnType<typeof useWallPhotos> }) {

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowUpRight, BatteryCharging, BatteryFull, Camera, Check, Heart, Maximize2, Minimize2, Moon, Music2, Radio, Sparkles, Sun, Volume2, VolumeX } from 'lucide-react';
 import './BB8Monitor.css';
 import BB8Terminal from './BB8Terminal';
+import { useWallPhotos } from './BB8WallPhotos';
+import CustomAlbum from './BB8CustomAlbum';
 import BuddyVisits, { NurseryBuddies } from './BB8Buddies';
 import { useBuddyVisits } from './BB8BuddyVisits';
 import { statusMoments } from './BB8StatusMoments';
@@ -135,6 +137,7 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
 export default function BB8Monitor() {
   const [now, setNow] = useState(Date.now);
   const [portraitIndex, setPortraitIndex] = useState(0);
+  const customAlbum = useWallPhotos();
   useEffect(() => {
     const timer = window.setInterval(() => setPortraitIndex(previous => (previous + 1 + Math.floor(Math.random() * (nurseryPortraits.length - 1))) % nurseryPortraits.length), 60000);
     return () => clearInterval(timer);
@@ -513,7 +516,7 @@ export default function BB8Monitor() {
         <section className="bb8-monitor" aria-label="BB-8 nursery monitor">
           <div className="bb8-monitor-heading"><div><span className="bb8-status-dot"/><h2>BB-8’s nursery</h2></div><span>CAM 01 <span className="bb8-heading-divider">/</span> SIMULATED FEED</span></div>
           <div ref={feedRef} className={`bb8-feed ${fullscreen ? 'is-fullscreen' : ''}`}>
-            <Nursery visiting={visiting} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={nurseryPortraits[portraitIndex]} cribPhoto={nurseryPortraits[(portraitIndex + 1) % nurseryPortraits.length]}/>
+            <Nursery visiting={visiting} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={customAlbum.photo || nurseryPortraits[portraitIndex]} cribPhoto={customAlbum.cribPhoto || nurseryPortraits[(portraitIndex + 1) % nurseryPortraits.length]}/>
             <div className="bb8-feed-top"><span className="bb8-feed-badge"><span className="bb8-status-dot"/> {night ? 'NIGHT VISION' : visiting.length ? 'BUDDY VISIT' : 'NURSERY VIEW'}</span><time dateTime={new Date(now).toISOString()}>{new Date(now).toLocaleTimeString([], { hour12: false })} <small>LOCAL</small></time></div>
             <div className="bb8-feed-bottom"><span><Moon size={15}/> {status.title}</span><div className="bb8-view-buttons">{theatre && !fullscreen && <button onClick={() => setTheatre(false)} aria-label="Exit theatre mode" title="Exit theatre mode"><Minimize2 size={18}/></button>}<button onClick={toggleFullscreen} aria-label={fullscreen ? 'Exit fullscreen' : theatre ? 'Open fullscreen' : 'Open theatre mode'} title={fullscreen ? 'Exit fullscreen' : theatre ? 'Fullscreen' : 'Theatre mode'}>{fullscreen ? <Minimize2 size={18}/> : <Maximize2 size={18}/>}</button></div></div>
             <span className="bb8-camera-corner bb8-corner-left"/><span className="bb8-camera-corner bb8-corner-right"/>
@@ -529,7 +532,8 @@ export default function BB8Monitor() {
           <section className="bb8-care-card"><p className="bb8-eyebrow">A LITTLE LOVE GOES A LONG WAY</p><h2>Be there, from anywhere.</h2><button className="bb8-hello-button" onClick={sayHello}><Heart size={18}/> Say hello to BB-8 <span>↗</span></button><button className={`bb8-lullaby-button ${lullaby ? 'is-active' : ''}`} onClick={toggleLullaby} aria-pressed={lullaby}><Music2 size={18}/><span>{lullaby ? 'Pause the lullaby' : audioStarted ? 'Resume the lullaby' : 'Start nursery audio'}</span><span className="bb8-music-bars" aria-hidden="true"><i/><i/><i/></span></button><p>{audioStarted ? 'An evolving lullaby, with little noises in his own time.' : 'Audio starts automatically. If your browser pauses it, tap anywhere to begin.'}</p></section>
         </aside>
       </div>
-      {/* Google Photos integration is retained in BB8WallPhotos.tsx, but hidden for now. */}
+      {/* Google Photos stays hidden; this album uses only locally chosen images. */}
+      <CustomAlbum album={customAlbum}/>
       <BuddyVisits visiting={visiting} sleeping={activity === 'sleeping'} automatic={buddyVisits.automatic} surprise={!!buddyVisits.automaticVisitor} onAutomatic={buddyVisits.toggleAutomatic} onChange={buddyVisits.changeVisitors}/>
       <StuffedAnimals shelf={plushShelf} now={now} onToggle={toggleFriend} onRefresh={refreshFriends}/>
       <section className="bb8-journal"><div className="bb8-journal-heading"><div><p className="bb8-eyebrow">THE LITTLE MOMENTS</p><h2>Nursery notes</h2></div><span>Saved on this device</span></div><div className="bb8-log" aria-label="Recent nursery activity">{log.slice(0, 4).map((entry, i) => <article key={`${entry.time}-${i}`}><span className="bb8-log-icon">{entry.text.includes('lullaby') ? <Music2 size={16}/> : entry.text.includes('snapshot') ? <Camera size={16}/> : <Moon size={16}/>}</span><div><p>{entry.text}</p><time dateTime={new Date(entry.time).toISOString()}>{new Date(entry.time).toLocaleDateString([], { month: 'short', day: 'numeric' })} · {clock(entry.time)}</time></div></article>)}</div></section>
