@@ -24,6 +24,7 @@ import WoWPolitics from './WoWPolitics';
 import Blog from './Blog';
 import Radio from './Radio';
 import BB8Monitor from './BB8Monitor';
+import LittleDroidFeature from './LittleDroidFeature';
 import { siteUpdates } from './data/siteUpdates';
 
 const TRAVELVID_APP_STORE_URL = 'https://apps.apple.com/us/app/travelvid-recorder/id6754813702';
@@ -475,6 +476,8 @@ function App() {
           <div className="w-full h-full opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         </div>
       </section>
+
+      <LittleDroidFeature />
 
       {/* TravelVid Recorder Product Hero */}
       <section className="relative isolate overflow-hidden border-y border-emerald-300/15 bg-[#040806] py-24 md:py-32">
