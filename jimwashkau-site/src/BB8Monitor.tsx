@@ -7,19 +7,15 @@ import { useBuddyVisits } from './BB8BuddyVisits';
 import { statusMoments } from './BB8StatusMoments';
 import { ActivityProps } from './BB8Activities';
 import { littleActivities, pickLittleActivity, type LittleActivity } from './BB8LittleActivities';
-import cathedralPhoto from './assets/bb8-family-photos/bb8-cathedral.jpg';
-import riverPhoto from './assets/bb8-family-photos/bb8-river.jpg';
-import selfiePhoto from './assets/bb8-family-photos/bb8-selfie.jpg';
-import cowboyPhoto from './assets/bb8-family-photos/bb8-cowboy.jpg';
 
 import { advanceBattery, readBattery, saveBattery } from './BB8Battery';
 import StuffedAnimals, { PlushAnimal, readPlushShelf, refreshPlushShelf, type PlushFriend } from './BB8StuffedAnimals';
-import dogCuddlePhoto from './assets/bb8-family-photos/bb8-dog-cuddle.jpg';
-import breakfastPhoto from './assets/bb8-family-photos/bb8-breakfast.jpg';
-import cozySelfiePhoto from './assets/bb8-family-photos/bb8-cozy-selfie.jpg';
-import dogWindowPhoto from './assets/bb8-family-photos/bb8-dog-window.jpg';
 
-const nurseryPortraits = [dogCuddlePhoto, breakfastPhoto, cozySelfiePhoto, dogWindowPhoto, cathedralPhoto, riverPhoto, selfiePhoto, cowboyPhoto];
+import cozyPortrait from './assets/bb8-portraits/bb8-cozy-portrait.svg';
+import rechargePortrait from './assets/bb8-portraits/bb8-recharge-nap.svg';
+import stargazingPortrait from './assets/bb8-portraits/bb8-stargazing.svg';
+
+const nurseryPortraits = [cozyPortrait, rechargePortrait, stargazingPortrait];
 
 type Activity = 'sleeping' | 'idle' | 'busy' | 'up';
 type Mood = Activity | 'dreaming' | 'wiggling' | 'hello';
@@ -122,7 +118,7 @@ function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhot
       <path d="M152 455q321 106 656 0l-7 29q-320 107-642 0z" fill="#c2b59a"/>
       <path d="M182 488v72m74-51v60m75-47v52m75-46v51m75-48v50m75-54v52m75-60v57m75-72v65m71-89v75" stroke="#b6a88d" strokeWidth="9" strokeLinecap="round"/>
       <path d="M157 564q322 76 642 0" stroke="#d2c3a7" strokeWidth="15" fill="none" strokeLinecap="round"/>
-      {cribPhoto && <g aria-label="BB-8's crib family photo">
+      {cribPhoto && <g aria-label="BB-8's crib portrait">
         <path d="M472 534v19m16-19v19" stroke="#d8a574" strokeWidth="5" strokeLinecap="round"/>
         <rect x="422" y="546" width="116" height="78" rx="5" fill="#c9bda2" stroke="#a99d87" strokeWidth="5"/>
         <image href={cribPhoto} x="430" y="554" width="100" height="62" preserveAspectRatio="xMidYMid meet"/>
@@ -517,7 +513,7 @@ export default function BB8Monitor() {
         <section className="bb8-monitor" aria-label="BB-8 nursery monitor">
           <div className="bb8-monitor-heading"><div><span className="bb8-status-dot"/><h2>BB-8’s nursery</h2></div><span>CAM 01 <span className="bb8-heading-divider">/</span> SIMULATED FEED</span></div>
           <div ref={feedRef} className={`bb8-feed ${fullscreen ? 'is-fullscreen' : ''}`}>
-            <Nursery visiting={visiting} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={nurseryPortraits[portraitIndex]} cribPhoto={nurseryPortraits[(portraitIndex + 4) % nurseryPortraits.length]}/>
+            <Nursery visiting={visiting} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={nurseryPortraits[portraitIndex]} cribPhoto={nurseryPortraits[(portraitIndex + 1) % nurseryPortraits.length]}/>
             <div className="bb8-feed-top"><span className="bb8-feed-badge"><span className="bb8-status-dot"/> {night ? 'NIGHT VISION' : visiting.length ? 'BUDDY VISIT' : 'NURSERY VIEW'}</span><time dateTime={new Date(now).toISOString()}>{new Date(now).toLocaleTimeString([], { hour12: false })} <small>LOCAL</small></time></div>
             <div className="bb8-feed-bottom"><span><Moon size={15}/> {status.title}</span><div className="bb8-view-buttons">{theatre && !fullscreen && <button onClick={() => setTheatre(false)} aria-label="Exit theatre mode" title="Exit theatre mode"><Minimize2 size={18}/></button>}<button onClick={toggleFullscreen} aria-label={fullscreen ? 'Exit fullscreen' : theatre ? 'Open fullscreen' : 'Open theatre mode'} title={fullscreen ? 'Exit fullscreen' : theatre ? 'Fullscreen' : 'Theatre mode'}>{fullscreen ? <Minimize2 size={18}/> : <Maximize2 size={18}/>}</button></div></div>
             <span className="bb8-camera-corner bb8-corner-left"/><span className="bb8-camera-corner bb8-corner-right"/>
