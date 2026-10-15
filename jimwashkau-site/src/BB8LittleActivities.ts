@@ -24,11 +24,25 @@ export const littleActivities = [
   { id: 'lightsaber', label: 'Lightsaber practice', title: 'A very small Jedi lesson', detail: 'Practicing gentle swings with his little training saber. The Force is strong with this wobble.' },
   { id: 'soldiering', label: 'Little soldier drills', title: 'Reporting for cuddle duty', detail: 'Practicing a tiny salute and a brave little march. His mission: protect the stuffed friends.' },
   { id: 'lego', label: 'Playing LEGOs', title: 'One brick closer to the stars', detail: 'Building a LEGO spaceship, one colorful brick at a time. Saving a seat for you.' },
+  { id: 'dream-projecting', label: 'Dream-projecting', title: 'Dreams escaping his lens', detail: 'Fast asleep, accidentally projecting a tiny galaxy of happy dreams.' },
+  { id: 'words', label: 'Learning new words', title: 'His first little beep-words', detail: 'Practicing “mama,” “hello,” and “snack.” Getting more confident with every beep.' },
+  { id: 'shadow', label: 'Chasing his shadow', title: 'Who is that little shadow?', detail: 'Following his own shadow. Wait a minute… why is it following him back?' },
+  { id: 'treasure', label: 'Showing you a treasure', title: 'Look what he found!', detail: 'Proudly showing you one very shiny bolt. The finest treasure in the galaxy.' },
+  { id: 'waiting', label: 'Waiting for a buddy', title: 'Is that a friend at the door?', detail: 'Peeking toward the nursery hatch. Saving his happiest wiggle for a little visitor.' },
+  { id: 'magnets', label: 'Playing with magnets', title: 'A very magnetic personality', detail: 'Stuck a magnet to himself. Now conducting a deeply puzzled investigation.' },
+  { id: 'checkup', label: 'Toy system checkup', title: 'Doctor Beep will see you now', detail: 'Listening to his circuits with a toy stethoscope. Diagnosis: needs more cuddles.' },
+  { id: 'costume', label: 'Trying on costumes', title: 'Captain of the cuddle galaxy', detail: 'Trying on an astronaut helmet and a blanket cape. Ready for a very small rescue.' },
+  { id: 'fort', label: 'Making a blanket fort', title: 'A secret little hideaway', detail: 'Built himself a blanket fort. Just one glowing eye peeking out to say hello.' },
+  { id: 'kisses', label: 'Sending goodnight kisses', title: 'One little kiss, just for you', detail: 'Projecting a floating heart toward the camera. Goodnight, favorite human.' },
+  { id: 'dozing', label: 'Getting sleepy over his book', title: 'Just resting his lens…', detail: 'Determined to finish his story. His sleepy little circuits have other plans.' },
+  { id: 'charged', label: 'Celebrating a full charge', title: 'One hundred percent happy!', detail: 'A triumphant little wiggle. Look, his battery is full and so is his heart.' },
 ] as const;
 export type LittleActivity = typeof littleActivities[number];
 
-export function pickLittleActivity(previous: LittleActivity | null, random = Math.random): LittleActivity {
-  const choices = littleActivities.filter(item => item.id !== previous?.id);
+export function pickLittleActivity(previous: LittleActivity | null, random = Math.random, context: { sleeping?: boolean; fullyCharged?: boolean; hasBuddies?: boolean } = {}): LittleActivity {
+  const eligible = littleActivities.filter(item => (context.sleeping === undefined || (context.sleeping ? item.id === 'dream-projecting' : item.id !== 'dream-projecting')) && (context.fullyCharged !== false || item.id !== 'charged') && (!context.hasBuddies || item.id !== 'waiting'));
+  const different = eligible.filter(item => item.id !== previous?.id);
+  const choices = different.length ? different : eligible;
   return choices[Math.floor(random() * choices.length)];
 }
 

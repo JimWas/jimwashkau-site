@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { ArrowRight, Heart, Moon, Music2, Sparkles } from 'lucide-react';
+import { littleActivities } from './BB8LittleActivities';
 import { Nursery } from './BB8Monitor';
 import cozyPortrait from './assets/bb8-portraits/bb8-cozy-portrait.svg';
 
@@ -22,7 +23,7 @@ export default function LittleDroidFeature() {
           <div className="aspect-[960/650] overflow-hidden"><Nursery mood="sleeping" activity="sleeping" night={false} sceneRef={sceneRef} friends={[]} wallPhoto={cozyPortrait} cribPhoto={cozyPortrait} pastime={null} visiting={['percy', 'oppy', 'ginny']}/></div>
           <div className="flex items-center justify-between gap-3 border-t border-white/5 px-5 py-4 text-[11px] text-[#b3c2ab]"><span>Little droid. Very good company.</span><ArrowRight size={16} className="text-[#e4aa78] transition-transform group-hover:translate-x-1"/></div>
         </a>
-        <div className="mt-5 flex justify-between gap-4 px-1 text-[10px] text-[#80927e]"><span>25 little adventures</span><span>3 Mars buddies</span><span>One happy place</span></div>
+        <div className="mt-5 flex justify-between gap-4 px-1 text-[10px] text-[#80927e]"><span>{littleActivities.length} little adventures</span><span>3 Mars buddies</span><span>One happy place</span></div>
       </div>
     </div>
   </section>;

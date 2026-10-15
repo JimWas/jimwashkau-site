@@ -125,5 +125,45 @@ export function ActivityProps({ activity }: { activity: LittleActivity }) {
       {[[546,396,72,17,'#a0b6ca'],[562,375,40,21,'#d19a77'],[575,354,26,21,'#b2c59e'],[534,402,15,14,'#d8c38a'],[615,402,15,14,'#d8c38a']].map(([x,y,width,height,color],i) => <g key={i}><rect x={x} y={y} width={width} height={height} rx="3" fill={color as string} stroke="#ede4ca" strokeWidth="2"/>{[0,1].map(stud => <rect key={stud} x={Number(x)+4+stud*(Number(width)-12)} y={Number(y)-4} width="7" height="5" rx="2" fill={color as string} stroke="#ede4ca" strokeWidth="1"/>)}</g>)}
       <g className="bb8-lego-brick"><rect x="527" y="330" width="31" height="18" rx="3" fill="#c193ac" stroke="#efdfd3" strokeWidth="2"/><path d="M533 330v-4h6v4m8 0v-4h6v4" fill="#c193ac" stroke="#efdfd3" strokeWidth="2"/></g>
     </>}
+    {activity.id === 'dream-projecting' && <>
+      <path d="m476 235 155-116 57 137z" fill="#b7d6cc" opacity=".08"/>
+      <g className="bb8-dream-stars" fill="#e5d8a9"><path d="m597 151 4-10 4 10 11 3-11 4-4 10-4-10-11-4zm49 45 4-10 4 10 11 3-11 4-4 10-4-10-11-4z"/><circle cx="631" cy="160" r="13" fill="#accbc6"/><ellipse cx="631" cy="160" rx="22" ry="5" fill="none" stroke="#e5d8a9" strokeWidth="2"/><circle cx="612" cy="210" r="3"/></g>
+    </>}
+    {activity.id === 'words' && <>
+      <path d="M543 244q0-14 14-14h86q14 0 14 14v33q0 14-14 14h-66l-20 12 4-12h-4q-14 0-14-14z" fill="#e6dfc8" stroke="#a5b9a7" strokeWidth="2"/>
+      {['mama?','hello!','snack!'].map((word,i)=><text className="bb8-beep-word" key={word} x="600" y="269" textAnchor="middle" fontFamily="system-ui" fontSize="18" fill="#5b7869" style={{animationDelay:`-${(3-i)*4}s`}}>{word}</text>)}
+    </>}
+    {activity.id === 'shadow' && <>
+      <g className="bb8-mystery-shadow" fill="#344b40" opacity=".25"><ellipse cx="607" cy="411" rx="42" ry="17"/><ellipse cx="608" cy="388" rx="28" ry="24"/><ellipse cx="608" cy="363" rx="21" ry="11"/><path d="m600 356-4-18" stroke="#344b40" strokeWidth="3"/></g>
+      <text className="bb8-play-float" x="563" y="288" fontFamily="system-ui" fontSize="30" fill="#ead3a6">?</text>
+    </>}
+    {activity.id === 'treasure' && <>
+      <g className="bb8-show-treasure"><path d="m522 333 24-26 15 0" fill="none" stroke="#92a394" strokeWidth="8"/><path d="m556 289 16-8 16 8v19l-16 8-16-8z" fill="#d7bb7e" stroke="#f4e4b5" strokeWidth="3"/><circle cx="572" cy="299" r="7" fill="#9c9679"/><path d="m572 316-2 14m-5-9h11m-11 5h11" stroke="#ddc494" strokeWidth="4"/></g>
+      <path className="bb8-play-float" d="m594 277 3-8 3 8 8 3-8 3-3 8-3-8-8-3z" fill="#f8e7b8"/>
+    </>}
+    {activity.id === 'waiting' && <>
+      <rect x="775" y="305" width="77" height="144" rx="25" fill="#3a4e46" stroke="#91a08d" strokeWidth="5"/><path d="M788 439V332q0-16 25-16t25 16v107" fill="none" stroke="#718b7b" strokeWidth="2"/><circle cx="833" cy="385" r="4" fill="#d8c394"/>
+      <path className="bb8-play-float" d="M582 270q-20-14-12-21q7-5 12 5q5-10 12-5q8 7-12 21" fill="#ddaf92"/>
+    </>}
+    {activity.id === 'magnets' && <>
+      <g className="bb8-magnet"><path d="M502 306v21q0 25 26 25t26-25v-21" fill="none" stroke="#c98977" strokeWidth="13"/><path d="M502 306v11m52-11v11" stroke="#c4d9d1" strokeWidth="13"/></g>
+      <path className="bb8-magnet-bolt" d="m570 322 14 1m-10-7-1 13" stroke="#c3c7b3" strokeWidth="5"/>
+    </>}
+    {activity.id === 'checkup' && <>
+      <path d="M449 276v13q0 20 22 20t22-20v-13m-22 33v29q0 31 27 31t27-24" fill="none" stroke="#6a948d" strokeWidth="5"/><path d="M443 275h10m35 0h10" stroke="#dddcc4" strokeWidth="6"/><circle className="bb8-checkup-disc" cx="525" cy="344" r="12" fill="#d0d9c9" stroke="#8ba799" strokeWidth="4"/><circle cx="525" cy="344" r="5" fill="#8ba799"/>
+    </>}
+    {activity.id === 'costume' && <>
+      <path d="m409 282-33 126 50-17 18 19 10-128m49 0 12 128 20-19 43 17-31-126" fill="#92aaa2" stroke="#b9cbb5" strokeWidth="3"/>
+      <circle cx="478" cy="235" r="77" fill="#d7e9df" fillOpacity=".08" stroke="#d0dfce" strokeWidth="4"/><path d="M425 194q13-18 29-22" fill="none" stroke="#e6edda" strokeOpacity=".5" strokeWidth="5"/><path d="M425 293q53 20 106 0" fill="none" stroke="#b7c9b6" strokeWidth="9"/><path d="m478 302-12 10 12 7 12-7z" fill="#e5c18a"/>
+    </>}
+    {activity.id === 'fort' && <>
+      <path d="M363 438 478 190 595 438z" fill="#a3b6a4" stroke="#d0dbc1" strokeWidth="4"/><path d="M439 438 478 309 520 438z" fill="#354f45"/><path d="m478 190 1 104m-99 131 36-13m126 0 35 13" fill="none" stroke="#d4dfc7" strokeWidth="3"/><circle className="bb8-fort-eye" cx="479" cy="393" r="12" fill="#86afb1"/><circle cx="479" cy="393" r="7" fill="#18362e"/><path d="m433 300 3-7 3 7 8 2-6 5 1 8-6-4-6 4 1-8-6-5z" fill="#e8d6a9"/>
+    </>}
+    {activity.id === 'kisses' && <g className="bb8-camera-kiss" fill="#e0a78e"><path d="M584 293q-47-33-29-47q16-10 29 11q13-21 29-11q18 14-29 47"/><path d="M625 237q-23-17-14-23q8-5 14 6q7-11 14-6q9 6-14 23" opacity=".6"/></g>}
+    {activity.id === 'dozing' && <g className="bb8-sleepy-book"><path d="M425 337q26-10 53 3q27-13 54-3v57q-29-10-54 5q-25-15-53-5z" fill="#e4d7b8" stroke="#a88560" strokeWidth="4"/><path d="M478 340v56m-40-37h26m27-5h28m-80 16h24m30-5h24" stroke="#b1a589" strokeWidth="2"/><text x="565" y="245" fill="#e9dfc1" fontSize="24" className="bb8-play-float">z</text></g>}
+    {activity.id === 'charged' && <>
+      <g className="bb8-full-charge"><rect x="552" y="285" width="59" height="34" rx="6" fill="#d6e4ca" stroke="#9ab58e" strokeWidth="3"/><path d="M611 295h6v14h-6" fill="#9ab58e"/><path d="m586 288-12 17h11l-5 11 17-18h-12z" fill="#6f9762"/><text x="581" y="340" textAnchor="middle" fontFamily="system-ui" fill="#e7ddbc" fontSize="17">100%</text></g>
+      <g className="bb8-play-float" fill="#e5c18a"><path d="m397 273 3-7 3 7 7 3-7 3-3 7-3-7-7-3zm156-51 3-7 3 7 7 3-7 3-3 7-3-7-7-3z"/></g>
+    </>}
   </g>;
 }

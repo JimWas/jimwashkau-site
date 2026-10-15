@@ -155,3 +155,33 @@
 .bb8-buddy-actions{display:flex;flex-wrap:wrap;gap:8px}.bb8-buddy-actions button,.bb8-surprise-controls button{border:1px solid #b6c6a7;border-radius:8px;background:#fafbf4;color:#557047;padding:10px 13px;font-size:10px}
 .bb8-surprise-controls{display:flex;align-items:center;gap:12px;margin:0 0 17px}.bb8-surprise-controls button{white-space:nowrap}.bb8-surprise-controls button[aria-pressed=true]{background:#dce8d3;border-color:#8ca77c}.bb8-surprise-controls strong{margin-left:5px}.bb8-surprise-controls>span{font-size:10px;color:#7d8973;line-height:1.6}
 @media(max-width:600px){.bb8-surprise-controls{align-items:flex-start;flex-direction:column}}
+
+.bb8-dream-stars{transform-origin:476px 235px;animation:bb8-dream-stars 8s ease-in-out infinite}
+.bb8-beep-word{opacity:0;animation:bb8-beep-word 12s linear infinite}
+.bb8-mystery-shadow{animation:bb8-shadow-friend 8s ease-in-out infinite}
+.bb8-droid.bb8-doing-shadow .bb8-head{animation:bb8-curious-head 5s ease-in-out infinite}
+.bb8-show-treasure{transform-origin:522px 333px;animation:bb8-present 5s ease-in-out infinite}
+.bb8-droid.bb8-doing-waiting .bb8-head{animation:bb8-door-watch 7s ease-in-out infinite}
+.bb8-droid.bb8-doing-waiting.bb8-welcome-buddies{animation:bb8-wiggle 2s ease-in-out infinite}
+.bb8-magnet{transform-origin:527px 337px;animation:bb8-conduct 8s ease-in-out infinite}.bb8-magnet-bolt{animation:bb8-magnet-pull 5s ease-in-out infinite}
+.bb8-checkup-disc{transform-origin:525px 344px;animation:bb8-checkup 2s ease-in-out infinite}
+.bb8-droid.bb8-doing-costume .bb8-head{animation:bb8-hello 4s ease-in-out infinite}
+.bb8-fort-eye{animation:bb8-led 5s ease-in-out infinite}
+.bb8-doing-fort .bb8-body,.bb8-doing-fort .bb8-head{visibility:hidden}
+.bb8-camera-kiss{transform-origin:584px 270px;animation:bb8-send-kiss 7s ease-in-out infinite}
+.bb8-droid.bb8-doing-dozing .bb8-head{animation:bb8-doze-off 30s ease-in-out forwards}
+.bb8-sleepy-book{animation:bb8-book-droop 30s ease-in-out forwards}.bb8-doze-lens{opacity:0;animation:bb8-close-lens 30s ease-in-out forwards}
+.bb8-droid.bb8-doing-charged{transform-origin:478px 420px;animation:bb8-dance 1.8s ease-in-out 3}
+.bb8-full-charge{animation:bb8-present 5s ease-in-out infinite}
+@keyframes bb8-dream-stars{0%,100%{opacity:.2;transform:scale(.9)}50%{opacity:.85;transform:scale(1.04)}}
+@keyframes bb8-beep-word{0%,30%{opacity:1}33%,100%{opacity:0}}
+@keyframes bb8-shadow-friend{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
+@keyframes bb8-present{0%,100%{transform:rotate(0)}50%{transform:rotate(-7deg)}}
+@keyframes bb8-door-watch{0%,100%{transform:rotate(0)}35%,70%{transform:rotate(13deg)}}
+@keyframes bb8-magnet-pull{0%,100%{transform:translate(0,0)}50%{transform:translate(-12px,8px)}}
+@keyframes bb8-checkup{50%{transform:scale(1.07)}}
+@keyframes bb8-send-kiss{0%{opacity:0;transform:scale(.3)}20%{opacity:.9}80%{opacity:.7;transform:scale(1.3) translateY(-12px)}100%{opacity:0;transform:scale(1.45) translateY(-15px)}}
+@keyframes bb8-doze-off{0%,20%{transform:rotate(0)}35%{transform:rotate(-6deg) translateY(2px)}45%{transform:rotate(1deg)}65%{transform:rotate(-10deg) translateY(5px)}75%{transform:rotate(-2deg)}100%{transform:rotate(-17deg) translateY(9px)}}
+@keyframes bb8-book-droop{0%,50%{transform:translateY(0)}100%{transform:translateY(9px)}}
+@keyframes bb8-close-lens{0%,65%{opacity:0}85%,100%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.bb8-scene *{animation:none!important}.bb8-beep-word:not(:first-of-type){display:none}.bb8-beep-word{opacity:1}}

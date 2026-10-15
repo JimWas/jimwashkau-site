@@ -93,7 +93,7 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
       <ellipse cx="480" cy="394" rx="319" ry="87" fill="url(#bb8-fabric)"/>
       <ellipse cx="468" cy="413" rx="133" ry="26" fill="#79827c" opacity=".28"/>
       <g transform={activity === 'sleeping' ? 'translate(0 27) rotate(-35 478 340)' : activity === 'idle' ? 'translate(0 9)' : undefined}>
-      <g className={`bb8-droid bb8-${mood} bb8-routine-${activity} ${pastime ? `bb8-doing-${pastime.id}` : ''}`}>
+      <g className={`bb8-droid bb8-${mood} bb8-routine-${activity} ${pastime ? `bb8-doing-${pastime.id}` : ''} ${visiting.length ? 'bb8-welcome-buddies' : ''}`}>
         <g className="bb8-body"><circle cx="478" cy="340" r="94" fill="url(#bb8-ball)" stroke="#909993" strokeWidth="2"/>
           <circle cx="478" cy="340" r="67" fill="#d68a45"/><circle cx="478" cy="340" r="49" fill="#ddddce" stroke="#b86d31" strokeWidth="4"/>
           <circle cx="478" cy="340" r="31" fill="#8d9793"/><circle cx="478" cy="340" r="21" fill="#bfc6bd"/>
@@ -108,6 +108,7 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
           <path d="M413 258h130v12q-65 19-130 0z" fill="#a5aca2"/><path d="M416 263h124" stroke="#cf823f" strokeWidth="4"/>
           <circle cx="476" cy="235" r="24" fill="#d5d5c7"/><circle cx="476" cy="235" r="19" fill="#2c393a"/><circle cx="476" cy="235" r="13" fill="#111e23"/><ellipse cx="471" cy="228" rx="6" ry="4" fill="#6e8b94"/>
           {activity === 'sleeping' && <><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></>}
+          {pastime?.id === 'dozing' && <g className="bb8-doze-lens"><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></g>}
           <circle cx="518" cy="249" r="8" fill="#344341"/><circle cx="519" cy="247" r="3" fill="#90b1b3"/>
           <circle className="bb8-led" cx="443" cy="249" r="3" fill="#f58b55"/>
         </g>
@@ -157,6 +158,8 @@ export default function BB8Monitor() {
   const [pastime, setPastime] = useState<LittleActivity | null>(null);
   const lastPastime = useRef<LittleActivity | null>(null);
   const manualPastime = useRef(false);
+  const wasFullyCharged = useRef(battery.level >= 100);
+  const buddiesPresent = useRef(false);
   const [babyMood, setBabyMood] = useState<Mood | null>(null);
   const [helloUntil, setHelloUntil] = useState(0);
   const [helloPhrase, setHelloPhrase] = useState('That happy beep was just for you.');
@@ -175,7 +178,7 @@ export default function BB8Monitor() {
   const [statusIndex, setStatusIndex] = useState(0);
   const mood: Mood = now < helloUntil ? 'hello' : babyMood || activity;
   const pose: Activity = mood === 'hello' ? 'up' : activity;
-  const visiblePastime = activity !== 'sleeping' && mood !== 'hello' ? pastime : null;
+  const visiblePastime = (activity !== 'sleeping' || pastime?.id === 'dream-projecting') && mood !== 'hello' ? pastime : null;
   const status = visiblePastime ? visiblePastime : mood === 'hello' ? { ...moodText.hello, detail: helloPhrase } : {
     ...moodText[mood], ...(statusIndex > 0 ? statusMoments[mood][statusIndex - 1] : {}),
   };
@@ -210,6 +213,14 @@ export default function BB8Monitor() {
     batteryRef.current = next;
     setBattery(next);
     saveBattery(next);
+    if (next.level >= 100 && !wasFullyCharged.current && activity === 'sleeping') {
+      const celebration = littleActivities.find(item => item.id === 'charged')!;
+      lastPastime.current = celebration;
+      setBabyMood(null); setHelloUntil(0); setActivity('up'); setPastime(celebration);
+      manualPastime.current = true; setRoutineReset(value => value + 1);
+      setLog(entries => [{ time: Date.now(), text: celebration.detail }, ...entries].slice(0, 12));
+    }
+    wasFullyCharged.current = next.level >= 100;
     if (next.level <= 15 && activity !== 'sleeping') {
       setBabyMood(null);
       setHelloUntil(0);
@@ -235,20 +246,31 @@ export default function BB8Monitor() {
     }, (minimum + Math.random() * (maximum - minimum)) * 1000);
     return () => clearTimeout(timer);
   }, [activity, routineReset]);
-  // Awake spells alternate little adventures with quiet breaks; naps always win.
+  // Playtime pauses between adventures; naps occasionally bring a tiny dream projection.
   useEffect(() => {
-    if (activity === 'sleeping') return;
     let timer: number;
     const begin = () => {
-      const next = pickLittleActivity(lastPastime.current);
+      const next = pickLittleActivity(lastPastime.current, Math.random, { sleeping: activity === 'sleeping', fullyCharged: batteryRef.current.level >= 100, hasBuddies: buddiesPresent.current });
       lastPastime.current = next;
       setPastime(next);
       setLog(entries => [{ time: Date.now(), text: next.detail }, ...entries].slice(0, 12));
       timer = window.setTimeout(() => {
         setPastime(null);
-        timer = window.setTimeout(begin, 15000 + Math.random() * 30000);
-      }, 25000 + Math.random() * 35000);
+        if (next.id === 'dozing') {
+          setBabyMood(null); setHelloUntil(0); setActivity('sleeping'); setRoutineReset(value => value + 1);
+          return;
+        }
+        timer = window.setTimeout(begin, activity === 'sleeping' ? 35000 + Math.random() * 30000 : 15000 + Math.random() * 30000);
+      }, next.id === 'dozing' ? 30000 : activity === 'sleeping' ? 14000 : 25000 + Math.random() * 35000);
     };
+    if (manualPastime.current && lastPastime.current?.id === 'dozing') {
+      manualPastime.current = false;
+      timer = window.setTimeout(() => {
+        setPastime(null); setBabyMood(null); setHelloUntil(0);
+        setActivity('sleeping'); setRoutineReset(value => value + 1);
+      }, 30000);
+      return () => clearTimeout(timer);
+    }
     const firstDelay = manualPastime.current ? 30000 : 8000 + Math.random() * 20000;
     manualPastime.current = false;
     timer = window.setTimeout(begin, firstDelay);
@@ -256,7 +278,8 @@ export default function BB8Monitor() {
   }, [activity, routineReset]);
 
   function choosePastime(next: LittleActivity) {
-    chooseActivity('busy');
+    if (next.id === 'charged' && batteryRef.current.level < 100) return;
+    chooseActivity(next.id === 'dream-projecting' ? 'sleeping' : 'busy');
     lastPastime.current = next;
     manualPastime.current = true;
     setPastime(next);
@@ -274,6 +297,7 @@ export default function BB8Monitor() {
   const addLog = (text: string) => setLog(entries => [{ time: Date.now(), text }, ...entries].slice(0, 12));
   const buddyVisits = useBuddyVisits(activity === 'sleeping', addLog);
   const { visiting } = buddyVisits;
+  useEffect(() => { buddiesPresent.current = visiting.length > 0; }, [visiting]);
   useEffect(() => {
     const title = document.title;
     document.title = 'BB-8 Nursery · Little Droid Monitor';
@@ -414,7 +438,7 @@ export default function BB8Monitor() {
   }, [sound, audioStarted]);
 
   useEffect(() => {
-    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin' && pastime?.id !== 'dancing' && pastime?.id !== 'conducting')) return;
+    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin' && pastime?.id !== 'dancing' && pastime?.id !== 'conducting' && pastime?.id !== 'words')) return;
     const melody = [261.63, 329.63, 392, 329.63, 293.66, 261.63];
     const play = () => {
       melody.forEach((note, index) => tone(note, index * .42, .35, true, 1, pastime.id === 'violin' ? 'triangle' : 'sine', .025, 'baby'));
@@ -523,7 +547,7 @@ export default function BB8Monitor() {
           </div>
           <div className="bb8-controls"><button className={sound ? 'is-active' : ''} onClick={toggleSound} aria-pressed={sound}>{sound ? <Volume2 size={19}/> : <VolumeX size={19}/>}<span>Sound <small>{sound ? 'on' : 'off'}</small></span></button><button className={night ? 'is-active' : ''} onClick={() => setNight(!night)} aria-pressed={night}>{night ? <Sun size={19}/> : <Moon size={19}/>}<span>Night vision</span></button><button onClick={saveSnapshot}><Camera size={19}/><span>Snapshot</span></button><div className="bb8-controls-note"><span className="bb8-status-dot"/> {lullaby ? 'Lullaby playing' : 'All cozy here'}</div></div>
           <label className="bb8-volume">Nursery volume <input type="range" min="0" max="100" value={volume} onChange={event => setVolume(Number(event.target.value))}/><span>{volume}%</span></label>
-          <div className="bb8-play-controls"><label htmlFor="bb8-play-choice">Little adventures</label><select id="bb8-play-choice" value={visiblePastime?.id || ''} onChange={event => { const next = littleActivities.find(item => item.id === event.target.value); if (next) choosePastime(next); else chooseActivity(activity); }}><option value="">Let him surprise you</option>{littleActivities.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select><small>He picks his own adventures between naps.</small></div>
+          <div className="bb8-play-controls"><label htmlFor="bb8-play-choice">Little adventures</label><select id="bb8-play-choice" value={visiblePastime?.id || ''} onChange={event => { const next = littleActivities.find(item => item.id === event.target.value); if (next) choosePastime(next); else chooseActivity(activity); }}><option value="">Let him surprise you</option>{littleActivities.map(item => <option key={item.id} value={item.id} disabled={item.id === 'charged' && battery.level < 100}>{item.label}{item.id === 'charged' && battery.level < 100 ? ' (at 100%)' : ''}</option>)}</select><small>He picks his own adventures between naps.</small></div>
           <div className="bb8-routine-controls" role="group" aria-label="BB-8 activity"><span>Little droid routine</span><div>{activityChoices.map(choice => <button key={choice.value} aria-pressed={activity === choice.value} onClick={() => chooseActivity(choice.value)}>{choice.label}</button>)}</div><small>Changes on his own, too.</small></div>
           <p className="bb8-feed-caption"><Sparkles size={14}/> A fan-made animated nursery. Activity and readings are pretend.</p>
         </section>
