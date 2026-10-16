@@ -6,6 +6,7 @@ All notable website changes should be documented here. Keep the newest entry at 
 
 ### Changed
 
+- Added personal radio skipping and Back to Live, without changing playback for other listeners.
 - Removed 37 requested tracks from the radio rotation, leaving 51 songs. Original audio files remain untouched.
 - Added 30 Neon Drift recordings, bringing the revised station to 81 tracks and about 5 hours 33 minutes of music.
 - Added 30 Neon Rain recordings, bringing the station to 111 tracks and about 7 hours 42 minutes of music.

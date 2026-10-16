@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, Pause, Play, Radio as RadioIcon, RotateCw, Volume2 } from 'lucide-react';
+import { ArrowLeft, Pause, Play, Radio as RadioIcon, RotateCw, SkipForward, Volume2 } from 'lucide-react';
 import { getRadioPosition, radioAudioBase, radioTracks } from './data/radioSchedule';
 
 function time(value: number) {
@@ -11,14 +11,26 @@ export default function Radio() {
   const playing = useRef(false);
   const clockOffset = useRef(0);
   const loadedIndex = useRef(-1);
+  const personalPosition = useRef<{ index: number; offset: number } | null>(null);
+  const [personal, setPersonal] = useState(false);
   const [position, setPosition] = useState(() => getRadioPosition(Date.now()));
   const [status, setStatus] = useState('Ready');
   const [error, setError] = useState('');
   const [listening, setListening] = useState(false);
   const [volume, setVolume] = useState(0.7);
 
+  function currentPosition() {
+    const local = personalPosition.current;
+    if (!local) return getRadioPosition(Date.now() + clockOffset.current);
+    const player = audio.current;
+    if (player && loadedIndex.current === local.index && player.readyState >= 1) {
+      local.offset = player.currentTime;
+    }
+    return { ...local };
+  }
+
   function synchronize(force = false) {
-    const current = getRadioPosition(Date.now() + clockOffset.current);
+    const current = currentPosition();
     setPosition(current);
     const player = audio.current;
     if (!player || !playing.current) return;
@@ -27,7 +39,7 @@ export default function Radio() {
       setStatus('Connecting');
       player.src = radioAudioBase + radioTracks[current.index].file;
       player.load();
-    } else if (player.readyState >= 1 && Math.abs(player.currentTime - current.offset) > 3) {
+    } else if (!personalPosition.current && player.readyState >= 1 && Math.abs(player.currentTime - current.offset) > 3) {
       player.currentTime = current.offset;
     }
   }
@@ -59,7 +71,9 @@ export default function Radio() {
   async function startAudio() {
     const player = audio.current;
     if (!player || !playing.current) return;
-    const current = getRadioPosition(Date.now() + clockOffset.current);
+    const current = personalPosition.current
+      ? { ...personalPosition.current }
+      : getRadioPosition(Date.now() + clockOffset.current);
     if (current.index !== loadedIndex.current) { synchronize(); return; }
     player.currentTime = current.offset;
     try {
@@ -71,6 +85,7 @@ export default function Radio() {
   }
 
   function stop() {
+    currentPosition();
     playing.current = false;
     audio.current?.pause();
     setListening(false);
@@ -78,12 +93,27 @@ export default function Radio() {
   }
 
   function tuneIn() {
+    currentPosition();
     setError('');
     playing.current = true;
     setListening(true);
     synchronize(true);
     // Begin playback within the click gesture for mobile browsers.
     void audio.current?.play().catch(() => {});
+  }
+
+  function skip() {
+    const current = currentPosition();
+    personalPosition.current = { index: (current.index + 1) % radioTracks.length, offset: 0 };
+    loadedIndex.current = -1;
+    setPersonal(true);
+    tuneIn();
+  }
+
+  function backToLive() {
+    personalPosition.current = null;
+    setPersonal(false);
+    tuneIn();
   }
 
   const track = radioTracks[position.index];
@@ -99,7 +129,7 @@ export default function Radio() {
         <div className="flex items-center gap-3 text-brand text-sm font-bold uppercase"><RadioIcon size={20} /> Original music, around the clock</div>
         <h1 className="text-5xl md:text-7xl font-bold mt-6 mb-10">JimWashkau Radio</h1>
         <section className="border-y border-white/15 py-10" aria-label="Radio player">
-          <div className="flex items-center gap-2 text-sm text-emerald-400"><span className="w-2 h-2 rounded-full bg-emerald-400" /> Now on the station</div>
+          <div className="flex items-center gap-2 text-sm text-emerald-400"><span className="w-2 h-2 rounded-full bg-emerald-400" /> {personal ? 'Your playlist' : 'Now on the station'}</div>
           <div className="flex items-center gap-6 mt-5">
             <img src="/radio-cover.jpg" alt="Artwork from Jim Washkau's original recordings" className="w-24 h-24 md:w-36 md:h-36 object-cover shrink-0 rounded" />
             <div className="min-w-0"><h2 className="text-2xl md:text-4xl font-bold break-words">{track.title.replaceAll('_', ' ')}</h2><p className="text-white/50 mt-2">Jim Washkau</p></div>
@@ -108,6 +138,8 @@ export default function Radio() {
           <div className="flex justify-between text-xs text-white/50 mt-2 tabular-nums"><span>{time(position.offset)}</span><span>{time(track.duration)}</span></div>
           <div className="flex flex-wrap items-center gap-6 mt-8">
             <button onClick={listening ? stop : tuneIn} aria-label={listening ? 'Pause radio' : 'Play radio'} title={listening ? 'Pause radio' : 'Play radio'} className="w-16 h-16 shrink-0 rounded-full bg-brand flex items-center justify-center hover:brightness-110">{listening ? <Pause size={26} /> : <Play size={26} />}</button>
+            <button onClick={skip} aria-label="Skip song" title="Skip song" className="w-12 h-12 shrink-0 flex items-center justify-center border border-white/20 hover:border-brand hover:text-brand"><SkipForward size={24} /></button>
+            {personal && <button onClick={backToLive} className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-white"><RadioIcon size={18} /> Back to Live</button>}
             <span className="text-sm text-white/60" role="status">{status}</span>
             <label className="flex items-center gap-3 ml-auto"><Volume2 size={20} /><span className="sr-only">Volume</span><input aria-label="Volume" type="range" min="0" max="1" step="0.01" value={volume} onChange={event => { const next = Number(event.target.value); setVolume(next); if (audio.current) audio.current.volume = next; }} className="w-28 accent-blue-500" /></label>
           </div>
@@ -118,7 +150,7 @@ export default function Radio() {
           {Array.from({ length: 5 }, (_, step) => radioTracks[(position.index + step + 1) % radioTracks.length]).map((next, index) => <div key={next.file} className="flex items-center gap-5 py-4 border-b border-white/10"><span className="text-brand text-sm tabular-nums">{String(index + 1).padStart(2, '0')}</span><span className="flex-1 min-w-0 break-words">{next.title.replaceAll('_', ' ')}</span><span className="text-white/40 text-sm tabular-nums">{time(next.duration)}</span></div>)}
         </section>
         <footer className="mt-12 text-sm text-white/40">Original recordings by Jim Washkau. All rights reserved.</footer>
-        <audio ref={audio} preload="none" onLoadedMetadata={() => { if (audio.current) audio.current.volume = volume; void startAudio(); }} onPlaying={() => { if (playing.current) { setStatus('On air'); setError(''); } else audio.current?.pause(); }} onWaiting={() => { if (playing.current) setStatus('Buffering'); }} onEnded={() => synchronize()} onError={() => { setError('The music connection was interrupted. Try reconnecting.'); stop(); }} />
+        <audio ref={audio} preload="none" onLoadedMetadata={() => { if (audio.current) audio.current.volume = volume; void startAudio(); }} onPlaying={() => { if (playing.current) { setStatus(personalPosition.current ? 'Playing' : 'On air'); setError(''); } else audio.current?.pause(); }} onWaiting={() => { if (playing.current) setStatus('Buffering'); }} onEnded={() => { if (personalPosition.current) skip(); else synchronize(); }} onError={() => { setError('The music connection was interrupted. Try reconnecting.'); stop(); }} />
       </main>
     </div>
   );
