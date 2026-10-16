@@ -185,3 +185,35 @@
 @keyframes bb8-book-droop{0%,50%{transform:translateY(0)}100%{transform:translateY(9px)}}
 @keyframes bb8-close-lens{0%,65%{opacity:0}85%,100%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.bb8-scene *{animation:none!important}.bb8-beep-word:not(:first-of-type){display:none}.bb8-beep-word{opacity:1}}
+
+/* Small moments follow the same soft, illustrated nursery style. */
+.bb8-droid.bb8-doing-waking .bb8-head{animation:bb8-sleepy-look 14s ease-in-out forwards}.bb8-half-lens{animation:bb8-half-awake 14s ease-in-out forwards}
+.bb8-droid.bb8-doing-tiny-dreams .bb8-body{animation:bb8-sleep-twitch 7s ease-in-out infinite}.bb8-droid.bb8-doing-tiny-dreams .bb8-head>path:first-child{transform-origin:461px 200px;animation:bb8-antenna-dream 5s ease-in-out infinite}.bb8-dream-heart{animation:bb8-dream-stars 8s ease-in-out infinite;transform-origin:476px 235px}
+.bb8-window-droplet{animation:bb8-rain-slide 4s linear infinite}.bb8-droid.bb8-doing-rain .bb8-head{animation:bb8-rain-watch 8s ease-in-out infinite}
+.bb8-falling-block{transform-box:fill-box;transform-origin:center bottom;animation:bb8-block-tumble 12s ease-in-out infinite}.bb8-falling-block-1{--fall-x:28px;--fall-y:27px;--fall-turn:25deg}.bb8-falling-block-2{--fall-x:-39px;--fall-y:54px;--fall-turn:-55deg}.bb8-falling-block-3{--fall-x:54px;--fall-y:81px;--fall-turn:70deg}.bb8-droid.bb8-doing-oops .bb8-head{animation:bb8-innocent-look 12s ease-in-out infinite}
+.bb8-droid.bb8-doing-goodbye{animation:bb8-see-you-out 9s ease-in-out forwards;transform-origin:478px 420px}.bb8-buddies-departing{animation:bb8-buddy-farewell 9s ease-in forwards}
+.bb8-shared-cup{animation:bb8-offer-cup 6s ease-in-out infinite}.bb8-percy-quilt{animation:bb8-quilt-tuck 6s ease-in-out infinite}.bb8-droid.bb8-doing-sharing .bb8-head{animation:bb8-curious-head 6s ease-in-out infinite}
+.bb8-droid.bb8-doing-camera{transform-origin:476px 235px;animation:bb8-camera-investigate 18s ease-in-out forwards}.bb8-camera-question{animation:bb8-led 5s ease-in-out infinite}
+.bb8-extra-books>g{animation:bb8-another-book 15s ease-in-out infinite}.bb8-droid.bb8-doing-negotiating .bb8-head{animation:bb8-curious-head 5s ease-in-out infinite}
+.bb8-quilt-smooth{animation:bb8-smooth-quilt 5s ease-in-out infinite}.bb8-droid.bb8-doing-comfort .bb8-head{animation:bb8-door-watch 6s ease-in-out infinite}
+.bb8-droid.bb8-doing-welcome{transform-origin:478px 420px;animation:bb8-wiggle 1.5s ease-in-out 4}
+.bb8-milestones{margin-top:20px;padding:18px;border:1px solid #dedbc8;border-radius:12px;background:#faf8ee}.bb8-milestones h3{margin:0 0 8px;color:#6d7c60;font-size:16px}.bb8-milestones p{font-size:12px;line-height:1.7;color:#78816e}.bb8-milestones p span{color:#bd9666}.bb8-milestones time{white-space:nowrap;margin-left:8px;font-size:10px;color:#909784}
+@keyframes bb8-sleepy-look{0%,15%{transform:rotate(-8deg)}40%{transform:rotate(6deg)}65%{transform:rotate(-4deg)}100%{transform:rotate(0)}}
+@keyframes bb8-half-awake{0%,20%{opacity:1}55%{opacity:.5}100%{opacity:0}}
+@keyframes bb8-sleep-twitch{0%,35%,45%,100%{transform:translate(0,0)}38%{transform:translate(2px,-1px)}41%{transform:translate(-1px,1px)}}
+@keyframes bb8-antenna-dream{0%,45%,65%,100%{transform:rotate(0)}50%{transform:rotate(5deg)}57%{transform:rotate(-4deg)}}
+@keyframes bb8-rain-slide{0%{transform:translate(0,-25px);opacity:0}15%{opacity:.7}90%{opacity:.6}100%{transform:translate(-15px,95px);opacity:0}}
+@keyframes bb8-rain-watch{0%,100%{transform:rotate(0)}45%{transform:rotate(10deg) translateY(3px)}}
+@keyframes bb8-block-tumble{0%,22%,100%{transform:translate(0,0) rotate(0)}35%,92%{transform:translate(var(--fall-x,0px),var(--fall-y,0px)) rotate(var(--fall-turn,0deg))}}
+@keyframes bb8-innocent-look{0%,24%{transform:rotate(8deg)}25%,50%{transform:rotate(0)}65%,85%{transform:rotate(-8deg)}100%{transform:rotate(8deg)}}
+@keyframes bb8-see-you-out{0%,100%{transform:translateX(0) rotate(0)}35%,65%{transform:translateX(90px) rotate(8deg)}}
+@keyframes bb8-buddy-farewell{0%,20%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(120px)}}
+@keyframes bb8-offer-cup{0%,100%{transform:translateX(-20px)}50%{transform:translateX(0)}}
+@keyframes bb8-quilt-tuck{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
+@keyframes bb8-camera-investigate{0%,100%{transform:translate(0,0) scale(1)}30%,65%{transform:translate(0,65px) scale(6.5)}80%{transform:translate(0,15px) scale(1.25)}}
+@keyframes bb8-another-book{0%,15%{opacity:0;transform:translateY(10px)}25%,100%{opacity:1;transform:translateY(0)}}
+@keyframes bb8-smooth-quilt{0%,100%{transform:scaleX(.98)}50%{transform:scaleX(1.02)} }
+@media(prefers-reduced-motion:reduce){.bb8-scene *{animation:none!important}.bb8-buddies-departing{opacity:0}}
+
+.bb8-droid.bb8-doing-oops,.bb8-droid.bb8-doing-oops .bb8-body{animation:none}
+@media(prefers-reduced-motion:reduce){.bb8-scene *{animation:none!important}}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 export const buddyNames = { percy: 'Percy', oppy: 'Oppy', ginny: 'Ginny' } as const;
 export type BuddyId = keyof typeof buddyNames;
@@ -62,5 +62,6 @@ export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => 
     setReset(value => value + 1);
     onEvent(automatic ? 'Surprise visits paused. You can still invite his buddies yourself.' : 'Surprise visits are on. A little friend will stop by now and then.');
   }
-  return { visiting: automaticVisitor ? [automaticVisitor] : manualVisitors, automatic, automaticVisitor, changeVisitors, toggleAutomatic };
+  const visiting = useMemo(() => automaticVisitor ? [automaticVisitor] : manualVisitors, [automaticVisitor, manualVisitors]);
+  return { visiting, automatic, automaticVisitor, changeVisitors, toggleAutomatic };
 }
