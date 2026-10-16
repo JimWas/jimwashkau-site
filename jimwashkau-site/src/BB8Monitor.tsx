@@ -65,6 +65,33 @@ function readLog(): CareEvent[] {
 }
 
 export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime, visiting, leaving = [] }: { leaving?: string[]; visiting: string[]; pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
+  // The camera visit belongs in front of the entire nursery, including the quilt and crib.
+  const droid = (
+      <g transform={activity === 'sleeping' ? 'translate(0 27) rotate(-35 478 340)' : activity === 'idle' ? 'translate(0 9)' : undefined}>
+      <g className={`bb8-droid bb8-${mood} bb8-routine-${activity} ${pastime ? `bb8-doing-${pastime.id}` : ''} ${visiting.length ? 'bb8-welcome-buddies' : ''}`}>
+        <g className="bb8-body"><circle cx="478" cy="340" r="94" fill="url(#bb8-ball)" stroke="#909993" strokeWidth="2"/>
+          <circle cx="478" cy="340" r="67" fill="#d68a45"/><circle cx="478" cy="340" r="49" fill="#ddddce" stroke="#b86d31" strokeWidth="4"/>
+          <circle cx="478" cy="340" r="31" fill="#8d9793"/><circle cx="478" cy="340" r="21" fill="#bfc6bd"/>
+          <path d="M471 276v20m14-20v20m-72 37h20m-20 14h20m87-14h20m-20 14h20m-69 39v20m14-20v20" stroke="#b6b8a9" strokeWidth="6"/>
+          <path d="M400 302q-10 39 0 72m155-72q10 39 0 72" stroke="#d68943" strokeWidth="15" fill="none"/>
+          <path d="M446 252q30-10 58 0m-58 176q30 10 58 0" stroke="#aeb6ac" strokeWidth="3" fill="none"/>
+          <circle cx="461" cy="328" r="3" fill="#59665f"/><circle cx="494" cy="353" r="3" fill="#59665f"/>
+        </g>
+        <g className="bb8-head"><path d="M453 225v-72" stroke="#b7bfb3" strokeWidth="4"/><path d="M450 154h6" stroke="#454d49" strokeWidth="6"/><path d="M468 219v-48" stroke="#b7bfb3" strokeWidth="3"/>
+          <path d="M413 261a65 65 0 0 1 130 0z" fill="url(#bb8-ball)" stroke="#a0a69d" strokeWidth="2"/>
+          <path d="M417 239h120" stroke="#d88b45" strokeWidth="10"/><path d="M426 216h101" stroke="#919d99" strokeWidth="5"/>
+          <path d="M413 258h130v12q-65 19-130 0z" fill="#a5aca2"/><path d="M416 263h124" stroke="#cf823f" strokeWidth="4"/>
+          <circle cx="476" cy="235" r="24" fill="#d5d5c7"/><circle cx="476" cy="235" r="19" fill="#2c393a"/><circle cx="476" cy="235" r="13" fill="#111e23"/><ellipse cx="471" cy="228" rx="6" ry="4" fill="#6e8b94"/>
+          {activity === 'sleeping' && pastime?.id !== 'waking' && <><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></>}
+          {pastime?.id === 'waking' && <path className="bb8-half-lens" d="M461 235a15 15 0 0 1 30 0z" fill="#586660"/>}
+          {pastime?.id === 'dozing' && <g className="bb8-doze-lens"><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></g>}
+          <circle cx="518" cy="249" r="8" fill="#344341"/><circle cx="519" cy="247" r="3" fill="#90b1b3"/>
+          <circle className="bb8-led" cx="443" cy="249" r="3" fill="#f58b55"/>
+        </g>
+        {pastime && <ActivityProps activity={pastime}/>}
+      </g>
+      </g>
+  );
   return <svg ref={sceneRef} className={`bb8-scene ${night ? 'is-night' : ''}`} viewBox="0 0 960 650" role="img" aria-label={`BB-8 ${mood === 'hello' ? 'waving hello' : pastime ? pastime.label.toLowerCase() : mood} in a softly lit spaceship nursery with ${friends.map(friend => `a stuffed ${friend.species}`).join(', ') || 'his cozy blanket'}${visiting.length ? `, visited by ${visiting.join(', ')}` : ''}`} xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="bb8-wall" x2="0" y2="1"><stop stopColor="#363f43"/><stop offset="1" stopColor="#72706a"/></linearGradient>
@@ -101,30 +128,7 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
       <ellipse cx="480" cy="394" rx="319" ry="87" fill="url(#bb8-bed)"/>
       <ellipse cx="480" cy="394" rx="319" ry="87" fill="url(#bb8-fabric)"/>
       <ellipse cx="468" cy="413" rx="133" ry="26" fill="#79827c" opacity=".28"/>
-      <g transform={activity === 'sleeping' ? 'translate(0 27) rotate(-35 478 340)' : activity === 'idle' ? 'translate(0 9)' : undefined}>
-      <g className={`bb8-droid bb8-${mood} bb8-routine-${activity} ${pastime ? `bb8-doing-${pastime.id}` : ''} ${visiting.length ? 'bb8-welcome-buddies' : ''}`}>
-        <g className="bb8-body"><circle cx="478" cy="340" r="94" fill="url(#bb8-ball)" stroke="#909993" strokeWidth="2"/>
-          <circle cx="478" cy="340" r="67" fill="#d68a45"/><circle cx="478" cy="340" r="49" fill="#ddddce" stroke="#b86d31" strokeWidth="4"/>
-          <circle cx="478" cy="340" r="31" fill="#8d9793"/><circle cx="478" cy="340" r="21" fill="#bfc6bd"/>
-          <path d="M471 276v20m14-20v20m-72 37h20m-20 14h20m87-14h20m-20 14h20m-69 39v20m14-20v20" stroke="#b6b8a9" strokeWidth="6"/>
-          <path d="M400 302q-10 39 0 72m155-72q10 39 0 72" stroke="#d68943" strokeWidth="15" fill="none"/>
-          <path d="M446 252q30-10 58 0m-58 176q30 10 58 0" stroke="#aeb6ac" strokeWidth="3" fill="none"/>
-          <circle cx="461" cy="328" r="3" fill="#59665f"/><circle cx="494" cy="353" r="3" fill="#59665f"/>
-        </g>
-        <g className="bb8-head"><path d="M453 225v-72" stroke="#b7bfb3" strokeWidth="4"/><path d="M450 154h6" stroke="#454d49" strokeWidth="6"/><path d="M468 219v-48" stroke="#b7bfb3" strokeWidth="3"/>
-          <path d="M413 261a65 65 0 0 1 130 0z" fill="url(#bb8-ball)" stroke="#a0a69d" strokeWidth="2"/>
-          <path d="M417 239h120" stroke="#d88b45" strokeWidth="10"/><path d="M426 216h101" stroke="#919d99" strokeWidth="5"/>
-          <path d="M413 258h130v12q-65 19-130 0z" fill="#a5aca2"/><path d="M416 263h124" stroke="#cf823f" strokeWidth="4"/>
-          <circle cx="476" cy="235" r="24" fill="#d5d5c7"/><circle cx="476" cy="235" r="19" fill="#2c393a"/><circle cx="476" cy="235" r="13" fill="#111e23"/><ellipse cx="471" cy="228" rx="6" ry="4" fill="#6e8b94"/>
-          {activity === 'sleeping' && pastime?.id !== 'waking' && <><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></>}
-          {pastime?.id === 'waking' && <path className="bb8-half-lens" d="M461 235a15 15 0 0 1 30 0z" fill="#586660"/>}
-          {pastime?.id === 'dozing' && <g className="bb8-doze-lens"><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></g>}
-          <circle cx="518" cy="249" r="8" fill="#344341"/><circle cx="519" cy="247" r="3" fill="#90b1b3"/>
-          <circle className="bb8-led" cx="443" cy="249" r="3" fill="#f58b55"/>
-        </g>
-        {pastime && <ActivityProps activity={pastime}/>}
-      </g>
-      </g>
+      {pastime?.id !== 'camera' && droid}
       {friends.map((friend, index) => <g key={friend.id} transform={`translate(${[765, 245, 670][index]} ${[414, 414, 430][index]}) rotate(${[8, -8, 5][index]})`}><PlushAnimal friend={friend}/>{(pastime?.id === 'tucking' || pastime?.id === 'comfort') && <g className="bb8-toy-quilt"><path d="M-33-14q33-12 66 0v35q-33 7-66 0z" fill="#a0bca9" stroke="#d5dfc7" strokeWidth="2"/><path d="M-24 0h48m-36-5v10m24-10v10" stroke="#dce6d0" strokeWidth="2"/></g>}</g>)}
       <path d="M177 448q120-44 216-3t236 0q89-36 152 3l-15 70q-297 35-573 0z" fill="#7c9891"/>
       <path d="M195 467q109-30 214 1t207-1q92-29 150-4" stroke="#a7bbb0" strokeWidth="3" fill="none"/>
@@ -147,6 +151,7 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
       {visiting.includes('percy') && <path className="bb8-percy-quilt" d="M70 548q70-20 137 0v44q-67-15-137 0z" fill="#9fb9a8" stroke="#d5dfc5" strokeWidth="3"/>}
       {visiting.includes('ginny') && <text x="765" y="293" fill="#e4bb9b" fontSize="30" className="bb8-play-float">♡</text>}
     </g>}
+    {pastime?.id === 'camera' && droid}
     <rect width="960" height="650" fill="#162e29" opacity={night ? '.28' : '0'} pointerEvents="none"/>
   </svg>;
 }
