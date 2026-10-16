@@ -2,6 +2,13 @@
 
 All notable website changes should be documented here. Keep the newest entry at the top.
 
+## 2026-10-16
+
+### Changed
+
+- Removed 37 requested tracks from the radio rotation, leaving 51 songs. Original audio files remain untouched.
+- Added 30 Neon Drift recordings, bringing the revised station to 81 tracks and about 5 hours 33 minutes of music.
+
 ## 2026-10-09
 
 ### Added

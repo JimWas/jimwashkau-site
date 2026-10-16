@@ -9,6 +9,17 @@ export type SiteUpdate = {
 
 export const siteUpdates: SiteUpdate[] = [
   {
+    date: '2026-10-16',
+    title: 'Neon Drift joins the radio',
+    category: 'Music',
+    summary: 'Thirty Neon Drift recordings join JimWashkau Radio.',
+    href: '/radio',
+    items: [
+      'Added 30 Neon Drift tracks to the shared station schedule.',
+      'Removed 37 requested songs from rotation, leaving 81 tracks.',
+    ],
+  },
+  {
     date: '2026-10-10',
     title: 'Little Droid: BB-8 Nursery',
     category: 'Interactive',
@@ -29,7 +40,7 @@ export const siteUpdates: SiteUpdate[] = [
     href: '/radio',
     items: [
       'Tune into the same scheduled track as other listeners.',
-      '88 original recordings with upcoming songs and volume controls.',
+      '81 original recordings with upcoming songs and volume controls.',
       'Audio hosted in a separate public GitHub repository.',
       'Featured on the homepage with a direct link to tune in.',
     ],
