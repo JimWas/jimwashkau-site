@@ -1,13 +1,14 @@
 [
   {
     "path": "/",
+    "socialImage": "public/site-preview-source.png",
     "title": "JimWashkau.com | Systems-First Engineering",
     "description": "Focused iOS apps, tools, experiments, and systems by Jim Washkau.",
     "headline": "MOVING THE MISSION FORWARD",
     "label": "Systems & software",
     "mark": "JW",
     "art": "src/assets/Mars_Spirit.png",
-    "image": "/social/home-68059eb6ac61.png"
+    "image": "/social/home-1970ada0b624.png"
   },
   {
     "path": "/bb8",

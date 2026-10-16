@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import sharp from 'sharp';
-import { escapeHtml } from './page-previews.mjs';
+import { escapeHtml, renderPreviewHtml } from './page-previews.mjs';
 const project = new URL('../', import.meta.url);
 const dataUrl = new URL('src/data/pageMetadata.json', project);
 const pages = JSON.parse(await fs.readFile(dataUrl, 'utf8'));
@@ -18,6 +18,15 @@ function wrap(text, limit=18) {
   return lines;
 }
 for (const page of pages) {
+  if (page.socialImage) {
+    const image = await sharp(await fs.readFile(new URL(page.socialImage, project)))
+      .resize(1200,630,{fit:'contain',background:'#000000'}).png().toBuffer();
+    const hash = createHash('sha256').update(image).digest('hex').slice(0,12);
+    const slug = page.path==='/'?'home':page.path.slice(1).replaceAll('/','-');
+    page.image = `/social/${slug}-${hash}.png`;
+    await fs.writeFile(new URL(path.basename(page.image), output), image);
+    continue;
+  }
   const isDroid = page.path === '/bb8';
   const accent = isDroid ? '#e4aa78' : '#479aef';
   let art='';
@@ -38,4 +47,6 @@ for (const page of pages) {
   await fs.writeFile(new URL(path.basename(page.image), output), image);
 }
 await fs.writeFile(dataUrl,JSON.stringify(pages,null,2)+'\n');
+const templateUrl = new URL('index.html', project);
+await fs.writeFile(templateUrl,renderPreviewHtml(await fs.readFile(templateUrl,'utf8'),pages[0]));
 console.log(`Prepared ${pages.length} page-specific 1200×630 social cards.`);
