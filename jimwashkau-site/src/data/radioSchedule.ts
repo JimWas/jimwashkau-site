@@ -3,7 +3,7 @@ import playlist from './radioPlaylist.json';
 export const radioTracks = playlist.tracks;
 export const radioEpoch = Date.parse(playlist.epoch);
 export const radioLoopDuration = radioTracks.reduce((sum, track) => sum + track.duration, 0);
-export const radioAudioBase = 'https://raw.githubusercontent.com/JimWas/JimWashkauRadio/60ed7cf/tracks/';
+export const radioAudioBase = 'https://raw.githubusercontent.com/JimWas/JimWashkauRadio/78812b9/tracks/';
 
 export function getRadioPosition(now: number) {
   let offset = (((now - radioEpoch) / 1000) % radioLoopDuration + radioLoopDuration) % radioLoopDuration;

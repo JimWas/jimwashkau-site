@@ -14,13 +14,17 @@ vm.runInNewContext(source, { exports, require: createRequire(filename) });
 const { getRadioPosition, radioTracks, radioEpoch, radioLoopDuration } = exports;
 
 test('playlist has valid durations and unique audio files', () => {
-  assert.equal(radioTracks.length, 81);
+  assert.equal(radioTracks.length, 111);
   assert.equal(new Set(radioTracks.map(track => track.file)).size, radioTracks.length);
   for (const track of radioTracks) assert.ok(track.duration > 0 && Number.isFinite(track.duration));
 });
 
 test('station includes exactly 30 Neon Drift additions', () => {
   assert.equal(radioTracks.filter(track => track.title.startsWith('Neon Drift')).length, 30);
+});
+
+test('station includes exactly 30 Neon Rain additions', () => {
+  assert.equal(radioTracks.filter(track => track.title.startsWith('Neon Rain')).length, 30);
 });
 
 test('removed tracks are excluded from the station', () => {
