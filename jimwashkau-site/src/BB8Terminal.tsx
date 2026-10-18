@@ -3,6 +3,7 @@ import { Heart, Terminal } from 'lucide-react';
 
 type TerminalLine = { id: number; kind: 'system' | 'droid' | 'command'; text: string };
 type Props = {
+  droidName?: string;
   event?: { time: number; text: string };
   status: string;
   lullaby: boolean;
@@ -25,7 +26,7 @@ const cuddles = [
 ];
 const rain = ['01♡010✦00101', '011001☾01010', '10✧001101♡01', '00110✦010110', '10♡001001✧01', '01001☾101001'];
 
-export default function BB8Terminal({ event, status, lullaby, night, onHello, onLullaby, onNight }: Props) {
+export default function BB8Terminal({ droidName = 'BB-8', event, status, lullaby, night, onHello, onLullaby, onNight }: Props) {
   const [input, setInput] = useState('');
   const [lines, setLines] = useState<TerminalLine[]>([
     { id: 0, kind: 'system', text: 'Nursery link established. Little droid detected.' },
@@ -68,7 +69,7 @@ export default function BB8Terminal({ event, status, lullaby, night, onHello, on
         case 'status': reply = `${status} · lullaby ${lullaby ? 'playing' : 'paused'} · night vision ${night ? 'on' : 'off'} · loved: absolutely.`; break;
         case 'hi':
         case 'hey':
-        case 'hello': await onHello(); reply = 'Sending a little hello... watch for BB-8’s reply above. ♡'; break;
+        case 'hello': await onHello(); reply = `Sending a little hello... watch for ${droidName}’s reply above. ♡`; break;
         case 'lullaby': await onLullaby(); reply = 'Lullaby control tapped. Sweet dreams are always on the menu.'; break;
         case 'night': onNight(); reply = night ? 'Warm nursery view restored. Hello, little sunshine.' : 'Night vision on. Keeping watch under the stars. ☾'; break;
         case 'hug':
@@ -88,10 +89,10 @@ export default function BB8Terminal({ event, status, lullaby, night, onHello, on
 
   return <section className="bb8-terminal" aria-labelledby="bb8-terminal-title">
     <div className="bb8-terminal-rain" aria-hidden="true">{rain.map((characters, i) => <span key={i} style={{ animationDelay: `${-i * 3}s`, animationDuration: `${17 + i * 2}s` }}>{characters.repeat(4)}</span>)}</div>
-    <header className="bb8-terminal-header"><div><span className="bb8-terminal-lights" aria-hidden="true"><i/><i/><i/></span><Terminal size={15}/><h2 id="bb8-terminal-title">BB-8’s dream terminal</h2></div><span className="bb8-terminal-connected"><span className="bb8-status-dot"/> cozy connection</span></header>
+    <header className="bb8-terminal-header"><div><span className="bb8-terminal-lights" aria-hidden="true"><i/><i/><i/></span><Terminal size={15}/><h2 id="bb8-terminal-title">{droidName}’s dream terminal</h2></div><span className="bb8-terminal-connected"><span className="bb8-status-dot"/> cozy connection</span></header>
     <div className="bb8-terminal-body">
       <div className="bb8-terminal-output" ref={outputRef} role="log" aria-label="Droid terminal messages" aria-live="off" tabIndex={0} onScroll={() => { const element = outputRef.current; if (element) followOutput.current = element.scrollHeight - element.scrollTop - element.clientHeight < 35; }}>
-        {lines.map(line => <p className={`bb8-terminal-line bb8-terminal-${line.kind}`} key={line.id}><span>{line.kind === 'command' ? 'you@nursery:~$' : line.kind === 'system' ? '[ cozy.os ]' : '[ bb-8 ♡ ]'}</span> {line.text}</p>)}
+        {lines.map(line => <p className={`bb8-terminal-line bb8-terminal-${line.kind}`} key={line.id}><span>{line.kind === 'command' ? 'you@nursery:~$' : line.kind === 'system' ? '[ cozy.os ]' : `[ ${droidName.toLowerCase()} ♡ ]`}</span> {line.text}</p>)}
       </div>
       <aside className="bb8-terminal-mascot" aria-hidden="true"><pre>{'   │ │\n  .─────.\n /  ●  · \\\n └───────┘\n (   ◎   )\n  `─────´'}</pre><span>tiny systems.<br/>big feelings.</span><Heart size={15}/></aside>
     </div>

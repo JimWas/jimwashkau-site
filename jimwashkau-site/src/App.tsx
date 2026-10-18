@@ -24,6 +24,7 @@ import WoWPolitics from './WoWPolitics';
 import Blog from './Blog';
 import Radio from './Radio';
 import BB8Monitor from './BB8Monitor';
+import BB9EPreview from './BB9EPreview';
 import LittleDroidFeature from './LittleDroidFeature';
 import { applyPageMetadata, normalizePagePath } from './PageMetadata';
 import { siteUpdates } from './data/siteUpdates';
@@ -269,7 +270,7 @@ function App() {
   }
 
   if (currentPath === '/bb8' || currentPath === '/bb8/' || currentPath === '/bb-8') {
-    return <BB8Monitor />;
+    return new URLSearchParams(window.location.search).get('preview') === 'bb9e' ? <BB9EPreview /> : <BB8Monitor />;
   }
 
   if (currentPath === '/radio' || currentPath === '/radio/') {

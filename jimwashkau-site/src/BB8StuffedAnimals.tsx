@@ -28,9 +28,9 @@ function validFriend(value: unknown): value is PlushFriend {
   const friend = value as Partial<PlushFriend>;
   return typeof friend.id === 'string' && typeof friend.name === 'string' && friend.name.length < 30 && species.includes(friend.species as Species) && /^#[a-f\d]{6}$/i.test(friend.color || '') && /^#[a-f\d]{6}$/i.test(friend.accent || '') && patches.includes(friend.patch as PlushFriend['patch']);
 }
-export function readPlushShelf(): PlushShelf {
+export function readPlushShelf(storageKey = 'bb8-plush-shelf'): PlushShelf {
   try {
-    const saved = JSON.parse(localStorage.getItem('bb8-plush-shelf') || 'null');
+    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
     if (saved && Array.isArray(saved.choices) && saved.choices.length === 6 && saved.choices.every(validFriend) && Array.isArray(saved.selected) && saved.selected.length <= 3 && saved.selected.every(validFriend) && Number.isFinite(saved.refreshAt)) {
       return { ...saved, refreshAt: Math.min(saved.refreshAt, Date.now() + PLUSH_REFRESH_MS) };
     }

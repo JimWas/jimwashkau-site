@@ -23,16 +23,16 @@ function identity(): Promise<GoogleIdentity> {
   }).catch(error => { identityPromise = undefined; throw error; });
   return identityPromise;
 }
-async function database(): Promise<IDBDatabase> {
+async function database(name = 'bb8-private-wall-photos'): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('bb8-private-wall-photos', 1);
+    const request = indexedDB.open(name, 1);
     request.onupgradeneeded = () => request.result.createObjectStore('photos', { keyPath: 'id' });
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(new Error('Photo storage is unavailable in this browser.'));
   });
 }
-async function photoStore(replacement?: WallPhoto[]): Promise<WallPhoto[]> {
-  const db = await database();
+async function photoStore(replacement?: WallPhoto[], storageKey = 'bb8-private-wall-photos'): Promise<WallPhoto[]> {
+  const db = await database(storageKey);
   try {
     return await new Promise((resolve, reject) => {
       const transaction = db.transaction('photos', replacement ? 'readwrite' : 'readonly');
@@ -68,7 +68,7 @@ function savedClientId() {
   try { return configured || localStorage.getItem('bb8-google-photos-client-id') || ''; } catch { return configured || ''; }
 }
 
-export function useWallPhotos({ enableGoogle = false } = {}) {
+export function useWallPhotos({ enableGoogle = false, storageKey = 'bb8-private-wall-photos', droidName = 'BB-8' } = {}) {
   const [photos, setPhotos] = useState<WallPhoto[]>([]);
   const [current, setCurrent] = useState(0);
   const [clientId, setClientId] = useState(savedClientId);
@@ -79,9 +79,9 @@ export function useWallPhotos({ enableGoogle = false } = {}) {
   const controllerRef = useRef<AbortController | null>(null);
   useEffect(() => {
     let active = true;
-    void photoStore().then(saved => { if (active) { setPhotos(saved.slice(0, PHOTO_LIMIT)); setCurrent(Math.floor(Math.random() * Math.max(saved.length, 1))); } }).catch(() => {});
+    void photoStore(undefined, storageKey).then(saved => { if (active) { setPhotos(saved.slice(0, PHOTO_LIMIT)); setCurrent(Math.floor(Math.random() * Math.max(saved.length, 1))); } }).catch(() => {});
     return () => { active = false; controllerRef.current?.abort(); };
-  }, []);
+  }, [storageKey]);
   useEffect(() => { if (enableGoogle && clientId) void identity().catch(() => {}); }, [clientId, enableGoogle]);
   const shuffle = useCallback(() => {
     setCurrent(previous => { if (photos.length < 2) return 0; const next = Math.floor(Math.random() * (photos.length - 1)); return next >= previous ? next + 1 : next; });
@@ -89,7 +89,7 @@ export function useWallPhotos({ enableGoogle = false } = {}) {
   useEffect(() => { if (photos.length < 2) return; const timer = window.setInterval(shuffle, 60000); return () => clearInterval(timer); }, [photos.length, shuffle]);
   async function save(added: WallPhoto[], replace = false) {
     const combined = (replace ? added : [...photos, ...added]).slice(-PHOTO_LIMIT);
-    await photoStore(combined); setPhotos(combined); setCurrent(combined.length - 1);
+    await photoStore(combined, storageKey); setPhotos(combined); setCurrent(combined.length - 1);
   }
   async function upload(event: ChangeEvent<HTMLInputElement>, replace = false) {
     const files = Array.from(event.target.files || []); event.target.value = '';
@@ -171,7 +171,7 @@ export function useWallPhotos({ enableGoogle = false } = {}) {
     }
   }
   async function clear() {
-    try { await photoStore([]); setPhotos([]); setCurrent(0); setMessage('Custom photos removed from this browser. The BB-8 portraits are back. Your original files are unchanged.'); }
+    try { await photoStore([], storageKey); setPhotos([]); setCurrent(0); setMessage(`Custom photos removed from this browser. The ${droidName} portraits are back. Your original files are unchanged.`); }
     catch (error) { setMessage(error instanceof Error ? error.message : 'Could not clear photos.'); }
   }
   return { photo: photos[current]?.data, cribPhoto: photos[(current + 1) % photos.length]?.data, count: photos.length, shuffle, upload, connect, clear, busy, canCancel: busy && controllerRef.current !== null, message, pickerUri, cancel: () => controllerRef.current?.abort(), setup, setSetup, clientId, configure };

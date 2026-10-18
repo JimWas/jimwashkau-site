@@ -13,11 +13,8 @@ import { littleActivities, pickLittleActivity, type LittleActivity } from './BB8
 import { advanceBattery, readBattery, saveBattery } from './BB8Battery';
 import StuffedAnimals, { PlushAnimal, readPlushShelf, refreshPlushShelf, type PlushFriend } from './BB8StuffedAnimals';
 
-import cozyPortrait from './assets/bb8-portraits/bb8-cozy-portrait.svg';
-import rechargePortrait from './assets/bb8-portraits/bb8-recharge-nap.svg';
-import stargazingPortrait from './assets/bb8-portraits/bb8-stargazing.svg';
-
-const nurseryPortraits = [cozyPortrait, rechargePortrait, stargazingPortrait];
+import { BB9EBody, BB9EHead, BB9EDefs } from './BB9EModel';
+import { droidProfiles, readResident, type DroidId } from './DroidProfiles';
 
 type Activity = 'sleeping' | 'idle' | 'busy' | 'up';
 type Mood = Activity | 'dreaming' | 'wiggling' | 'hello';
@@ -58,32 +55,33 @@ function readPageTheme(): PageTheme {
   catch { return 'system'; }
 }
 
-function readMilestones(): CareEvent[] {
-  try { const saved = JSON.parse(localStorage.getItem('bb8-milestones') || '[]');
+function readMilestones(storageKey = 'bb8-milestones'): CareEvent[] {
+  try { const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
     return Array.isArray(saved) ? saved.filter((entry): entry is CareEvent => typeof entry?.time === 'number' && Number.isFinite(entry.time) && typeof entry?.text === 'string').slice(0, 6) : [];
   } catch { return []; }
 }
-function readLog(): CareEvent[] {
+function readLog(storageKey = 'bb8-care-log'): CareEvent[] {
   try {
-    const saved: unknown = JSON.parse(localStorage.getItem('bb8-care-log') || '[]');
+    const saved: unknown = JSON.parse(localStorage.getItem(storageKey) || '[]');
     return Array.isArray(saved) ? saved.filter((entry): entry is CareEvent => typeof entry?.time === 'number' && Number.isFinite(entry.time) && typeof entry?.text === 'string').slice(0, 12) : [];
   } catch { return []; }
 }
 
-export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime, visiting, leaving = [] }: { leaving?: string[]; visiting: string[]; pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
+export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime, visiting, leaving = [], resident = 'bb8' }: { resident?: DroidId; leaving?: string[]; visiting: string[]; pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
+  const droidName = droidProfiles[resident].name;
   // The camera visit belongs in front of the entire nursery, including the quilt and crib.
   const droid = (
       <g transform={activity === 'sleeping' ? 'translate(0 27) rotate(-35 478 340)' : activity === 'idle' ? 'translate(0 9)' : undefined}>
       <g className={`bb8-droid bb8-${mood} bb8-routine-${activity} ${pastime ? `bb8-doing-${pastime.id}` : ''} ${visiting.length ? 'bb8-welcome-buddies' : ''}`}>
-        <g className="bb8-body"><circle cx="478" cy="340" r="94" fill="url(#bb8-ball)" stroke="#909993" strokeWidth="2"/>
+        <g className="bb8-body">{resident === 'bb9e' ? <g transform="translate(158 6)"><BB9EBody/></g> : <> <circle cx="478" cy="340" r="94" fill="url(#bb8-ball)" stroke="#909993" strokeWidth="2"/>
           <circle cx="478" cy="340" r="67" fill="#d68a45"/><circle cx="478" cy="340" r="49" fill="#ddddce" stroke="#b86d31" strokeWidth="4"/>
           <circle cx="478" cy="340" r="31" fill="#8d9793"/><circle cx="478" cy="340" r="21" fill="#bfc6bd"/>
           <path d="M471 276v20m14-20v20m-72 37h20m-20 14h20m87-14h20m-20 14h20m-69 39v20m14-20v20" stroke="#b6b8a9" strokeWidth="6"/>
           <path d="M400 302q-10 39 0 72m155-72q10 39 0 72" stroke="#d68943" strokeWidth="15" fill="none"/>
           <path d="M446 252q30-10 58 0m-58 176q30 10 58 0" stroke="#aeb6ac" strokeWidth="3" fill="none"/>
           <circle cx="461" cy="328" r="3" fill="#59665f"/><circle cx="494" cy="353" r="3" fill="#59665f"/>
-        </g>
-        <g className="bb8-head"><path d="M453 225v-72" stroke="#b7bfb3" strokeWidth="4"/><path d="M450 154h6" stroke="#454d49" strokeWidth="6"/><path d="M468 219v-48" stroke="#b7bfb3" strokeWidth="3"/>
+ </>}</g>
+        <g className="bb8-head">{resident === 'bb9e' ? <g transform="translate(158 6)"><BB9EHead sleeping={activity === 'sleeping'} waking={pastime?.id === 'waking'} dozing={pastime?.id === 'dozing'} hello={mood === 'hello'}/></g> : <> <path d="M453 225v-72" stroke="#b7bfb3" strokeWidth="4"/><path d="M450 154h6" stroke="#454d49" strokeWidth="6"/><path d="M468 219v-48" stroke="#b7bfb3" strokeWidth="3"/>
           <path d="M413 261a65 65 0 0 1 130 0z" fill="url(#bb8-ball)" stroke="#a0a69d" strokeWidth="2"/>
           <path d="M417 239h120" stroke="#d88b45" strokeWidth="10"/><path d="M426 216h101" stroke="#919d99" strokeWidth="5"/>
           <path d="M413 258h130v12q-65 19-130 0z" fill="#a5aca2"/><path d="M416 263h124" stroke="#cf823f" strokeWidth="4"/>
@@ -93,13 +91,14 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
           {pastime?.id === 'dozing' && <g className="bb8-doze-lens"><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></g>}
           <circle cx="518" cy="249" r="8" fill="#344341"/><circle cx="519" cy="247" r="3" fill="#90b1b3"/>
           <circle className="bb8-led" cx="443" cy="249" r="3" fill="#f58b55"/>
-        </g>
+ </>}</g>
         {pastime && <ActivityProps activity={pastime}/>}
       </g>
       </g>
   );
-  return <svg ref={sceneRef} className={`bb8-scene ${night ? 'is-night' : ''}`} viewBox="0 0 960 650" role="img" aria-label={`BB-8 ${mood === 'hello' ? 'waving hello' : pastime ? pastime.label.toLowerCase() : mood} in a softly lit spaceship nursery with ${friends.map(friend => `a stuffed ${friend.species}`).join(', ') || 'his cozy blanket'}${visiting.length ? `, visited by ${visiting.join(', ')}` : ''}`} xmlns="http://www.w3.org/2000/svg">
+  return <svg ref={sceneRef} className={`bb8-scene ${night ? 'is-night' : ''}`} viewBox="0 0 960 650" role="img" aria-label={`${droidName} ${mood === 'hello' ? 'waving hello' : pastime ? pastime.label.toLowerCase() : mood} in a softly lit spaceship nursery with ${friends.map(friend => `a stuffed ${friend.species}`).join(', ') || 'his cozy blanket'}${visiting.length ? `, visited by ${visiting.join(', ')}` : ''}`} xmlns="http://www.w3.org/2000/svg">
     <defs>
+      {resident === 'bb9e' && <BB9EDefs/>}
       <linearGradient id="bb8-wall" x2="0" y2="1"><stop stopColor="#363f43"/><stop offset="1" stopColor="#72706a"/></linearGradient>
       <linearGradient id="bb8-bed" x2="0" y2="1"><stop stopColor="#ebe5d5"/><stop offset="1" stopColor="#b8b5a9"/></linearGradient>
       <radialGradient id="bb8-ball" cx=".34" cy=".24" r=".75"><stop stopColor="#fffcf0"/><stop offset=".65" stopColor="#e1e1d6"/><stop offset="1" stopColor="#969f9c"/></radialGradient>
@@ -141,7 +140,7 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
       <path d="M152 455q321 106 656 0l-7 29q-320 107-642 0z" fill="#c2b59a"/>
       <path d="M182 488v72m74-51v60m75-47v52m75-46v51m75-48v50m75-54v52m75-60v57m75-72v65m71-89v75" stroke="#b6a88d" strokeWidth="9" strokeLinecap="round"/>
       <path d="M157 564q322 76 642 0" stroke="#d2c3a7" strokeWidth="15" fill="none" strokeLinecap="round"/>
-      {cribPhoto && <g aria-label="BB-8's crib portrait">
+      {cribPhoto && <g aria-label={`${droidName}'s crib portrait`}>
         <path d="M472 534v19m16-19v19" stroke="#d8a574" strokeWidth="5" strokeLinecap="round"/>
         <rect x="422" y="546" width="116" height="78" rx="5" fill="#c9bda2" stroke="#a99d87" strokeWidth="5"/>
         <image href={cribPhoto} x="430" y="554" width="100" height="62" preserveAspectRatio="xMidYMid meet"/>
@@ -150,8 +149,8 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
     <path d="M80 295v80m-28 0h56M52 295q28-58 56 0z" fill="#e4c391" stroke="#c6ad83" strokeWidth="3"/>
     <circle cx="80" cy="298" r="65" fill="url(#bb8-glow)"/>
     <g className={`bb8-zzz ${activity !== 'sleeping' ? 'is-awake' : ''}`} fill="#ece5ce" fontFamily="system-ui" fontWeight="600"><text x="567" y="228" fontSize="18">z</text><text x="588" y="199" fontSize="25">z</text><text x="615" y="163" fontSize="33">z</text></g>
-    <NurseryBuddies visiting={visiting} sleeping={activity === 'sleeping'}/>
-    {leaving.length > 0 && <g className="bb8-buddies-departing"><NurseryBuddies visiting={leaving} sleeping={false}/></g>}
+    <NurseryBuddies visiting={visiting} droidName={droidName} sleeping={activity === 'sleeping'}/>
+    {leaving.length > 0 && <g className="bb8-buddies-departing"><NurseryBuddies visiting={leaving} droidName={droidName} sleeping={false}/></g>}
     {pastime?.id === 'sharing' && <g aria-label="Sharing with his Mars buddies">
       {visiting.includes('oppy') && <g className="bb8-shared-cup"><rect x="790" y="524" width="32" height="40" rx="8" fill="#91b9a7" stroke="#d3dcc0" strokeWidth="3"/><path d="M788 530q-14-4-12 12t14 7m34-19q14-4 12 12t-14 7M803 524v-9h8v9" fill="none" stroke="#d3dcc0" strokeWidth="4"/></g>}
       {visiting.includes('percy') && <path className="bb8-percy-quilt" d="M70 548q70-20 137 0v44q-67-15-137 0z" fill="#9fb9a8" stroke="#d5dfc5" strokeWidth="3"/>}
@@ -163,9 +162,24 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
 }
 
 export default function BB8Monitor() {
+  const [resident, setResident] = useState<DroidId>(() => readResident(window.location.search));
+  useEffect(() => { try { localStorage.setItem('little-droid-resident', resident); } catch { /* Both nurseries still work without storage. */ } }, [resident]);
+  function selectResident(next: DroidId) {
+    const url = new URL(window.location.href); url.searchParams.set('droid', next); url.searchParams.delete('preview');
+    window.history.replaceState(null, '', url); setResident(next);
+  }
+  // Remounting closes the previous nursery's audio and timers before opening the other.
+  return <DroidMonitor key={resident} resident={resident} onResidentChange={selectResident}/>;
+}
+
+function DroidMonitor({ resident, onResidentChange }: { resident: DroidId; onResidentChange: (id: DroidId) => void }) {
+  const profile = droidProfiles[resident];
+  const droidName = profile.name;
+  const nurseryPortraits = profile.portraits;
+
   const [now, setNow] = useState(Date.now);
   const [portraitIndex, setPortraitIndex] = useState(0);
-  const customAlbum = useWallPhotos();
+  const customAlbum = useWallPhotos({storageKey: `${resident}-private-wall-photos`, droidName});
   useEffect(() => {
     const timer = window.setInterval(() => setPortraitIndex(previous => (previous + 1 + Math.floor(Math.random() * (nurseryPortraits.length - 1))) % nurseryPortraits.length), 60000);
     return () => clearInterval(timer);
@@ -185,13 +199,13 @@ export default function BB8Monitor() {
     try { localStorage.setItem('bb8-page-theme', next); } catch { /* The theme still works for this visit. */ }
   }
   const [night, setNight] = useState(false);
-  const [plushShelf, setPlushShelf] = useState(readPlushShelf);
+  const [plushShelf, setPlushShelf] = useState(() => readPlushShelf(`${resident}-plush-shelf`));
   const [sound, setSound] = useState(false);
   const [lullaby, setLullaby] = useState(false);
   const [audioStarted, setAudioStarted] = useState(false);
   const audioStartedRef = useRef(false);
   const [volume, setVolume] = useState(100);
-  const [battery, setBattery] = useState(readBattery);
+  const [battery, setBattery] = useState(() => readBattery(`${resident}-battery`));
   const batteryRef = useRef(battery);
   const [activity, setActivity] = useState<Activity>(battery.activity);
   const activityRef = useRef<Activity>(battery.activity);
@@ -205,8 +219,8 @@ export default function BB8Monitor() {
   const [helloUntil, setHelloUntil] = useState(0);
   const [helloPhrase, setHelloPhrase] = useState('That happy beep was just for you.');
   const lastHello = useRef(-1);
-  const [log, setLog] = useState<CareEvent[]>(readLog);
-  const [milestones, setMilestones] = useState<CareEvent[]>(readMilestones);
+  const [log, setLog] = useState<CareEvent[]>(() => readLog(`${resident}-care-log`));
+  const [milestones, setMilestones] = useState<CareEvent[]>(() => readMilestones(`${resident}-milestones`));
   const milestonesRef = useRef(milestones);
   const [leaving, setLeaving] = useState<string[]>([]);
   const previousVisitors = useRef<string[]>([]);
@@ -239,12 +253,12 @@ export default function BB8Monitor() {
     return () => clearTimeout(timer);
   }, [mood, visiblePastime]);
 
-  useEffect(() => { try { localStorage.setItem('bb8-plush-shelf', JSON.stringify(plushShelf)); } catch { /* The cuddle crew still works without storage. */ } }, [plushShelf]);
+  useEffect(() => { try { localStorage.setItem(`${resident}-plush-shelf`, JSON.stringify(plushShelf)); } catch { /* The cuddle crew still works without storage. */ } }, [plushShelf]);
   function toggleFriend(friend: PlushFriend) {
     const selected = plushShelf.selected.some(item => item.id === friend.id);
     if (!selected && plushShelf.selected.length >= 3) return;
     setPlushShelf(shelf => ({ ...shelf, selected: selected ? shelf.selected.filter(item => item.id !== friend.id) : [...shelf.selected, friend] }));
-    addLog(selected ? `${friend.name} the ${friend.species} is resting on the toy shelf.` : `${friend.name} the ${friend.species} joined BB-8 for cuddles.`);
+    addLog(selected ? `${friend.name} the ${friend.species} is resting on the toy shelf.` : `${friend.name} the ${friend.species} joined ${droidName} for cuddles.`);
   }
   function refreshFriends() {
     const refreshed = refreshPlushShelf(plushShelf);
@@ -257,7 +271,7 @@ export default function BB8Monitor() {
     const next = { ...advanceBattery(batteryRef.current, now), activity };
     batteryRef.current = next;
     setBattery(next);
-    saveBattery(next);
+    saveBattery(next, `${resident}-battery`);
     if (next.level >= 100 && !wasFullyCharged.current && activity === 'sleeping') {
       const celebration = littleActivities.find(item => item.id === 'charged')!;
       lastPastime.current = celebration;
@@ -271,7 +285,7 @@ export default function BB8Monitor() {
       setHelloUntil(0);
       setPastime(null);
       setActivity('sleeping');
-      setMessage('Low battery. BB-8 is settling down for a recharge nap.');
+      setMessage(`Low battery. ${droidName} is settling down for a recharge nap.`);
     }
   }, [now, activity]);
 
@@ -359,7 +373,7 @@ export default function BB8Monitor() {
   }
 
   const addLog = (text: string) => setLog(entries => [{ time: Date.now(), text }, ...entries].slice(0, 12));
-  const buddyVisits = useBuddyVisits(activity === 'sleeping', addLog);
+  const buddyVisits = useBuddyVisits(activity === 'sleeping', addLog, `${resident}-buddy-preferences`);
   const { visiting } = buddyVisits;
   useEffect(() => {
     buddiesPresent.current = visiting.length > 0;
@@ -385,10 +399,10 @@ export default function BB8Monitor() {
     document.addEventListener('visibilitychange', onVisibility);
     return () => document.removeEventListener('visibilitychange', onVisibility);
   }, []);
-  useEffect(() => { try { localStorage.setItem('bb8-milestones', JSON.stringify(milestones)); } catch { /* Memories remain available for this visit. */ } }, [milestones]);
+  useEffect(() => { try { localStorage.setItem(`${resident}-milestones`, JSON.stringify(milestones)); } catch { /* Memories remain available for this visit. */ } }, [milestones]);
   useEffect(() => {
     const title = document.title;
-    document.title = 'BB-8 Nursery · Little Droid Monitor';
+    document.title = `${droidName} Nursery · Little Droid Monitor`;
     const timer = window.setInterval(() => setNow(Date.now()), 1000);
     const onFullscreen = () => setFullscreen(document.fullscreenElement === feedRef.current);
     document.addEventListener('fullscreenchange', onFullscreen);
@@ -397,10 +411,10 @@ export default function BB8Monitor() {
   useEffect(() => {
     if (mood !== previousMood.current) {
       previousMood.current = mood;
-      if (mood !== 'hello') setLog(entries => [{ time: Date.now(), text: moodText[mood].log }, ...entries].slice(0, 12));
+      if (mood !== 'hello') setLog(entries => [{ time: Date.now(), text: moodText[mood].log.replaceAll('BB-8', droidName) }, ...entries].slice(0, 12));
     }
   }, [mood]);
-  useEffect(() => { try { localStorage.setItem('bb8-care-log', JSON.stringify(log)); } catch { /* Monitoring still works with storage disabled. */ } }, [log]);
+  useEffect(() => { try { localStorage.setItem(`${resident}-care-log`, JSON.stringify(log)); } catch { /* Monitoring still works with storage disabled. */ } }, [log]);
   useEffect(() => { if (!message) return; const timer = setTimeout(() => setMessage(''), 5000); return () => clearTimeout(timer); }, [message]);
   useEffect(() => () => { void audioRef.current?.close(); }, []);
 
@@ -436,7 +450,7 @@ export default function BB8Monitor() {
       if (context.state !== 'running') throw new Error('Audio unavailable');
       if (!audioStartedRef.current) { audioStartedRef.current = true; setAudioStarted(true); setSound(true); setLullaby(true); }
       return true;
-    } catch { if (!automatic) setMessage('Audio is unavailable in this browser. You can still watch BB-8.'); return false; }
+    } catch { if (!automatic) setMessage(`Audio is unavailable in this browser. You can still watch ${droidName}.`); return false; }
   }
   useEffect(() => {
     if (audioStarted) return;
@@ -564,7 +578,7 @@ export default function BB8Monitor() {
     }
     setHelloPhrase(`${beep} “${phrase}”`);
     setHelloUntil(Date.now() + 7000); setNow(Date.now());
-    addLog(`BB-8 says: “${phrase}”`);
+    addLog(`${droidName} says: “${phrase}”`);
     setMessage(`${beep} ${phrase}${hasAudio ? '' : ' (Audio unavailable in this browser.)'}`);
   }
   async function toggleLullaby() {
@@ -576,7 +590,7 @@ export default function BB8Monitor() {
     if (!sound && !await enableAudio()) return;
     setSound(!sound);
     if (sound) setBabyMood(null);
-    setMessage(sound ? 'BB-8’s little noises paused. The lullaby has its own control.' : 'BB-8’s little noises are on. Some chatter, some peaceful pauses.');
+    setMessage(sound ? `${droidName}’s little noises paused. The lullaby has its own control.` : `${droidName}’s little noises are on. Some chatter, some peaceful pauses.`);
   }
   useEffect(() => {
     if (!theatre) return;
@@ -622,20 +636,21 @@ export default function BB8Monitor() {
       }));
     } catch { setMessage('The wall photo could not load. Please try your snapshot again.'); return; }
     const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }));
-    const anchor = document.createElement('a'); anchor.href = url; anchor.download = `bb8-nursery-${new Date().toISOString().slice(0, 10)}.svg`; anchor.click();
+    const anchor = document.createElement('a'); anchor.href = url; anchor.download = `${resident}-nursery-${new Date().toISOString().slice(0, 10)}.svg`; anchor.click();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     addLog('You saved a nursery snapshot.'); setMessage('A little memory saved to your downloads.');
   }
 
-  return <div className={`bb8-page${darkPage ? ' is-dark' : ''}`}>
+  return <div className={`bb8-page bb8-resident-${resident}${darkPage ? ' is-dark' : ''}`}>
     <header className="bb8-header"><a href="/" className="bb8-home"><ArrowLeft size={16}/> JimWashkau.com</a><a className="bb8-wordmark" href="/bb8"><span className="bb8-logo"><Radio size={19}/></span> little droid<span className="bb8-wordmark-dot">.</span></a><div className="bb8-header-actions"><span className="bb8-header-note"><span className="bb8-status-dot"/> A little peace of mind</span><button className="bb8-theme-toggle" onClick={togglePageTheme} aria-label="Dark mode" aria-pressed={darkPage} title={darkPage ? 'Use light page theme' : 'Use dark page theme'}>{darkPage ? <Sun size={17}/> : <Moon size={17}/>}<span>Dark mode</span></button></div></header>
     <main className="bb8-main">
-      <section className="bb8-intro"><div><p className="bb8-eyebrow">THE GALAXY’S COZIEST CORNER</p><h1>Little droid. <em>Big dreams.</em></h1><p>A tiny adventurer deserves a good night’s recharge.<br className="bb8-desktop-break"/> Keep a loving eye on BB-8, any time of day.</p></div><div className="bb8-availability"><span><Moon size={20}/></span><div><strong>24 / 7 nursery</strong><small>Always a little closer</small></div></div></section>
+      <section className="bb8-intro"><div><p className="bb8-eyebrow">THE GALAXY’S COZIEST CORNER</p><h1>Little droid. <em>Big dreams.</em></h1><p>A tiny adventurer deserves a good night’s recharge.<br className="bb8-desktop-break"/> Keep a loving eye on {droidName}, any time of day.</p></div><div className="bb8-availability"><span><Moon size={20}/></span><div><strong>24 / 7 nursery</strong><small>Always a little closer</small></div></div></section>
+      <section className="bb8-resident-picker" aria-label="Choose your little droid"><div className="bb8-resident-buttons">{(['bb8','bb9e'] as const).map(id => <button key={id} onClick={() => onResidentChange(id)} aria-pressed={resident === id}><span className={`bb8-resident-dot ${id}`}/>{droidProfiles[id].name}</button>)}</div><p>{resident === 'bb9e' ? 'Small droid. Kind heart. He means well, he belongs here, and he is very loved.' : 'A little orange droid with a galaxy-sized heart. Always loved.'}</p></section>
       <div className={`bb8-layout ${theatre ? 'is-theatre' : ''}`}>
-        <section className="bb8-monitor" aria-label="BB-8 nursery monitor">
-          <div className="bb8-monitor-heading"><div><span className="bb8-status-dot"/><h2>BB-8’s nursery</h2></div><span>CAM 01 <span className="bb8-heading-divider">/</span> SIMULATED FEED</span></div>
+        <section className="bb8-monitor" aria-label={`${droidName} nursery monitor`}>
+          <div className="bb8-monitor-heading"><div><span className="bb8-status-dot"/><h2>{droidName}’s nursery</h2></div><span>CAM 01 <span className="bb8-heading-divider">/</span> SIMULATED FEED</span></div>
           <div ref={feedRef} className={`bb8-feed ${fullscreen ? 'is-fullscreen' : ''}`}>
-            <Nursery visiting={visiting} leaving={leaving} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={customAlbum.photo || nurseryPortraits[portraitIndex]} cribPhoto={customAlbum.cribPhoto || nurseryPortraits[(portraitIndex + 1) % nurseryPortraits.length]}/>
+            <Nursery resident={resident} visiting={visiting} leaving={leaving} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={customAlbum.photo || nurseryPortraits[portraitIndex]} cribPhoto={customAlbum.cribPhoto || nurseryPortraits[(portraitIndex + 1) % nurseryPortraits.length]}/>
             <div className="bb8-feed-top"><span className="bb8-feed-badge"><span className="bb8-status-dot"/> {night ? 'NIGHT VISION' : visiting.length ? 'BUDDY VISIT' : 'NURSERY VIEW'}</span><time dateTime={new Date(now).toISOString()}>{new Date(now).toLocaleTimeString([], { hour12: false })} <small>LOCAL</small></time></div>
             <div className="bb8-feed-bottom"><span><Moon size={15}/> {status.title}</span><div className="bb8-view-buttons">{theatre && !fullscreen && <button onClick={() => setTheatre(false)} aria-label="Exit theatre mode" title="Exit theatre mode"><Minimize2 size={18}/></button>}<button onClick={toggleFullscreen} aria-label={fullscreen ? 'Exit fullscreen' : theatre ? 'Open fullscreen' : 'Open theatre mode'} title={fullscreen ? 'Exit fullscreen' : theatre ? 'Fullscreen' : 'Theatre mode'}>{fullscreen ? <Minimize2 size={18}/> : <Maximize2 size={18}/>}</button></div></div>
             <span className="bb8-camera-corner bb8-corner-left"/><span className="bb8-camera-corner bb8-corner-right"/>
@@ -643,23 +658,23 @@ export default function BB8Monitor() {
           <div className="bb8-controls"><button className={sound ? 'is-active' : ''} onClick={toggleSound} aria-pressed={sound}>{sound ? <Volume2 size={19}/> : <VolumeX size={19}/>}<span>Sound <small>{sound ? 'on' : 'off'}</small></span></button><button className={night ? 'is-active' : ''} onClick={() => setNight(!night)} aria-pressed={night}>{night ? <Sun size={19}/> : <Moon size={19}/>}<span>Night vision</span></button><button onClick={saveSnapshot}><Camera size={19}/><span>Snapshot</span></button><div className="bb8-controls-note"><span className="bb8-status-dot"/> {lullaby ? 'Lullaby playing' : 'All cozy here'}</div></div>
           <label className="bb8-volume">Nursery volume <input type="range" min="0" max="100" value={volume} onChange={event => setVolume(Number(event.target.value))}/><span>{volume}%</span></label>
           <div className="bb8-play-controls"><label htmlFor="bb8-play-choice">Little adventures</label><select id="bb8-play-choice" value={visiblePastime?.id || ''} onChange={event => { const next = littleActivities.find(item => item.id === event.target.value); if (next) choosePastime(next); else chooseActivity(activity); }}><option value="">Let him surprise you</option>{littleActivities.map(item => <option key={item.id} value={item.id} disabled={eventMoments.includes(item.id) || (item.id === 'charged' && battery.level < 100) || (item.id === 'sharing' && visiting.length === 0)}>{item.label}{eventMoments.includes(item.id) ? ' (automatic)' : ''}{item.id === 'sharing' && !visiting.length ? ' (invite a buddy)' : ''}{item.id === 'charged' && battery.level < 100 ? ' (at 100%)' : ''}</option>)}</select><small>He picks his own adventures between naps.</small></div>
-          <div className="bb8-routine-controls" role="group" aria-label="BB-8 activity"><span>Little droid routine</span><div>{activityChoices.map(choice => <button key={choice.value} aria-pressed={activity === choice.value} onClick={() => chooseActivity(choice.value)}>{choice.label}</button>)}</div><small>Changes on his own, too.</small></div>
+          <div className="bb8-routine-controls" role="group" aria-label={`${droidName} activity`}><span>Little droid routine</span><div>{activityChoices.map(choice => <button key={choice.value} aria-pressed={activity === choice.value} onClick={() => chooseActivity(choice.value)}>{choice.label}</button>)}</div><small>Changes on his own, too.</small></div>
           <p className="bb8-feed-caption"><Sparkles size={14}/> A fan-made animated nursery. Activity and readings are pretend.</p>
         </section>
         <aside className="bb8-sidebar">
-          <section className="bb8-status-card"><div className="bb8-card-label"><span>LITTLE ONE’S STATUS</span><Heart size={16}/></div><div className="bb8-sleep-icon"><Moon size={29}/><span>✦</span></div><h2>{status.title}</h2><p>{status.detail}</p><div className="bb8-status-pills"><span><Check size={13}/> Safe & snug</span><span><BatteryFull size={15}/> {visiblePastime ? 'Learning & playing' : activity === 'sleeping' ? 'Recharging' : activity === 'idle' ? 'Daydreaming' : activity === 'busy' ? 'Exploring' : 'Ready to play'}</span></div><div className="bb8-reading-row"><div><span>Room temperature</span><strong>22<small>°C</small></strong></div><div><span>Battery</span><strong>{Math.round(battery.level)}<small>%</small>{activity === 'sleeping' && <BatteryCharging className="bb8-charging-icon" size={20} role="img" aria-label="Battery charging"/>}</strong></div></div><small className="bb8-pretend-label">Simulated battery · charges asleep, drains awake</small></section>
-          <section className="bb8-care-card"><p className="bb8-eyebrow">A LITTLE LOVE GOES A LONG WAY</p><h2>Be there, from anywhere.</h2><button className="bb8-hello-button" onClick={sayHello}><Heart size={18}/> Say hello to BB-8 <span>↗</span></button><button className={`bb8-lullaby-button ${lullaby ? 'is-active' : ''}`} onClick={toggleLullaby} aria-pressed={lullaby}><Music2 size={18}/><span>{lullaby ? 'Pause the lullaby' : audioStarted ? 'Resume the lullaby' : 'Start nursery audio'}</span><span className="bb8-music-bars" aria-hidden="true"><i/><i/><i/></span></button><p>{audioStarted ? 'An evolving lullaby, with little noises in his own time.' : 'Audio starts automatically. If your browser pauses it, tap anywhere to begin.'}</p></section>
+          <section className="bb8-status-card"><div className="bb8-card-label"><span>LITTLE ONE’S STATUS</span><Heart size={16}/></div><div className="bb8-sleep-icon"><Moon size={29}/><span>✦</span></div><h2>{status.title}</h2><p>{status.detail}</p><div className="bb8-status-pills"><span><Check size={13}/> Safe & snug</span>{resident === 'bb9e' && <span><Heart size={13}/> Means well · Very loved</span>}<span><BatteryFull size={15}/> {visiblePastime ? 'Learning & playing' : activity === 'sleeping' ? 'Recharging' : activity === 'idle' ? 'Daydreaming' : activity === 'busy' ? 'Exploring' : 'Ready to play'}</span></div><div className="bb8-reading-row"><div><span>Room temperature</span><strong>22<small>°C</small></strong></div><div><span>Battery</span><strong>{Math.round(battery.level)}<small>%</small>{activity === 'sleeping' && <BatteryCharging className="bb8-charging-icon" size={20} role="img" aria-label="Battery charging"/>}</strong></div></div><small className="bb8-pretend-label">Simulated battery · charges asleep, drains awake</small></section>
+          <section className="bb8-care-card"><p className="bb8-eyebrow">A LITTLE LOVE GOES A LONG WAY</p><h2>Be there, from anywhere.</h2><button className="bb8-hello-button" onClick={sayHello}><Heart size={18}/> Say hello to {droidName} <span>↗</span></button><button className={`bb8-lullaby-button ${lullaby ? 'is-active' : ''}`} onClick={toggleLullaby} aria-pressed={lullaby}><Music2 size={18}/><span>{lullaby ? 'Pause the lullaby' : audioStarted ? 'Resume the lullaby' : 'Start nursery audio'}</span><span className="bb8-music-bars" aria-hidden="true"><i/><i/><i/></span></button><p>{audioStarted ? 'An evolving lullaby, with little noises in his own time.' : 'Audio starts automatically. If your browser pauses it, tap anywhere to begin.'}</p></section>
         </aside>
       </div>
       {/* Google Photos stays hidden; this album uses only locally chosen images. */}
-      <CustomAlbum album={customAlbum}/>
-      <BuddyVisits visiting={visiting} sleeping={activity === 'sleeping'} automatic={buddyVisits.automatic} surprise={!!buddyVisits.automaticVisitor} onAutomatic={buddyVisits.toggleAutomatic} onChange={buddyVisits.changeVisitors}/>
+      <CustomAlbum album={customAlbum} droidName={droidName}/>
+      <BuddyVisits droidName={droidName} visiting={visiting} sleeping={activity === 'sleeping'} automatic={buddyVisits.automatic} surprise={!!buddyVisits.automaticVisitor} onAutomatic={buddyVisits.toggleAutomatic} onChange={buddyVisits.changeVisitors}/>
       <StuffedAnimals shelf={plushShelf} now={now} onToggle={toggleFriend} onRefresh={refreshFriends}/>
       <section className="bb8-journal"><div className="bb8-journal-heading"><div><p className="bb8-eyebrow">THE LITTLE MOMENTS</p><h2>Nursery notes</h2></div><span>Saved on this device</span></div><div className="bb8-log" aria-label="Recent nursery activity">{log.slice(0, 4).map((entry, i) => <article key={`${entry.time}-${i}`}><span className="bb8-log-icon">{entry.text.includes('lullaby') ? <Music2 size={16}/> : entry.text.includes('snapshot') ? <Camera size={16}/> : <Moon size={16}/>}</span><div><p>{entry.text}</p><time dateTime={new Date(entry.time).toISOString()}>{new Date(entry.time).toLocaleDateString([], { month: 'short', day: 'numeric' })} · {clock(entry.time)}</time></div></article>)}</div>{milestones.length > 0 && <div className="bb8-milestones"><h3>Little firsts ✦</h3><p>His little achievements, remembered on this device.</p>{milestones.map(entry => <p key={entry.text}><span>★</span> {entry.text} <time dateTime={new Date(entry.time).toISOString()}>{new Date(entry.time).toLocaleDateString([], {month:'short', day:'numeric'})}</time></p>)}</div>}</section>
-      <BB8Terminal event={log[0]} status={status.title} lullaby={lullaby} night={night} onHello={sayHello} onLullaby={toggleLullaby} onNight={() => setNight(!night)}/>
-      <div className="bb8-bottom-note"><span>Made for the love of a little orange droid.</span><a href="https://starwars.fandom.com/wiki/BB-8" target="_blank" rel="noreferrer">Meet BB-8 <ArrowUpRight size={14}/></a></div>
+      <BB8Terminal droidName={droidName} event={log[0]} status={status.title} lullaby={lullaby} night={night} onHello={sayHello} onLullaby={toggleLullaby} onNight={() => setNight(!night)}/>
+      <div className="bb8-bottom-note"><span>Made for the love of a little droid.</span><a href={profile.link} target="_blank" rel="noreferrer">Meet {droidName} <ArrowUpRight size={14}/></a></div>
     </main>
-    <footer className="bb8-footer"><span>Independent fan experience · BB-8 and Star Wars belong to Lucasfilm.</span><span>Available whenever you visit. Animation and audio run while this page is open.</span></footer>
+    <footer className="bb8-footer"><span>Independent fan experience · BB-8, BB-9E and Star Wars belong to Lucasfilm.</span><span>Available whenever you visit. Animation and audio run while this page is open.</span></footer>
     <div className={`bb8-toast ${message ? 'is-visible' : ''}`} role="status" aria-live="polite">{message}</div>
   </div>;
 }

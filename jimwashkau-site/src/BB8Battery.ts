@@ -16,10 +16,10 @@ export function advanceBattery(state: BatteryState, now: number): BatteryState {
   return { ...state, level: Math.max(0, Math.min(100, level)), updatedAt: now };
 }
 
-export function readBattery(): BatteryState {
+export function readBattery(key = storageKey): BatteryState {
   const now = Date.now();
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    const saved = JSON.parse(localStorage.getItem(key) || 'null');
     if (saved && Number.isFinite(saved.level) && saved.level >= 0 && saved.level <= 100 && Number.isFinite(saved.updatedAt) && ['sleeping', 'idle', 'busy', 'up'].includes(saved.activity)) {
       const state = advanceBattery(saved, now);
       // An unattended droid settles onto his charger before running flat.
@@ -33,6 +33,6 @@ export function readBattery(): BatteryState {
   return { level: 98, updatedAt: now, activity: 'up' };
 }
 
-export function saveBattery(state: BatteryState) {
-  try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch { /* Keep running in memory. */ }
+export function saveBattery(state: BatteryState, key = storageKey) {
+  try { localStorage.setItem(key, JSON.stringify(state)); } catch { /* Keep running in memory. */ }
 }

@@ -11,11 +11,17 @@ export function pickBuddy(previous: BuddyId | null, random = Math.random): Buddy
   return choices[Math.floor(random() * choices.length)];
 }
 
-export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => void) {
-  const [automatic, setAutomatic] = useState(true);
-  const [manualVisitors, setManualVisitors] = useState<BuddyId[]>([]);
+function readVisitPreferences(storageKey: string): { automatic: boolean; visitors: BuddyId[] } {
+  try { const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    return { automatic: typeof saved?.automatic === 'boolean' ? saved.automatic : true, visitors: Array.isArray(saved?.visitors) ? [...new Set(saved.visitors.filter((id: unknown): id is BuddyId => typeof id === 'string' && Object.hasOwn(buddyNames, id)))] as BuddyId[] : [] };
+  } catch { return {automatic: true, visitors: []}; }
+}
+export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => void, storageKey = 'bb8-buddy-preferences') {
+  const [automatic, setAutomatic] = useState(() => readVisitPreferences(storageKey).automatic);
+  const [manualVisitors, setManualVisitors] = useState<BuddyId[]>(() => readVisitPreferences(storageKey).visitors);
   const [automaticVisitor, setAutomaticVisitor] = useState<BuddyId | null>(null);
   const [reset, setReset] = useState(0);
+  useEffect(() => { try { localStorage.setItem(storageKey, JSON.stringify({automatic, visitors: manualVisitors})); } catch { /* Visits still work in memory. */ } }, [storageKey, automatic, manualVisitors]);
   const lastBuddy = useRef<BuddyId | null>(null);
   const hasVisited = useRef(false);
   const sleepingRef = useRef(sleeping);
