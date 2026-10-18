@@ -27,7 +27,7 @@ for (const page of pages) {
     await fs.writeFile(new URL(path.basename(page.image), output), image);
     continue;
   }
-  const isDroid = page.path === '/bb8';
+  const isDroid = page.path === '/bb8' || page.path === '/bb9';
   const accent = isDroid ? '#e4aa78' : '#479aef';
   let art='';
   if(page.art) {

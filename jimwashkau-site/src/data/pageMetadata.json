@@ -24,6 +24,19 @@
     "image": "/social/bb8-b46a8798c35f.png"
   },
   {
+    "path": "/bb9",
+    "title": "BB-9E Nursery | Little Droid",
+    "description": "A gentle little droid who means well and is very loved. Visit BB-9E’s cozy nursery for 47 little adventures, lullabies, recharge naps, and Mars buddy playdates.",
+    "headline": "SMALL DROID. KIND HEART.",
+    "label": "Very loved. Always welcome.",
+    "mark": "BB-9E",
+    "art": "src/assets/bb9e-portraits/cozy.svg",
+    "aliases": [
+      "/bb9-e"
+    ],
+    "image": "/social/bb9-2b459adbed82.png"
+  },
+  {
     "path": "/radio",
     "title": "JimWashkau Radio | Original Music",
     "description": "Tune into original music by Jim Washkau, playing around the clock. Everyone hears the same song.",

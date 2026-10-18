@@ -269,7 +269,7 @@ function App() {
     return <SpaceDrinks />;
   }
 
-  if (currentPath === '/bb8' || currentPath === '/bb8/' || currentPath === '/bb-8') {
+  if (currentPath === '/bb8' || currentPath === '/bb8/' || currentPath === '/bb-8' || currentPath === '/bb9' || currentPath === '/bb9-e') {
     return new URLSearchParams(window.location.search).get('preview') === 'bb9e' ? <BB9EPreview /> : <BB8Monitor />;
   }
 

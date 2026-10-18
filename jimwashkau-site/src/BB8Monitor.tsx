@@ -162,17 +162,19 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
 }
 
 export default function BB8Monitor() {
-  const [resident, setResident] = useState<DroidId>(() => readResident(window.location.search));
+  const [resident, setResident] = useState<DroidId>(() => readResident(window.location.search, window.location.pathname));
+  const [theatre, setTheatre] = useState(false);
   useEffect(() => { try { localStorage.setItem('little-droid-resident', resident); } catch { /* Both nurseries still work without storage. */ } }, [resident]);
   function selectResident(next: DroidId) {
-    const url = new URL(window.location.href); url.searchParams.set('droid', next); url.searchParams.delete('preview');
+    const url = new URL(window.location.href); url.pathname = next === 'bb9e' ? '/bb9' : '/bb8'; url.searchParams.delete('droid'); url.searchParams.delete('preview');
     window.history.replaceState(null, '', url); setResident(next);
+    window.dispatchEvent(new PopStateEvent('popstate'));
   }
   // Remounting closes the previous nursery's audio and timers before opening the other.
-  return <DroidMonitor key={resident} resident={resident} onResidentChange={selectResident}/>;
+  return <DroidMonitor key={resident} resident={resident} onResidentChange={selectResident} theatre={theatre} onTheatreChange={setTheatre}/>;
 }
 
-function DroidMonitor({ resident, onResidentChange }: { resident: DroidId; onResidentChange: (id: DroidId) => void }) {
+function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: setTheatre }: { resident: DroidId; onResidentChange: (id: DroidId) => void; theatre: boolean; onTheatreChange: (enabled: boolean) => void }) {
   const profile = droidProfiles[resident];
   const droidName = profile.name;
   const nurseryPortraits = profile.portraits;
@@ -226,7 +228,6 @@ function DroidMonitor({ resident, onResidentChange }: { resident: DroidId; onRes
   const previousVisitors = useRef<string[]>([]);
   const [message, setMessage] = useState('');
   const [fullscreen, setFullscreen] = useState(false);
-  const [theatre, setTheatre] = useState(false);
   const sceneRef = useRef<SVGSVGElement>(null);
   const feedRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<AudioContext | null>(null);

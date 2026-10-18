@@ -17,6 +17,22 @@
       "destination": "/api/$1"
     },
     {
+      "source": "/bb9",
+      "destination": "/bb9/index.html"
+    },
+    {
+      "source": "/bb9/",
+      "destination": "/bb9/index.html"
+    },
+    {
+      "source": "/bb9-e",
+      "destination": "/bb9/index.html"
+    },
+    {
+      "source": "/bb9-e/",
+      "destination": "/bb9/index.html"
+    },
+    {
       "source": "/bb8",
       "destination": "/bb8/index.html"
     },

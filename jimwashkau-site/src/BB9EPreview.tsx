@@ -52,6 +52,6 @@ export default function BB9EPreview() {
       </div>
       <aside className="nine-personality"><div className="nine-status-icon">{pose === 'sleepy' ? <Moon size={24}/> : <Heart size={24}/>}</div><p className="nine-eyebrow">GETTING TO KNOW HIM</p><h2>{selected.title}</h2><p>{selected.note}</p><div className="nine-tags"><span>Means well</span><span>Very loved</span></div><hr/><p className="nine-choice-label">Try a little moment</p><div className="nine-poses">{poses.map(item=><button key={item.id} aria-pressed={pose === item.id} onClick={() => setPose(item.id)}>{item.label}</button>)}</div><p className="nine-preview-note"><Sparkles size={14}/> Model preview · a little personality in progress</p></aside>
     </section>
-    <div className="nine-enter"><a href="/bb8?droid=bb9e">Visit BB-9E’s nursery <Heart size={15}/></a></div><footer className="nine-footer"><span>He belongs in this cozy little galaxy, right alongside BB-8.</span><span>Independent fan-made character study.</span></footer>
+    <div className="nine-enter"><a href="/bb9">Visit BB-9E’s nursery <Heart size={15}/></a></div><footer className="nine-footer"><span>He belongs in this cozy little galaxy, right alongside BB-8.</span><span>Independent fan-made character study.</span></footer>
   </main>;
 }
