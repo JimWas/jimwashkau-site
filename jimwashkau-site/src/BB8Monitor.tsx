@@ -52,6 +52,12 @@ const moodText: Record<Mood, { title: string; detail: string; log: string }> = {
 };
 const clock = (date: number) => new Date(date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+type PageTheme = 'system' | 'light' | 'dark';
+function readPageTheme(): PageTheme {
+  try { const saved = localStorage.getItem('bb8-page-theme'); return saved === 'dark' || saved === 'light' ? saved : 'system'; }
+  catch { return 'system'; }
+}
+
 function readMilestones(): CareEvent[] {
   try { const saved = JSON.parse(localStorage.getItem('bb8-milestones') || '[]');
     return Array.isArray(saved) ? saved.filter((entry): entry is CareEvent => typeof entry?.time === 'number' && Number.isFinite(entry.time) && typeof entry?.text === 'string').slice(0, 6) : [];
@@ -164,6 +170,20 @@ export default function BB8Monitor() {
     const timer = window.setInterval(() => setPortraitIndex(previous => (previous + 1 + Math.floor(Math.random() * (nurseryPortraits.length - 1))) % nurseryPortraits.length), 60000);
     return () => clearInterval(timer);
   }, []);
+  const [pageTheme, setPageTheme] = useState<PageTheme>(readPageTheme);
+  const [systemDark, setSystemDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const darkPage = pageTheme === 'dark' || (pageTheme === 'system' && systemDark);
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-color-scheme: dark)');
+    const update = () => setSystemDark(preference.matches);
+    update(); preference.addEventListener('change', update);
+    return () => preference.removeEventListener('change', update);
+  }, []);
+  function togglePageTheme() {
+    const next = darkPage ? 'light' : 'dark';
+    setPageTheme(next);
+    try { localStorage.setItem('bb8-page-theme', next); } catch { /* The theme still works for this visit. */ }
+  }
   const [night, setNight] = useState(false);
   const [plushShelf, setPlushShelf] = useState(readPlushShelf);
   const [sound, setSound] = useState(false);
@@ -607,8 +627,8 @@ export default function BB8Monitor() {
     addLog('You saved a nursery snapshot.'); setMessage('A little memory saved to your downloads.');
   }
 
-  return <div className="bb8-page">
-    <header className="bb8-header"><a href="/" className="bb8-home"><ArrowLeft size={16}/> JimWashkau.com</a><a className="bb8-wordmark" href="/bb8"><span className="bb8-logo"><Radio size={19}/></span> little droid<span className="bb8-wordmark-dot">.</span></a><span className="bb8-header-note"><span className="bb8-status-dot"/> A little peace of mind</span></header>
+  return <div className={`bb8-page${darkPage ? ' is-dark' : ''}`}>
+    <header className="bb8-header"><a href="/" className="bb8-home"><ArrowLeft size={16}/> JimWashkau.com</a><a className="bb8-wordmark" href="/bb8"><span className="bb8-logo"><Radio size={19}/></span> little droid<span className="bb8-wordmark-dot">.</span></a><div className="bb8-header-actions"><span className="bb8-header-note"><span className="bb8-status-dot"/> A little peace of mind</span><button className="bb8-theme-toggle" onClick={togglePageTheme} aria-label="Dark mode" aria-pressed={darkPage} title={darkPage ? 'Use light page theme' : 'Use dark page theme'}>{darkPage ? <Sun size={17}/> : <Moon size={17}/>}<span>Dark mode</span></button></div></header>
     <main className="bb8-main">
       <section className="bb8-intro"><div><p className="bb8-eyebrow">THE GALAXY’S COZIEST CORNER</p><h1>Little droid. <em>Big dreams.</em></h1><p>A tiny adventurer deserves a good night’s recharge.<br className="bb8-desktop-break"/> Keep a loving eye on BB-8, any time of day.</p></div><div className="bb8-availability"><span><Moon size={20}/></span><div><strong>24 / 7 nursery</strong><small>Always a little closer</small></div></div></section>
       <div className={`bb8-layout ${theatre ? 'is-theatre' : ''}`}>

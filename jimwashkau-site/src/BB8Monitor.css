@@ -217,3 +217,28 @@
 
 .bb8-droid.bb8-doing-oops,.bb8-droid.bb8-doing-oops .bb8-body{animation:none}
 @media(prefers-reduced-motion:reduce){.bb8-scene *{animation:none!important}}
+
+/* Page lighting is independent from the nursery camera's night vision. */
+.bb8-header-actions{display:flex;align-items:center;gap:20px}
+.bb8-theme-toggle{display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:9px 12px;border:1px solid var(--bb8-line);border-radius:10px;background:#fffefa;color:#526b5d;font-size:12px!important;white-space:nowrap}
+.bb8-theme-toggle:hover{background:#eaf0e5}
+.bb8-page.is-dark{color-scheme:dark;background:#111916;color:#dce5dc;--bb8-orange:#e2a17c;--bb8-green:#a4c2ad;--bb8-line:#35463d;--bb8-muted:#aebcaf;--bb8-panel:#1b2721;--bb8-raised:#26372d}
+.bb8-page.is-dark ::selection{background:#765342;color:#fff4e6}
+.bb8-page.is-dark :is(button,a,input,select):focus-visible{outline:3px solid #e2a17c;outline-offset:4px}
+.bb8-page.is-dark :is(.bb8-monitor-heading,.bb8-controls,.bb8-care-card,.bb8-plush-picker,.bb8-wall-controls,.bb8-buddy-cards>button,.bb8-theme-toggle){background:var(--bb8-panel);color:#dce5dc;border-color:var(--bb8-line)}
+.bb8-page.is-dark :is(.bb8-status-card,.bb8-buddy-section,.bb8-availability,.bb8-milestones){background:#202e25;border-color:var(--bb8-line)}
+.bb8-page.is-dark :is(.bb8-wordmark,.bb8-wall-controls strong,.bb8-plush-choices strong,.bb8-buddy-cards strong){color:#dce5dc}
+.bb8-page.is-dark :is(.bb8-home,.bb8-header-note,.bb8-eyebrow,.bb8-intro>div>p:last-child,.bb8-availability small,.bb8-monitor-heading>span,.bb8-controls button,.bb8-controls button small,.bb8-controls-note,.bb8-feed-caption,.bb8-card-label,.bb8-status-card>p,.bb8-reading-row span,.bb8-reading-row strong small,.bb8-pretend-label,.bb8-care-card>p,.bb8-journal-heading>span,.bb8-log p,.bb8-log time,.bb8-bottom-note,.bb8-bottom-note a,.bb8-footer,.bb8-volume,.bb8-play-controls,.bb8-play-controls small,.bb8-routine-controls,.bb8-routine-controls small,.bb8-plush-heading p:last-child,.bb8-plush-choices span,.bb8-plush-choices small,.bb8-plush-selected>span,.bb8-plush-selected small,.bb8-plush-footnote,.bb8-wall-controls>div:first-child,.bb8-wall-controls>div:first-child span,.bb8-wall-controls>p,.bb8-buddy-heading p:last-child,.bb8-buddy-cards small,.bb8-buddy-cards button>span>span,.bb8-buddy-cards em,.bb8-buddy-note,.bb8-surprise-controls>span,.bb8-milestones p,.bb8-milestones time){color:var(--bb8-muted)}
+.bb8-page.is-dark :is(.bb8-sleep-icon,.bb8-availability>span,.bb8-log-icon,.bb8-status-pills span){background:#2e4334;color:#bad3b6}
+.bb8-page.is-dark :is(.bb8-reading-row,.bb8-reading-row>div+div,.bb8-logo){border-color:#425448}
+.bb8-page.is-dark :is(.bb8-lullaby-button,.bb8-routine-controls button,.bb8-play-controls select,.bb8-wall-actions button,.bb8-wall-actions label,.bb8-plush-heading>button,.bb8-plush-choices>button,.bb8-plush-selected button,.bb8-buddy-actions button,.bb8-surprise-controls button){background:var(--bb8-raised);color:#c3d4bd;border-color:#465d48}
+.bb8-page.is-dark :is(.bb8-theme-toggle:hover,.bb8-controls button:hover,.bb8-lullaby-button:hover,.bb8-lullaby-button.is-active,.bb8-routine-controls button:hover,.bb8-routine-controls button[aria-pressed=true],.bb8-plush-heading>button:not(:disabled):hover,.bb8-plush-choices>button:hover,.bb8-plush-choices>button.is-selected,.bb8-plush-selected button:hover,.bb8-buddy-cards>button:hover,.bb8-buddy-cards>button.is-visiting,.bb8-surprise-controls button[aria-pressed=true]){background:#344b37;color:#d8e8cf;border-color:#6a8767}
+.bb8-page.is-dark .bb8-controls button.is-active{background:#48352a;color:#efbb96}
+.bb8-page.is-dark .bb8-hello-button{background:#905032;color:#fff1e5;border-color:#b77a54}
+.bb8-page.is-dark .bb8-hello-button:hover{background:#a6603e}
+.bb8-page.is-dark .bb8-plush-heading>button:disabled{background:#202b24;color:#9aa896}
+.bb8-page.is-dark .bb8-milestones h3{color:#c3d4bd}
+.bb8-page.is-dark .bb8-reading-row .bb8-charging-icon{color:#b4d1a5}
+.bb8-page.is-dark .bb8-wall-controls .bb8-wall-message{color:#bad3b6}
+@media(max-width:1050px){.bb8-header-actions{gap:12px}.bb8-header-actions .bb8-header-note{display:none}}
+@media(max-width:600px){.bb8-theme-toggle{padding:8px;min-width:40px}.bb8-theme-toggle span{display:none}.bb8-header-actions{gap:0}.bb8-header{gap:10px}}
