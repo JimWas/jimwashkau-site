@@ -1,8 +1,10 @@
+import { LearningActivityProps } from './BB8LearningActivities';
 import type { LittleActivity } from './BB8LittleActivities';
 
 // Props live inside the droid's SVG group so snapshots and night vision include them.
 export function ActivityProps({ activity }: { activity: LittleActivity }) {
   return <g className={`bb8-play-props bb8-play-${activity.id}`} aria-label={activity.label} strokeLinecap="round" strokeLinejoin="round">
+    <LearningActivityProps key={activity.id} id={activity.id}/>
     {activity.id === 'violin' && <>
       <path d="M510 285q25 0 18 22q-13 14 0 26q10 27-15 38q-27 7-29-18q-2-15 9-23q10-9-3-21q-9-23 20-24" fill="#b97040" stroke="#75472f" strokeWidth="3"/>
       <path d="m510 337 26-80" stroke="#744d34" strokeWidth="12"/><path d="m510 342 28-83" stroke="#e9d6aa" strokeWidth="2"/>

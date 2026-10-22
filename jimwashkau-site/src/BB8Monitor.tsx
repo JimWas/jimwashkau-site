@@ -69,6 +69,7 @@ function readLog(storageKey = 'bb8-care-log'): CareEvent[] {
 
 export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime, visiting, leaving = [], resident = 'bb8' }: { resident?: DroidId; leaving?: string[]; visiting: string[]; pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
   const droidName = droidProfiles[resident].name;
+  const learning = pastime !== null && 'lesson' in pastime;
   // The camera visit belongs in front of the entire nursery, including the quilt and crib.
   const droid = (
       <g transform={activity === 'sleeping' ? 'translate(0 27) rotate(-35 478 340)' : activity === 'idle' ? 'translate(0 9)' : undefined}>
@@ -133,8 +134,9 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
       <ellipse cx="480" cy="394" rx="319" ry="87" fill="url(#bb8-bed)"/>
       <ellipse cx="480" cy="394" rx="319" ry="87" fill="url(#bb8-fabric)"/>
       <ellipse cx="468" cy="413" rx="133" ry="26" fill="#79827c" opacity=".28"/>
-      {pastime?.id !== 'camera' && droid}
+      {pastime?.id !== 'camera' && !learning && droid}
       {friends.map((friend, index) => <g key={friend.id} transform={`translate(${[765, 245, 670][index]} ${[414, 414, 430][index]}) rotate(${[8, -8, 5][index]})`}><PlushAnimal friend={friend}/>{(pastime?.id === 'tucking' || pastime?.id === 'comfort') && <g className="bb8-toy-quilt"><path d="M-33-14q33-12 66 0v35q-33 7-66 0z" fill="#a0bca9" stroke="#d5dfc7" strokeWidth="2"/><path d="M-24 0h48m-36-5v10m24-10v10" stroke="#dce6d0" strokeWidth="2"/></g>}</g>)}
+      {learning && droid}
       <path d="M177 448q120-44 216-3t236 0q89-36 152 3l-15 70q-297 35-573 0z" fill="#7c9891"/>
       <path d="M195 467q109-30 214 1t207-1q92-29 150-4" stroke="#a7bbb0" strokeWidth="3" fill="none"/>
       <path d="M152 455q321 106 656 0l-7 29q-320 107-642 0z" fill="#c2b59a"/>
@@ -541,13 +543,15 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
   }, [sound, audioStarted]);
 
   useEffect(() => {
-    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin' && pastime?.id !== 'dancing' && pastime?.id !== 'conducting' && pastime?.id !== 'words')) return;
-    const melody = [261.63, 329.63, 392, 329.63, 293.66, 261.63];
+    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin' && pastime?.id !== 'dancing' && pastime?.id !== 'conducting' && pastime?.id !== 'words' && pastime?.id !== 'music-lesson')) return;
+    // Model C–E–G, leave a listening pause, then let the little droid copy it.
+    const melody = pastime.id === 'music-lesson' ? [261.63, 329.63, 392] : [261.63, 329.63, 392, 329.63, 293.66, 261.63];
     const play = () => {
+      if (pastime.id === 'music-lesson') melody.forEach((note, index) => tone(note, 5 + index * .42, .35, true, 1, 'sine', .025, 'baby'));
       melody.forEach((note, index) => tone(note, index * .42, .35, true, 1, pastime.id === 'violin' ? 'triangle' : 'sine', .025, 'baby'));
     };
     play();
-    const timer = window.setInterval(play, 11000);
+    const timer = window.setInterval(play, pastime.id === 'music-lesson' ? 15000 : 11000);
     return () => clearInterval(timer);
   }, [pastime, activity, sound, audioStarted]);
 

@@ -46,6 +46,21 @@ export const littleActivities = [
   { id: 'negotiating', label: 'Bedtime negotiations', title: 'Just one more story?', detail: 'Another book appears. Surely recharge can wait for one last tiny chapter.' },
   { id: 'comfort', label: 'Tiny comfort routine', title: 'Everything in its cozy place', detail: 'Straightening his blanket after all that excitement. Checking every stuffed friend is tucked in.' },
   { id: 'welcome', label: 'Recognizing your return', title: 'You came back!', detail: 'He noticed you returned. A happy little wobble just for his favorite human.' },
+  { lesson: true, id: 'counting-stars', label: 'Counting stars', title: 'One, two… was that one already counted?', detail: 'Counting five glowing stars, losing his place, and patiently starting again. Learning takes practice.' },
+  { lesson: true, id: 'color-sorting', label: 'Color sorting', title: 'A rainbow of little discoveries', detail: 'Matching red, yellow, and blue toy bolts to their bowls. A proud little wiggle for every match.' },
+  { lesson: true, id: 'moon-garden', label: 'Moon gardening', title: 'Growing one small kindness', detail: 'Watering a pretend moon sprout, checking its height, and whispering encouraging beeps. Plants need light and water.' },
+  { lesson: true, id: 'constellations', label: 'Learning constellations', title: 'A teddy bear among the stars', detail: 'Joining stars into a make-believe teddy constellation. Real constellations are patterns we see from Earth.' },
+  { lesson: true, id: 'magnet-lab', label: 'Magnet experiments', title: 'Stick, test, wonder, repeat', detail: 'Testing a wooden block and an iron bolt with his toy magnet. The bolt sticks… and so does a spare one on his shell!' },
+  { lesson: true, id: 'spelling', label: 'Droid spelling', title: 'F is for friend', detail: 'Putting FRIEND in order with letter tiles. One backward letter, one patient correction, one delighted beep.' },
+  { lesson: true, id: 'music-lesson', label: 'Music lessons', title: 'Listen, try, and try again', detail: 'Listening to three little notes, copying them slowly, and celebrating a matching melody.' },
+  { lesson: true, id: 'weather-station', label: 'Weather watching', title: 'Today’s tiny weather report', detail: 'Checking his pretend weather station and matching sunshine, clouds, and raindrops to their picture cards.' },
+  { lesson: true, id: 'rocket-lab', label: 'Paper spacecraft experiments', title: 'Fold, fly, improve', detail: 'Folding a paper rocket, testing its flight, and adjusting a wing. Every little test teaches him something.' },
+  { lesson: true, id: 'fossils', label: 'Fossil discovery', title: 'A very patient paleontologist', detail: 'Gently brushing pretend sand from a toy fossil. Inspecting its shape with a rather enormous magnifying glass.' },
+  { lesson: true, id: 'fair-shares', label: 'Sharing equally', title: 'Three friends, six pretend snacks', detail: 'Sharing six toy star biscuits between Percy, Oppy, and Ginny. Two each, with nobody left out.' },
+  { lesson: true, id: 'feelings', label: 'Learning feelings', title: 'Every little feeling belongs', detail: 'Matching happy, sleepy, and worried faces. Offering a worried plush a hug and a quiet moment.' },
+  { lesson: true, id: 'recycling', label: 'Recycling helper', title: 'A little helper for his planet', detail: 'Sorting clean toy paper, metal, and plastic into labeled bins. Practicing for the local recycling rules with a satisfied beep.' },
+  { lesson: true, id: 'shadow-lab', label: 'Shadow science', title: 'A tiny toy, a giant shadow', detail: 'Moving a lamp closer to his toy makes its shadow bigger. Looking behind it in wide-eyed disbelief.' },
+  { lesson: true, id: 'plush-school', label: 'Teaching his plushies', title: 'Professor Beep’s planet school', detail: 'Teaching his stuffed students: Earth is our home, Mars is the red planet, and Saturn has rings. One teddy needs help staying upright.' },
 ] as const;
 export type LittleActivity = typeof littleActivities[number];
 

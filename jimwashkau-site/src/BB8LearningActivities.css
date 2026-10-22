@@ -1,0 +1,38 @@
+.bb8-lesson-step{opacity:0;animation:bb8-lesson-step 15s linear infinite}
+.bb8-lesson-step-1{animation-delay:5s}
+.bb8-lesson-step-2{animation-delay:10s}
+@keyframes bb8-lesson-step{0%,32%{opacity:1}33%,100%{opacity:0}}
+.bb8-count-star{animation:bb8-count-star 12s ease-in-out infinite}
+@keyframes bb8-count-star{0%,7%,85%,100%{opacity:.25}10%,80%{opacity:1}}
+.bb8-sort-bolt{animation:bb8-sort-bolt 8s ease-in-out infinite}
+@keyframes bb8-sort-bolt{0%,15%,100%{transform:translateY(0)}45%,80%{transform:translateY(58px)}}
+.bb8-sprout-grow{transform-origin:585px 375px;animation:bb8-sprout-grow 15s ease-in-out infinite}
+@keyframes bb8-sprout-grow{0%,10%,100%{transform:scaleY(.55)}60%,90%{transform:scaleY(1)}}
+.bb8-constellation-line{animation:bb8-connect-stars 15s linear infinite}
+@keyframes bb8-connect-stars{0%,10%,100%{stroke-dashoffset:210}65%,90%{stroke-dashoffset:0}}
+.bb8-magnet-test{animation:bb8-magnet-test 10s ease-in-out infinite}
+@keyframes bb8-magnet-test{0%,100%{transform:translateX(0)}25%{transform:translateX(48px)}50%,75%{transform:translateX(0)}}
+.bb8-iron-lift{animation:bb8-iron-lift 10s ease-in-out infinite}
+@keyframes bb8-iron-lift{0%,40%,100%{transform:translateY(0)}55%,75%{transform:translateY(-30px)}}
+.bb8-letter-correct{animation:bb8-letter-correct 15s ease-in-out infinite}
+@keyframes bb8-letter-correct{0%,35%,100%{transform:scaleX(-1)}45%,95%{transform:scaleX(1)}}
+.bb8-lesson-key{animation:bb8-lesson-key 15s linear infinite}
+@keyframes bb8-lesson-key{0%,3%,34%,37%{fill:#dfb376}4%,33%,38%,100%{fill:#f2e7cb}}
+.bb8-rocket-test{animation:bb8-rocket-test 12s ease-in-out infinite}
+@keyframes bb8-rocket-test{0%,15%,100%{transform:translate(0,0)}40%{transform:translate(18px,-22px) rotate(-4deg);transform-origin:565px 345px}65%{transform:translate(39px,-53px)}85%{transform:translate(50px,-30px)}}
+.bb8-fossil-brush{transform-origin:548px 345px;animation:bb8-fossil-brush 2s ease-in-out infinite}
+@keyframes bb8-fossil-brush{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(12deg)}}
+.bb8-lamp-slide{animation:bb8-lamp-slide 12s ease-in-out infinite}
+.bb8-shadow-grow{transform-origin:0 20px;animation:bb8-shadow-grow 12s ease-in-out infinite}
+@keyframes bb8-lamp-slide{0%,100%{transform:translateX(-12px)}50%{transform:translateX(22px)}}
+@keyframes bb8-shadow-grow{0%,100%{transform:scale(.65)}50%{transform:scale(1.6)}}
+.bb8-student-tumble{transform-origin:0 22px;animation:bb8-student-tumble 15s ease-in-out infinite}
+@keyframes bb8-student-tumble{0%,35%,85%,100%{transform:rotate(0)}45%,75%{transform:rotate(65deg)}}
+.bb8-doing-counting-stars .bb8-head,.bb8-doing-constellations .bb8-head{animation:bb8-star-look 8s ease-in-out infinite!important}
+.bb8-doing-spelling .bb8-head,.bb8-doing-fossils .bb8-head,.bb8-doing-moon-garden .bb8-head{animation:bb8-read-nod 7s ease-in-out infinite!important}
+@media(prefers-reduced-motion:reduce){
+  .bb8-scene .bb8-learning-props *{animation:none!important}
+  .bb8-lesson-step{display:none}
+  .bb8-lesson-step-2{display:inline;opacity:1}
+  .bb8-doing-counting-stars .bb8-head,.bb8-doing-constellations .bb8-head,.bb8-doing-spelling .bb8-head,.bb8-doing-fossils .bb8-head,.bb8-doing-moon-garden .bb8-head{animation:none!important}
+}
