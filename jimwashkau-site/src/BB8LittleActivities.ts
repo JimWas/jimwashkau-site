@@ -1,3 +1,4 @@
+import { playdateActivities } from './BB8PlaydateRules';
 export const littleActivities = [
   { id: 'violin', label: 'Violin practice', title: 'A tiny violin virtuoso', detail: 'Practicing three little notes. Every squeak deserves an encore.' },
   { id: 'cooking', label: 'Cooking', title: 'Little chef at work', detail: 'Stirring pretend moon soup. The secret ingredient is love.' },
@@ -61,13 +62,43 @@ export const littleActivities = [
   { lesson: true, id: 'recycling', label: 'Recycling helper', title: 'A little helper for his planet', detail: 'Sorting clean toy paper, metal, and plastic into labeled bins. Practicing for the local recycling rules with a satisfied beep.' },
   { lesson: true, id: 'shadow-lab', label: 'Shadow science', title: 'A tiny toy, a giant shadow', detail: 'Moving a lamp closer to his toy makes its shadow bigger. Looking behind it in wide-eyed disbelief.' },
   { lesson: true, id: 'plush-school', label: 'Teaching his plushies', title: 'Professor Beep’s planet school', detail: 'Teaching his stuffed students: Earth is our home, Mars is the red planet, and Saturn has rings. One teddy needs help staying upright.' },
+  { lesson: true, id: 'moon-phases', label: 'Moon phases', title: 'Where did the rest of the moon go?', detail: 'Turning his moon wheel from crescent to half to full. The Moon stays round; we see different amounts of its sunlit half.' },
+  { lesson: true, id: 'shape-detective', label: 'Shape detective', title: 'A nursery full of shapes', detail: 'Spotting a circle, triangle, and square. His round body is a sphere! Proudly finding shapes everywhere.' },
+  { lesson: true, id: 'sink-float', label: 'Sink or float', title: 'A life jacket for a toy rock', detail: 'Predicting which objects will float in a pretend tub. Cork floats, stone sinks… perhaps the toy rock needs a tiny life jacket.' },
+  { lesson: true, id: 'pattern-train', label: 'Pattern trains', title: 'What comes next, little conductor?', detail: 'Making a red–blue repeating pattern with toy train cars. Thinking carefully, then choosing blue to follow red.' },
+  { lesson: true, id: 'droid-yoga', label: 'Robot yoga', title: 'A very wobbly tree pose', detail: 'Copying gentle stretch cards, wobbling, and trying again. Practicing balance at his own cozy pace.' },
+  { lesson: true, id: 'animal-sounds', label: 'Animal sound lessons', title: 'The cow says… beep?', detail: 'Matching a cat to meow and a cow to moo. One confident beep, then a thoughtful correction. Everyone learns by trying.' },
+  { lesson: true, id: 'directions', label: 'Learning directions', title: 'A tiny map to teddy treasure', detail: 'Following arrow cards: up, right, then down. Finding teddy at the end and giving a proud little salute.' },
+  { lesson: true, id: 'coding-rover', label: 'Coding a toy rover', title: 'One wrong turn, one bright idea', detail: 'Lining up arrow instructions for a toy rover. Testing the route, fixing a wrong turn, and guiding it to its charger.' },
+  { lesson: true, id: 'space-post', label: 'Space post office', title: 'Special delivery: a little love', detail: 'Matching picture addresses, counting pretend stamps, and delivering a heart letter to every Mars buddy.' },
+  { lesson: true, id: 'block-measuring', label: 'Measuring with blocks', title: 'How many blocks tall?', detail: 'Lining up equal-sized blocks from the same starting line. The little giraffe is five blocks tall. Taller than expected!' },
+  { lesson: true, id: 'gentle-breaths', label: 'Gentle breathing flower', title: 'A quiet moment to bloom', detail: 'Watching a glowing flower slowly open and close. Gentle in-and-out beeps help his busy little circuits settle.' },
+  { lesson: true, id: 'sound-detective', label: 'Sound detective', title: 'Little ears, big discoveries', detail: 'Listening to a soft bell, shaker, and drum. Matching each sound to its instrument, then asking for another turn.' },
+  { lesson: true, id: 'droid-archaeology', label: 'Droid archaeology', title: 'The mystery of the spare piece', detail: 'Fitting chunky pretend pottery pieces together by their edges. One finished pot, one mysterious spare piece. Saving it carefully.' },
+  { lesson: true, id: 'orbit-lesson', label: 'Learning about orbits', title: 'A tiny planet on a big journey', detail: 'Moving a model Earth around its Sun. A pretend orbit for teddy, too! The model makes space small enough to explore.' },
+  { lesson: true, id: 'kindness-circle', label: 'Kindness workshop', title: 'There is always room for you', detail: 'Noticing a stuffed friend sitting alone. Making space in the circle and inviting them closer. Every little friend belongs.' },
+  { id: 'playdate-building', label: 'Building together', title: 'Two builders, one little tower', detail: 'BB-8 tries the first block eagerly. BB-9E checks its balance, then surprises him with the finishing piece. They steady it together.' },
+  { id: 'playdate-turns', label: 'Taking turns together', title: 'Your turn. My turn. Our discovery.', detail: 'BB-8 eagerly tests the toy rover while BB-9E watches. Then BB-9E finds its little button, and BB-8 cheers him on.' },
+  { id: 'playdate-reading', label: 'Reading side by side', title: 'A story is sweeter together', detail: 'BB-8 eagerly points to the pictures. BB-9E carefully turns the page, then shows BB-8 a hidden little star. Quiet company, happy hearts.' },
+  { id: 'secret-handshake', label: 'Secret buddy handshakes', title: 'A hello only friends know', detail: 'A familiar little sequence of beeps, nods, and wobbles. Every pair has their very own way to say hello.' },
+  { id: 'gift-drawing', label: 'A drawing for you', title: 'A masterpiece, just for you', detail: 'Holding up a wobbly heart drawing. He saved his very best picture for your next visit.' },
+  { id: 'gift-flower', label: 'A paper flower for you', title: 'A little flower that never wilts', detail: 'Carefully offering you a handmade paper flower. Every folded petal comes with a little love.' },
+  { id: 'gift-treasure', label: 'A shiny treasure for you', title: 'His finest treasure is yours', detail: 'Presenting one polished toy bolt on a soft cushion. He found something special and thought of you.' },
+  { id: 'playdate-encouragement', label: 'Encouraging each other', title: 'Take your time. I’m right here.', detail: 'BB-8 drops a block and pauses. BB-9E gently nudges it back, waits without rushing him, and joins his proud little celebration when he tries again.' },
+  { id: 'buddy-greeting', label: 'Welcoming a Mars buddy', title: 'A hello made just for a friend', detail: 'Percy gets a curious inspection, Oppy gets a happy little roll, and Ginny inspires an antenna wiggle.' },
+  { id: 'playdate-nap', label: 'Cozy group nap', title: 'Two sleepy droids. One soft blanket.', detail: 'Both droids tuck in together. Visiting Percy dims his lights, Oppy rests nearby, and Ginny lands on her cushion. Tiny dreams for two very loved droids, before their friend heads back to his own nursery.' },
+  { id: 'tiny-celebration', label: 'Tiny celebration', title: 'A little crown for a little victory', detail: 'A paper crown and a modest happy dance. Learning something new deserves a small, sweet celebration.' },
+  { id: 'playdate-quiet', label: 'Comfortable quiet together', title: 'Nothing to do. Just being together.', detail: 'Sitting side by side under a shared blanket, watching pretend rain on the porthole. Quiet company can be a whole adventure.' },
 ] as const;
 export type LittleActivity = typeof littleActivities[number];
 
-export function pickLittleActivity(previous: LittleActivity | null, random = Math.random, context: { sleeping?: boolean; fullyCharged?: boolean; hasBuddies?: boolean } = {}): LittleActivity {
+export function pickLittleActivity(previous: LittleActivity | null, random = Math.random, context: { sleeping?: boolean; fullyCharged?: boolean; hasBuddies?: boolean; hasDroidFriend?: boolean } = {}): LittleActivity {
   const sleepy = ['dream-projecting', 'tiny-dreams', 'waking'];
   const eligible = littleActivities.filter(item => !['goodbye', 'welcome'].includes(item.id)
     && (context.sleeping === undefined || (context.sleeping ? sleepy.includes(item.id) : !sleepy.includes(item.id)))
+    && (context.hasDroidFriend === true && context.sleeping !== true ? playdateActivities.includes(item.id) : !item.id.startsWith('playdate-'))
+    && (item.id !== 'buddy-greeting' || context.hasBuddies === true)
+    && (item.id !== 'secret-handshake' || context.hasDroidFriend === true || context.hasBuddies === true)
     && (context.fullyCharged !== false || item.id !== 'charged')
     && (!context.hasBuddies || item.id !== 'waiting')
     && (context.hasBuddies !== false || item.id !== 'sharing'));

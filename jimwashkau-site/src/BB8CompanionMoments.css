@@ -1,0 +1,28 @@
+.bb8-gift-offer{animation:bb8-gift-offer 12s ease-in-out infinite}
+@keyframes bb8-gift-offer{0%,100%{transform:translateY(8px)}30%,75%{transform:translateY(-9px)}}
+.bb8-gift-sparkle,.bb8-celebration-stars{animation:bb8-soft-sparkle 6s ease-in-out infinite}
+@keyframes bb8-soft-sparkle{0%,100%{opacity:.45}50%{opacity:1}}
+.bb8-droid.bb8-doing-tiny-celebration{transform-origin:478px 415px;animation:bb8-small-happy-dance 10s ease-in-out infinite}
+@keyframes bb8-small-happy-dance{0%,45%,100%{transform:rotate(0)}10%,30%{transform:rotate(-3deg)}20%,40%{transform:rotate(3deg)}}
+.bb8-greeting-percy .bb8-droid .bb8-head{animation:bb8-inspect-friend 10s ease-in-out infinite!important}
+@keyframes bb8-inspect-friend{0%,100%{transform:rotate(0)}25%,65%{transform:rotate(-12deg)}}
+.bb8-greeting-oppy .bb8-droid{transform-origin:478px 415px;animation:bb8-happy-friend-roll 10s ease-in-out infinite!important}
+@keyframes bb8-happy-friend-roll{0%,100%{transform:translateX(0) rotate(0)}30%{transform:translateX(15px) rotate(5deg)}65%{transform:translateX(-10px) rotate(-4deg)}}
+.bb8-greeting-ginny .bb8-droid .bb8-antenna,.bb8-greeting-ginny .bb8-droid .nine-antenna{transform-box:fill-box;transform-origin:center bottom;animation:bb8-antenna-hello 5s ease-in-out infinite!important}
+@keyframes bb8-antenna-hello{0%,60%,100%{transform:rotate(0)}15%,40%{transform:rotate(-7deg)}28%,52%{transform:rotate(7deg)}}
+.bb8-encouragement-block{animation:bb8-encouragement-block 16s ease-in-out infinite;transform-origin:470px 355px}
+@keyframes bb8-encouragement-block{0%,100%{transform:translate(0,0) rotate(0)}20%,30%{transform:translate(44px,47px) rotate(24deg)}48%,60%{transform:translate(5px,47px) rotate(0)}80%,94%{transform:translate(5px,-2px) rotate(0)}}
+.bb8-encouraging-nudge{animation:bb8-encouraging-nudge 16s ease-in-out infinite}
+@keyframes bb8-encouraging-nudge{0%,25%,70%,100%{opacity:0}35%,60%{opacity:1}}
+.bb8-pair-playdate-encouragement .bb8-playmate-bb8{animation:bb8-encouraged-try 16s ease-in-out infinite}
+@keyframes bb8-encouraged-try{0%,15%,100%{transform:rotate(3deg)}25%,60%{transform:rotate(0)}80%,92%{transform:rotate(4deg)}}
+.bb8-pair-playdate-quiet .bb8-playmate,.bb8-pair-playdate-nap .bb8-playmate{animation:none}
+.bb8-pair-playdate-quiet .bb8-head,.bb8-pair-playdate-nap .bb8-head{animation:none}
+.bb8-pair-playdate-nap .bb8-playmate-bb8{transform:rotate(10deg)}.bb8-pair-playdate-nap .bb8-playmate-bb9e{transform:rotate(-10deg)}
+.bb8-pair-playdate-nap .bb8-body{transform-origin:478px 340px;animation:bb8-breathe 7s ease-in-out infinite}
+.bb8-pair-tiny-celebration .bb8-playmate{animation:bb8-small-happy-dance 10s ease-in-out infinite}
+.bb8-visitors.is-quiet .bb8-visitor-percy{animation:none!important;filter:brightness(.65) saturate(.7)}
+.bb8-visitors.is-quiet .bb8-visitor-oppy{animation:none!important;opacity:.75}
+.bb8-visitors.is-quiet .bb8-visitor-ginny{animation:bb8-ginny-lands 4s ease-in-out forwards!important}
+@keyframes bb8-ginny-lands{to{transform:translate(-15px,125px)}}
+@media(prefers-reduced-motion:reduce){.bb8-scene .bb8-companion-props *,.bb8-scene .bb8-shared-playdate *,.bb8-scene .bb8-droid.bb8-doing-tiny-celebration,.bb8-scene .bb8-droid .bb8-antenna,.bb8-scene .bb8-droid .nine-antenna,.bb8-scene .bb8-droid .bb8-head,.bb8-greeting-oppy .bb8-droid{animation:none!important}.bb8-scene .bb8-visitors.is-quiet .bb8-visitor-ginny{animation:none!important;transform:translate(-15px,125px)}}

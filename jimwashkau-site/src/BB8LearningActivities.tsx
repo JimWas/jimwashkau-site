@@ -115,5 +115,104 @@ export function LearningActivityProps({ id }: { id: LittleActivity['id'] }) {
       <Teddy x={552} y={385}/><Teddy x={620} y={385} tilted/>
       <LessonSteps lines={['Earth is our home', 'Mars is the red planet', 'Saturn has rings!']}/>
     </>}
+    {id === 'moon-phases' && <>
+      <rect x="539" y="308" width="124" height="101" rx="19" fill="#344e59" stroke="#aec3b5" strokeWidth="3"/>
+      <circle cx="600" cy="354" r="33" fill="#667b7d"/>
+      <g className="bb8-lesson-step bb8-lesson-step-0"><path d="M610 324a33 33 0 1 1 0 60 29 29 0 0 0 0-60" fill="#f5dfab"/></g>
+      <g className="bb8-lesson-step bb8-lesson-step-1"><path d="M600 321a33 33 0 0 1 0 66z" fill="#f5dfab"/></g>
+      <g className="bb8-lesson-step bb8-lesson-step-2"><circle cx="600" cy="354" r="33" fill="#f5dfab"/></g>
+      <path className="bb8-moon-offer" d="M526 331a15 15 0 1 0 0 28 13 13 0 0 1 0-28" fill="#e8d3a7"/>
+      <LessonSteps lines={['Crescent → half → full', 'Same Moon, sunlit shapes', 'Can I return this piece?']}/>
+    </>}
+    {id === 'shape-detective' && <>
+      <rect x="531" y="322" width="141" height="88" rx="12" fill="#eee1c4" stroke="#afbd9f" strokeWidth="3"/>
+      <circle cx="554" cy="350" r="15" fill="#d5aa7d"/><path d="m598 331 18 35h-36z" fill="#9ebca6"/><rect x="635" y="334" width="30" height="30" rx="2" fill="#a5c2cd"/>
+      {['CIRCLE','TRIANGLE','SQUARE'].map((name,i)=><text key={name} x={554+i*44} y="393" textAnchor="middle" fontSize="8" fill="#35564c">{name}</text>)}
+      <circle className="bb8-shape-ring" cx="478" cy="340" r="96" fill="none" stroke="#f2daa2" strokeWidth="3" strokeDasharray="6 9"/>
+      <LessonSteps lines={['Find the matching shape', 'Circles, triangles, squares', 'My body is a sphere!']}/>
+    </>}
+    {id === 'sink-float' && <>
+      <path d="M528 352h146l-10 60H538z" fill="#b6d5d5" fillOpacity=".8" stroke="#89acaa" strokeWidth="3"/>
+      <path d="M533 366q16-7 32 0t32 0t32 0t40 0" fill="none" stroke="#f2e9d3" strokeWidth="3"/>
+      <g className="bb8-cork-bob"><rect x="548" y="357" width="29" height="12" rx="5" fill="#bb9166"/><path d="m553 361 3 2m10-3 3 2" stroke="#8e6b49" strokeWidth="2"/></g>
+      <g className="bb8-stone-sink"><ellipse cx="631" cy="360" rx="14" ry="10" fill="#8e9991"/></g>
+      <path className="bb8-lesson-step bb8-lesson-step-2" d="M608 329h14l7 12 7-12h14v24h-42z" fill="#e5b16e" stroke="#f1dfb6" strokeWidth="3"/>
+      <LessonSteps lines={['Predict, then test', 'Cork floats; stone sinks', 'A toy life jacket? ♡']}/>
+    </>}
+    {id === 'pattern-train' && <>
+      <path d="M529 406h147m-137-5v10m24-10v10m24-10v10m24-10v10m24-10v10m24-10v10" stroke="#a8b7a1" strokeWidth="3"/>
+      {[0,1,2,3,4].map(i=><g key={i} className={i===4?'bb8-pattern-car':undefined} transform={`translate(${533+i*28} 367)`}><rect width="25" height="24" rx="4" fill={i%2?'#94b9c8':'#d89586'}/><circle cx="6" cy="27" r="4" fill="#566e61"/><circle cx="19" cy="27" r="4" fill="#566e61"/></g>)}
+      <g className="bb8-pattern-answer"><rect x="673" y="367" width="25" height="24" rx="4" fill="#94b9c8"/><circle cx="679" cy="394" r="4" fill="#566e61"/><circle cx="692" cy="394" r="4" fill="#566e61"/></g>
+      <LessonSteps lines={['Red, blue, red, blue, red…', 'What comes next?', 'Blue! The pattern repeats']}/>
+    </>}
+    {id === 'droid-yoga' && <>
+      <ellipse cx="477" cy="419" rx="110" ry="16" fill="#9cb8aa" stroke="#d8dfc1" strokeWidth="3"/>
+      <rect x="555" y="318" width="88" height="91" rx="11" fill="#ebdfc2" stroke="#a2baa7" strokeWidth="3"/>
+      <circle cx="600" cy="335" r="8" fill="#94aaa0"/><path d="M600 344v30m-20-23 20 9 19-20m-19 34-14 22m14-22 16 9-16 5" fill="none" stroke="#859f8b" strokeWidth="5"/>
+      <LessonSteps lines={['Stretch at your own pace', 'A gentle little wobble', 'Balance takes practice ♡']}/>
+    </>}
+    {id === 'animal-sounds' && <>
+      <g transform="translate(556 359)"><path d="M-22 18v-32l10-15 10 12h8l13-12 5 22v25z" fill="#c5a47e"/><path d="m-12 1h1m20 0h1m-13 9h6" stroke="#435b4e" strokeWidth="3"/></g>
+      <g transform="translate(637 359)"><path d="M-21-10l-13-9m55 9 13-9" stroke="#e3c392" strokeWidth="7"/><rect x="-23" y="-19" width="46" height="48" rx="17" fill="#ede2ca"/><ellipse cy="17" rx="20" ry="11" fill="#d6aa9b"/><path d="m-10-3h1m18 0h1m-17 20h1m12 0h1" stroke="#455c50" strokeWidth="3"/></g>
+      <text x="556" y="411" fontSize="12" fill="#344e47" textAnchor="middle">MEOW</text><text x="637" y="411" fontSize="12" fill="#344e47" textAnchor="middle">MOO</text>
+      <LessonSteps lines={['The cat says “meow”', 'The cow says… beep?', 'Moo! I’m learning ♡']}/>
+    </>}
+    {(id === 'directions' || id === 'coding-rover') && <>
+      <rect x="535" y="310" width="137" height="103" rx="9" fill="#dfdcc0" stroke="#9bb39f" strokeWidth="3"/>
+      <path d="M551 316v92m27-92v92m27-92v92m27-92v92m27-92v92m-118-67h125m-125 28h125m-125 28h125" stroke="#c2c7ad" strokeWidth="1"/>
+      <path d="M551 394v-55h82v55" fill="none" stroke="#749c87" strokeWidth="4" strokeDasharray="4 4"/>
+      <path className="bb8-lesson-step bb8-lesson-step-0" d="M551 339h-13" stroke="#c9867b" strokeWidth="5"/>
+      {id==='directions'?<g className="bb8-map-traveler"><Star x={551} y={394}/></g>:<g className="bb8-map-traveler"><rect x="541" y="385" width="20" height="12" rx="3" fill="#d2ab70"/><path d="M550 385v-8m-3 0h7" stroke="#7c9385" strokeWidth="3"/><circle cx="545" cy="399" r="3" fill="#4f665b"/><circle cx="557" cy="399" r="3" fill="#4f665b"/></g>}
+      {id==='directions'?<g transform="translate(633 389) scale(.35)"><Teddy x={0} y={0}/></g>:<><rect x="624" y="385" width="20" height="19" rx="3" fill="#86ad98"/><path d="m636 388-6 6h7l-5 7" fill="none" stroke="#f5e6b7" strokeWidth="2"/></>}
+      <text x="599" y="245" textAnchor="middle" fill="#f4dfb3" stroke="#526e5d" strokeWidth=".3" fontSize="24">↑ → ↓</text>
+      <LessonSteps lines={id==='directions'?['Follow the arrow map', 'Up, right, then down', 'Teddy treasure! Salute ♡']:['Instructions guide a rover', 'Oops! Fix the wrong turn', 'Test again → charger!']}/>
+    </>}
+    {id === 'space-post' && <>
+      {['PERCY','OPPY','GINNY'].map((name,i)=><g key={name} transform={`translate(${551+i*49} 369)`}><path d="M-19 0v-24q19-25 38 0V0z" fill={['#d7b481','#bdc7a3','#a1bfbe'][i]} stroke="#eee3c4" strokeWidth="2"/><path d="M-12-13h24" stroke="#688572" strokeWidth="3"/><text y="33" textAnchor="middle" fontSize="9" fill="#344e47">{name}</text><text y="-30" textAnchor="middle" fontSize="15" fill="#344e47">{['★','○','△'][i]}</text><path d="M0 12q-12-9-8-13 4-4 8 3 4-7 8-3 4 4-8 13" fill="#d28f83"/></g>)}
+      <g className="bb8-post-letter"><rect x="525" y="307" width="32" height="23" rx="3" fill="#f2e4c7" stroke="#bda582" strokeWidth="2"/><path d="m526 308 15 11 15-11" stroke="#bda582" fill="none"/><rect x="549" y="310" width="5" height="5" fill="#c18e81"/>{['★','○','△'].map((symbol,i)=><text key={symbol} x="535" y="325" fontSize="10" fill="#526e5d" className={`bb8-lesson-step bb8-lesson-step-${i}`}>{symbol}</text>)}</g>
+      <LessonSteps lines={['Match each picture address', 'Count one stamp per letter', 'A love letter for everyone']}/>
+    </>}
+    {id === 'block-measuring' && <>
+      <path d="M541 414h118" stroke="#9cb49e" strokeWidth="3"/>
+      {[0,1,2,3,4].map(i=><g key={i}><rect x="552" y={397-i*18} width="18" height="18" rx="2" fill={i%2?'#d4af82':'#a6c0ab'} stroke="#eee3c5" strokeWidth="2"/><text x="542" y={410-i*18} textAnchor="end" fill="#344e47" fontSize="10">{i+1}</text></g>)}
+      <g className="bb8-measure-giraffe"><path d="M619 404v-70" stroke="#dcc68e" strokeWidth="18"/><ellipse cx="625" cy="333" rx="20" ry="8" fill="#e4d49d"/><path d="M614 329v-4m13 3v-4" stroke="#b89a63" strokeWidth="4"/><ellipse cx="618" cy="398" rx="25" ry="14" fill="#e4d49d"/><path d="m602 404-2 10m29-10 2 10m-17-67h7m-7 17h7m-7 17h7" stroke="#bd9f6c" strokeWidth="5"/><circle cx="633" cy="331" r="2" fill="#486050"/></g>
+      <path d="M577 324h71" stroke="#a6b6a1" strokeDasharray="3 4" strokeWidth="2"/>
+      <LessonSteps lines={['Same-sized blocks, no gaps', 'Start at the same baseline', 'Five blocks tall! Oh my!']}/>
+    </>}
+    {id === 'gentle-breaths' && <>
+      <path d="M600 405v-47m-2 27q-30-2-24-17 20-3 24 17m4-7q28-2 23-17-19-1-23 17" stroke="#85a989" strokeWidth="5" fill="#acc794"/>
+      <g transform="translate(600 347)"><g className="bb8-breath-flower">{[0,60,120,180,240,300].map(angle=><ellipse key={angle} transform={`rotate(${angle})`} cy="-19" rx="12" ry="24" fill="#d5b9a9" fillOpacity=".8" stroke="#ecdbb6" strokeWidth="2"/>)}<circle r="12" fill="#edce8c"/></g></g>
+      <LessonSteps lines={['A soft, quiet moment', 'Follow the little flower', 'No rush. Just be here ♡']}/>
+    </>}
+    {id === 'sound-detective' && <>
+      <g transform="translate(551 354)"><path d="M-15 16q10-5 8-25 7-17 14 0-2 20 8 25z" fill="#d8b77c" stroke="#edd9ad" strokeWidth="2"/><circle cy="20" r="4" fill="#917a51"/></g>
+      <g transform="translate(601 352)"><path d="M0 20v23" stroke="#a68b65" strokeWidth="5"/><ellipse ry="21" rx="13" fill="#b4c5a4" stroke="#ede0bf" strokeWidth="2"/><path d="m-6-9 12 18m-12-9 9 9" stroke="#789b85" strokeWidth="2"/></g>
+      <g transform="translate(650 365)"><path d="M-18 0v24q18 13 36 0V0" fill="#cb9b80" stroke="#e7d3af" strokeWidth="2"/><ellipse rx="18" ry="7" fill="#eee1c1"/><path d="m-13 9 26 10m-26 0 26-10" stroke="#a77e62" strokeWidth="2"/></g>
+      {['BELL','SHAKER','DRUM'].map((name,i)=><text key={name} x={551+i*49} y="416" textAnchor="middle" fontSize="9" fill="#344e47">{name}</text>)}
+      <LessonSteps lines={['Listen: a soft bell', 'Shake, shake… a shaker!', 'A gentle drum: tum tum']}/>
+    </>}
+    {id === 'droid-archaeology' && <>
+      <ellipse cx="600" cy="406" rx="76" ry="10" fill="#bdad88" opacity=".4"/>
+      <g className="bb8-pot-left"><path d="M600 334h-30l8 33q-22 37 22 39v-35l-9-9 9-7z" fill="#c99c76" stroke="#edcfaa" strokeWidth="2"/></g>
+      <g className="bb8-pot-right"><path d="M600 334h30l-8 33q22 37-22 39v-35l-9-9 9-7z" fill="#d8ad86" stroke="#edcfaa" strokeWidth="2"/></g>
+      <path d="M567 331h66m-50 58h34" stroke="#b78463" strokeWidth="4"/>
+      <path className="bb8-play-float" d="m653 367 12-8 10 15-17 9z" fill="#d8ad86" stroke="#edcfaa" strokeWidth="2"/>
+      <LessonSteps lines={['Find edges that fit', 'A whole pretend pot!', 'One spare… save it safely']}/>
+    </>}
+    {id === 'orbit-lesson' && <>
+      <rect x="534" y="311" width="140" height="102" rx="14" fill="#354f58" stroke="#a3b9aa" strokeWidth="3"/>
+      <circle cx="599" cy="363" r="39" fill="none" stroke="#91b3af" strokeDasharray="3 5" strokeWidth="2"/><circle cx="599" cy="363" r="15" fill="#ebca85"/>
+      <g className="bb8-earth-orbit"><circle cx="638" cy="363" r="9" fill="#91b9c3"/><path d="m637 357-3 7 7 3" stroke="#b0c99a" strokeWidth="3"/></g>
+      <g transform="translate(658 330) scale(.3)"><g className="bb8-teddy-orbit"><Teddy x={0} y={0}/></g></g>
+      <text x="599" y="308" textAnchor="middle" fontSize="11" fill="#344e47">MODEL SUN + EARTH</text>
+      <LessonSteps lines={['An orbit is a path around', 'Earth travels around Sun', 'A pretend orbit for teddy']}/>
+    </>}
+    {id === 'kindness-circle' && <>
+      <ellipse cx="586" cy="408" rx="58" ry="9" fill="#a7c2ac" fillOpacity=".5"/>
+      <g transform="translate(550 383) scale(.65)"><Teddy x={0} y={0}/></g><g transform="translate(596 383) scale(.65)"><Teddy x={0} y={0}/></g>
+      <g className="bb8-invite-plush"><g transform="translate(666 383) scale(.65)"><Teddy x={0} y={0}/></g></g>
+      <path className="bb8-play-float" d="M603 332q-19-14-12-20 7-5 12 4 5-9 12-4 7 6-12 20" fill="#d6a194"/>
+      <LessonSteps lines={['A friend is sitting alone', 'Would you like to join us?', 'Room for every little heart']}/>
+    </>}
   </g>;
 }

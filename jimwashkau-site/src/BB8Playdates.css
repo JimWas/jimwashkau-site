@@ -1,0 +1,35 @@
+.bb8-playdate-section{margin:24px 0;padding:26px;border:1px solid #d1d8c7;border-radius:18px;background:#f4efdf;color:#344c40}
+.bb8-playdate-section h2{margin:5px 0 10px;font-size:25px}.bb8-playdate-section p{line-height:1.6}
+.bb8-playdate-buttons{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
+.bb8-playdate-buttons button{border:1px solid #9aaf9c;border-radius:10px;padding:11px 16px;background:#e3e9d9;color:#344c40;font:inherit;cursor:pointer}
+.bb8-playdate-buttons button[aria-pressed=true]{background:#496956;color:#fff0cf}.bb8-playdate-buttons button:disabled{opacity:.5;cursor:default}
+.bb8-playdate-buttons button:focus-visible{outline:3px solid #c79663;outline-offset:3px}
+.bb8-page.is-dark .bb8-playdate-section{background:#20342b;border-color:#425b4b;color:#dce5d0}.bb8-page.is-dark .bb8-playdate-buttons button{background:#314b3c;border-color:#66816a;color:#e4ead7}
+.bb8-playmate{transform-origin:478px 415px}.bb8-playmate .bb8-head{transform-origin:478px 263px}
+.bb8-playmate-bb8{animation:bb8-playmate-eager 12s ease-in-out infinite}.bb8-playmate-bb9e{animation:bb8-playmate-thoughtful 12s ease-in-out infinite}
+.bb8-playmate-bb8 .bb8-head{animation:bb8-playmate-nod 12s ease-in-out infinite}.bb8-playmate-bb9e .bb8-head{animation:bb8-playmate-nod 12s 3s ease-in-out infinite}
+@keyframes bb8-playmate-eager{0%,100%{transform:rotate(0)}12%,22%{transform:rotate(5deg)}55%{transform:rotate(-3deg)}75%{transform:rotate(4deg)}}
+@keyframes bb8-playmate-thoughtful{0%,20%,100%{transform:rotate(0)}28%{transform:rotate(-3deg)}55%,65%{transform:rotate(-5deg)}80%{transform:rotate(2deg)}}
+@keyframes bb8-playmate-nod{0%,100%{transform:rotate(0)}20%,30%{transform:rotate(6deg)}40%{transform:rotate(0)}70%{transform:rotate(-4deg)}}
+.bb8-pair-eager-block{animation:bb8-pair-eager-block 12s ease-in-out infinite}.bb8-pair-careful-block{animation:bb8-pair-careful-block 12s ease-in-out infinite}
+@keyframes bb8-pair-eager-block{0%,100%{transform:translate(0,0)}20%,30%{transform:translate(52px,-37px) rotate(3deg);transform-origin:422px 357px}40%,90%{transform:translate(52px,-37px)}}
+@keyframes bb8-pair-careful-block{0%,35%,100%{transform:translate(0,0)}60%,90%{transform:translate(-51px,-80px)}}
+.bb8-pair-support{animation:bb8-pair-support 12s ease-in-out infinite}@keyframes bb8-pair-support{0%,32%,100%{opacity:.2}40%,80%{opacity:1}}
+.bb8-pair-success{animation:bb8-pair-success 12s ease-in-out infinite}@keyframes bb8-pair-success{0%,60%,100%{opacity:0}70%,90%{opacity:1}}
+.bb8-pair-shared-toy{animation:bb8-pair-shared-toy 12s ease-in-out infinite}@keyframes bb8-pair-shared-toy{0%,20%,100%{transform:translateX(-62px)}50%,75%{transform:translateX(62px)}}
+.bb8-pair-turn-first{animation:bb8-pair-turn-first 12s linear infinite}.bb8-pair-turn-second{animation:bb8-pair-turn-second 12s linear infinite}
+@keyframes bb8-pair-turn-first{0%,39%,90%,100%{opacity:1}40%,89%{opacity:0}}@keyframes bb8-pair-turn-second{0%,39%,90%,100%{opacity:0}40%,89%{opacity:1}}
+.bb8-pair-book-page{transform-origin:480px 380px;animation:bb8-pair-book-page 12s ease-in-out infinite}@keyframes bb8-pair-book-page{0%,35%,100%{transform:scaleX(1)}45%{transform:scaleX(.1)}55%,90%{transform:scaleX(1)}}
+.bb8-pair-playdate-reading .bb8-playmate-bb8,.bb8-pair-playdate-reading .bb8-playmate-bb9e,.bb8-pair-quiet .bb8-playmate{animation:none}
+.bb8-pair-secret-handshake .bb8-playmate-bb8{animation:bb8-handshake-wobble 8s ease-in-out infinite}.bb8-pair-secret-handshake .bb8-playmate-bb9e{animation:bb8-handshake-wobble 8s 1.5s ease-in-out infinite}
+.bb8-handshake-heart{animation:bb8-handshake-heart 8s ease-in-out infinite}@keyframes bb8-handshake-heart{0%,50%,100%{opacity:0;transform:translateY(5px)}65%,85%{opacity:1;transform:translateY(-5px)}}
+@keyframes bb8-handshake-wobble{0%,50%,100%{transform:rotate(0)}10%,30%{transform:rotate(-4deg)}20%,40%{transform:rotate(4deg)}70%{transform:rotate(-3deg)}80%{transform:rotate(3deg)}}
+.bb8-droid.bb8-doing-secret-handshake .bb8-head{animation:bb8-playmate-nod 8s ease-in-out infinite!important}
+.bb8-handshake-percy .bb8-visitor-percy,.bb8-handshake-oppy .bb8-visitor-oppy{transform-box:fill-box;transform-origin:center bottom;animation:bb8-handshake-wobble 8s 1s ease-in-out infinite!important}
+.bb8-handshake-ginny .bb8-visitor-ginny{animation:bb8-handshake-hover 8s ease-in-out infinite!important}@keyframes bb8-handshake-hover{0%,50%,100%{transform:translateY(0)}15%,35%{transform:translateY(-9px)}25%,45%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){.bb8-scene .bb8-shared-playdate *,.bb8-scene .bb8-handshake-signal *,.bb8-scene .bb8-droid.bb8-doing-secret-handshake .bb8-head,.bb8-scene .bb8-visitor{animation:none!important}.bb8-pair-turn-first{display:none}.bb8-pair-turn-second{opacity:1}.bb8-pair-success{opacity:1}}
+
+.bb8-handshake-percy .bb8-droid.bb8-doing-secret-handshake .bb8-head{animation-delay:.5s!important}
+.bb8-handshake-oppy .bb8-droid.bb8-doing-secret-handshake .bb8-body{transform-origin:478px 415px;animation:bb8-handshake-wobble 8s ease-in-out infinite!important}
+.bb8-handshake-ginny .bb8-droid.bb8-doing-secret-handshake .nine-antenna{transform-origin:343px 177px;animation:bb8-handshake-wobble 8s ease-in-out infinite!important}
+@media(prefers-reduced-motion:reduce){.bb8-scene .bb8-droid.bb8-doing-secret-handshake .bb8-body,.bb8-scene .bb8-droid.bb8-doing-secret-handshake .nine-antenna{animation:none!important}}
