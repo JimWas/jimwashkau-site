@@ -1,6 +1,10 @@
+import WorldPanel, { MemoryShelf } from './BB8WorldPanel';
+import { BuddyRitualScene } from './BB8WorldActivities';
+import { useNurseryWorld } from './useNurseryWorld';
+import type { NurseryWorld } from './BB8NurseryWorld';
 import { BuddyGreetingSignal } from './BB8CompanionMoments';
 import { useDroidPlaydates } from './BB8Playdates';
-import { handshakeFor, greetingFor, otherDroid, playdateActivities, type HandshakePartner } from './BB8PlaydateRules';
+import { handshakeFor, greetingFor, ritualFor, otherDroid, playdateActivities, type HandshakePartner } from './BB8PlaydateRules';
 import { DroidPlaydateScene, DroidPlaydateControls, HandshakeSignal } from './BB8PlaydateScene';
 import { DroidAvatar } from './DroidAvatar';
 import { useEffect, useRef, useState } from 'react';
@@ -72,21 +76,21 @@ function readLog(storageKey = 'bb8-care-log'): CareEvent[] {
   } catch { return []; }
 }
 
-export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime, visiting, leaving = [], resident = 'bb8', playmate = false, handshakePartner }: { playmate?: boolean; handshakePartner?: HandshakePartner | null; resident?: DroidId; leaving?: string[]; visiting: string[]; pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
+export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, cribPhoto, pastime, visiting, leaving = [], resident = 'bb8', playmate = false, handshakePartner, world = {nickname:'',projectStage:0,keepsakes:[]} }: { world?: NurseryWorld; playmate?: boolean; handshakePartner?: HandshakePartner | null; resident?: DroidId; leaving?: string[]; visiting: string[]; pastime: LittleActivity | null; mood: Mood; activity: Activity; night: boolean; sceneRef: React.RefObject<SVGSVGElement | null>; friends: PlushFriend[]; wallPhoto?: string; cribPhoto?: string }) {
   const droidName = droidProfiles[resident].name;
   const learning = playmate || (pastime !== null && 'lesson' in pastime);
   // The camera visit belongs in front of the entire nursery, including the quilt and crib.
-  const droid = playmate ? <DroidPlaydateScene resident={resident} moment={pastime?.id}/> : (
+  const droid = playmate ? <DroidPlaydateScene resident={resident} moment={pastime?.id} world={world} visiting={visiting}/> : (
       <g transform={activity === 'sleeping' ? 'translate(0 27) rotate(-35 478 340)' : activity === 'idle' ? 'translate(0 9)' : undefined}>
       <g className={`bb8-droid bb8-${mood} bb8-routine-${activity} ${pastime ? `bb8-doing-${pastime.id}` : ''} ${visiting.length ? 'bb8-welcome-buddies' : ''}`}>
         <DroidAvatar resident={resident} activity={activity} pastime={pastime} mood={mood}/>
-        {pastime && <ActivityProps activity={pastime} resident={resident}/>}
+        {pastime && <ActivityProps activity={pastime} resident={resident} world={world}/>}
         {pastime?.id === 'secret-handshake' && handshakePartner && <HandshakeSignal resident={resident} partner={handshakePartner}/>}
         {pastime?.id === 'buddy-greeting' && handshakePartner && <BuddyGreetingSignal resident={resident} partner={handshakePartner}/>}
       </g>
       </g>
   );
-  return <svg ref={sceneRef} className={`bb8-scene ${night ? 'is-night' : ''} ${pastime?.id === 'secret-handshake' && handshakePartner ? `bb8-handshake-${handshakePartner}` : pastime?.id === 'buddy-greeting' && handshakePartner ? `bb8-greeting-${handshakePartner}` : ''}`} viewBox="0 0 960 650" role="img" aria-label={`${playmate ? 'BB-8 and BB-9E playing together; ' : ''}${droidName} ${mood === 'hello' ? 'waving hello' : pastime ? pastime.label.toLowerCase() : mood} in a softly lit spaceship nursery with ${friends.map(friend => `a stuffed ${friend.species}`).join(', ') || 'his cozy blanket'}${visiting.length ? `, visited by ${visiting.join(', ')}` : ''}`} xmlns="http://www.w3.org/2000/svg">
+  return <svg ref={sceneRef} className={`bb8-scene ${night ? 'is-night' : ''} ${pastime?.id === 'playdate-talent' ? 'bb8-talent-show' : ''} ${pastime?.id === 'secret-handshake' && handshakePartner ? `bb8-handshake-${handshakePartner}` : pastime?.id === 'buddy-greeting' && handshakePartner ? `bb8-greeting-${handshakePartner}` : ''}`} viewBox="0 0 960 650" role="img" aria-label={`${playmate ? 'BB-8 and BB-9E playing together; ' : ''}${droidName} ${mood === 'hello' ? 'waving hello' : pastime ? pastime.label.toLowerCase() : mood} in a softly lit spaceship nursery with ${friends.map(friend => `a stuffed ${friend.species}`).join(', ') || 'his cozy blanket'}${visiting.length ? `, visited by ${visiting.join(', ')}` : ''}`} xmlns="http://www.w3.org/2000/svg">
     <defs>
       {(resident === 'bb9e' || playmate) && <BB9EDefs/>}
       <linearGradient id="bb8-wall" x2="0" y2="1"><stop stopColor="#363f43"/><stop offset="1" stopColor="#72706a"/></linearGradient>
@@ -106,11 +110,12 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
     <rect x="607" y="73" width="240" height="208" rx="98" fill="url(#bb8-sky)"/>
     {[ [641,131], [687,97], [783,116], [822,167], [679,216], [771,245], [712,165], [808,215], [658,179] ].map(([x,y],i) => <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 2 : 1} fill="#e6e9d6" opacity=".7"/>)}
     <circle cx="758" cy="169" r="35" fill="#cbc6aa"/><circle cx="747" cy="158" r="7" fill="#b5b29c"/><circle cx="771" cy="184" r="10" fill="#bab7a2"/>
-    {(pastime?.id === 'rain' || pastime?.id === 'playdate-quiet') && <g clipPath="url(#bb8-rain-window)" aria-label="Gentle pretend rain on the porthole"><rect x="607" y="73" width="240" height="208" fill="#8badb4" opacity=".15"/>{Array.from({length:16},(_,i)=><path key={i} className="bb8-window-droplet" d={`M${620+(i*37)%215} ${80+(i*29)%160}l-4 17`} stroke="#c4e0de" strokeWidth={i%3===0?3:2} opacity=".65" style={{animationDelay:`-${i*.7}s`,animationDuration:`${2+i%4}s`}}/>)}</g>}
+    {(pastime?.id === 'rain' || pastime?.id === 'playdate-quiet' || pastime?.id === 'with-you-rain') && <g clipPath="url(#bb8-rain-window)" aria-label="Gentle pretend rain on the porthole"><rect x="607" y="73" width="240" height="208" fill="#8badb4" opacity=".15"/>{Array.from({length:16},(_,i)=><path key={i} className="bb8-window-droplet" d={`M${620+(i*37)%215} ${80+(i*29)%160}l-4 17`} stroke="#c4e0de" strokeWidth={i%3===0?3:2} opacity=".65" style={{animationDelay:`-${i*.7}s`,animationDuration:`${2+i%4}s`}}/>)}</g>}
     <g transform="rotate(-5 177 157)">
     <path d="M90 100h173v114H90z" fill="#c9bda2" stroke="#a99d87" strokeWidth="8"/>
     {wallPhoto ? <image href={wallPhoto} x="97" y="107" width="159" height="100" preserveAspectRatio="xMidYMid meet"/> : <><path d="m130 183 32-46 23 28 25-33 30 51z" fill="#807e6c"/><circle cx="135" cy="128" r="12" fill="#e7a16b"/></>}
     </g>
+    <MemoryShelf world={world}/>
     <ellipse cx="443" cy="281" rx="420" ry="295" fill="url(#bb8-glow)"/>
     <g className="bb8-mobile"><path d="M429 0v58m-91 34q91-69 182 0M340 90v68m88-100v79m90-47v88" stroke="#c6bba4" strokeWidth="2" fill="none"/>
       <circle cx="340" cy="174" r="17" fill="#c19064"/><ellipse cx="340" cy="174" rx="29" ry="8" stroke="#e8d2ac" strokeWidth="3" fill="none" transform="rotate(-18 340 174)"/>
@@ -140,6 +145,7 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
     <path d="M80 295v80m-28 0h56M52 295q28-58 56 0z" fill="#e4c391" stroke="#c6ad83" strokeWidth="3"/>
     <circle cx="80" cy="298" r="65" fill="url(#bb8-glow)"/>
     <g className={`bb8-zzz ${activity !== 'sleeping' ? 'is-awake' : ''}`} fill="#ece5ce" fontFamily="system-ui" fontWeight="600"><text x="567" y="228" fontSize="18">z</text><text x="588" y="199" fontSize="25">z</text><text x="615" y="163" fontSize="33">z</text></g>
+    {pastime?.id === 'buddy-ritual' && handshakePartner && visiting.includes(handshakePartner) && <BuddyRitualScene partner={handshakePartner} layer="back"/>}
     <NurseryBuddies visiting={visiting} droidName={droidName} sleeping={activity === 'sleeping'}/>
     {leaving.length > 0 && <g className="bb8-buddies-departing"><NurseryBuddies visiting={leaving} droidName={droidName} sleeping={false}/></g>}
     {pastime?.id === 'sharing' && <g aria-label="Sharing with his Mars buddies">
@@ -147,7 +153,9 @@ export function Nursery({ mood, activity, night, sceneRef, friends, wallPhoto, c
       {visiting.includes('percy') && <path className="bb8-percy-quilt" d="M70 548q70-20 137 0v44q-67-15-137 0z" fill="#9fb9a8" stroke="#d5dfc5" strokeWidth="3"/>}
       {visiting.includes('ginny') && <text x="765" y="293" fill="#e4bb9b" fontSize="30" className="bb8-play-float">♡</text>}
     </g>}
+    {pastime?.id === 'buddy-ritual' && handshakePartner && visiting.includes(handshakePartner) && <BuddyRitualScene partner={handshakePartner}/>}
     {pastime?.id === 'camera' && droid}
+    {(pastime?.id === 'bedtime-ritual' || activity === 'sleeping') && <rect width="960" height="650" fill="#101c29" className={pastime?.id === 'bedtime-ritual' ? 'bb8-bedtime-shade' : 'bb8-sleep-shade'}/>}
     <rect width="960" height="650" fill="#162e29" opacity={night ? '.28' : '0'} pointerEvents="none"/>
   </svg>;
 }
@@ -169,6 +177,8 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
   const profile = droidProfiles[resident];
   const droidName = profile.name;
   const nurseryPortraits = profile.portraits;
+  const {world, worldRef, complete: completeWorld, saveNickname} = useNurseryWorld();
+  const projectStepThisVisit = useRef(false);
 
   const [now, setNow] = useState(Date.now);
   const [portraitIndex, setPortraitIndex] = useState(0);
@@ -235,7 +245,7 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
   const mood: Mood = now < helloUntil ? 'hello' : babyMood || activity;
   const pose: Activity = mood === 'hello' ? 'up' : activity;
   const visiblePastime = (activity !== 'sleeping' || (pastime && sleepyMoments.includes(pastime.id))) && mood !== 'hello' ? pastime : null;
-  const socialStatus = visiblePastime?.id === 'secret-handshake' && handshakePartner ? {title: handshakeFor(resident, handshakePartner).name, detail: handshakeFor(resident, handshakePartner).detail} : visiblePastime?.id === 'buddy-greeting' && handshakePartner ? greetingFor(resident, handshakePartner) : null;
+  const socialStatus = visiblePastime?.id === 'secret-handshake' && handshakePartner ? {title: handshakeFor(resident, handshakePartner).name, detail: handshakeFor(resident, handshakePartner).detail} : visiblePastime?.id === 'buddy-greeting' && handshakePartner ? greetingFor(resident, handshakePartner) : visiblePastime?.id === 'buddy-ritual' && handshakePartner ? ritualFor(handshakePartner) : null;
   const status = visiblePastime ? { ...visiblePastime, ...socialStatus } : mood === 'hello' ? { ...moodText.hello, detail: helloPhrase } : {
     ...moodText[mood], ...(statusIndex > 0 ? statusMoments[mood][statusIndex - 1] : {}),
   };
@@ -310,17 +320,22 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
     return () => clearTimeout(timer);
   }, [activity, routineReset]);
   function describeMoment(next: LittleActivity, requestedPartner?: HandshakePartner) {
-    if (next.id !== 'secret-handshake' && next.id !== 'buddy-greeting') return next.detail;
+    if (next.id === 'playdate-project') return ['Starting their cardboard hull. A little project to come back to.','Adding two little windows to their saved cardboard hull.','Making a wonderfully crooked flag for their spaceship.','Admiring their finished cardboard spaceship, made together.'][worldRef.current.projectStage];
+    if ((next.id.startsWith('gift-') || next.id.startsWith('with-you-')) && worldRef.current.nickname) return `${next.detail} A little moment for ${worldRef.current.nickname} ♡`;
+    if (!['secret-handshake','buddy-greeting','buddy-ritual'].includes(next.id)) return next.id.startsWith('playdate-') ? `${next.detail} BB-8 tries eagerly · BB-9E looks thoughtfully · both help.` : next.detail;
     const partner = requestedPartner || (next.id === 'secret-handshake' && droidPresentRef.current ? otherDroid(resident) : marsVisitors.current[Math.floor(Math.random() * marsVisitors.current.length)]);
     if (!partner) return next.detail;
     setHandshakePartner(partner);
-    return next.id === 'buddy-greeting' ? greetingFor(resident, partner).detail : handshakeFor(resident, partner).detail;
+    return next.id === 'buddy-ritual' ? ritualFor(partner).detail : next.id === 'buddy-greeting' ? greetingFor(resident, partner).detail : handshakeFor(resident, partner).detail;
   }
   // Completed moments can earn milestones; sleep and visitors constrain the choices.
   useEffect(() => {
     let timer: number;
-    const duration = (next: LittleActivity) => ['playdate-nap','playdate-quiet'].includes(next.id) ? 60000 : ['goodbye','welcome'].includes(next.id) ? 9000 : next.id === 'waking' ? 14000 : next.id === 'camera' ? 18000 : ['dozing','negotiating'].includes(next.id) ? 30000 : activity === 'sleeping' ? 14000 : 25000 + Math.random() * 10000;
+    const duration = (next: LittleActivity) => next.id.startsWith('with-you-') ? 18000 : ['bedtime-ritual','playdate-talent'].includes(next.id) ? 30000 : ['playdate-nap','playdate-quiet'].includes(next.id) ? 60000 : ['goodbye','welcome'].includes(next.id) ? 9000 : next.id === 'waking' ? 14000 : next.id === 'camera' ? 18000 : ['dozing','negotiating'].includes(next.id) ? 30000 : activity === 'sleeping' ? 14000 : 25000 + Math.random() * 10000;
     const finish = (next: LittleActivity) => {
+      const memory = completeWorld(next.id, !projectStepThisVisit.current && droidPresentRef.current);
+      if (memory.projectAdvanced) projectStepThisVisit.current = true;
+      if (memory.note) setLog(entries => [{time:Date.now(),text:memory.note!},...entries].slice(0,12));
       if (next.id === 'violin' || next.id === 'blocks') {
         const text = next.id === 'violin' ? 'First little milestone: finished his very first three-note violin tune. Encore!' : 'First little milestone: completed his tallest star-block tower. One proud little architect!';
         if (!milestonesRef.current.some(entry => entry.text === text)) {
@@ -331,6 +346,12 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
         }
       }
       setPastime(null);
+      if (next.id === 'bedtime-ritual') {
+        if (droidPresentRef.current) run(littleActivities.find(item=>item.id==='playdate-nap')!);
+        else { setBabyMood(null); setHelloUntil(0); setActivity('sleeping'); setRoutineReset(value=>value+1); }
+        return;
+      }
+      if (memory.projectAdvanced && memory.world.projectStage === 3) { run(littleActivities.find(item=>item.id==='tiny-celebration')!); return; }
       if (next.id === 'playdate-nap') { setRoutineReset(value => value + 1); return; }
       if (['violin','blocks','music-lesson','coding-rover','playdate-building','playdate-encouragement'].includes(next.id) && Math.random() < .45) {
         run(littleActivities.find(item => item.id === 'tiny-celebration')!); return;
@@ -355,7 +376,7 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
       setLog(entries => [{ time: Date.now(), text: detail }, ...entries].slice(0,12));
       timer = window.setTimeout(() => finish(next), duration(next));
     };
-    const begin = () => run(pickLittleActivity(lastPastime.current, Math.random, {sleeping: activity === 'sleeping', fullyCharged: batteryRef.current.level >= 100, hasBuddies: buddiesPresent.current, hasDroidFriend: droidPresentRef.current}));
+    const begin = () => run(pickLittleActivity(lastPastime.current, Math.random, {sleeping: activity === 'sleeping', fullyCharged: batteryRef.current.level >= 100, hasBuddies: buddiesPresent.current, hasDroidFriend: droidPresentRef.current, hasKeepsakes: worldRef.current.keepsakes.length > 0}));
     if (manualPastime.current && lastPastime.current) {
       const selected = lastPastime.current;
       manualPastime.current = false;
@@ -368,7 +389,8 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
     if (droidPresentRef.current && !playdateActivities.includes(next.id)) return;
     if (next.id.startsWith('playdate-') && !droidPresentRef.current) return;
     if (next.id === 'secret-handshake' && !droidPresentRef.current && !marsVisitors.current.length) return;
-    if ((next.id === 'sharing' || next.id === 'buddy-greeting') && !buddiesPresent.current) return;
+    if (next.id === 'memory-shelf' && !worldRef.current.keepsakes.length) return;
+    if ((next.id === 'sharing' || next.id === 'buddy-greeting' || next.id === 'buddy-ritual') && !buddiesPresent.current) return;
     if (next.id === 'charged' && batteryRef.current.level < 100) return;
     chooseActivity(sleepyMoments.includes(next.id) ? 'sleeping' : 'busy');
     lastPastime.current = next;
@@ -397,14 +419,17 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
     previousVisitors.current = [...visiting];
     setLeaving(departed);
     if (activityRef.current === 'sleeping' || batteryRef.current.level <= 15) return;
-    if (arrived.length && !droidPresentRef.current) choosePastime(littleActivities.find(item => item.id === (Math.random() < .5 ? 'buddy-greeting' : 'secret-handshake'))!, arrived[0]);
+    if (arrived.length && !droidPresentRef.current) {
+      const greetingId = Math.random() < .5 ? 'buddy-greeting' : 'secret-handshake';
+      choosePastime(littleActivities.find(item => item.id === greetingId)!, arrived[0]);
+    }
     else if (departed.length) choosePastime(littleActivities.find(item => item.id === 'goodbye')!);
   }, [visiting]);
   const previousPlaydate = useRef(false);
   useEffect(() => {
     if (previousPlaydate.current === playdate.present) return;
     previousPlaydate.current = playdate.present;
-    if (playdate.present) choosePastime(littleActivities.find(item => item.id === 'secret-handshake')!);
+    if (playdate.present) { projectStepThisVisit.current = false; choosePastime(littleActivities.find(item => item.id === 'secret-handshake')!); }
     else { setPastime(null); setHandshakePartner(null); manualPastime.current = false; setRoutineReset(value => value + 1); }
   }, [playdate.present]);
   useEffect(() => {
@@ -564,16 +589,18 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
   }, [sound, audioStarted]);
 
   useEffect(() => {
-    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin' && pastime?.id !== 'dancing' && pastime?.id !== 'conducting' && pastime?.id !== 'words' && pastime?.id !== 'music-lesson')) return;
+    if (!sound || !audioStarted || activity === 'sleeping' || (pastime?.id !== 'singing' && pastime?.id !== 'violin' && pastime?.id !== 'dancing' && pastime?.id !== 'conducting' && pastime?.id !== 'words' && pastime?.id !== 'music-lesson' && pastime?.id !== 'with-you-tune' && pastime?.id !== 'playdate-talent')) return;
     // Model C–E–G, leave a listening pause, then let the little droid copy it.
-    const melody = pastime.id === 'music-lesson' ? [261.63, 329.63, 392] : [261.63, 329.63, 392, 329.63, 293.66, 261.63];
+    const isLesson = ['music-lesson','with-you-tune'].includes(pastime.id);
+    const cues: number[] = [];
+    const melody = isLesson ? [261.63, 329.63, 392] : [261.63, 329.63, 392, 329.63, 293.66, 261.63];
     const play = () => {
-      if (pastime.id === 'music-lesson') melody.forEach((note, index) => tone(note, 5 + index * .42, .35, true, 1, 'sine', .025, 'baby'));
-      melody.forEach((note, index) => tone(note, index * .42, .35, true, 1, pastime.id === 'violin' ? 'triangle' : 'sine', .025, 'baby'));
+      if (isLesson) cues.push(window.setTimeout(() => melody.forEach((note,index) => tone(note,index*.42,.35,true,1,'sine',.025,'baby')),5000));
+      melody.forEach((note, index) => tone(note, index * .42, .35, true, 1, ['violin','playdate-talent'].includes(pastime.id) ? 'triangle' : 'sine', .025, 'baby'));
     };
     play();
-    const timer = window.setInterval(play, pastime.id === 'music-lesson' ? 15000 : 11000);
-    return () => clearInterval(timer);
+    const timer = window.setInterval(play, isLesson ? 15000 : 11000);
+    return () => { clearInterval(timer); cues.forEach(clearTimeout); };
   }, [pastime, activity, sound, audioStarted]);
 
   useEffect(() => {
@@ -601,6 +628,12 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
     if (!sound || !audioStarted || activity === 'sleeping' || pastime?.id !== 'buddy-greeting' || !handshakePartner) return;
     greetingFor(resident, handshakePartner).notes.forEach((note, index) => tone(note, index * .4, .22, true, 1.1, 'sine', .02, 'baby'));
   }, [pastime, activity, sound, audioStarted, handshakePartner, resident]);
+
+  useEffect(() => {
+    if (!sound || !audioStarted || pastime?.id !== 'bedtime-ritual') return;
+    const timer = window.setTimeout(()=> { tone(440,0,.35,true,.8,'sine',.015,'baby');tone(330,.5,.4,true,.8,'sine',.012,'baby'); },20000);
+    return ()=>clearTimeout(timer);
+  },[pastime,sound,audioStarted]);
 
   useEffect(() => {
     if (!sound || !audioStarted || !pastime) return;
@@ -702,14 +735,14 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
         <section className="bb8-monitor" aria-label={`${droidName} nursery monitor`}>
           <div className="bb8-monitor-heading"><div><span className="bb8-status-dot"/><h2>{droidName}’s nursery</h2></div><span>CAM 01 <span className="bb8-heading-divider">/</span> SIMULATED FEED</span></div>
           <div ref={feedRef} className={`bb8-feed ${fullscreen ? 'is-fullscreen' : ''}`}>
-            <Nursery playmate={playdate.present} handshakePartner={handshakePartner} resident={resident} visiting={visiting} leaving={leaving} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={customAlbum.photo || nurseryPortraits[portraitIndex]} cribPhoto={customAlbum.cribPhoto || nurseryPortraits[(portraitIndex + 1) % nurseryPortraits.length]}/>
+            <Nursery world={world} playmate={playdate.present} handshakePartner={handshakePartner} resident={resident} visiting={visiting} leaving={leaving} pastime={visiblePastime} mood={mood} activity={pose} night={night} sceneRef={sceneRef} friends={plushShelf.selected} wallPhoto={customAlbum.photo || nurseryPortraits[portraitIndex]} cribPhoto={customAlbum.cribPhoto || nurseryPortraits[(portraitIndex + 1) % nurseryPortraits.length]}/>
             <div className="bb8-feed-top"><span className="bb8-feed-badge"><span className="bb8-status-dot"/> {night ? 'NIGHT VISION' : playdate.present ? 'DROID PLAYDATE' : visiting.length ? 'BUDDY VISIT' : 'NURSERY VIEW'}</span><time dateTime={new Date(now).toISOString()}>{new Date(now).toLocaleTimeString([], { hour12: false })} <small>LOCAL</small></time></div>
             <div className="bb8-feed-bottom"><span><Moon size={15}/> {status.title}</span><div className="bb8-view-buttons">{theatre && !fullscreen && <button onClick={() => setTheatre(false)} aria-label="Exit theatre mode" title="Exit theatre mode"><Minimize2 size={18}/></button>}<button onClick={toggleFullscreen} aria-label={fullscreen ? 'Exit fullscreen' : theatre ? 'Open fullscreen' : 'Open theatre mode'} title={fullscreen ? 'Exit fullscreen' : theatre ? 'Fullscreen' : 'Theatre mode'}>{fullscreen ? <Minimize2 size={18}/> : <Maximize2 size={18}/>}</button></div></div>
             <span className="bb8-camera-corner bb8-corner-left"/><span className="bb8-camera-corner bb8-corner-right"/>
           </div>
           <div className="bb8-controls"><button className={sound ? 'is-active' : ''} onClick={toggleSound} aria-pressed={sound}>{sound ? <Volume2 size={19}/> : <VolumeX size={19}/>}<span>Sound <small>{sound ? 'on' : 'off'}</small></span></button><button className={night ? 'is-active' : ''} onClick={() => setNight(!night)} aria-pressed={night}>{night ? <Sun size={19}/> : <Moon size={19}/>}<span>Night vision</span></button><button onClick={saveSnapshot}><Camera size={19}/><span>Snapshot</span></button><div className="bb8-controls-note"><span className="bb8-status-dot"/> {lullaby ? 'Lullaby playing' : 'All cozy here'}</div></div>
           <label className="bb8-volume">Nursery volume <input type="range" min="0" max="100" value={volume} onChange={event => setVolume(Number(event.target.value))}/><span>{volume}%</span></label>
-          <div className="bb8-play-controls"><label htmlFor="bb8-play-choice">Little adventures</label><select id="bb8-play-choice" value={visiblePastime?.id || ''} onChange={event => { const next = littleActivities.find(item => item.id === event.target.value); if (next) choosePastime(next); else chooseActivity(activity); }}><option value="">Let him surprise you</option>{littleActivities.filter(item => !playdate.present || playdateActivities.includes(item.id)).map(item => <option key={item.id} value={item.id} disabled={(item.id.startsWith('playdate-') && !playdate.present) || (item.id === 'secret-handshake' && !playdate.present && !visiting.length) || eventMoments.includes(item.id) || (item.id === 'charged' && battery.level < 100) || ((item.id === 'sharing' || item.id === 'buddy-greeting') && visiting.length === 0)}>{item.label}{item.id.startsWith('playdate-') && !playdate.present ? ' (invite the other droid)' : ''}{eventMoments.includes(item.id) ? ' (automatic)' : ''}{(item.id === 'sharing' || item.id === 'buddy-greeting') && !visiting.length ? ' (invite a buddy)' : ''}{item.id === 'charged' && battery.level < 100 ? ' (at 100%)' : ''}</option>)}</select><small>He picks his own adventures between naps.</small></div>
+          <div className="bb8-play-controls"><label htmlFor="bb8-play-choice">Little adventures</label><select id="bb8-play-choice" value={visiblePastime?.id || ''} onChange={event => { const next = littleActivities.find(item => item.id === event.target.value); if (next) choosePastime(next); else chooseActivity(activity); }}><option value="">Let him surprise you</option>{littleActivities.filter(item => !playdate.present || playdateActivities.includes(item.id)).map(item => <option key={item.id} value={item.id} disabled={(item.id === 'memory-shelf' && !world.keepsakes.length) || (item.id.startsWith('playdate-') && !playdate.present) || (item.id === 'secret-handshake' && !playdate.present && !visiting.length) || eventMoments.includes(item.id) || (item.id === 'charged' && battery.level < 100) || ((item.id === 'sharing' || item.id === 'buddy-greeting' || item.id === 'buddy-ritual') && visiting.length === 0)}>{item.label}{item.id.startsWith('playdate-') && !playdate.present ? ' (invite the other droid)' : ''}{eventMoments.includes(item.id) ? ' (automatic)' : ''}{(item.id === 'sharing' || item.id === 'buddy-greeting' || item.id === 'buddy-ritual') && !visiting.length ? ' (invite a buddy)' : ''}{item.id === 'charged' && battery.level < 100 ? ' (at 100%)' : ''}</option>)}</select><small>He picks his own adventures between naps.</small></div>
           <div className="bb8-routine-controls" role="group" aria-label={`${droidName} activity`}><span>Little droid routine</span><div>{activityChoices.map(choice => <button key={choice.value} aria-pressed={activity === choice.value} onClick={() => chooseActivity(choice.value)}>{choice.label}</button>)}</div><small>Changes on his own, too.</small></div>
           <p className="bb8-feed-caption"><Sparkles size={14}/> A fan-made animated nursery. Activity and readings are pretend.</p>
         </section>
@@ -720,8 +753,9 @@ function DroidMonitor({ resident, onResidentChange, theatre, onTheatreChange: se
       </div>
       {/* Google Photos stays hidden; this album uses only locally chosen images. */}
       <CustomAlbum album={customAlbum} droidName={droidName}/>
+      <WorldPanel world={world} sleeping={activity === 'sleeping'} hasFriend={playdate.present} onNickname={saveNickname} onMoment={id => { const next = littleActivities.find(item=>item.id===id); if(next) choosePastime(next); }}/>
       <DroidPlaydateControls resident={resident} present={playdate.present} automatic={playdate.automatic} surprise={playdate.surprise} sleeping={activity === 'sleeping'} onInvite={playdate.toggleInvitation} onAutomatic={playdate.toggleAutomatic} onMoment={id => { const next = littleActivities.find(item => item.id === id); if (next) choosePastime(next); }}/>
-      <BuddyVisits onGreet={playdate.present ? undefined : partner => choosePastime(littleActivities.find(item => item.id === 'buddy-greeting')!, partner)} onHandshake={playdate.present ? undefined : partner => choosePastime(littleActivities.find(item => item.id === 'secret-handshake')!, partner)} droidName={droidName} visiting={visiting} sleeping={activity === 'sleeping'} automatic={buddyVisits.automatic} surprise={!!buddyVisits.automaticVisitor} onAutomatic={buddyVisits.toggleAutomatic} onChange={buddyVisits.changeVisitors}/>
+      <BuddyVisits onRitual={partner=>choosePastime(littleActivities.find(item=>item.id==='buddy-ritual')!,partner)} onGreet={playdate.present ? undefined : partner => choosePastime(littleActivities.find(item => item.id === 'buddy-greeting')!, partner)} onHandshake={playdate.present ? undefined : partner => choosePastime(littleActivities.find(item => item.id === 'secret-handshake')!, partner)} droidName={droidName} visiting={visiting} sleeping={activity === 'sleeping'} automatic={buddyVisits.automatic} surprise={!!buddyVisits.automaticVisitor} onAutomatic={buddyVisits.toggleAutomatic} onChange={buddyVisits.changeVisitors}/>
       <StuffedAnimals shelf={plushShelf} now={now} onToggle={toggleFriend} onRefresh={refreshFriends}/>
       <section className="bb8-journal"><div className="bb8-journal-heading"><div><p className="bb8-eyebrow">THE LITTLE MOMENTS</p><h2>Nursery notes</h2></div><span>Saved on this device</span></div><div className="bb8-log" aria-label="Recent nursery activity">{log.slice(0, 4).map((entry, i) => <article key={`${entry.time}-${i}`}><span className="bb8-log-icon">{entry.text.includes('lullaby') ? <Music2 size={16}/> : entry.text.includes('snapshot') ? <Camera size={16}/> : <Moon size={16}/>}</span><div><p>{entry.text}</p><time dateTime={new Date(entry.time).toISOString()}>{new Date(entry.time).toLocaleDateString([], { month: 'short', day: 'numeric' })} · {clock(entry.time)}</time></div></article>)}</div>{milestones.length > 0 && <div className="bb8-milestones"><h3>Little firsts ✦</h3><p>His little achievements, remembered on this device.</p>{milestones.map(entry => <p key={entry.text}><span>★</span> {entry.text} <time dateTime={new Date(entry.time).toISOString()}>{new Date(entry.time).toLocaleDateString([], {month:'short', day:'numeric'})}</time></p>)}</div>}</section>
       <BB8Terminal droidName={droidName} event={log[0]} status={status.title} lullaby={lullaby} night={night} onHello={sayHello} onLullaby={toggleLullaby} onNight={() => setNight(!night)}/>

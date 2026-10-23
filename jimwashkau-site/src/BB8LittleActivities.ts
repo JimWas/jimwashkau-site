@@ -89,15 +89,27 @@ export const littleActivities = [
   { id: 'playdate-nap', label: 'Cozy group nap', title: 'Two sleepy droids. One soft blanket.', detail: 'Both droids tuck in together. Visiting Percy dims his lights, Oppy rests nearby, and Ginny lands on her cushion. Tiny dreams for two very loved droids, before their friend heads back to his own nursery.' },
   { id: 'tiny-celebration', label: 'Tiny celebration', title: 'A little crown for a little victory', detail: 'A paper crown and a modest happy dance. Learning something new deserves a small, sweet celebration.' },
   { id: 'playdate-quiet', label: 'Comfortable quiet together', title: 'Nothing to do. Just being together.', detail: 'Sitting side by side under a shared blanket, watching pretend rain on the porthole. Quiet company can be a whole adventure.' },
+  { id: 'playdate-project', label: 'Their cardboard spaceship', title: 'A project made together', detail: 'A cardboard hull, two little windows, and eventually a wonderfully crooked flag. One patient step per playdate, remembered between visits.' },
+  { id: 'memory-shelf', label: 'Remembering a keepsake', title: 'Remember when we made this?', detail: 'Taking a finished craft down from their memory shelf. A fond little look, then putting it carefully back.' },
+  { id: 'buddy-ritual', label: 'A familiar buddy ritual', title: 'Little traditions, familiar friends', detail: 'Oppy gets his sunny cushion, Ginny helps hang the decorations, and Percy brings a pretend rock for a curious inspection.' },
+  { id: 'playdate-puzzle', label: 'Cooperative puzzles', title: 'Two curious minds, one puzzle', detail: 'BB-8 finds a piece and BB-9E checks its shape. Then they swap jobs. Each little discovery belongs to both of them.' },
+  { id: 'playdate-talent', label: 'Tiny talent show', title: 'An encore for every little effort', detail: 'A squeaky violin solo, a proud wobble, and gentle applause. Every friend gets a turn and every effort is welcome.' },
+  { id: 'playdate-compromise', label: 'Gentle disagreements', title: 'We can work this out together', detail: 'Both reach for the same toy, pause, and decide to take turns. A little patience makes room for two happy hearts.' },
+  { id: 'playdate-picnic', label: 'Space picnic', title: 'Six snacks and a sky full of stars', detail: 'Spreading a blanket and counting six pretend snacks: three each. If Ginny is visiting, she carefully delivers the napkin.' },
+  { id: 'bedtime-ritual', label: 'A cozy bedtime ritual', title: 'Tidy toys, one story, then goodnight', detail: 'Putting toys away, sharing a little story, and exchanging soft goodnight beeps. The nursery lights slowly soften for recharge time.' },
+  { id: 'with-you-rain', label: 'A moment: listen to rain', title: 'A quiet moment with you', detail: 'Listening to gentle pretend rain together. Nothing to finish, just a little time beside your companions.' },
+  { id: 'with-you-breath', label: 'A moment: breathing flower', title: 'A little space to settle', detail: 'Following the flower as it opens and closes. Slow, easy, and entirely at your own pace.' },
+  { id: 'with-you-tune', label: 'A moment: little tune', title: 'A little tune, just for you', detail: 'Listening to three soft notes and a gentle reply. A short musical moment together.' },
 ] as const;
 export type LittleActivity = typeof littleActivities[number];
 
-export function pickLittleActivity(previous: LittleActivity | null, random = Math.random, context: { sleeping?: boolean; fullyCharged?: boolean; hasBuddies?: boolean; hasDroidFriend?: boolean } = {}): LittleActivity {
+export function pickLittleActivity(previous: LittleActivity | null, random = Math.random, context: { sleeping?: boolean; fullyCharged?: boolean; hasBuddies?: boolean; hasDroidFriend?: boolean; hasKeepsakes?: boolean } = {}): LittleActivity {
   const sleepy = ['dream-projecting', 'tiny-dreams', 'waking'];
-  const eligible = littleActivities.filter(item => !['goodbye', 'welcome'].includes(item.id)
+  const eligible = littleActivities.filter(item => !['goodbye', 'welcome'].includes(item.id) && !item.id.startsWith('with-you-')
     && (context.sleeping === undefined || (context.sleeping ? sleepy.includes(item.id) : !sleepy.includes(item.id)))
     && (context.hasDroidFriend === true && context.sleeping !== true ? playdateActivities.includes(item.id) : !item.id.startsWith('playdate-'))
-    && (item.id !== 'buddy-greeting' || context.hasBuddies === true)
+    && (item.id !== 'memory-shelf' || context.hasKeepsakes === true)
+    && (!['buddy-greeting','buddy-ritual'].includes(item.id) || context.hasBuddies === true)
     && (item.id !== 'secret-handshake' || context.hasDroidFriend === true || context.hasBuddies === true)
     && (context.fullyCharged !== false || item.id !== 'charged')
     && (!context.hasBuddies || item.id !== 'waiting')

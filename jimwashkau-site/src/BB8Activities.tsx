@@ -1,12 +1,15 @@
+import { WorldActivityProps } from './BB8WorldActivities';
+import type { NurseryWorld } from './BB8NurseryWorld';
 import { CompanionMomentProps } from './BB8CompanionMoments';
 import type { DroidId } from './DroidProfiles';
 import { LearningActivityProps } from './BB8LearningActivities';
 import type { LittleActivity } from './BB8LittleActivities';
 
 // Props live inside the droid's SVG group so snapshots and night vision include them.
-export function ActivityProps({ activity, resident = 'bb8' }: { activity: LittleActivity; resident?: DroidId }) {
+export function ActivityProps({ activity, resident = 'bb8', world = {nickname:'',projectStage:0,keepsakes:[]} }: { activity: LittleActivity; resident?: DroidId; world?: NurseryWorld }) {
   return <g className={`bb8-play-props bb8-play-${activity.id}`} aria-label={activity.label} strokeLinecap="round" strokeLinejoin="round">
-    <CompanionMomentProps id={activity.id} resident={resident}/>
+    <CompanionMomentProps id={activity.id} resident={resident} nickname={world.nickname}/>
+    <WorldActivityProps id={activity.id} world={world}/>
     <LearningActivityProps key={activity.id} id={activity.id}/>
     {activity.id === 'violin' && <>
       <path d="M510 285q25 0 18 22q-13 14 0 26q10 27-15 38q-27 7-29-18q-2-15 9-23q10-9-3-21q-9-23 20-24" fill="#b97040" stroke="#75472f" strokeWidth="3"/>
@@ -174,11 +177,11 @@ export function ActivityProps({ activity, resident = 'bb8' }: { activity: Little
     {activity.id === 'tiny-dreams' && <g className="bb8-dream-heart" fill="#d5b89b"><path d="M578 271q-28-21-17-31q10-6 17 8q8-14 18-8q11 10-18 31"/><text x="603" y="222" fontSize="23">♫</text></g>}
     {activity.id === 'rain' && <path d="m515 249 12 3m0-4v8" stroke="#e2d5ad" strokeWidth="3"/>}
     {activity.id === 'oops' && <g className="bb8-oops-tower">{[0,1,2,3].map((i)=><g key={i} className={`bb8-falling-block bb8-falling-block-${i}`}><rect x="573" y={384-i*29} width="29" height="28" rx="4" fill={['#c48c71','#96b9ae','#d7bf84','#b5c3a1'][i]} stroke="#f0e5c9" strokeWidth="2"/><text x="587" y={404-i*29} textAnchor="middle" fill="#f5e9ca" fontSize="18">★</text></g>)}</g>}
-    {activity.id === 'goodbye' && <><rect x="772" y="300" width="80" height="148" rx="25" fill="#344b45" stroke="#a4b09b" strokeWidth="4"/><path d="m789 321 42 3v112l-42 0z" fill="#52675b"/><text x="670" y="315" fill="#e7cd9e" fontSize="23" className="bb8-play-float">bye ♡</text></>}
+    {activity.id === 'goodbye' && <><rect x="772" y="300" width="80" height="148" rx="25" fill="#344b45" stroke="#a4b09b" strokeWidth="4"/><path d="m789 321 42 3v112l-42 0z" fill="#52675b"/></>}
     {activity.id === 'sharing' && <path d="m521 327 57 15" stroke="#9baea0" strokeWidth="9"/>}
     {activity.id === 'camera' && <g className="bb8-camera-question"><text x="536" y="240" fill="#ead9ad" fontSize="24">?</text></g>}
-    {activity.id === 'negotiating' && <><g className="bb8-extra-books">{[0,1,2].map(i=><g key={i} style={{animationDelay:`${i*5}s`}}><rect x="543" y={402-i*14} width="68" height="13" rx="3" fill={['#9fb7a6','#d1a27c','#adc0ca'][i]} stroke="#e7d9b9" strokeWidth="2"/><path d={`M551 ${408-i*14}h50`} stroke="#ede4cb" strokeWidth="3"/></g>)}</g><path d="M426 333q27-13 52 2q26-15 52-2v57q-28-9-52 5q-25-14-52-5z" fill="#e4d8bc" stroke="#a98665" strokeWidth="4"/><path d="M478 335v59" stroke="#bca584" strokeWidth="2"/><text x="553" y="277" fill="#eadbb8" fontSize="18">one more?</text></>}
+    {activity.id === 'negotiating' && <><g className="bb8-extra-books">{[0,1,2].map(i=><g key={i} style={{animationDelay:`${i*5}s`}}><rect x="543" y={402-i*14} width="68" height="13" rx="3" fill={['#9fb7a6','#d1a27c','#adc0ca'][i]} stroke="#e7d9b9" strokeWidth="2"/><path d={`M551 ${408-i*14}h50`} stroke="#ede4cb" strokeWidth="3"/></g>)}</g><path d="M426 333q27-13 52 2q26-15 52-2v57q-28-9-52 5q-25-14-52-5z" fill="#e4d8bc" stroke="#a98665" strokeWidth="4"/><path d="M478 335v59" stroke="#bca584" strokeWidth="2"/></>}
     {activity.id === 'comfort' && <g className="bb8-quilt-smooth"><path d="M388 385q45-15 90 0t90 0v41q-45 16-90 0t-90 0z" fill="#94b3a3" stroke="#d0dac0" strokeWidth="3"/><path d="M407 400h30m-15-5v10m85 5h30m-15-5v10" stroke="#dce4c9" strokeWidth="3"/><path d="m445 361-21 28m90-28 20 28" stroke="#a7b4a3" strokeWidth="7"/></g>}
-    {activity.id === 'welcome' && <g className="bb8-play-float" fill="#e2b298"><path d="M565 282q-32-23-20-33q11-7 20 8q9-15 20-8q12 10-20 33"/><text x="547" y="312" fontSize="17">you! ♡</text></g>}
+    {activity.id === 'welcome' && <g className="bb8-play-float" fill="#e2b298"><path d="M565 282q-32-23-20-33q11-7 20 8q9-15 20-8q12 10-20 33"/></g>}
   </g>;
 }

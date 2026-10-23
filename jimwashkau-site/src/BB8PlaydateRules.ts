@@ -1,6 +1,6 @@
 import type { DroidId } from './DroidProfiles';
 
-export const playdateActivities = ['playdate-building', 'playdate-turns', 'playdate-reading', 'secret-handshake', 'playdate-encouragement', 'playdate-nap', 'playdate-quiet', 'gift-drawing', 'gift-flower', 'gift-treasure', 'tiny-celebration'];
+export const playdateActivities = ['playdate-building', 'playdate-turns', 'playdate-reading', 'secret-handshake', 'playdate-encouragement', 'playdate-nap', 'playdate-quiet', 'gift-drawing', 'gift-flower', 'gift-treasure', 'tiny-celebration', 'playdate-project', 'memory-shelf', 'buddy-ritual', 'playdate-puzzle', 'playdate-talent', 'playdate-compromise', 'playdate-picnic', 'bedtime-ritual', 'with-you-rain', 'with-you-breath', 'with-you-tune'];
 export type HandshakePartner = DroidId | 'percy' | 'oppy' | 'ginny';
 export const otherDroid = (resident: DroidId): DroidId => resident === 'bb8' ? 'bb9e' : 'bb8';
 export const playdateTiming = { firstGap: [90, 240], gap: [240, 540], stay: [75, 150] } as const;
@@ -26,4 +26,13 @@ export function greetingFor(resident: DroidId, partner: HandshakePartner) {
     ginny: { title: 'An antenna hello for Ginny', detail: `${name} looks up at Ginny. His antenna gives an excited wiggle, and she answers with a gentle hover.`, notes: [660, 880] },
   };
   return greetings[partner === 'percy' || partner === 'oppy' || partner === 'ginny' ? partner : 'percy'];
+}
+
+export function ritualFor(partner: HandshakePartner) {
+  const rituals = {
+    percy: {title:'Percy’s little rock ritual',detail:'Percy brought another pretend rock. Two curious friends inspect it carefully, then give their familiar little nod.'},
+    oppy: {title:'Oppy’s sunny cushion',detail:'The sunny cushion is waiting in Oppy’s favorite spot. A happy roll, a cozy seat, and a familiar friend.'},
+    ginny: {title:'Ginny hangs the decorations',detail:'Ginny carefully helps hang the little paper flags. A gentle hover, one last adjustment, and the nursery feels like home.'},
+  };
+  return rituals[partner==='percy'||partner==='oppy'||partner==='ginny'?partner:'percy'];
 }
