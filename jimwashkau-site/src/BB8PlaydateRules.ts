@@ -1,6 +1,6 @@
 import type { DroidId } from './DroidProfiles';
 
-export const playdateActivities = ['playdate-building', 'playdate-turns', 'playdate-reading', 'secret-handshake', 'playdate-encouragement', 'playdate-nap', 'playdate-quiet', 'gift-drawing', 'gift-flower', 'gift-treasure', 'tiny-celebration', 'playdate-project', 'memory-shelf', 'buddy-ritual', 'playdate-puzzle', 'playdate-talent', 'playdate-compromise', 'playdate-picnic', 'bedtime-ritual', 'with-you-rain', 'with-you-breath', 'with-you-tune'];
+export const playdateActivities = ['surprise-planet-postcard','surprise-parade','surprise-window-visitor','surprise-bubble-heart','surprise-ship-launch','surprise-moon-bloom','surprise-puppet-show','surprise-prism-rainbow','surprise-backwards-concert','surprise-precious-repair','surprise-tiny-museum','surprise-night-garden', 'surprise-welcome-home','surprise-camera-gift','surprise-shooting-star','surprise-costume-mixup','surprise-constellation','surprise-duet','surprise-blanket-hide','surprise-delivery','surprise-quiet-kindness','surprise-photo-pose','surprise-beautiful-mess','surprise-sleepy-thanks', 'playdate-building', 'playdate-turns', 'playdate-reading', 'secret-handshake', 'playdate-encouragement', 'playdate-nap', 'playdate-quiet', 'gift-drawing', 'gift-flower', 'gift-treasure', 'tiny-celebration', 'playdate-project', 'memory-shelf', 'buddy-ritual', 'playdate-puzzle', 'playdate-talent', 'playdate-compromise', 'playdate-picnic', 'bedtime-ritual', 'with-you-rain', 'with-you-breath', 'with-you-tune'];
 export type HandshakePartner = DroidId | 'percy' | 'oppy' | 'ginny';
 export const otherDroid = (resident: DroidId): DroidId => resident === 'bb8' ? 'bb9e' : 'bb8';
 export const playdateTiming = { firstGap: [90, 240], gap: [240, 540], stay: [75, 150] } as const;
@@ -35,4 +35,13 @@ export function ritualFor(partner: HandshakePartner) {
     ginny: {title:'Ginny hangs the decorations',detail:'Ginny carefully helps hang the little paper flags. A gentle hover, one last adjustment, and the nursery feels like home.'},
   };
   return rituals[partner==='percy'||partner==='oppy'||partner==='ginny'?partner:'percy'];
+}
+
+// Shared by the automatic picker and manual activity controls.
+export function surpriseUnavailableReason(id: string, context: {hasDroidFriend?: boolean; hasBuddies?: boolean; hasGarden?: boolean; projectFinished?: boolean}): string | null {
+  if (['surprise-duet','surprise-quiet-kindness','surprise-backwards-concert','surprise-precious-repair'].includes(id) && !context.hasDroidFriend) return 'invite the other droid';
+  if (id === 'surprise-parade' && !context.hasDroidFriend && !context.hasBuddies) return 'invite a buddy';
+  if (id === 'surprise-moon-bloom' && !context.hasGarden) return 'finish a little gardening first';
+  if (id === 'surprise-ship-launch' && !context.projectFinished) return 'finish their cardboard spaceship first';
+  return null;
 }

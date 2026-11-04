@@ -1,0 +1,48 @@
+.bb8-wonder-scene{stroke-linecap:round;stroke-linejoin:round}
+.bb8-postcard-offer{transform-origin:0 45px;animation:bb8-postcard-pride 8s ease-in-out infinite}
+@keyframes bb8-postcard-pride{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(4deg) translateY(-5px)}}
+.bb8-parade-wagon{animation:bb8-wagon-procession 30s ease-in-out both}
+@keyframes bb8-wagon-procession{0%{transform:translate(-100px,0)}45%{transform:translate(105px,0)}55%{transform:translate(105px,0)}100%{transform:translate(-100px,0)}}
+.bb8-moment-surprise-parade .bb8-droid,.bb8-moment-surprise-parade .bb8-playmate{animation:bb8-parade-roll 30s ease-in-out both!important;transform-box:fill-box;transform-origin:center bottom}
+@keyframes bb8-parade-roll{0%,100%{transform:translateX(-32px) rotate(-3deg)}45%,55%{transform:translateX(45px) rotate(4deg)}}
+.bb8-moment-surprise-parade .bb8-visitor{animation:bb8-buddy-procession 30s ease-in-out both!important}
+@keyframes bb8-buddy-procession{0%,100%{transform:translateX(0)}45%,55%{transform:translateX(24px)}}
+.bb8-window-bot{animation:bb8-maintenance-visit 30s ease-in-out both}
+@keyframes bb8-maintenance-visit{0%{transform:translateX(-160px)}25%,70%{transform:translateX(0)}100%{transform:translateX(200px)}}
+.bb8-bot-wave,.bb8-wonder-wave{animation:bb8-wonder-wave 2.4s ease-in-out infinite;transform-origin:0 0}
+@keyframes bb8-wonder-wave{50%{transform:rotate(-18deg)}}
+.bb8-heart-bubble{animation:bb8-bubbles-gather 24s ease-in-out both}
+@keyframes bb8-bubbles-gather{0%{opacity:0;transform:translate(65px,170px)}25%,85%{opacity:.85;transform:translate(0,0)}100%{opacity:0;transform:translateY(-15px)}}
+.bb8-moment-surprise-bubble-heart .bb8-head{animation:bb8-bubble-wonder 30s ease-in-out both!important;transform-box:fill-box;transform-origin:center bottom}
+@keyframes bb8-bubble-wonder{0%,20%{transform:rotate(0)}30%,75%{transform:rotate(-8deg)}100%{transform:rotate(0)}}
+.bb8-ship-liftoff{animation:bb8-cardboard-liftoff 30s ease-in-out both}
+@keyframes bb8-cardboard-liftoff{0%,30%{transform:translateY(0)}55%,80%{transform:translateY(-105px) rotate(-2deg);transform-origin:480px 408px}100%{transform:translateY(0)}}
+.bb8-paper-exhaust{animation:bb8-paper-exhaust 30s ease-in-out both}
+@keyframes bb8-paper-exhaust{0%,29%,100%{opacity:0}36%,85%{opacity:1}}
+.bb8-launch-light{animation:bb8-launch-light 9s linear both}.bb8-launch-light-1{animation-delay:3s}.bb8-launch-light-2{animation-delay:6s}
+@keyframes bb8-launch-light{0%,33%{fill:#ebd398}34%,100%{fill:#839a7f}}
+.bb8-moon-blossom{animation:bb8-moon-blossom 30s ease-in-out both}
+@keyframes bb8-moon-blossom{0%,15%{transform:scale(.1)}50%,100%{transform:scale(1)}}
+.bb8-sock-puppet{animation:bb8-puppet-story 7s ease-in-out infinite}.bb8-sock-puppet-1{animation-delay:-3.5s}
+@keyframes bb8-puppet-story{0%,100%{transform:translateY(25px) rotate(-7deg)}35%,65%{transform:translateY(-12px) rotate(7deg)}}
+.bb8-prism-ray{animation:bb8-rainbow-discovery 9s ease-in-out infinite;transform-origin:575px 375px}
+@keyframes bb8-rainbow-discovery{0%,100%{opacity:.35}50%{opacity:.85}}
+.bb8-reverse-note{animation:bb8-reverse-note 11s ease-in-out infinite}.bb8-reverse-note-1{animation-delay:3s}
+@keyframes bb8-reverse-note{0%,65%,100%{opacity:0;transform:translateY(0)}10%,45%{opacity:1;transform:translateY(-12px)}}
+.bb8-moment-surprise-backwards-concert .bb8-playmate-bb9e .bb8-head{animation:bb8-concert-lead 2s ease-in-out infinite!important}
+@keyframes bb8-concert-lead{50%{transform:translateY(4px)}}
+.bb8-repair-wheel{animation:bb8-wheel-repair 30s ease-in-out both}
+@keyframes bb8-wheel-repair{0%,15%{transform:translate(22px,18px) rotate(40deg);transform-origin:20px 18px}40%,100%{transform:translate(0,0)}}
+.bb8-repaired-rover{animation:bb8-rover-test 30s ease-in-out both}
+@keyframes bb8-rover-test{0%,50%,100%{transform:translateX(0)}62%{transform:translateX(22px)}74%{transform:translateX(-15px)}82%{transform:translateX(0)}}
+.bb8-repair-tool{animation:bb8-repair-tool 30s ease-in-out both}
+@keyframes bb8-repair-tool{0%,10%,60%,100%{opacity:0}20%,50%{opacity:1}}
+.bb8-patient-quilt{animation:bb8-toy-recovery 30s ease-in-out both}
+@keyframes bb8-toy-recovery{0%,78%{opacity:0;transform:translateY(-12px)}88%,100%{opacity:1;transform:translateY(0)}}
+.bb8-museum-pointer{animation:bb8-museum-tour 12s ease-in-out infinite;transform-origin:485px 370px}
+@keyframes bb8-museum-tour{0%,100%{transform:translateX(0)}33%{transform:translateX(60px)}66%{transform:translateX(120px)}}
+.bb8-paper-garden-dim{animation:bb8-meadow-dim 30s ease-in-out both}
+@keyframes bb8-meadow-dim{0%,100%{opacity:0}20%,85%{opacity:.28}}
+.bb8-glowing-flower{animation:bb8-paper-meadow 25s ease-in-out both}
+@keyframes bb8-paper-meadow{0%,100%{opacity:0}25%,85%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.bb8-wonder-scene *,.bb8-moment-surprise-parade .bb8-droid,.bb8-moment-surprise-parade .bb8-playmate,.bb8-moment-surprise-parade .bb8-visitor,.bb8-moment-surprise-bubble-heart .bb8-head,.bb8-moment-surprise-backwards-concert .bb8-playmate-bb9e .bb8-head{animation:none!important}.bb8-heart-bubble,.bb8-reverse-note,.bb8-glowing-flower{opacity:.85}.bb8-paper-garden-dim{opacity:.2}.bb8-ship-liftoff{transform:translateY(-65px)}.bb8-repair-tool{opacity:0}.bb8-patient-quilt{opacity:.8}}

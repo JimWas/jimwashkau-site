@@ -1,4 +1,4 @@
-import { playdateActivities } from './BB8PlaydateRules';
+import { playdateActivities, surpriseUnavailableReason } from './BB8PlaydateRules';
 export const littleActivities = [
   { id: 'violin', label: 'Violin practice', title: 'A tiny violin virtuoso', detail: 'Practicing three little notes. Every squeak deserves an encore.' },
   { id: 'cooking', label: 'Cooking', title: 'Little chef at work', detail: 'Stirring pretend moon soup. The secret ingredient is love.' },
@@ -100,14 +100,39 @@ export const littleActivities = [
   { id: 'with-you-rain', label: 'A moment: listen to rain', title: 'A quiet moment with you', detail: 'Listening to gentle pretend rain together. Nothing to finish, just a little time beside your companions.' },
   { id: 'with-you-breath', label: 'A moment: breathing flower', title: 'A little space to settle', detail: 'Following the flower as it opens and closes. Slow, easy, and entirely at your own pace.' },
   { id: 'with-you-tune', label: 'A moment: little tune', title: 'A little tune, just for you', detail: 'Listening to three soft notes and a gentle reply. A short musical moment together.' },
+  { id: 'surprise-welcome-home', label: 'Welcome-home surprise', title: 'A little welcome, made with love', detail: 'A tiny welcome-back banner is ready for you. One end is upside down. The proud little wobble says it all.' },
+  { id: 'surprise-camera-gift', label: 'Secret camera gift', title: 'Someone left you a little drawing', detail: 'A heart drawing appears beside the camera. A careful little adjustment makes sure you can see your gift.' },
+  { id: 'surprise-shooting-star', label: 'A rare shooting star', title: 'Did you see that little light?', detail: 'A shooting star crosses the porthole. A quiet nudge, a lifted lens, and a little moment of wonder.' },
+  { id: 'surprise-costume-mixup', label: 'Costume mix-ups', title: 'The saucepan is definitely a helmet', detail: 'A saucepan helmet for a tiny explorer. When his friend joins in, oversized goggles complete their wonderfully mismatched outfits.' },
+  { id: 'surprise-constellation', label: 'Your little constellation', title: 'A little light for a favorite human', detail: 'The star projector makes a glowing heart for you. Your nursery nickname, if you chose one, belongs among these little stars.' },
+  { id: 'surprise-duet', label: 'An unexpected duet', title: 'Two tiny voices find a tune', detail: 'BB-8 begins a gentle melody. BB-9E listens, then shyly joins in. Any visiting Mars friends add their own imperfect percussion.' },
+  { id: 'surprise-blanket-hide', label: 'A suspicious blanket lump', title: 'Nothing to see here… beep?', detail: 'A little blanket lump wiggles. One antenna pokes out and gives the whole hiding place away.' },
+  { id: 'surprise-delivery', label: 'A surprise delivery', title: 'A very small parcel has arrived', detail: 'Opening a miniature parcel from Mars: a funny-shaped pretend rock, a toy rocket, and a little postcard. Every discovery gets a curious look.' },
+  { id: 'surprise-quiet-kindness', label: 'A kindness you almost miss', title: 'A favorite toy, a little closer', detail: 'One droid quietly pulls the other’s blanket straight, then nudges a favorite toy within reach. No applause needed. Just a little care.' },
+  { id: 'surprise-photo-pose', label: 'A little photo opportunity', title: 'Ready for your close-up?', detail: 'Noticing the camera and holding an adorably silly pose. If a friend is here, they lean together. Tap Snapshot whenever you like.' },
+  { id: 'surprise-beautiful-mess', label: 'A beautiful little mess', title: 'Two very proud little builders', detail: 'A cardboard spaceship, scattered paper stars, and a wonderfully wonky flag. A happy little builder proudly surveys the beautiful mess.' },
+  { id: 'surprise-sleepy-thanks', label: 'A sleepy thank-you', title: 'One last soft beep for you', detail: 'A sleepy look toward the camera and one soft thank-you beep. Time to settle in, knowing he is loved.' },
+  { id: 'surprise-planet-postcard', label: 'Planet postcards', title: 'A postcard from a little explorer', detail: 'Making you a crayon postcard of the world outside. Every wobbly ring is drawn with love.' },
+  { id: 'surprise-parade', label: 'A tiny nursery parade', title: 'Make way for a very small parade', detail: 'A slow little parade around the crib. Visiting friends join in, and a stuffed bear rides on the guest-of-honor wagon.' },
+  { id: 'surprise-window-visitor', label: 'A visitor outside the window', title: 'A little wave across the stars', detail: 'A friendly maintenance bot floats past the porthole. A curious look, a tiny wave, and a wave right back.' },
+  { id: 'surprise-bubble-heart', label: 'Bubble constellations', title: 'Did those bubbles make a heart?', detail: 'A bubble machine accidentally makes a heart-shaped cluster. A frozen moment of delighted disbelief, then a happy wobble.' },
+  { id: 'surprise-ship-launch', label: 'Their cardboard spaceship launch', title: 'Three, two, one… tiny takeoff!', detail: 'Their finished cardboard spaceship gets a pretend countdown, a gentle lift, and paper-streamer exhaust. A patient project becomes an adventure.' },
+  { id: 'surprise-moon-bloom', label: 'An unexpected flower', title: 'Their little moon plant finally bloomed', detail: 'After all that patient gardening, a pretend moon flower opens. A close look, a delighted pause, and another check that it is really there.' },
+  { id: 'surprise-puppet-show', label: 'A homemade puppet show', title: 'A very confusing space adventure', detail: 'Two sock puppets pop above the blanket. One is a brave explorer; the other appears to be a rather opinionated sandwich.' },
+  { id: 'surprise-prism-rainbow', label: 'A shared rainbow discovery', title: 'A little rainbow on the bedding', detail: 'Finding a prism and watching it split light into colors. Following a tiny rainbow across the bedding with quiet wonder.' },
+  { id: 'surprise-backwards-concert', label: 'The backwards concert', title: 'BB-9E takes the lead', detail: 'BB-9E confidently begins a soft little melody. BB-8 listens carefully, then answers. A thoughtful friend has a tune worth following.' },
+  { id: 'surprise-precious-repair', label: 'A precious toy repair', title: 'One little wheel, two helping friends', detail: 'A favorite toy loses a wheel. Together they fit it back, test a gentle roll, and tuck the brave little patient in for recovery.' },
+  { id: 'surprise-tiny-museum', label: 'Their tiny museum', title: 'Ordinary treasures, extraordinary pride', detail: 'Three ordinary discoveries become a miniature museum: a rock, a leaf, and a shiny bolt. A proud little tour for their favorite human.' },
+  { id: 'surprise-night-garden', label: 'A secret nighttime garden', title: 'A meadow in their little galaxy', detail: 'The nursery softly dims. Handmade paper flowers glow like a tiny alien meadow. Nothing to finish, just a quiet moment of wonder.' },
 ] as const;
 export type LittleActivity = typeof littleActivities[number];
 
-export function pickLittleActivity(previous: LittleActivity | null, random = Math.random, context: { sleeping?: boolean; fullyCharged?: boolean; hasBuddies?: boolean; hasDroidFriend?: boolean; hasKeepsakes?: boolean } = {}): LittleActivity {
+export function pickLittleActivity(previous: LittleActivity | null, random = Math.random, context: { sleeping?: boolean; fullyCharged?: boolean; hasBuddies?: boolean; hasDroidFriend?: boolean; hasKeepsakes?: boolean; hasGarden?: boolean; projectFinished?: boolean } = {}): LittleActivity {
   const sleepy = ['dream-projecting', 'tiny-dreams', 'waking'];
-  const eligible = littleActivities.filter(item => !['goodbye', 'welcome'].includes(item.id) && !item.id.startsWith('with-you-')
+  const eligible = littleActivities.filter(item => !['goodbye', 'welcome', 'surprise-welcome-home'].includes(item.id) && !item.id.startsWith('with-you-')
     && (context.sleeping === undefined || (context.sleeping ? sleepy.includes(item.id) : !sleepy.includes(item.id)))
     && (context.hasDroidFriend === true && context.sleeping !== true ? playdateActivities.includes(item.id) : !item.id.startsWith('playdate-'))
+    && !surpriseUnavailableReason(item.id, context)
     && (item.id !== 'memory-shelf' || context.hasKeepsakes === true)
     && (!['buddy-greeting','buddy-ritual'].includes(item.id) || context.hasBuddies === true)
     && (item.id !== 'secret-handshake' || context.hasDroidFriend === true || context.hasBuddies === true)
@@ -116,6 +141,10 @@ export function pickLittleActivity(previous: LittleActivity | null, random = Mat
     && (context.hasBuddies !== false || item.id !== 'sharing'));
   const different = eligible.filter(item => item.id !== previous?.id);
   const choices = different.length ? different : eligible;
-  return choices[Math.floor(random() * choices.length)];
+  // Surprises share a small portion of awake moments, rather than crowding out ordinary play.
+  const surprises = choices.filter(item => item.id.startsWith('surprise-'));
+  const ordinary = choices.filter(item => !item.id.startsWith('surprise-'));
+  const pool = surprises.length && (ordinary.length === 0 || random() < .12) ? surprises : ordinary;
+  return pool[Math.min(pool.length - 1, Math.floor(random() * pool.length))];
 }
 

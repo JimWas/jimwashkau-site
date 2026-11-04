@@ -10,7 +10,8 @@
     "test:radio": "node --test scripts/test-radio.mjs",
     "preview": "vite preview",
     "test:previews": "node --test scripts/test-page-previews.mjs",
-    "test:world": "node --experimental-strip-types --test scripts/test-nursery-world.mjs"
+    "test:world": "node --experimental-strip-types --test scripts/test-nursery-world.mjs",
+    "test:surprises": "node --test scripts/test-surprises.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",

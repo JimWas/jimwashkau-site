@@ -1,0 +1,30 @@
+.bb8-surprise{stroke-linecap:round;stroke-linejoin:round}
+.bb8-shooting-star{animation:bb8-shooting-star 16s ease-out infinite}
+@keyframes bb8-shooting-star{0%,15%{opacity:0;transform:translate(-20px,15px)}20%{opacity:1}36%,100%{opacity:0;transform:translate(260px,120px)}}
+.bb8-surprise-banner{transform-origin:465px 200px;animation:bb8-banner-sway 5s ease-in-out infinite}
+@keyframes bb8-banner-sway{50%{transform:rotate(2deg)}}
+.bb8-camera-gift{transform-origin:0 30px;animation:bb8-gift-straighten 12s ease-in-out infinite}
+@keyframes bb8-gift-straighten{0%,30%{transform:rotate(-13deg)}45%,100%{transform:rotate(0)}}
+.bb8-gift-straighten{animation:bb8-gift-hand 12s ease-in-out infinite}
+@keyframes bb8-gift-hand{0%,25%,65%,100%{opacity:0}35%,50%{opacity:1}}
+.bb8-duet-note{animation:bb8-duet-note 8s ease-in-out infinite}.bb8-duet-note-1{animation-delay:3s}
+@keyframes bb8-duet-note{0%,70%,100%{opacity:0;transform:translateY(0)}20%,45%{opacity:1;transform:translateY(-15px)}}
+.bb8-surprise-drum{transform-box:fill-box;transform-origin:right bottom;animation:bb8-drum-tap 1.5s ease-in-out infinite}
+@keyframes bb8-drum-tap{50%{transform:rotate(-20deg)}}
+.bb8-blanket-lump{transform-origin:center bottom;transform-box:fill-box;animation:bb8-blanket-wiggle 6s ease-in-out infinite}
+@keyframes bb8-blanket-wiggle{0%,45%,65%,100%{transform:rotate(0)}50%,60%{transform:rotate(3deg)}55%{transform:rotate(-3deg)}}
+.bb8-parcel-lid{animation:bb8-parcel-open 12s ease-in-out infinite}.bb8-parcel-treasures{animation:bb8-parcel-reveal 12s ease-in-out infinite}
+@keyframes bb8-parcel-open{0%,20%,100%{transform:translateY(0)}35%,85%{transform:translate(35px,-65px) rotate(10deg)}}
+@keyframes bb8-parcel-reveal{0%,25%,100%{opacity:0;transform:translateY(30px)}40%,85%{opacity:1;transform:translateY(0)}}
+.bb8-kind-toy{animation:bb8-kind-toy 16s ease-in-out infinite}.bb8-kind-quilt{animation:bb8-kind-quilt 16s ease-in-out infinite}
+@keyframes bb8-kind-toy{0%,35%,100%{transform:translateX(0)}60%,90%{transform:translateX(58px)}}
+@keyframes bb8-kind-quilt{0%,20%,100%{transform:rotate(-4deg);transform-origin:605px 400px}35%,90%{transform:rotate(0);transform-origin:605px 400px}}
+.bb8-moment-surprise-photo-pose .bb8-droid,.bb8-moment-surprise-photo-pose .bb8-playmate{animation:bb8-photo-pose 20s ease-in-out infinite!important;transform-box:fill-box;transform-origin:center bottom}
+.bb8-moment-surprise-photo-pose .bb8-playmate-bb9e{animation-direction:reverse!important}
+@keyframes bb8-photo-pose{0%,100%{transform:rotate(0)}10%,85%{transform:rotate(-7deg)}}
+.bb8-moment-surprise-shooting-star .bb8-head{transform:rotate(-10deg);transform-box:fill-box;transform-origin:center bottom}
+.bb8-moment-surprise-sleepy-thanks .bb8-head{animation:bb8-thank-you-nod 12s ease-in-out infinite}
+@keyframes bb8-thank-you-nod{40%,60%{transform:translateY(6px)}}
+.bb8-sleepy-thanks{animation:bb8-thank-you-heart 12s ease-in-out infinite}
+@keyframes bb8-thank-you-heart{0%,100%{opacity:0}30%,70%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.bb8-surprise *,.bb8-moment-surprise-photo-pose .bb8-droid,.bb8-moment-surprise-photo-pose .bb8-playmate,.bb8-moment-surprise-sleepy-thanks .bb8-head{animation:none!important}.bb8-shooting-star{transform:translate(110px,70px)}.bb8-parcel-lid{transform:translate(35px,-65px)}.bb8-parcel-treasures,.bb8-duet-note,.bb8-sleepy-thanks{opacity:1}}

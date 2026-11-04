@@ -52,3 +52,16 @@ test('world saves round-trip across either nursery', () => {
   const world={...crafted,nickname:'Captain',projectStage:2};
   assert.deepEqual(parseNurseryWorld(JSON.stringify(world)),world);
 });
+
+test('completed gardening unlocks a future bloom and survives saving',()=>{
+ const fresh=parseNurseryWorld(null);
+ assert.equal(fresh.gardenTended,undefined);
+ for(const id of ['gardening','moon-garden']) {
+  const result=completeWorldMoment(fresh,id,1,false);
+  assert.equal(result.world.gardenTended,true);
+  assert.equal(parseNurseryWorld(JSON.stringify(result.world)).gardenTended,true);
+  assert.equal(result.world.projectStage,0);
+  assert.deepEqual(result.world.keepsakes,[]);
+ }
+ assert.equal(parseNurseryWorld('{"gardenTended":"true"}').gardenTended,undefined);
+});
