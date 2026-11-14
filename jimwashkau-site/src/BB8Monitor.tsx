@@ -153,7 +153,7 @@ export function Nursery({ windowBody = 'moon', mood, activity, night, sceneRef, 
     <circle cx="80" cy="298" r="65" fill="url(#bb8-glow)"/>
     <g className={`bb8-zzz ${activity !== 'sleeping' ? 'is-awake' : ''}`} fill="#ece5ce" fontFamily="system-ui" fontWeight="600"><text x="567" y="228" fontSize="18">z</text><text x="588" y="199" fontSize="25">z</text><text x="615" y="163" fontSize="33">z</text></g>
     {pastime?.id === 'buddy-ritual' && handshakePartner && visiting.includes(handshakePartner) && <BuddyRitualScene partner={handshakePartner} layer="back"/>}
-    <NurseryBuddies visiting={visiting} droidName={droidName} sleeping={activity === 'sleeping'}/>
+    <NurseryBuddies moment={pastime?.id} visiting={visiting} droidName={droidName} sleeping={activity === 'sleeping'}/>
     {leaving.length > 0 && <g className="bb8-buddies-departing"><NurseryBuddies visiting={leaving} droidName={droidName} sleeping={false}/></g>}
     {pastime?.id === 'sharing' && <g aria-label="Sharing with his Mars buddies">
       {visiting.includes('oppy') && <g className="bb8-shared-cup"><rect x="790" y="524" width="32" height="40" rx="8" fill="#91b9a7" stroke="#d3dcc0" strokeWidth="3"/><path d="M788 530q-14-4-12 12t14 7m34-19q14-4 12 12t-14 7M803 524v-9h8v9" fill="none" stroke="#d3dcc0" strokeWidth="4"/></g>}

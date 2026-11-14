@@ -1,7 +1,8 @@
+import { buddyNames, buddyProfiles, type BuddyId } from './BB8BuddyCatalog';
 import type { DroidId } from './DroidProfiles';
 
 export const playdateActivities = ['playdate-cowboy-duel','playdate-cowboy-trail','playdate-watch-swap','surprise-planet-postcard','surprise-parade','surprise-window-visitor','surprise-bubble-heart','surprise-ship-launch','surprise-moon-bloom','surprise-puppet-show','surprise-prism-rainbow','surprise-backwards-concert','surprise-precious-repair','surprise-tiny-museum','surprise-night-garden', 'surprise-welcome-home','surprise-camera-gift','surprise-shooting-star','surprise-costume-mixup','surprise-constellation','surprise-duet','surprise-blanket-hide','surprise-delivery','surprise-quiet-kindness','surprise-photo-pose','surprise-beautiful-mess','surprise-sleepy-thanks', 'playdate-building', 'playdate-turns', 'playdate-reading', 'secret-handshake', 'playdate-encouragement', 'playdate-nap', 'playdate-quiet', 'gift-drawing', 'gift-flower', 'gift-treasure', 'tiny-celebration', 'playdate-project', 'memory-shelf', 'buddy-ritual', 'playdate-puzzle', 'playdate-talent', 'playdate-compromise', 'playdate-picnic', 'bedtime-ritual', 'with-you-rain', 'with-you-breath', 'with-you-tune'];
-export type HandshakePartner = DroidId | 'percy' | 'oppy' | 'ginny';
+export type HandshakePartner = DroidId | BuddyId;
 export const otherDroid = (resident: DroidId): DroidId => resident === 'bb8' ? 'bb9e' : 'bb8';
 export const playdateTiming = { firstGap: [90, 240], gap: [240, 540], stay: [75, 150] } as const;
 export const handshakeProfiles = {
@@ -14,11 +15,17 @@ export const handshakeProfiles = {
   'bb9e:ginny': { name: 'The starlight hover hello', detail: 'BB-9E follows Ginny’s careful hover, gives two gentle nods, then surprises her with a happy antenna wiggle.', notes: [349, 466, 622, 698], nod: 'hover hello · two nods · antenna wiggle' },
 } as const;
 export function handshakeFor(resident: DroidId, partner: HandshakePartner) {
+  if(partner!=='bb8' && partner!=='bb9e' && !['percy','oppy','ginny'].includes(partner)) {
+    const buddy=buddyProfiles[partner];
+    const name=resident==='bb8'?'BB-8':'BB-9E';
+    return {name:`${buddyNames[partner]}’s little hello ritual`,detail:`${name} offers a soft beep. ${buddy.greeting} They trade a tiny nod and a happy little reply.`,notes:buddy.notes.map(note=>resident==='bb9e'?Math.round(note*.85):note),nod:'soft beep · little nod · friendly reply'};
+  }
   const key = partner === 'bb8' || partner === 'bb9e' ? 'bb8:bb9e' : `${resident}:${partner}` as keyof typeof handshakeProfiles;
   return handshakeProfiles[key];
 }
 
 export function greetingFor(resident: DroidId, partner: HandshakePartner) {
+  if(partner!=='bb8' && partner!=='bb9e' && !['percy','oppy','ginny'].includes(partner)) return {title:`A little hello for ${buddyNames[partner]}`,detail:buddyProfiles[partner].greeting,notes:buddyProfiles[partner].notes.slice(0,2)};
   const name = resident === 'bb8' ? 'BB-8' : 'BB-9E';
   const greetings = {
     percy: { title: 'A curious hello for Percy', detail: `${name} takes a curious look at Percy’s camera. A thoughtful inspection, then a little welcoming nod.`, notes: [392, 330] },
@@ -29,6 +36,7 @@ export function greetingFor(resident: DroidId, partner: HandshakePartner) {
 }
 
 export function ritualFor(partner: HandshakePartner) {
+  if(partner!=='bb8' && partner!=='bb9e' && !['percy','oppy','ginny'].includes(partner)) return {title:buddyProfiles[partner].ritualTitle,detail:buddyProfiles[partner].ritual};
   const rituals = {
     percy: {title:'Percy’s little rock ritual',detail:'Percy brought another pretend rock. Two curious friends inspect it carefully, then give their familiar little nod.'},
     oppy: {title:'Oppy’s sunny cushion',detail:'The sunny cushion is waiting in Oppy’s favorite spot. A happy roll, a cozy seat, and a familiar friend.'},

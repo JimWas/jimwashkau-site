@@ -1,14 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-export const buddyNames = { percy: 'Percy', oppy: 'Oppy', ginny: 'Ginny' } as const;
-export type BuddyId = keyof typeof buddyNames;
+import { buddyNames, pickBuddy, type BuddyId } from './BB8BuddyCatalog';
+export { buddyNames, pickBuddy } from './BB8BuddyCatalog';
+export type { BuddyId } from './BB8BuddyCatalog';
 export const visitTiming = { firstGap: [60, 180], gap: [180, 480], stay: [60, 150] } as const;
 export function randomVisitDelay(range: readonly [number, number], random = Math.random) {
   return (range[0] + random() * (range[1] - range[0])) * 1000;
-}
-export function pickBuddy(previous: BuddyId | null, random = Math.random): BuddyId {
-  const choices = (Object.keys(buddyNames) as BuddyId[]).filter(id => id !== previous);
-  return choices[Math.floor(random() * choices.length)];
 }
 
 function readVisitPreferences(storageKey: string): { automatic: boolean; visitors: BuddyId[] } {
@@ -60,7 +57,7 @@ export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => 
     setAutomaticVisitor(null);
     setManualVisitors(ids);
     setReset(value => value + 1);
-    onEvent(ids.length ? `A little Mars playdate: ${ids.map(id => buddyNames[id]).join(', ')} invited to the nursery.` : 'The Mars buddies waved goodbye. Some quiet time for BB-8.');
+    onEvent(ids.length ? `A little space playdate: ${ids.map(id => buddyNames[id]).join(', ')} invited to the nursery.` : 'The space buddies waved goodbye. Some quiet time for BB-8.');
   }
   function toggleAutomatic() {
     setAutomatic(value => !value);

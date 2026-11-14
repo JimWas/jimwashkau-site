@@ -1,3 +1,5 @@
+import { SpaceBuddyRitual } from './BB8SpaceBuddyModels';
+import { buddyNames, type NewBuddyId } from './BB8BuddyCatalog';
 import { LearningActivityProps } from './BB8LearningActivities';
 import { CardboardShip, KeepsakeArt } from './BB8WorldPanel';
 import { keepsakeNames, type NurseryWorld } from './BB8NurseryWorld';
@@ -40,6 +42,7 @@ export function WorldActivityProps({ id, world, shared = false, visiting = [] }:
 }
 export function BuddyRitualScene({ partner, layer = 'front' }: {partner:string; layer?: 'front' | 'back'}) {
   return <g className="bb8-buddy-ritual" aria-label={`A familiar little ritual with ${partner}`}>
+    {layer==='front' && Object.hasOwn(buddyNames,partner) && !['percy','oppy','ginny'].includes(partner) && <SpaceBuddyRitual id={partner as NewBuddyId}/>}
     {layer==='front' && partner==='percy' && <><ellipse className="bb8-percy-rock" cx="224" cy="527" rx="15" ry="11" fill="#b8b29b" stroke="#ddceb0" strokeWidth="2"/></>}
     {layer==='back' && partner==='oppy' && <ellipse cx="819" cy="611" rx="84" ry="14" fill="#d6bf85" stroke="#e6d7a9" strokeWidth="3"/>}
     {layer==='front' && partner==='ginny' && <g className="bb8-ginny-decoration"><path d="M540 123h118" stroke="#c5c8a9" strokeWidth="2"/>{[550,588,626].map(x=><path key={x} d={`m${x} 123 14 26 14-26z`} fill="#d6b68a" stroke="#eee0bd" strokeWidth="2"/>)}</g>}

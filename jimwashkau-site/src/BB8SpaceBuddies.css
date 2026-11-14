@@ -1,0 +1,17 @@
+.bb8-buddy-cards .space-buddy-avatar{width:100px;height:120px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.space-buddy-avatar svg{width:100%;height:100%;overflow:visible}
+.space-buddy-model{overflow:visible}
+.bb8-visitor-new{transform-box:fill-box;transform-origin:center bottom;animation:space-buddy-cozy-rock 10s ease-in-out infinite}
+.bb8-visitor-new.is-lander{animation:space-buddy-settle 12s ease-in-out infinite}
+@keyframes space-buddy-cozy-rock{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg) translateY(-2px)}}
+@keyframes space-buddy-settle{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+.bb8-visitors.is-quiet .bb8-visitor-new{animation:space-buddy-settle 16s ease-in-out infinite}
+.space-huygens-chute{animation:space-chute-fold 9s ease-in-out both;transform-origin:100px 98px}
+@keyframes space-chute-fold{0%,35%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.25,.1) translateY(70px)}}
+.space-huygens-chute.is-folded{display:none}
+.bb8-moment-secret-handshake .bb8-visitor-new{animation:space-buddy-hello 8s ease-in-out infinite!important}
+@keyframes space-buddy-hello{0%,50%,100%{transform:rotate(0)}15%,35%{transform:rotate(-3deg)}25%,45%{transform:rotate(3deg)}}
+.bb8-visitor-new.is-lander .space-buddy-face{animation:space-buddy-listen 10s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes space-buddy-listen{50%{transform:translateY(1px)}}
+@media(max-width:1150px){.bb8-buddy-cards .space-buddy-avatar{width:94px;height:96px}}
+@media(prefers-reduced-motion:reduce){.bb8-scene .bb8-visitor-new,.bb8-scene .bb8-visitor-new *,.space-huygens-chute{animation:none!important}.space-huygens-chute{opacity:0}}

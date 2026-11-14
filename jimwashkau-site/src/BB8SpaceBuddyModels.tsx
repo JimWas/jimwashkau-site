@@ -1,0 +1,42 @@
+import type { NewBuddyId } from './BB8BuddyCatalog';
+import './BB8SpaceBuddies.css';
+
+function Eyes({x=100,y=83,small=false,sleeping=false}:{x?:number;y?:number;small?:boolean;sleeping?:boolean}) {
+ const r=small?10:14;
+ return <g className="space-buddy-face">{[-1,1].map(side=><g key={side} transform={`translate(${x+side*(r+3)} ${y})`}><circle r={r+3} fill="#ece1bf"/><circle r={r} fill="#334d47"/>{sleeping?<path d={`M${-r*.6} 1q${r*.6} 7 ${r*1.2} 0`} stroke="#a7c5b7" strokeWidth="3" fill="none"/>:<><ellipse cx="-3" cy="-3" rx={r*.35} ry={r*.45} fill="#b9d5cd"/><circle cx="5" cy="5" r="2" fill="#e8e0c2"/></>}</g>)}<path d={`M${x-5} ${y+r+6}q5 5 10 0`} stroke="#6a8976" strokeWidth="2.5" fill="none" strokeLinecap="round"/></g>;
+}
+function Panel({x,y,w=54,h=28,round=false}:{x:number;y:number;w?:number;h?:number;round?:boolean}) {
+ if(round) return <g transform={`translate(${x} ${y})`}><ellipse rx={w/2} ry={h/2} fill="#668b94" stroke="#c9d5ba" strokeWidth="2"/>{Array.from({length:8},(_,i)=>{const a=i*Math.PI/4;return <path key={i} d={`M0 0 ${Math.cos(a)*w*.46} ${Math.sin(a)*h*.46}`} stroke="#adc7ba" strokeWidth="1"/>;})}<ellipse rx={w*.3} ry={h*.3} fill="none" stroke="#adc7ba" strokeWidth="1"/></g>;
+ return <g transform={`translate(${x} ${y})`}><rect x={-w/2} y={-h/2} width={w} height={h} rx={round?h/2:3} fill="#668b94" stroke="#c9d5ba" strokeWidth="2"/>{[-.3,-.1,.1,.3].map((v,i)=><path key={v} d={`M${w*v} ${-h*.35}V${h*.35}M${-w*.4} ${-h*.22+i*h*.15}h${w*.8}`} stroke="#a8c3bb" strokeWidth=".8" opacity=".7"/>)}</g>;
+}
+function Wheels({small=false}:{small?:boolean}) {return <g>{[36,91,149].map((x,i)=><g key={x} transform={`translate(${x} ${small?146:150})`}><path d={`M0-13 ${i===1?3:-5}-26`} stroke="#b9c6af" strokeWidth="6"/><circle r={small?12:16} fill="#657b6d" stroke="#d9d6b8" strokeWidth="3"/><circle r={small?5:7} fill="#a0b7a5"/><path d="M-8 0H8M0-8V8" stroke="#c1cbb0" strokeWidth="1.5"/></g>)}</g>;}
+function Legs({four=false}:{four?:boolean}) {return <g fill="none" stroke="#9caf9d" strokeWidth="5" strokeLinecap="round"><path d="m72 105-31 44m85-44 31 44"/>{!four&&<path d="M100 112v46"/>}{four&&<path d="m68 101-43 19m107-19 43 19"/>}{[[41,153],[157,153],...(four?[[25,124],[175,124]]:[[100,161]])].map(([x,y])=><ellipse key={`${x}-${y}`} cx={x} cy={y} rx="15" ry="4" fill="#d0bd97" stroke="#e4dab7" strokeWidth="2"/>)}</g>;}
+export function SpaceBuddyArt({id,sleeping=false}:{id:NewBuddyId;sleeping?:boolean}) {
+ return <g className={`space-buddy-art space-buddy-${id}`} strokeLinejoin="round" strokeLinecap="round">
+  {id==='sojourner'&&<><path d="m43 123 25-20h63l25 20-20 15H62Z" fill="#cfbd91" stroke="#e4d8b5" strokeWidth="3"/><Panel x={98} y={109} w={97} h={25}/><Wheels small/><path d="M45 106V55m-3 0h6" stroke="#b9c5ab" strokeWidth="3"/><rect x="66" y="64" width="67" height="39" rx="15" fill="#c8c5a7" stroke="#eee0bd" strokeWidth="3"/><Eyes y={81} small sleeping={sleeping}/></>}
+  {id==='spirit'&&<><Wheels/><path d="M93 105V74" stroke="#bcc6ad" strokeWidth="8"/><path d="m52 114 31-18h55l25 18-18 18H65Z" fill="#d1bc8f" stroke="#e8d8b5" strokeWidth="3"/><Panel x={45} y={111} w={65} h={32}/><Panel x={146} y={111} w={65} h={32}/><rect x="61" y="38" width="76" height="47" rx="15" fill="#d6c29c" stroke="#eddfbd" strokeWidth="3"/><Eyes y={59} sleeping={sleeping}/><path d="M85 38V24m-4 0h8" stroke="#b4c1a7" strokeWidth="3"/></>}
+  {id==='curiosity'&&<><Wheels/><path d="m46 104 21-17h75l24 20-19 27H62Z" fill="#d7c9a8" stroke="#eee2bf" strokeWidth="3"/><path d="M95 95V68" stroke="#b6c5ac" strokeWidth="9"/><rect x="58" y="31" width="81" height="49" rx="17" fill="#d8ceb0" stroke="#eee3c0" strokeWidth="3"/><Eyes y={53} sleeping={sleeping}/><path d="m56 102-26 9 1 18 15 4" fill="none" stroke="#b7c7b3" strokeWidth="7"/><path d="m44 129 8-3-2 10-9-3" fill="#c1b9a0" stroke="#e3d7b3" strokeWidth="2"/><path d="M112 32V18" stroke="#a8bda5" strokeWidth="3"/><Panel x={151} y={89} w={25} h={19}/></>}
+  {id==='philae'&&<><Legs/><path d="M58 57 99 40l43 17v51l-42 20-42-20Z" fill="#b5c6c0" stroke="#e8dfbd" strokeWidth="3"/><path d="m99 40 43 17-43 18-41-18Z" fill="#d7d7bb"/><Panel x={123} y={76} w={27} h={33}/><path d="M78 53 65 24m57 29 14-28M100 40V14" stroke="#c2cdb2" strokeWidth="3"/><Eyes x={93} y={84} small sleeping={sleeping}/></>}
+  {id==='insight'&&<><Legs/><Panel x={43} y={114} w={77} h={51} round/><Panel x={157} y={114} w={77} h={51} round/><rect x="70" y="77" width="60" height="45" rx="12" fill="#d6bc89" stroke="#eaddba" strokeWidth="3"/><path d="M100 77V54m0 3 25-8" stroke="#bec8af" strokeWidth="5"/><ellipse cx="126" cy="49" rx="16" ry="4" fill="#d5cfb0"/><Eyes y={95} small sleeping={sleeping}/><path d="m75 120-17 25 22 3" stroke="#c4cdb4" strokeWidth="5" fill="none"/></>}
+  {id==='huygens'&&<><g className={`space-huygens-chute ${sleeping?'is-folded':''}`}><path d="M36 48a64 40 0 0 1 128 0q-16-12-32 0-16-12-32 0-16-12-32 0-16-12-32 0Z" fill="#d1b7ad" stroke="#e9dbc2" strokeWidth="2"/><path d="M36 48 80 111m84-63-44 63M68 48l22 63m42-63-22 63" stroke="#d8d8bd" strokeWidth="1.5" fill="none"/></g><ellipse cx="100" cy="148" rx="59" ry="15" fill="#c0b9a3" stroke="#e4d8b5" strokeWidth="3"/><path d="M43 144q8-47 57-47t57 47Z" fill="#d1ac83" stroke="#e9dbb7" strokeWidth="3"/><ellipse cx="100" cy="144" rx="57" ry="13" fill="#b59d7d"/><path d="M100 98V78m-5 0h10" stroke="#cad0b6" strokeWidth="3"/><Eyes y={124} small sleeping={sleeping}/></>}
+  {id==='vikram'&&<><Legs four/><path d="M64 55h72l10 55-46 17-45-17Z" fill="#d1b580" stroke="#e7d8b4" strokeWidth="3"/><Panel x={100} y={56} w={72} h={19}/><path d="M77 49V27m0 4-19-8" stroke="#bdc9ad" strokeWidth="4"/><ellipse cx="56" cy="22" rx="13" ry="4" fill="#d8d7b8"/><Eyes y={86} small sleeping={sleeping}/><path d="M87 123 77 157h46l-10-34Z" fill="#a4b6a3" stroke="#dfd7b6" strokeWidth="2"/><path d="m88 132 24 0m-27 10h30m-33 10h36" stroke="#d7d6b4" strokeWidth="2"/></>}
+  {id==='pragyan'&&<><g transform="rotate(-10 52 86)"><Panel x={51} y={67} w={59} h={65}/></g><Wheels small/><path d="M58 99h89l11 31-27 10H64Z" fill="#d6b982" stroke="#e8dab7" strokeWidth="3"/><rect x="74" y="70" width="70" height="42" rx="13" fill="#d9c391" stroke="#efe1bc" strokeWidth="3"/><Eyes x={109} y={87} small sleeping={sleeping}/><path d="M131 70V45" stroke="#c1c9ab" strokeWidth="3"/></>}
+ </g>;
+}
+export function SpaceBuddyAvatar({id,sleeping=false}:{id:NewBuddyId;sleeping?:boolean}) {
+ return <svg viewBox="0 0 200 180" role="img" aria-label={`${id === 'insight' ? 'InSight' : id[0].toUpperCase()+id.slice(1)}, a little space buddy`}><SpaceBuddyArt id={id} sleeping={sleeping}/></svg>;
+}
+
+export function SpaceBuddyRitual({id}:{id:NewBuddyId}) {
+ const left=['sojourner','curiosity','insight','vikram'].includes(id);
+ return <g transform={`translate(${left?235:713} 608)`} aria-label={`${id === 'insight' ? 'InSight' : id[0].toUpperCase()+id.slice(1)}’s familiar little nursery ritual`} strokeLinecap="round" strokeLinejoin="round">
+  {id==='sojourner'&&<path d="m-14 0-4-10 9-10 13 2 10 12-7 10Z" fill="#c7b89a" stroke="#e7d4ae" strokeWidth="2"/>}
+  {id==='spirit'&&<><ellipse rx="35" ry="9" fill="#d5bf8c" stroke="#e8d8b5" strokeWidth="2"/><path d="M0-7v-24m-12 12H12m-20-8 16 16m-16 0 16-16" stroke="#d7be7b" strokeWidth="3"/><circle cy="-19" r="8" fill="#ead09a"/></>}
+  {id==='curiosity'&&[-17,0,17].map((x,i)=><path key={x} transform={`translate(${x} ${i%2?-5:0})`} d="m-7 0-2-7 6-8 8 4 4 9-7 6Z" fill={['#b6baa2','#cbb38e','#b7beb4'][i]} stroke="#e2d3ae" strokeWidth="1.5"/>)}
+  {id==='philae'&&<path d="M-30 3q5-21 20-17 13-19 22-4 26-6 23 17-33 17-65 4Z" fill="#b5b2bc" stroke="#ded6bd" strokeWidth="2"/>}
+  {id==='insight'&&<><ellipse rx="24" ry="7" fill="#d3c3a2"/><path d="M-19-1q1-26 19-26t19 26Z" fill="#becbb7" stroke="#e5dabc" strokeWidth="2"/><path d="M-5-27v-5H5" stroke="#c6d1b8" strokeWidth="2"/></>}
+  {id==='huygens'&&<><ellipse rx="30" ry="8" fill="#b3c1af"/><path d="m-21-6 14-18L5-10l11-13L28-4Z" fill="#d4bcb1" stroke="#e6d7be" strokeWidth="2"/><path d="m-13 0 6-15m13 15 7-15" stroke="#e5d5bc" strokeWidth="1.5"/></>}
+  {id==='vikram'&&<><path d="m-29 5 17-25h31L31 5Z" fill="#b8bf9f" stroke="#e5d6b1" strokeWidth="2"/><path d="M-18-10H23M-23 0H28" stroke="#d8d5b1" strokeWidth="2"/></>}
+  {id==='pragyan'&&[-22,0,22].map((x)=><path key={x} transform={`translate(${x} 0)`} d="M1-14a11 11 0 1 0 8 17A11 11 0 0 1 1-14Z" fill="#d9ceaa" stroke="#e9dcb7" strokeWidth="1.5"/>)}
+ </g>;
+}
