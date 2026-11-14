@@ -16,7 +16,7 @@ function readVisitPreferences(storageKey: string): { automatic: boolean; visitor
     return { automatic: typeof saved?.automatic === 'boolean' ? saved.automatic : true, visitors: Array.isArray(saved?.visitors) ? [...new Set(saved.visitors.filter((id: unknown): id is BuddyId => typeof id === 'string' && Object.hasOwn(buddyNames, id)))] as BuddyId[] : [] };
   } catch { return {automatic: true, visitors: []}; }
 }
-export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => void, storageKey = 'bb8-buddy-preferences') {
+export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => void, storageKey = 'bb8-buddy-preferences', paused = false) {
   const [automatic, setAutomatic] = useState(() => readVisitPreferences(storageKey).automatic);
   const [manualVisitors, setManualVisitors] = useState<BuddyId[]>(() => readVisitPreferences(storageKey).visitors);
   const [automaticVisitor, setAutomaticVisitor] = useState<BuddyId | null>(null);
@@ -29,7 +29,7 @@ export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => 
   useEffect(() => { sleepingRef.current = sleeping; eventRef.current = onEvent; }, [sleeping, onEvent]);
 
   useEffect(() => {
-    if (!automatic || manualVisitors.length) return;
+    if (paused || !automatic || manualVisitors.length) return;
     let timer: number;
     let cancelled = false;
     const arrive = () => {
@@ -53,7 +53,7 @@ export function useBuddyVisits(sleeping: boolean, onEvent: (message: string) => 
     };
     timer = window.setTimeout(arrive, randomVisitDelay(hasVisited.current ? visitTiming.gap : visitTiming.firstGap));
     return () => { cancelled = true; clearTimeout(timer); };
-  }, [automatic, manualVisitors.length, reset]);
+  }, [automatic, manualVisitors.length, reset, paused]);
 
   function changeVisitors(ids: BuddyId[]) {
     hasVisited.current = true;

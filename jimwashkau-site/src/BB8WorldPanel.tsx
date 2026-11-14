@@ -21,7 +21,6 @@ export function KeepsakeArt({ id }: { id: KeepsakeId }) {
 export function MemoryShelf({ world }: { world: NurseryWorld }) {
   return <g aria-label="Their saved memory shelf"><path d="M92 276h174v9H92z" fill="#ae9978" stroke="#d5c4a1" strokeWidth="2"/><path d="m110 285 9 12m128-12-9 12" stroke="#9a886b" strokeWidth="4"/>
     {world.keepsakes.slice(-4).map((item,i)=><g key={item.id} transform={`translate(${113+i*43} 268) scale(.65)`}><KeepsakeArt id={item.id}/></g>)}
-    {!world.keepsakes.length && <text x="179" y="268" fontSize="10" fill="#e1d3ae" textAnchor="middle">little memories to come ♡</text>}
   </g>;
 }
 export default function WorldPanel({ world, sleeping, hasFriend, onNickname, onMoment }: { world: NurseryWorld; sleeping:boolean; hasFriend:boolean; onNickname:(value:string)=>void; onMoment:(id:string)=>void }) {

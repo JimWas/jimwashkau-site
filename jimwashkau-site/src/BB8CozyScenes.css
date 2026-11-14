@@ -1,0 +1,28 @@
+.bb8-cozy-train{animation:bb8-cozy-train-trip 16s ease-in-out infinite}
+@keyframes bb8-cozy-train-trip{0%,15%,100%{transform:translateX(-8px)}45%,65%{transform:translateX(38px)}}
+.bb8-cozy-duck{transform-origin:594px 405px;animation:bb8-cozy-waddle 12s ease-in-out infinite}
+@keyframes bb8-cozy-waddle{0%,100%{transform:translateX(-14px) rotate(-3deg)}15%{transform:translateX(0) rotate(3deg)}30%{transform:translateX(14px) rotate(-3deg)}45%,65%{transform:translateX(28px) rotate(0)}80%{transform:translateX(7px) rotate(3deg)}}
+.bb8-cozy-wind-key{animation:bb8-cozy-rewind 12s ease-in-out infinite;transform-origin:0 0}
+@keyframes bb8-cozy-rewind{0%,48%{transform:rotate(0)}63%,100%{transform:rotate(360deg)}}
+.bb8-cozy-sock-hat{transform-origin:0 0;animation:bb8-cozy-sock-flop 7s ease-in-out infinite}
+@keyframes bb8-cozy-sock-flop{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(12deg)}}
+.bb8-cozy-boat{animation:bb8-cozy-sail 14s ease-in-out infinite;transform-origin:568px 397px}
+@keyframes bb8-cozy-sail{0%,100%{transform:translateX(0) rotate(-3deg)}50%{transform:translate(48px,-3px) rotate(3deg)}}
+.bb8-cozy-puff{animation:bb8-cozy-puff 14s ease-out infinite}
+@keyframes bb8-cozy-puff{0%,5%,40%,100%{opacity:0}12%{opacity:.8;transform:translateX(0)}30%{opacity:0;transform:translateX(25px)}}
+.bb8-cozy-mallet{transform-origin:521px 337px;animation:bb8-cozy-tap 1.8s ease-in-out infinite}
+@keyframes bb8-cozy-tap{0%,65%,100%{transform:rotate(-16deg)}40%{transform:rotate(7deg)}}
+.bb8-cozy-note{animation:bb8-cozy-note 3.6s ease-out infinite}
+@keyframes bb8-cozy-note{0%,100%{opacity:0}20%{opacity:.8}85%{opacity:0;transform:translateY(-22px)}}
+.bb8-cozy-constellation{animation:bb8-cozy-starlight 7s ease-in-out infinite}
+@keyframes bb8-cozy-starlight{0%,100%{opacity:.5}50%{opacity:1}}
+.bb8-cozy-pointer{transform-origin:521px 328px;animation:bb8-cozy-point 8s ease-in-out infinite}
+@keyframes bb8-cozy-point{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(9deg)}}
+.bb8-doing-teddy-train .bb8-head,.bb8-doing-windup-duck .bb8-head,.bb8-doing-paper-boat .bb8-head{animation:bb8-cozy-watch 12s ease-in-out infinite!important;transform-origin:478px 275px}
+@keyframes bb8-cozy-watch{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+.bb8-doing-rainbow-xylophone .bb8-head,.bb8-doing-sock-matching .bb8-head,.bb8-doing-teddy-planetarium .bb8-head{animation:bb8-cozy-proud-nod 8s ease-in-out infinite!important}
+@keyframes bb8-cozy-proud-nod{0%,65%,100%{transform:translateY(0)}75%,90%{transform:translateY(3px)}82%{transform:translateY(-1px)}}
+@media(prefers-reduced-motion:reduce){
+  .bb8-cozy-props *,.bb8-doing-teddy-train .bb8-head,.bb8-doing-windup-duck .bb8-head,.bb8-doing-paper-boat .bb8-head,.bb8-doing-rainbow-xylophone .bb8-head,.bb8-doing-sock-matching .bb8-head,.bb8-doing-teddy-planetarium .bb8-head{animation:none!important}
+  .bb8-cozy-puff,.bb8-cozy-note{opacity:.6}
+}

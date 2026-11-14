@@ -1,3 +1,4 @@
+import { AmbientSceneProps } from './BB8AmbientScenes';
 import { WorldActivityProps } from './BB8WorldActivities';
 import type { NurseryWorld } from './BB8NurseryWorld';
 import { LittleGift, TinyCelebration } from './BB8CompanionMoments';
@@ -46,6 +47,7 @@ export function DroidPlaydateScene({ resident, moment, world = {nickname:'',proj
       <path d="M290 406q90-18 188 0t190 0m-321 12h12m-6-6v12m247-6h12m-6-6v12" fill="none" stroke="#d4dfc6" strokeWidth="3"/>
       {napping && <g fill="#eee4c7" fontSize="19"><text x="399" y="284">z</text><text x="553" y="279">z</text></g>}
     </g>}
+    {moment && <AmbientSceneProps key={`ambient-shared-${moment}`} id={moment} world={world} shared/>}
     {moment && <WorldActivityProps id={moment} world={world} shared visiting={visiting}/>}
     {handshake && <HandshakeSignal resident={resident} partner={otherDroid(resident)}/>}
   </g>;

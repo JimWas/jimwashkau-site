@@ -1,0 +1,59 @@
+.bb8-game-props{stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.bb8-chess-white-move{animation:bb8-chess-white 14s ease-in-out infinite}
+.bb8-chess-black-move{animation:bb8-chess-black 14s ease-in-out infinite}
+@keyframes bb8-chess-white{0%,18%,100%{transform:translateY(0)}30%,88%{transform:translateY(-24px)}}
+@keyframes bb8-chess-black{0%,42%,100%{transform:translateY(0)}56%,88%{transform:translateY(24px)}}
+.bb8-checker-slide{animation:bb8-checker-turn 12s ease-in-out infinite}
+@keyframes bb8-checker-turn{0%,20%,100%{transform:translate(0,0)}40%,85%{transform:translate(12px,-12px)}}
+.bb8-game-thinking-arm{animation:bb8-game-consider 8s ease-in-out infinite;transform-origin:-13px 15px}
+@keyframes bb8-game-consider{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(9deg)}}
+.bb8-tetris-drop{animation:bb8-tetris-fit 9s ease-in-out infinite}
+@keyframes bb8-tetris-fit{0%{transform:translateY(0);opacity:1}60%,75%{transform:translateY(75px);opacity:1}82%,100%{transform:translateY(75px);opacity:0}}
+.bb8-tetris-clear{animation:bb8-tetris-row 9s ease-in-out infinite}
+@keyframes bb8-tetris-row{0%,75%{opacity:1}82%,100%{opacity:0}}
+.bb8-invader-drift{animation:bb8-invader-float 10s ease-in-out infinite}
+@keyframes bb8-invader-float{0%,50%,100%{transform:translateX(0)}25%{transform:translateX(6px)}75%{transform:translateX(-6px)}}
+.bb8-invader-shot{animation:bb8-invader-beam 10s linear infinite}
+@keyframes bb8-invader-beam{0%,30%{opacity:0;transform:translateY(0)}35%{opacity:1;transform:translateY(0)}55%{opacity:1;transform:translateY(-28px)}56%,100%{opacity:0;transform:translateY(-28px)}}
+.bb8-invader-boop{animation:bb8-invader-rest 10s ease-in-out infinite}
+@keyframes bb8-invader-rest{0%,54%,100%{opacity:1}58%,90%{opacity:0}}
+.bb8-four-counter{animation:bb8-four-drop 10s ease-in-out infinite}
+@keyframes bb8-four-drop{0%,20%,100%{transform:translateY(0)}42%,88%{transform:translateY(56px)}}
+.bb8-domino-match{animation:bb8-domino-place 11s ease-in-out infinite}
+@keyframes bb8-domino-place{0%,15%,100%{transform:translate(18px,15px) rotate(12deg)}40%,85%{transform:translate(0,0) rotate(0)}}
+.bb8-memory-back{opacity:0}
+.bb8-memory-reveal{animation:bb8-memory-pair 12s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bb8-memory-pair{0%,12%,100%{opacity:0;transform:scaleX(.05)}25%,85%{opacity:1;transform:scaleX(1)}}
+.bb8-nought-turn{animation:bb8-nought-appear 10s ease-in-out infinite}
+@keyframes bb8-nought-appear{0%,22%,100%{opacity:0}38%,88%{opacity:1}}
+.bb8-ladder-token{animation:bb8-ladder-climb 12s ease-in-out infinite}
+@keyframes bb8-ladder-climb{0%,20%,100%{transform:translate(0,0)}55%,88%{transform:translate(40px,-60px)}}
+.bb8-maze-token{animation:bb8-maze-explore 18s linear infinite}
+@keyframes bb8-maze-explore{0%,5%,100%{transform:translate(0,0)}15%{transform:translate(0,18px)}30%{transform:translate(33px,18px)}45%{transform:translate(33px,38px)}65%{transform:translate(73px,38px)}80%,93%{transform:translate(73px,66px)}}
+.bb8-pong-ball{animation:bb8-pong-rally 8s linear infinite}
+@keyframes bb8-pong-rally{0%,100%{transform:translate(0,0)}25%{transform:translate(80px,-20px)}50%{transform:translate(0,20px)}75%{transform:translate(80px,20px)}}
+.bb8-pong-left{animation:bb8-pong-left-move 8s ease-in-out infinite}
+@keyframes bb8-pong-left-move{0%,100%{transform:translateY(0)}50%{transform:translateY(20px)}}
+.bb8-pong-right{animation:bb8-pong-right-move 8s ease-in-out infinite}
+@keyframes bb8-pong-right-move{0%,100%{transform:translateY(0)}25%{transform:translateY(-20px)}75%{transform:translateY(20px)}}
+.bb8-breakout-ball{animation:bb8-breakout-bounce 8s linear infinite}
+@keyframes bb8-breakout-bounce{0%,100%{transform:translate(0,0)}25%{transform:translate(28px,-49px)}50%{transform:translate(44px,0)}75%{transform:translate(-24px,-49px)}}
+.bb8-breakout-brick{animation:bb8-breakout-clear 8s ease-in-out infinite}
+@keyframes bb8-breakout-clear{0%,24%,100%{opacity:1}28%,90%{opacity:0}}
+.bb8-breakout-paddle{animation:bb8-breakout-follow 8s ease-in-out infinite}
+@keyframes bb8-breakout-follow{0%,100%{transform:translateX(0)}50%{transform:translateX(40px)}}
+.bb8-game-joystick{animation:bb8-game-steer 4s ease-in-out infinite;transform-origin:27px 121px}
+@keyframes bb8-game-steer{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+.bb8-game-button{animation:bb8-game-press 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bb8-game-press{0%,65%,100%{transform:scale(1)}75%,85%{transform:scale(.85)}}
+.bb8-game-controller-arm{animation:bb8-game-controls 4s ease-in-out infinite}
+@keyframes bb8-game-controls{50%{transform:translate(2px,2px)}}
+.bb8-droid[class*="bb8-doing-game-"] .bb8-head{animation:bb8-game-attention 10s ease-in-out infinite!important;transform-origin:478px 268px}
+@keyframes bb8-game-attention{0%,100%{transform:rotate(0)}30%,60%{transform:rotate(5deg)}80%,90%{transform:rotate(0) translateY(2px)}}
+@media(prefers-reduced-motion:reduce){
+  .bb8-game-props *,.bb8-droid[class*="bb8-doing-game-"] .bb8-head{animation:none!important}
+  .bb8-invader-shot{opacity:0}
+}
+
+.bb8-breakout-second{animation:bb8-breakout-second-clear 8s ease-in-out infinite}
+@keyframes bb8-breakout-second-clear{0%,74%,100%{opacity:1}78%,90%{opacity:0}}

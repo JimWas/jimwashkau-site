@@ -1,0 +1,28 @@
+.dad-living-room{animation:dad-room-arrival .8s ease-out both}
+@keyframes dad-room-arrival{from{opacity:.45}to{opacity:1}}
+.dad-droid-dance{transform-origin:0 0;animation:dad-droid-sway calc(var(--dad-beat)*4) ease-in-out infinite}
+.dad-little-bb9e{animation-delay:calc(var(--dad-beat)*2)}
+@keyframes dad-droid-sway{0%,100%{transform:translateX(-3px) rotate(-1.5deg)}50%{transform:translateX(3px) rotate(1.5deg)}}
+.dad-living-room .bb8-head{animation:dad-little-head-bob calc(var(--dad-beat)*2) ease-in-out infinite!important;transform-origin:478px 265px}
+@keyframes dad-little-head-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+.dad-star-projector{transform-origin:480px 260px;animation:dad-projector-drift 90s ease-in-out infinite alternate}
+@keyframes dad-projector-drift{to{transform:rotate(5deg) translateX(8px)}}
+.dad-living-room.is-double-nod .dad-little-bb9e .bb8-head{animation:dad-teach-nod 9s ease-in-out both!important}
+.dad-living-room.is-double-nod .dad-little-bb8{animation:dad-pillow-wobble 9s ease-in-out both}
+@keyframes dad-teach-nod{0%,12%,25%,100%{transform:translateY(0)}6%,19%{transform:translateY(5px)}}
+@keyframes dad-pillow-wobble{0%,66%,100%{transform:rotate(0)}73%{transform:translateX(-8px) rotate(-6deg)}82%{transform:rotate(3deg)}91%{transform:rotate(-1deg)}}
+.dad-session-controls{margin:18px 0 8px;padding:17px 18px;border:1px solid #c3cdbb;border-radius:13px;background:#e9ecdf;color:#49634d}
+.dad-session-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.dad-session-controls h3{margin:0 0 6px;font-size:14px;font-weight:500;line-height:1.5}
+.dad-session-controls p{font-size:11px;line-height:1.6;margin:0;color:#75816c}
+.dad-session-heading>button{display:flex;align-items:center;gap:8px;flex-shrink:0;border:0;background:transparent;color:inherit;font:inherit;font-size:12px;padding:9px 0 9px 9px;cursor:pointer}
+.dad-toggle-track{display:flex;align-items:center;width:38px;height:23px;border-radius:20px;padding:3px;background:#a8b49f;box-sizing:border-box;transition:background .3s}
+.dad-toggle-track i{width:17px;height:17px;border-radius:50%;background:#f7f0dc;box-shadow:0 1px 3px #344d3930;transition:transform .3s}
+.dad-session-controls.is-on .dad-toggle-track{background:#aa7954}.dad-session-controls.is-on .dad-toggle-track i{transform:translateX(15px)}
+.dad-session-volume{display:flex;align-items:center;gap:12px;font-size:11px;margin:14px 0 8px}.dad-session-volume input{width:140px;max-width:40%;accent-color:#aa7954}
+.dad-session-volume span{font-size:10px;min-width:28px}.dad-session-controls .dad-resume-music{margin-top:9px;border:1px solid #8da585;border-radius:7px;background:transparent;color:inherit;font-size:11px;padding:7px 10px;cursor:pointer}
+.dad-session-controls button:focus-visible,.dad-session-controls input:focus-visible{outline:3px solid #bd9871;outline-offset:3px}
+.dad-paused-nursery-controls{margin:0;padding:0;border:0;min-inline-size:0}
+.bb8-page.is-dark .dad-session-controls{background:#26382c;border-color:#4e624a;color:#d4dec6}.bb8-page.is-dark .dad-session-controls p{color:#b3c4a8}
+@media(max-width:600px){.dad-session-heading{gap:10px}.dad-session-controls{padding:14px}.dad-session-controls h3{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.dad-living-room,.dad-droid-dance,.dad-living-room .bb8-head,.dad-star-projector,.dad-living-room.is-double-nod .dad-little-bb9e .bb8-head,.dad-living-room.is-double-nod .dad-little-bb8{animation:none!important}.dad-toggle-track i{transition:none}}

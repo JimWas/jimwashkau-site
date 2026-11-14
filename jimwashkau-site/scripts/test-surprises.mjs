@@ -39,3 +39,15 @@ test('new surprises follow their prerequisites and become available after progre
   assert.ok(unlocked.has(id),`${id} must be available after its prerequisite`);
  }
 });
+
+test('ambient stories appear automatically, with quiet turn-taking reserved for a playdate',()=>{
+ const rng=random(147),seen=new Set(),shared=new Set();
+ for(let i=0;i<20000;i++) {
+  seen.add(pickLittleActivity(null,rng,awake).id);
+  shared.add(pickLittleActivity(null,rng,{...awake,hasDroidFriend:true}).id);
+ }
+ for(const item of littleActivities.filter(item=>item.id.startsWith('ambient-'))) assert.ok(seen.has(item.id),`${item.id} should unfold without a click`);
+ assert.ok(!seen.has('playdate-watch-swap'));
+ assert.ok(shared.has('playdate-watch-swap'));
+ for(let i=0;i<500;i++) assert.ok(!pickLittleActivity(null,rng,{...awake,sleeping:true}).id.startsWith('ambient-'));
+});

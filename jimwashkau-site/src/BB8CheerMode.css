@@ -1,0 +1,16 @@
+.bb8-cheer-mode{margin:16px 0;padding:20px;border:1px solid var(--bb8-line);border-radius:16px;color:inherit}
+.bb8-cheer-heading{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.bb8-cheer-heading h3{font-size:15px;margin:0 0 7px;font-weight:650}
+.bb8-cheer-mode p{font-size:12px;line-height:1.7;margin:4px 0 12px}
+.bb8-cheer-mode small{display:block;font-size:11px;line-height:1.7;opacity:.75}
+.bb8-cheer-mode button{border:1px solid var(--bb8-line);border-radius:10px;padding:10px 16px;background:transparent;color:inherit;font:inherit;font-size:12px}
+.bb8-cheer-mode button[aria-checked=true],.bb8-cheer-actions button:first-child{background:#805332;color:#fff3d9;border-color:#a47b52}
+.bb8-cheer-mode button:disabled{opacity:.5;cursor:default}
+.bb8-cheer-options{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin:14px 0}
+.bb8-cheer-options label{font-size:12px;line-height:1.7}
+.bb8-cheer-options select{display:block;max-width:100%;margin-top:5px;padding:9px;border:1px solid var(--bb8-line);border-radius:8px;background:var(--bb8-bg,#f5f3e9);color:inherit;font:inherit}
+.bb8-cheer-voice{display:flex;align-items:center;gap:7px}
+.bb8-cheer-actions{display:flex;gap:10px;flex-wrap:wrap}
+.bb8-cheer-mode .bb8-cheer-quote{margin:14px 0;font-size:15px;font-family:Georgia,serif}
+.bb8-page.is-dark .bb8-cheer-mode{background:#1d2c25}
+.bb8-page.is-dark .bb8-cheer-options select{background:#19261f}

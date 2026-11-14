@@ -65,3 +65,27 @@ test('completed gardening unlocks a future bloom and survives saving',()=>{
  }
  assert.equal(parseNurseryWorld('{"gardenTended":"true"}').gardenTended,undefined);
 });
+
+test('automatic observatory work advances across visits and stays finished',()=>{
+ let world=parseNurseryWorld(null);
+ for(let stage=1;stage<=3;stage++) {
+  const result=completeWorldMoment(world,'ambient-observatory',stage,false);
+  assert.equal(result.world.observatoryStage,stage);
+  assert.ok(result.note);
+  assert.equal(result.projectAdvanced,false);
+  world=parseNurseryWorld(JSON.stringify(result.world));
+  assert.equal(world.observatoryStage,stage);
+ }
+ const finished=completeWorldMoment(world,'ambient-observatory',4,false);
+ assert.equal(finished.world,world);
+ assert.equal(finished.note,undefined);
+ assert.equal(world.projectStage,0);
+ assert.deepEqual(world.keepsakes,[]);
+});
+test('observatory saves validate progress without changing older worlds',()=>{
+ assert.equal(parseNurseryWorld(null).observatoryStage,undefined);
+ assert.equal(parseNurseryWorld('{"observatoryStage":99}').observatoryStage,3);
+ assert.equal(parseNurseryWorld('{"observatoryStage":-5}').observatoryStage,0);
+ assert.equal(parseNurseryWorld('{"observatoryStage":"2"}').observatoryStage,undefined);
+ assert.equal(parseNurseryWorld('{"observatoryStage":1.5}').observatoryStage,undefined);
+});

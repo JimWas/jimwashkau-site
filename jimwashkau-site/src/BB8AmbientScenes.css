@@ -1,0 +1,54 @@
+.bb8-ambient-props{stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.bb8-ambient-magic-cup{animation:bb8-ambient-cup 32s ease-in-out both}
+@keyframes bb8-ambient-cup{0%,12%,100%{transform:translateY(0)}25%,70%{transform:translateY(-24px)}}
+.bb8-ambient-magic-bolt{animation:bb8-ambient-lost-bolt 32s ease-in-out both}
+@keyframes bb8-ambient-lost-bolt{0%,20%{opacity:0;transform:translate(0,12px)}30%{opacity:1;transform:translate(0,-22px)}45%,100%{opacity:1;transform:translate(-87px,-170px)}}
+.bb8-ambient-wand{transform-origin:-42px -12px;animation:bb8-ambient-wand-wave 8s ease-in-out infinite}
+@keyframes bb8-ambient-wand-wave{50%{transform:rotate(12deg)}}
+.bb8-ambient-rock-quilt,.bb8-ambient-cozy-quilt{animation:bb8-ambient-tuck 10s ease-in-out infinite}
+@keyframes bb8-ambient-tuck{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.bb8-ambient-story{animation:bb8-ambient-story-nod 9s ease-in-out infinite;transform-origin:-35px 18px}
+@keyframes bb8-ambient-story-nod{50%{transform:rotate(-5deg)}}
+.bb8-ambient-marble{animation:bb8-ambient-marble-trip 32s linear both}
+@keyframes bb8-ambient-marble-trip{0%,5%{transform:translate(0,0)}20%{transform:translate(80px,23px)}35%,55%{transform:translate(43px,36px)}68%{transform:translate(6px,47px)}88%,100%{transform:translate(77px,71px)}}
+.bb8-ambient-ramp-fix{animation:bb8-ambient-fix-ramp 32s ease-in-out both;transform-origin:-9px -10px}
+@keyframes bb8-ambient-fix-ramp{0%,40%{transform:rotate(10deg)}55%,100%{transform:rotate(0)}}
+.bb8-ambient-repair-arm{animation:bb8-ambient-fix-arm 32s ease-in-out both}
+@keyframes bb8-ambient-fix-arm{0%,30%,70%,100%{opacity:0}40%,55%{opacity:1}}
+.bb8-ambient-bell{animation:bb8-ambient-bell-ring 32s ease-in-out both;transform-origin:29px 26px}
+@keyframes bb8-ambient-bell-ring{0%,87%,100%{transform:rotate(0)}89%,93%{transform:rotate(-12deg)}91%,95%{transform:rotate(12deg)}}
+.bb8-ambient-topple{animation:bb8-ambient-domino-fall 18s ease-in-out both;transform-origin:0 0}
+@keyframes bb8-ambient-domino-fall{0%{transform:rotate(0)}5%,100%{transform:rotate(68deg)}}
+.bb8-ambient-timer{animation:bb8-ambient-timer-turn 32s linear both;transform-origin:0 0}
+@keyframes bb8-ambient-timer-turn{to{transform:rotate(360deg)}}
+.bb8-ambient-cookies-bake{animation:bb8-ambient-cookie-warm 32s ease-in-out both}
+@keyframes bb8-ambient-cookie-warm{0%,10%{opacity:.25}65%,100%{opacity:1}}
+.bb8-ambient-cookie-offer{animation:bb8-ambient-cookie-ready 32s ease-in-out both}
+@keyframes bb8-ambient-cookie-ready{0%,65%{opacity:0;transform:translate(-30px,-10px)}80%,100%{opacity:1;transform:translate(0,0)}}
+.bb8-ambient-train{animation:bb8-ambient-train-tour 32s ease-in-out both}
+@keyframes bb8-ambient-train-tour{0%,100%{transform:translateX(-10px)}45%,60%{transform:translateX(10px)}}
+.bb8-ambient-shared-rover{animation:bb8-ambient-swap-turn 36s ease-in-out both}
+@keyframes bb8-ambient-swap-turn{0%,8%{transform:translateX(-58px)}20%,42%{transform:translateX(-35px)}60%,82%{transform:translateX(35px)}100%{transform:translateX(58px)}}
+.bb8-pair-playdate-watch-swap .bb8-playmate-bb8 .bb8-head{animation:bb8-ambient-eager-turn 36s ease-in-out both!important}
+.bb8-pair-playdate-watch-swap .bb8-playmate-bb9e .bb8-head{animation:bb8-ambient-careful-turn 36s ease-in-out both!important}
+@keyframes bb8-ambient-eager-turn{0%,50%,100%{transform:rotate(0)}15%,35%{transform:rotate(6deg)}70%,85%{transform:rotate(2deg)}}
+@keyframes bb8-ambient-careful-turn{0%,100%{transform:rotate(0)}15%,35%{transform:rotate(-2deg)}65%,85%{transform:rotate(-6deg)}}
+.bb8-ambient-next-stage{animation:bb8-ambient-model-progress 36s ease-in-out both}
+@keyframes bb8-ambient-model-progress{0%,20%{opacity:0}85%,100%{opacity:1}}
+.bb8-ambient-project-brush{animation:bb8-ambient-patient-brush 8s ease-in-out infinite;transform-origin:-62px -19px}
+@keyframes bb8-ambient-patient-brush{50%{transform:rotate(-14deg)}}
+.bb8-ambient-sticker{animation:bb8-ambient-sticker-wiggle 8s ease-in-out infinite;transform-origin:0 0}
+@keyframes bb8-ambient-sticker-wiggle{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(8deg)}}
+.bb8-ambient-balloon{animation:bb8-ambient-balloon-bob 12s ease-in-out infinite;transform-origin:14px 32px}
+@keyframes bb8-ambient-balloon-bob{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg) translateY(-5px)}}
+.bb8-ambient-crown{animation:bb8-ambient-crown-slip 30s ease-in-out both}
+@keyframes bb8-ambient-crown-slip{0%,15%,100%{transform:translateY(0) rotate(0)}42%,62%{transform:translateY(45px) rotate(-9deg)}78%{transform:translateY(-5px) rotate(3deg)}}
+.bb8-droid[class*="bb8-doing-ambient-"] .bb8-head{animation:bb8-ambient-curious-look 12s ease-in-out infinite!important;transform-origin:478px 268px}
+@keyframes bb8-ambient-curious-look{0%,100%{transform:rotate(0)}40%,65%{transform:rotate(4deg)}}
+.bb8-droid.bb8-doing-ambient-cozy .bb8-head{animation:bb8-ambient-getting-sleepy 45s ease-in-out both!important}
+@keyframes bb8-ambient-getting-sleepy{0%{transform:rotate(0)}50%{transform:rotate(7deg) translateY(3px)}100%{transform:rotate(12deg) translateY(7px)}}
+@media(prefers-reduced-motion:reduce){
+  .bb8-ambient-props *,.bb8-ambient-crown,.bb8-droid[class*="bb8-doing-ambient-"] .bb8-head,.bb8-pair-playdate-watch-swap .bb8-head{animation:none!important}
+  .bb8-ambient-magic-bolt{transform:translate(-87px,-170px)}
+  .bb8-ambient-repair-arm{opacity:0}
+}
