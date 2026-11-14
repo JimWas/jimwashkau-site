@@ -1,3 +1,4 @@
+import { pickDroidSound, makeDroidSound, chatterGap, activitySound, type DroidSoundKind } from './DroidSoundLibrary';
 import CheerMode from './BB8CheerMode';
 import { LivingRoomScene, LivingRoomControls } from './LivingRoomScene';
 import { useLivingRoomMusic } from './useLivingRoomMusic';
@@ -249,6 +250,7 @@ function DroidMonitor({ danceVolume, onDanceVolume: setDanceVolume, danceMode, o
   const [helloUntil, setHelloUntil] = useState(0);
   const [helloPhrase, setHelloPhrase] = useState('That happy beep was just for you.');
   const lastHello = useRef(-1);
+  const lastVoice = useRef<DroidSoundKind | null>(null);
   const [log, setLog] = useState<CareEvent[]>(() => readLog(`${resident}-care-log`));
   const playdate = useDroidPlaydates(activity === 'sleeping', resident, text => setLog(entries => [{time: Date.now(), text}, ...entries].slice(0,12)), pastime?.id === 'playdate-nap', danceMode);
   useEffect(() => { droidPresentRef.current = playdate.present; }, [playdate.present]);
@@ -521,14 +523,21 @@ function DroidMonitor({ danceVolume, onDanceVolume: setDanceVolume, danceMode, o
     oscillator.frequency.setValueAtTime(frequency, context.currentTime + delay);
     if (!soft) oscillator.frequency.exponentialRampToValueAtTime(frequency * bend, context.currentTime + delay + duration);
     gain.gain.setValueAtTime(0, context.currentTime + delay);
-    gain.gain.linearRampToValueAtTime(level, context.currentTime + delay + (soft ? .65 : .025));
+    gain.gain.linearRampToValueAtTime(level, context.currentTime + delay + Math.min(soft ? .65 : .025, duration * .3));
     gain.gain.exponentialRampToValueAtTime(.001, context.currentTime + delay + duration);
+    gain.gain.linearRampToValueAtTime(0, context.currentTime + delay + duration + .025);
     oscillator.connect(gain); gain.connect(masterRef.current || context.destination);
     const voices = channel === 'music' ? musicVoices.current : channel === 'baby' ? babyVoices.current : null;
     const voice = { oscillator, gain };
     voices?.add(voice);
     oscillator.onended = () => { voices?.delete(voice); oscillator.disconnect(); gain.disconnect(); };
     oscillator.start(context.currentTime + delay); oscillator.stop(context.currentTime + delay + duration + .03);
+  }
+  function playDroidVoice(kind: DroidSoundKind) {
+    const phrase = makeDroidSound(kind, resident);
+    lastVoice.current = kind;
+    phrase.notes.forEach(note => tone(note.frequency, note.delay, note.duration, false, note.bend, note.waveform, note.level, 'baby'));
+    return phrase;
   }
   async function enableAudio(automatic = false) {
     try {
@@ -609,23 +618,16 @@ function DroidMonitor({ danceVolume, onDanceVolume: setDanceVolume, danceMode, o
     const murmur = () => {
       if (cancelled) return;
       if (audioRef.current?.state === 'running') {
-        const sleepiness = { sleeping: .95, idle: .65, busy: .2, up: .35 }[activityRef.current];
-        const sleepy = Math.random() < sleepiness;
-        const pitch = sleepy ? 180 + Math.random() * 190 : 430 + Math.random() * 300;
-        const notes = sleepy ? 1 + Math.floor(Math.random() * 2) : 2 + Math.floor(Math.random() * 4);
-        let delay = 0;
-        for (let i = 0; i < notes; i++) {
-          const duration = sleepy ? .35 + Math.random() * .55 : .1 + Math.random() * .2;
-          tone(pitch * (.8 + Math.random() * .6), delay, duration, false, .65 + Math.random() * .7, sleepy ? 'sine' : 'triangle', sleepy ? .04 : .055, 'baby');
-          delay += duration + .06 + Math.random() * .15;
-        }
-        setBabyMood(sleepy ? 'dreaming' : 'wiggling');
+        const phrase = playDroidVoice(pickDroidSound(lastVoice.current, activityRef.current));
+        const delay = phrase.duration;
+        setBabyMood(phrase.mood);
         clearTimeout(settleTimer);
         settleTimer = window.setTimeout(() => setBabyMood(null), (delay + 3) * 1000);
         // Sometimes a brief chatty spell; sometimes a long, peaceful pause.
-        if (chatterLeft === 0 && Math.random() < .3) chatterLeft = 1 + Math.floor(Math.random() * 3);
+        if (activityRef.current !== 'sleeping' && chatterLeft === 0 && Math.random() < .3) chatterLeft = 1 + Math.floor(Math.random() * 3);
       }
-      const gap = chatterLeft > 0 ? (chatterLeft--, 2000 + Math.random() * 4500) : Math.random() < .35 ? 12000 + Math.random() * 18000 : 35000 + Math.random() * 85000;
+      const gap = chatterGap(activityRef.current, chatterLeft > 0);
+      if (chatterLeft > 0) chatterLeft--;
       timer = window.setTimeout(murmur, gap);
     };
     timer = window.setTimeout(murmur, 5000 + Math.random() * 7000);
@@ -686,11 +688,12 @@ function DroidMonitor({ danceVolume, onDanceVolume: setDanceVolume, danceMode, o
 
   useEffect(() => {
     if (danceMode || !sound || !audioStarted || !pastime) return;
-    if (pastime.id === 'tiny-dreams') { tone(440, 0, .24, false, .8, 'sine', .012, 'baby'); tone(523, .5, .24, false, .9, 'sine', .01, 'baby'); }
-    if (pastime.id === 'goodbye') { tone(520, 0, .2, false, .8, 'sine', .025, 'baby'); tone(390, .3, .3, false, .7, 'sine', .018, 'baby'); }
-    if (pastime.id === 'surprise-sleepy-thanks') { tone(440, 0, .3, false, .7, 'sine', .012, 'baby'); tone(330, .5, .4, false, .6, 'sine', .01, 'baby'); }
-    if (pastime.id === 'welcome' || pastime.id === 'surprise-welcome-home') { tone(390, 0, .2, false, 1.3, 'sine', .025, 'baby'); tone(590, .3, .2, false, 1.2, 'sine', .025, 'baby'); }
-  }, [pastime, sound, audioStarted, danceMode]);
+    const kind = activitySound(pastime.id);
+    if (!kind || (activity === 'sleeping' && !['tiny-dreams','surprise-sleepy-thanks'].includes(pastime.id))) return;
+    const delay = pastime.id === 'ambient-marble-run' ? 28000 : pastime.id === 'ambient-baking' ? 26000 : pastime.id === 'ambient-domino-chain' ? 15000 : 0;
+    const timer = window.setTimeout(() => { playDroidVoice(kind); }, delay);
+    return () => clearTimeout(timer);
+  }, [pastime, activity, sound, audioStarted, danceMode]);
 
   const previousDanceMode = useRef(false);
   useEffect(() => {
@@ -736,15 +739,10 @@ function DroidMonitor({ danceVolume, onDanceVolume: setDanceVolume, danceMode, o
     const phrase = helloPhrases[phraseIndex];
     const beep = helloBeeps[Math.floor(Math.random() * helloBeeps.length)];
     if (hasAudio) {
-      const notes = 3 + Math.floor(Math.random() * 4);
-      const basePitch = 420 + Math.random() * 360;
-      let delay = 0;
-      for (let i = 0; i < notes; i++) {
-        const duration = .09 + Math.random() * .17;
-        const pitch = basePitch * (.7 + Math.random() * 1.2);
-        tone(pitch, delay, duration, false, .65 + Math.random(), Math.random() < .3 ? 'triangle' : 'sine');
-        delay += duration + .035 + Math.random() * .08;
-      }
+      hush(babyVoices.current);
+      const greetings: DroidSoundKind[] = ['hello','happy-giggle','baby-babble','shy-peep','playful-whistle','proud-chirp'];
+      const choices = greetings.filter(kind => kind !== lastVoice.current);
+      playDroidVoice(choices[Math.floor(Math.random() * choices.length)]);
     }
     setHelloPhrase(`${beep} “${phrase}”`);
     setHelloUntil(Date.now() + 7000); setNow(Date.now());
