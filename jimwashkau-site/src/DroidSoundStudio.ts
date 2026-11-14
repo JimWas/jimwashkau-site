@@ -1,14 +1,14 @@
 import type { DroidId } from './DroidProfiles';
 export const soundStudioKey='little-droid-custom-sounds-v1';
 export type StudioMood='happy'|'curious'|'sleepy'|'silly';
-export type StudioSettings={mood:StudioMood;pitch:number;notes:number;speed:number;wobble:number;softness:number};
+export type StudioSettings={mood:StudioMood;pitch:number;notes:number;speed:number;wobble:number;softness:number;boostDb:number};
 export type StudioNote={frequency:number;delay:number;duration:number;bend:number;level:number;waveform:'sine'|'triangle'};
 export type SavedDroidSound={id:string;name:string;seed:number;settings:StudioSettings;enabled:boolean;createdAt:number};
-export const defaultStudioSettings:StudioSettings={mood:'happy',pitch:440,notes:4,speed:1,wobble:45,softness:65};
+export const defaultStudioSettings:StudioSettings={mood:'happy',pitch:440,notes:4,speed:1,wobble:45,softness:65,boostDb:18};
 const moods:StudioMood[]=['happy','curious','sleepy','silly'];
 const clamp=(value:unknown,fallback:number,min:number,max:number)=>typeof value==='number'&&Number.isFinite(value)?Math.max(min,Math.min(max,value)):fallback;
 export function cleanStudioSettings(value:Partial<StudioSettings>|null|undefined):StudioSettings {
- return {mood:moods.includes(value?.mood as StudioMood)?value!.mood!:defaultStudioSettings.mood,pitch:clamp(value?.pitch,440,160,800),notes:Math.round(clamp(value?.notes,4,1,8)),speed:clamp(value?.speed,1,.65,1.8),wobble:clamp(value?.wobble,45,0,100),softness:clamp(value?.softness,65,0,100)};
+ return {mood:moods.includes(value?.mood as StudioMood)?value!.mood!:defaultStudioSettings.mood,pitch:clamp(value?.pitch,440,160,800),notes:Math.round(clamp(value?.notes,4,1,8)),speed:clamp(value?.speed,1,.65,1.8),wobble:clamp(value?.wobble,45,0,100),softness:clamp(value?.softness,65,0,100),boostDb:clamp(value?.boostDb,18,0,30)};
 }
 function seededRandom(seed:number){let state=seed>>>0;return()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};}
 export function generateStudioSound(settings:StudioSettings,seed:number,resident:DroidId='bb8') {
@@ -24,7 +24,7 @@ export function generateStudioSound(settings:StudioSettings,seed:number,resident
   const direction=s.mood==='curious'?.2+random()*.8:s.mood==='sleepy'?-.8+random()*.9:random()*2-1;
   const bend=Math.max(100/frequency,Math.min(1400/frequency,Math.pow(2,direction*s.wobble/100*.8)));
   const texture=random();
-  notes.push({frequency,delay,duration,bend,level:.012+.018*(1-s.softness/100),waveform:resident==='bb9e'||s.softness>=60||texture<.65?'sine':'triangle'});
+  notes.push({frequency,delay,duration,bend,level:Math.min(.85,(.012+.018*(1-s.softness/100))*Math.pow(10,s.boostDb/20)),waveform:resident==='bb9e'||s.softness>=60||texture<.65?'sine':'triangle'});
   delay+=duration+(.035+random()*(s.mood==='sleepy'?.22:.14))/s.speed;
  }
  if(delay>6){const ratio=6/delay;notes.forEach(note=>{note.delay*=ratio;note.duration*=ratio;});delay=6;}

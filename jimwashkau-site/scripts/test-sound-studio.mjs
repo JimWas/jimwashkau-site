@@ -13,12 +13,12 @@ test('a design is reproducible, and new seeds create genuinely different phrases
  const distinct=new Set(Array.from({length:100},(_,i)=>JSON.stringify(generateStudioSound(defaultStudioSettings,i).notes)));
  assert.equal(distinct.size,100);
 });
-test('all mood and slider extremes keep notes quiet, finite, and bounded',()=>{
- for(const mood of ['happy','curious','sleepy','silly'])for(const pitch of [160,800])for(const notes of [1,8])for(const speed of [.65,1.8])for(const softness of [0,100]){
-  const result=generateStudioSound({mood,pitch,notes,speed,wobble:100,softness},8192);
+test('all mood and slider extremes keep notes finite and within audio headroom',()=>{
+ for(const mood of ['happy','curious','sleepy','silly'])for(const pitch of [160,800])for(const notes of [1,8])for(const speed of [.65,1.8])for(const softness of [0,100])for(const boostDb of [0,18,30]){
+  const result=generateStudioSound({mood,pitch,notes,speed,wobble:100,softness,boostDb},8192);
   assert.equal(result.notes.length,notes);assert.ok(result.duration>0&&result.duration<=6.00001);
   let end=0;
-  for(const note of result.notes){assert.ok(note.delay>=end);assert.ok(note.frequency>=120&&note.frequency<=1100);assert.ok(note.frequency*note.bend>=99.99&&note.frequency*note.bend<=1400.01);assert.ok(note.level<=.031);assert.ok(note.duration>0&&note.duration<=.85);end=note.delay+note.duration;}
+  for(const note of result.notes){assert.ok(note.delay>=end);assert.ok(note.frequency>=120&&note.frequency<=1100);assert.ok(note.frequency*note.bend>=99.99&&note.frequency*note.bend<=1400.01);assert.ok(note.level<=.85);assert.ok(note.duration>0&&note.duration<=.85);end=note.delay+note.duration;}
  }
 });
 test('both droids can use one design, with BB-9E keeping a lower voice',()=>{
@@ -54,4 +54,14 @@ test('preview stop fades and cancels scheduled notes without leaving a playback 
  const sound=generateStudioSound(defaultStudioSettings,10);const playback=playStudioNotes(ctx,sound.notes,()=>ended++);
  assert.equal(sources.length,sound.notes.length);playback.stop();playback.stop();assert.equal(ended,1);
  assert.ok(sources.every(source=>source.stops.at(-1)===.1));sources.forEach(source=>source.onended());assert.equal(ended,1);
+});
+
+test('decibel boost raises volume without changing the phrase and older designs get the louder default',()=>{
+ const quiet=generateStudioSound({...defaultStudioSettings,boostDb:0},42);
+ const boosted=generateStudioSound({...defaultStudioSettings,boostDb:18},42);
+ quiet.notes.forEach((note,i)=>{assert.ok(Math.abs(boosted.notes[i].level/note.level-Math.pow(10,18/20))<1e-10);assert.equal(note.frequency,boosted.notes[i].frequency);assert.equal(note.delay,boosted.notes[i].delay);});
+ assert.equal(cleanStudioSettings({}).boostDb,18);
+ assert.equal(cleanStudioSettings({boostDb:Infinity}).boostDb,18);
+ assert.equal(cleanStudioSettings({boostDb:99}).boostDb,30);
+ assert.equal(parseSavedSounds([record()])[0].settings.boostDb,18);
 });
