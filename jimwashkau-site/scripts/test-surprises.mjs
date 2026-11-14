@@ -40,7 +40,7 @@ test('new surprises follow their prerequisites and become available after progre
  }
 });
 
-test('ambient stories appear automatically, with quiet turn-taking reserved for a playdate',()=>{
+test('ambient and cowboy stories appear automatically, with buddy stories reserved for playdates',()=>{
  const rng=random(147),seen=new Set(),shared=new Set();
  for(let i=0;i<20000;i++) {
   seen.add(pickLittleActivity(null,rng,awake).id);
@@ -49,5 +49,7 @@ test('ambient stories appear automatically, with quiet turn-taking reserved for 
  for(const item of littleActivities.filter(item=>item.id.startsWith('ambient-'))) assert.ok(seen.has(item.id),`${item.id} should unfold without a click`);
  assert.ok(!seen.has('playdate-watch-swap'));
  assert.ok(shared.has('playdate-watch-swap'));
+ for(const id of ['cowboy-dressup','cowboy-quickdraw','cowboy-trail']) assert.ok(seen.has(id));
+ for(const id of ['playdate-cowboy-duel','playdate-cowboy-trail']) { assert.ok(!seen.has(id)); assert.ok(shared.has(id)); }
  for(let i=0;i<500;i++) assert.ok(!pickLittleActivity(null,rng,{...awake,sleeping:true}).id.startsWith('ambient-'));
 });

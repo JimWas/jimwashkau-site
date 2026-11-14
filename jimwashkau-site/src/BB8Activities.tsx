@@ -1,3 +1,4 @@
+import { CowboySceneProps } from './BB8CowboyScenes';
 import { AmbientSceneProps } from './BB8AmbientScenes';
 import { GameSceneProps } from './BB8GameScenes';
 import { CozySceneProps } from './BB8CozyScenes';
@@ -11,6 +12,7 @@ import type { LittleActivity } from './BB8LittleActivities';
 // Props live inside the droid's SVG group so snapshots and night vision include them.
 export function ActivityProps({ activity, resident = 'bb8', world = {nickname:'',projectStage:0,keepsakes:[]} }: { activity: LittleActivity; resident?: DroidId; world?: NurseryWorld }) {
   return <g className={`bb8-play-props bb8-play-${activity.id}`} aria-label={activity.label} strokeLinecap="round" strokeLinejoin="round">
+    <CowboySceneProps key={`cowboy-${activity.id}`} id={activity.id}/>
     <AmbientSceneProps key={`ambient-${activity.id}`} id={activity.id} world={world}/>
     <GameSceneProps key={`game-${activity.id}`} id={activity.id}/>
     <CozySceneProps id={activity.id}/>

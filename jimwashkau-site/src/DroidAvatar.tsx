@@ -1,3 +1,4 @@
+import { CowboyHeadProps } from './BB8CowboyScenes';
 import { AmbientHeadProps } from './BB8AmbientScenes';
 import { CozyAntennaSock } from './BB8CozyScenes';
 import type { DroidId } from './DroidProfiles';
@@ -24,6 +25,6 @@ export function DroidAvatar({ resident, activity = 'up', pastime, mood = 'up' }:
           {(pastime?.id === 'dozing' || pastime?.id === 'ambient-cozy') && <g className="bb8-doze-lens"><circle cx="476" cy="235" r="15" fill="#586660"/><path d="M463 235q13 7 26 0" fill="none" stroke="#263831" strokeWidth="3" strokeLinecap="round"/></g>}
           <circle cx="518" cy="249" r="8" fill="#344341"/><circle cx="519" cy="247" r="3" fill="#90b1b3"/>
           <circle className="bb8-led" cx="443" cy="249" r="3" fill="#f58b55"/>
- </>}<AmbientHeadProps id={pastime?.id}/>{pastime?.id === 'sock-matching' && <CozyAntennaSock resident={resident}/>}</g>
+ </>}<CowboyHeadProps id={pastime?.id} resident={resident}/><AmbientHeadProps id={pastime?.id}/>{pastime?.id === 'sock-matching' && <CozyAntennaSock resident={resident}/>}</g>
   </>;
 }

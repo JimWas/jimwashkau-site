@@ -1,0 +1,20 @@
+.bb8-cowboy-hat{transform-origin:0 0;animation:bb8-cowboy-hat-tip 16s ease-in-out infinite}
+@keyframes bb8-cowboy-hat-tip{0%,65%,100%{transform:rotate(0)}75%{transform:translateY(3px) rotate(-7deg)}85%{transform:translateY(-2px) rotate(2deg)}}
+.bb8-cowboy-draw{transform-origin:-19px 10px;animation:bb8-cowboy-quickdraw 16s ease-in-out infinite}
+@keyframes bb8-cowboy-quickdraw{0%,12%,75%,100%{transform:rotate(60deg)}22%,48%{transform:rotate(0)}58%{transform:rotate(5deg)}}
+.bb8-cowboy-draw-second{animation-delay:8s}
+.bb8-cowboy-bubble-first{animation:bb8-cowboy-bubbles 16s ease-out infinite;opacity:0}
+@keyframes bb8-cowboy-bubbles{0%,24%{opacity:0;transform:translate(0,0)}28%{opacity:.8;transform:translate(0,0)}45%{opacity:0;transform:translate(40px,14px)}100%{opacity:0;transform:translate(40px,14px)}}
+.bb8-cowboy-bubble-second{animation:bb8-cowboy-bubbles-back 16s ease-out infinite;opacity:0}
+@keyframes bb8-cowboy-bubbles-back{0%,74%{opacity:0;transform:translate(0,0)}78%{opacity:.8;transform:translate(0,0)}95%,100%{opacity:0;transform:translate(-40px,0)}}
+.bb8-cowboy-pony{animation:bb8-cowboy-pony-rock 8s ease-in-out infinite;transform-box:fill-box;transform-origin:center bottom}
+.bb8-cowboy-pony-friend{animation-delay:2s}
+@keyframes bb8-cowboy-pony-rock{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-2px)}}
+.bb8-droid[class*="bb8-doing-cowboy-"] .bb8-head{animation:bb8-cowboy-thoughtful-nod 12s ease-in-out infinite!important}
+.bb8-pair-playdate-cowboy-duel .bb8-playmate-bb8 .bb8-head,.bb8-pair-playdate-cowboy-trail .bb8-playmate-bb8 .bb8-head{animation:bb8-cowboy-thoughtful-nod 12s ease-in-out infinite!important}
+.bb8-pair-playdate-cowboy-duel .bb8-playmate-bb9e .bb8-head,.bb8-pair-playdate-cowboy-trail .bb8-playmate-bb9e .bb8-head{animation:bb8-cowboy-thoughtful-nod 12s 4s ease-in-out infinite!important}
+@keyframes bb8-cowboy-thoughtful-nod{0%,60%,100%{transform:rotate(0)}75%,88%{transform:rotate(4deg) translateY(2px)}}
+@media(prefers-reduced-motion:reduce){
+ .bb8-cowboy-hat,.bb8-cowboy-props *,.bb8-droid[class*="bb8-doing-cowboy-"] .bb8-head,.bb8-pair-playdate-cowboy-duel .bb8-head,.bb8-pair-playdate-cowboy-trail .bb8-head{animation:none!important}
+ .bb8-cowboy-bubble{opacity:.5}
+}

@@ -1,3 +1,4 @@
+import { CowboySceneProps } from './BB8CowboyScenes';
 import { AmbientSceneProps } from './BB8AmbientScenes';
 import { WorldActivityProps } from './BB8WorldActivities';
 import type { NurseryWorld } from './BB8NurseryWorld';
@@ -14,12 +15,13 @@ export function HandshakeSignal({ resident, partner }: { resident: DroidId; part
   </g>;
 }
 export function DroidPlaydateScene({ resident, moment, world = {nickname:'',projectStage:0,keepsakes:[]}, visiting = [] }: { resident: DroidId; moment?: string; world?: NurseryWorld; visiting?: string[] }) {
+  const cowboy = moment?.startsWith('playdate-cowboy-');
   const handshake = moment === 'secret-handshake';
   const napping = moment === 'playdate-nap';
   return <g className={`bb8-shared-playdate bb8-pair-${moment || 'quiet'}`} aria-label="BB-8 and BB-9E together in the play crib">
     <ellipse cx="355" cy="427" rx="83" ry="15" fill="#748478" opacity=".25"/><ellipse cx="605" cy="427" rx="83" ry="15" fill="#748478" opacity=".25"/>
-    <g transform="translate(1 120) scale(.74)"><g className="bb8-playmate bb8-playmate-bb8"><DroidAvatar resident="bb8" activity={napping ? 'sleeping' : 'up'}/></g></g>
-    <g transform="translate(251 120) scale(.74)"><g className="bb8-playmate bb8-playmate-bb9e"><DroidAvatar resident="bb9e" activity={napping ? 'sleeping' : 'up'}/></g></g>
+    <g transform="translate(1 120) scale(.74)"><g className="bb8-playmate bb8-playmate-bb8"><DroidAvatar resident="bb8" pastime={cowboy && moment ? {id:moment} : undefined} activity={napping ? 'sleeping' : 'up'}/></g></g>
+    <g transform="translate(251 120) scale(.74)"><g className="bb8-playmate bb8-playmate-bb9e"><DroidAvatar resident="bb9e" pastime={cowboy && moment ? {id:moment} : undefined} activity={napping ? 'sleeping' : 'up'}/></g></g>
     {moment === 'playdate-building' && <g stroke="#eee0bd" strokeWidth="2">
       {[0,1,2].map(i=><rect key={i} x={453+(i%2)*4} y={397-i*26} width="48" height="25" rx="4" fill={['#a5bea4','#cda17c','#a2bdc4'][i]}/>)}
       <g className="bb8-pair-eager-block"><rect x="410" y="345" width="25" height="25" rx="4" fill="#d9bc83"/></g>
@@ -47,6 +49,7 @@ export function DroidPlaydateScene({ resident, moment, world = {nickname:'',proj
       <path d="M290 406q90-18 188 0t190 0m-321 12h12m-6-6v12m247-6h12m-6-6v12" fill="none" stroke="#d4dfc6" strokeWidth="3"/>
       {napping && <g fill="#eee4c7" fontSize="19"><text x="399" y="284">z</text><text x="553" y="279">z</text></g>}
     </g>}
+    {moment && <CowboySceneProps key={`cowboy-shared-${moment}`} id={moment} shared/>}
     {moment && <AmbientSceneProps key={`ambient-shared-${moment}`} id={moment} world={world} shared/>}
     {moment && <WorldActivityProps id={moment} world={world} shared visiting={visiting}/>}
     {handshake && <HandshakeSignal resident={resident} partner={otherDroid(resident)}/>}

@@ -1,5 +1,10 @@
 import { playdateActivities, surpriseUnavailableReason } from './BB8PlaydateRules';
 export const littleActivities = [
+  { id: 'cowboy-dressup', label: 'Little cowboy dress-up', title: 'Howdy, little partner', detail: 'Trying on a tiny cowboy hat, a soft bandana, and a shiny toy badge. A careful hat tip for his favorite human.' },
+  { id: 'cowboy-quickdraw', label: 'Cowboy quick-draw practice', title: 'The gentlest draw in the galaxy', detail: 'Practicing a wobbly quick-draw with a brightly colored bubble toy. His opponent is a paper cactus. A few bubbles, a thoughtful nod, and another try.' },
+  { id: 'cowboy-trail', label: 'Pretend cowboy trail ride', title: 'A very small frontier adventure', detail: 'Exploring a pretend trail with his soft hobby horse. Checking the little sign, tipping his hat, and taking the scenic route home.' },
+  { id: 'playdate-cowboy-duel', label: 'Cowboy buddy dueling practice', title: 'Two little cowboys. One paper cactus.', detail: 'BB-8 eagerly tries his bubble-toy draw. BB-9E watches carefully, then takes a thoughtful turn. Their little cowboy duel ends with two hat tips and a very bubbly cactus.' },
+  { id: 'playdate-cowboy-trail', label: 'Cowboy buddy trail ride', title: 'Happy trails, little partners', detail: 'Both droids wear cowboy hats and bring soft hobby horses along their pretend trail. BB-8 explores eagerly; BB-9E checks the sign. They always head home together.' },
   { id: 'ambient-magic', label: 'A tiny magic show', title: 'The bolt was here a moment ago…', detail: 'Lifting the cup, checking underneath, then discovering the missing toy bolt balanced on his head. A very proud little magician.' },
   { id: 'ambient-pet-rock', label: 'Pet rock care', title: 'His rock is very good at staying', detail: 'Tucking his pet rock into a miniature bed and reading it a story. Patiently waiting for a reply. Such a wonderful listener.' },
   { id: 'ambient-marble-run', label: 'Marble-run tinkering', title: 'A little patience gets things rolling', detail: 'Watching a marble pause at a crooked ramp. A gentle adjustment sends it rolling all the way to the little bell.' },
