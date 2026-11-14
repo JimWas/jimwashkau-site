@@ -14,7 +14,8 @@
     "test:surprises": "node --test scripts/test-surprises.mjs",
     "test:living-room": "node --test scripts/test-living-room.mjs",
     "test:buddies": "node --test scripts/test-space-buddies.mjs",
-    "test:sounds": "node --test scripts/test-droid-sounds.mjs"
+    "test:sounds": "node --test scripts/test-droid-sounds.mjs",
+    "test:sound-studio": "node --test scripts/test-sound-studio.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
